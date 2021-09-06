@@ -1,9 +1,11 @@
 package com.ablackpikatchu.refinement.core.init;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.common.item.Cogwheel;
 import com.ablackpikatchu.refinement.common.item.GritPaper;
 import com.ablackpikatchu.refinement.common.item.MixingBowl;
 import com.ablackpikatchu.refinement.common.item.Mold;
+import com.ablackpikatchu.refinement.common.item.RefinedCoal;
 import com.ablackpikatchu.refinement.common.material.ModItemTier;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup;
 
@@ -133,6 +135,8 @@ public class ItemInit {
 			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 	public static final RegistryObject<Item> CHARCOAL_DUST = ITEMS.register("charcoal_dust",
 			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+	public static final RegistryObject<Item> REFINED_COAL = ITEMS.register("refined_coal",
+			() -> new RefinedCoal(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 
 	// Refining Materials
 	public static final RegistryObject<Item> REFINING_DUST = ITEMS.register("refining_dust",
@@ -167,5 +171,26 @@ public class ItemInit {
 			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 	public static final RegistryObject<Item> GEM_MOLD = ITEMS.register("gem_mold",
 			() -> new Mold(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+	public static final RegistryObject<Item> UNFIRED_COGWHEEL_MOLD = ITEMS.register("unfired_cogwheel_mold",
+			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+	public static final RegistryObject<Item> COGWHEEL_MOLD = ITEMS.register("cogwheel_mold",
+			() -> new Mold(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 
-} 
+	// Misc
+	public static final RegistryObject<Item> MACHINE_PARTS = ITEMS.register("machine_parts",
+			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+	public static final RegistryObject<Item> REFINED_IRON_COGWHEEL = ITEMS.register("refined_iron_cogwheel",
+			() -> new Cogwheel(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+	public static final RegistryObject<Item> UNFIRED_REFINED_IRON_COGWHEEL = ITEMS.register(
+			"unfired_refined_iron_cogwheel", () -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+	public static final RegistryObject<Item> REFINED_GOLD_COGWHEEL = ITEMS.register("refined_gold_cogwheel",
+			() -> new Cogwheel(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+	public static final RegistryObject<Item> UNFIRED_REFINED_GOLD_COGWHEEL = ITEMS.register(
+			"unfired_refined_gold_cogwheel", () -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+	public static final RegistryObject<Item> REFINED_DIAMOND_COGWHEEL = ITEMS.register("refined_diamond_cogwheel",
+			() -> new Cogwheel(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+	public static final RegistryObject<Item> UNFIRED_REFINED_DIAMOND_COGWHEEL = ITEMS.register(
+			"unfired_refined_diamond_cogwheel",
+			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+
+}

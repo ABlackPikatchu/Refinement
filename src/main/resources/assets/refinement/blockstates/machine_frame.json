@@ -1,0 +1,5 @@
+{
+	"variants": {
+		"": { "model": "refinement:block/machine_frame" }
+	}
+}

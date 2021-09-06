@@ -49,6 +49,7 @@
 	
 	"item.refinement.coal_dust": "Coal Dust",
 	"item.refinement.charcoal_dust": "Charcoal Dust",
+	"item.refinement.refined_coal": "Refined Coal",
 	"item.refinement.grit": "Grit",
 	"item.refinement.iron_infused_grit": "Iron Infused Grit",
 	"item.refinement.diamond_infused_grit": "Diamond Infused Grit",
@@ -63,6 +64,17 @@
 	"item.refinement.ingot_mold": "Ingot Mold",
 	"item.refinement.unfired_gem_mold": "Unfired Gem Mold",
 	"item.refinement.gem_mold": "Gem Mold",
+	"item.refinement.machine_parts": "Machine Parts",
+	"item.refinement.refined_iron_cogwheel": "Refined Iron Cogwheel",
+	"item.refinement.unfired_refined_iron_cogwheel": "Unfired Refined Iron Cogwheel",
+	"item.refinement.refined_gold_cogwheel": "Refined Gold Cogwheel",
+	"item.refinement.unfired_refined_gold_cogwheel": "Unfired Refined Gold Cogwheel",
+	"item.refinement.refined_diamond_cogwheel": "Refined Diamond Cogwheel",
+	"item.refinement.unfired_refined_diamond_cogwheel": "Unfired Refined Diamond Cogwheel",
+	"block.refinement.machine_frame": "Machine Frame",
+	"item.refinement.cogwheel_mold": "Cogwheel Mold",
+	"item.refinement.unfired_cogwheel_mold": "Unfired Cogwheel Mold",
+	
 	
 	"block.refinement.refined_iron_block": "Block Of Refined Iron",
 	"block.refinement.refined_gold_block": "Block Of Refined Gold",

@@ -17,7 +17,7 @@ public class BlockInit {
 			Refinement.MOD_ID);
 
 	public static final RegistryObject<Block> REFINED_IRON_BLOCK = BLOCKS.register("refined_iron_block",
-			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(5f)
+			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).strength(5f)
 					.harvestLevel(1).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)));
 	public static final RegistryObject<Block> REFINED_GOLD_BLOCK = BLOCKS.register("refined_gold_block",
 			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.GOLD).strength(3f).harvestLevel(2)
@@ -28,5 +28,8 @@ public class BlockInit {
 	public static final RegistryObject<Block> REFINED_NETHERITE_BLOCK = BLOCKS.register("refined_netherite_block",
 			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).strength(50f)
 					.harvestLevel(3).harvestTool(ToolType.PICKAXE).sound(SoundType.NETHERITE_BLOCK)));
+	public static final RegistryObject<Block> MACHINE_FRAME = BLOCKS.register("machine_frame",
+			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).strength(5f)
+					.harvestLevel(1).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)));
 
 }
