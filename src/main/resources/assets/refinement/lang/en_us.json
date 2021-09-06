@@ -103,5 +103,14 @@
 	"block.refinement.refined_diamond_block": "Block Of Refined Diamond",
 	"block.refinement.refined_netherite_block": "Block Of Refined Netherite",
 	
+	//TE blocks
+	"block.refinement.grinder": "Grinder",
+	
+	//Containers
+	"container.refinement.grinder": "Grinder",
+	
+	//Category
+	"category.refinement.grinder_recipe": "Grinder",
+	
 	"itemGroup.refinement": "Refinement"
 }

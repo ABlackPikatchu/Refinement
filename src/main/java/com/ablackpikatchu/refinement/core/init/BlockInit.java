@@ -1,6 +1,7 @@
 package com.ablackpikatchu.refinement.core.init;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.common.block.GrinderBlock;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -34,5 +35,8 @@ public class BlockInit {
 	public static final RegistryObject<Block> REFINED_COAL_BLOCK = BLOCKS.register("refined_coal_block",
 			() -> new Block(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(5f)
 					.harvestLevel(0).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)));
+	
+	//TE Blocks
+	public static final RegistryObject<Block> GRINDER = BLOCKS.register("grinder", () -> new GrinderBlock());
 
 }
