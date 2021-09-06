@@ -12,9 +12,15 @@ import net.minecraft.util.SoundEvents;
 
 public enum ModArmorMaterial implements IArmorMaterial {
 	REFINEDIRONARMOR("refinedironarmor", 16, new int[] { 3, 6, 7, 3 }, 9, SoundEvents.ARMOR_EQUIP_IRON, 1.0F, 0.1f,
-			() -> Ingredient.of(ItemInit.REFINED_IRON_INGOT.get()));
+			() -> Ingredient.of(ItemInit.REFINED_IRON_INGOT.get())),
+	REFINEDGOLDARMOR("refinedgoldarmor", 8, new int[] { 1, 3, 5, 2 }, 26, SoundEvents.ARMOR_EQUIP_GOLD, 1.0F, 0.1f,
+			() -> Ingredient.of(ItemInit.REFINED_GOLD_INGOT.get())),
+	REFINEDDIAMONDARMOR("refineddiamondarmor", 34, new int[] { 4, 7, 9, 4 }, 11, SoundEvents.ARMOR_EQUIP_DIAMOND, 3.0F,
+			0.1F, () -> Ingredient.of(ItemInit.REFINED_DIAMOND.get())),
+	REFINEDNETHERITEARMOR("refinednetheritearmor", 38, new int[] { 4, 7, 9, 4 }, 16, SoundEvents.ARMOR_EQUIP_NETHERITE,
+			4.0f, 0.2f, () -> Ingredient.of(ItemInit.REFINED_NETHERITE_INGOT.get()));
 
-	public static final int[] baseDurability = new int[]{ 128, 144, 160, 112 };
+	public static final int[] baseDurability = new int[] { 128, 144, 160, 112 };
 	private final String name;
 	private final int durabilityMultiplier;
 	private final int[] armorVal;
