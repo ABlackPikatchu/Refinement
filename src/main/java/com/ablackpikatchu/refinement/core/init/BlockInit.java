@@ -31,5 +31,8 @@ public class BlockInit {
 	public static final RegistryObject<Block> MACHINE_FRAME = BLOCKS.register("machine_frame",
 			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).strength(5f)
 					.harvestLevel(1).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)));
+	public static final RegistryObject<Block> REFINED_COAL_BLOCK = BLOCKS.register("refined_coal_block",
+			() -> new Block(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(5f)
+					.harvestLevel(0).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)));
 
 }

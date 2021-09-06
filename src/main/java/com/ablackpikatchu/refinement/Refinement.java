@@ -3,6 +3,7 @@ package com.ablackpikatchu.refinement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.ablackpikatchu.refinement.common.item.RefinedCoalBlockItem;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup;
@@ -38,7 +39,10 @@ public class Refinement {
 	@SubscribeEvent
 	public static void onRegisterItems(final RegistryEvent.Register<Item> event) {
 		BlockInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
-			event.getRegistry().register(new BlockItem(block, new Item.Properties().tab(RefinementItemGroup.REFINEMENT
+			if (block == BlockInit.REFINED_COAL_BLOCK.get())
+				event.getRegistry()
+                .register(new RefinedCoalBlockItem(block, new Item.Properties().tab(RefinementItemGroup.REFINEMENT)).setRegistryName(block.getRegistryName()));
+			else event.getRegistry().register(new BlockItem(block, new Item.Properties().tab(RefinementItemGroup.REFINEMENT
 
 			)).setRegistryName(block.getRegistryName()));
 		});
