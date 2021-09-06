@@ -11,7 +11,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 
 public enum ModArmorMaterial implements IArmorMaterial {
-	REFINEDIRONARMOR("refinedironarmor", 16, new int[] { 2, 5, 6, 2 }, 9, SoundEvents.ARMOR_EQUIP_IRON, 1.0F, 0.1f,
+	REFINEDIRONARMOR("refinedironarmor", 16, new int[] { 3, 6, 7, 3 }, 9, SoundEvents.ARMOR_EQUIP_IRON, 1.0F, 0.1f,
 			() -> Ingredient.of(ItemInit.REFINED_IRON_INGOT.get()));
 
 	public static final int[] baseDurability = new int[]{ 128, 144, 160, 112 };
