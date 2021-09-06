@@ -28,6 +28,11 @@
 	"item.refinement.refined_gold_shovel": "Refined Golden Shovel",
 	"item.refinement.refined_gold_hoe": "Refined Golden Hoe",
 	
+	"item.refinement.refined_gold_helmet": "Refined Gold Helmet",
+	"item.refinement.refined_gold_chestplate": "Refined Gold Chestplate",
+	"item.refinement.refined_gold_leggings": "Refined Gold Leggings",
+	"item.refinement.refined_gold_boots": "Refined Gold Boots",
+	
 	"item.refinement.diamond_dust": "Diamond Dust",
 	"item.refinement.refined_diamond_dust": "Refined Diamond Dust",
 	"item.refinement.refined_diamond": "Refined Diamond",
@@ -38,6 +43,11 @@
 	"item.refinement.refined_diamond_axe": "Refined Diamond Axe",
 	"item.refinement.refined_diamond_shovel": "Refined Diamond Shovel",
 	"item.refinement.refined_diamond_hoe": "Refined Diamond Hoe",
+	
+	"item.refinement.refined_diamond_helmet": "Refined Diamond Helmet",
+	"item.refinement.refined_diamond_chestplate": "Refined Diamond Chestplate",
+	"item.refinement.refined_diamond_leggings": "Refined Diamond Leggings",
+	"item.refinement.refined_diamond_boots": "Refined Diamond Boots",
 	
 	"item.refinement.refined_netherite_dust": "Refined Netherite Dust",
 	"item.refinement.netherite_dust": "Netherite Dust",
@@ -50,6 +60,11 @@
 	"item.refinement.refined_netherite_axe": "Refined Netherite Axe",
 	"item.refinement.refined_netherite_shovel": "Refined Netherite Shovel",
 	"item.refinement.refined_netherite_hoe": "Refined Netherite Hoe",
+	
+	"item.refinement.refined_netherite_helmet": "Refined Netherite Helmet",
+	"item.refinement.refined_netherite_chestplate": "Refined Netherite Chestplate",
+	"item.refinement.refined_netherite_leggings": "Refined Netherite Leggings",
+	"item.refinement.refined_netherite_boots": "Refined Netherite Boots",
 	
 	
 	"item.refinement.coal_dust": "Coal Dust",
