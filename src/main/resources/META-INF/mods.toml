@@ -1,0 +1,24 @@
+modLoader="javafml" #mandatory
+loaderVersion="[36,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+license="All rights reserved"
+[[mods]]
+modId="refinement"
+version="${file.jarVersion}"
+displayName="Refinement"
+logoFile="examplemod.png" 
+credits="Thanks to True Penut for textures. Thanks to Cy4 for helping with several examples and guidance."
+description='''
+Refinement is a mod that adds several new materials, tools, armors and machines.
+'''
+[[dependencies.refinement]]
+    modId="forge"
+    mandatory=true
+    versionRange="[36,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.refinement]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,1.17)"
+    ordering="NONE"
+    side="BOTH"

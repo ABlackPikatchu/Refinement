@@ -1,0 +1,73 @@
+{
+	"item.refinement.iron_dust": "Iron Dust",
+	"item.refinement.refined_iron_dust": "Refined Iron Dust",
+	"item.refinement.refined_iron_ingot": "Refined Iron Ingot",
+	"item.refinement.unfired_refined_iron_ingot": "Unfired Refined Iron Ingot",
+	"item.refinement.refined_iron_nugget": "Refined Iron Nugget",
+	
+	"item.refinement.refined_iron_sword": "Refined Iron Sword",
+	"item.refinement.refined_iron_pickaxe": "Refined Iron Pickaxe",
+	"item.refinement.refined_iron_axe": "Refined Iron Axe",
+	"item.refinement.refined_iron_shovel": "Refined Iron Shovel",
+	"item.refinement.refined_iron_hoe": "Refined Iron Hoe",
+	
+	"item.refinement.gold_dust": "Gold Dust",
+	"item.refinement.refined_gold_dust": "Refined Gold Dust",
+	"item.refinement.refined_gold_ingot": "Refined Gold Ingot",
+	"item.refinement.unfired_refined_gold_ingot": "Unfired Refined Gold Ingot",
+	"item.refinement.refined_gold_nugget": "Refined Gold Nugget",
+	
+	"item.refinement.refined_gold_sword": "Refined Golden Sword",
+	"item.refinement.refined_gold_pickaxe": "Refined Golden Pickaxe",
+	"item.refinement.refined_gold_axe": "Refined Golden Axe",
+	"item.refinement.refined_gold_shovel": "Refined Golden Shovel",
+	"item.refinement.refined_gold_hoe": "Refined Golden Hoe",
+	
+	"item.refinement.diamond_dust": "Diamond Dust",
+	"item.refinement.refined_diamond_dust": "Refined Diamond Dust",
+	"item.refinement.refined_diamond": "Refined Diamond",
+	"item.refinement.unfired_refined_diamond": "Unfired Refined Diamond",
+	
+	"item.refinement.refined_diamond_sword": "Refined Diamond Sword",
+	"item.refinement.refined_diamond_pickaxe": "Refined Diamond Pickaxe",
+	"item.refinement.refined_diamond_axe": "Refined Diamond Axe",
+	"item.refinement.refined_diamond_shovel": "Refined Diamond Shovel",
+	"item.refinement.refined_diamond_hoe": "Refined Diamond Hoe",
+	
+	"item.refinement.refined_netherite_dust": "Refined Netherite Dust",
+	"item.refinement.netherite_dust": "Netherite Dust",
+	"item.refinement.refined_netherite_ingot": "Refined Netherite Ingot",
+	"item.refinement.unfired_refined_netherite_ingot": "Unfired Refined Netherite Ingot",
+	"item.refinement.refined_netherite_nugget": "Refined Netherite Nugget",
+	
+	"item.refinement.refined_netherite_sword": "Refined Netherite Sword",
+	"item.refinement.refined_netherite_pickaxe": "Refined Netherite Pickaxe",
+	"item.refinement.refined_netherite_axe": "Refined Netherite Axe",
+	"item.refinement.refined_netherite_shovel": "Refined Netherite Shovel",
+	"item.refinement.refined_netherite_hoe": "Refined Netherite Hoe",
+	
+	
+	"item.refinement.coal_dust": "Coal Dust",
+	"item.refinement.charcoal_dust": "Charcoal Dust",
+	"item.refinement.grit": "Grit",
+	"item.refinement.iron_infused_grit": "Iron Infused Grit",
+	"item.refinement.diamond_infused_grit": "Diamond Infused Grit",
+	"item.refinement.netherite_infused_grit": "Netherite Infused Grit",
+	"item.refinement.grit_paper": "Grit Paper",
+	"item.refinement.iron_grit_paper": "Iron Grit Paper",
+	"item.refinement.diamond_grit_paper": "Diamond Grit Paper",
+	"item.refinement.netherite_grit_paper": "Netherite Grit Paper",
+	"item.refinement.refining_dust": "Refining Dust",
+	"item.refinement.mixing_bowl": "Mixing Bowl",
+	"item.refinement.unfired_ingot_mold": "Unfired Ingot Mold",
+	"item.refinement.ingot_mold": "Ingot Mold",
+	"item.refinement.unfired_gem_mold": "Unfired Gem Mold",
+	"item.refinement.gem_mold": "Gem Mold",
+	
+	"block.refinement.refined_iron_block": "Block Of Refined Iron",
+	"block.refinement.refined_gold_block": "Block Of Refined Gold",
+	"block.refinement.refined_diamond_block": "Block Of Refined Diamond",
+	"block.refinement.refined_netherite_block": "Block Of Refined Netherite",
+	
+	"itemGroup.refinement": "Refinement"
+}

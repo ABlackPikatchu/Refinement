@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "refinement:refined_iron_ingot"
+        }
+    ],
+    "result": {
+        "item": "refinement:refined_iron_nugget",
+        "count": 9
+    }
+}

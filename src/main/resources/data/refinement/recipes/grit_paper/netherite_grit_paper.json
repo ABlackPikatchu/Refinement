@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "PPP"
+    ],
+    "key": {
+        "#": {
+            "item": "refinement:netherite_infused_grit"
+        },
+        "P": {
+            "item": "minecraft:paper"
+        }
+    },
+    "result": {
+        "item": "refinement:netherite_grit_paper",
+        "count": 1
+    }
+}

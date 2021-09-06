@@ -1,0 +1,5 @@
+{
+	"variants": {
+		"": { "model": "refinement:block/refined_netherite_block" }
+	}
+}

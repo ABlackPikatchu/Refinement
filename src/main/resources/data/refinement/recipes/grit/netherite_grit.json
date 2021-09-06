@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        " R ",
+        " D "
+    ],
+    "key": {
+        "#": {
+            "tag": "forge:dusts/netherite"
+        },
+        "R": {
+            "item": "refinement:grit"
+        },
+        "D": {
+            "item": "refinement:mixing_bowl"
+        }
+    },
+    "result": {
+        "item": "refinement:netherite_infused_grit",
+        "count": 2
+    }
+}

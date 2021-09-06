@@ -1,0 +1,6 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "refinement:blocks/refined_diamond_block"
+	}
+}

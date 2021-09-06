@@ -1,0 +1,5 @@
+{
+	"variants": {
+		"": { "model": "refinement:block/refined_iron_block" }
+	}
+}

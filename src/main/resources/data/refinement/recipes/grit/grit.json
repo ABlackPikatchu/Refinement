@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#S#",
+        "S#S",
+        " R "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:gravel"
+        },
+        "S": {
+            "item": "minecraft:sand"
+        },
+        "R": {
+            "item": "refinement:mixing_bowl"
+        }
+    },
+    "result": {
+        "item": "refinement:grit",
+        "count": 6
+    }
+}
