@@ -28,7 +28,7 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderRecipe> {
 	}
 
 	public GrinderRecipeCategory(IGuiHelper helper) {
-		this.back = helper.createDrawable(GrinderScreen.GRINDER_JEI_SCREEN, 0, 0, 175, 55);
+		this.back = helper.createDrawable(GrinderScreen.GRINDER_JEI_SCREEN, 0, 0, 176, 72);
 		this.icon = helper.createDrawableIngredient(new ItemStack(BlockInit.GRINDER.get().asItem()));
 	}
 
@@ -62,9 +62,9 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderRecipe> {
 	public void setRecipe(IRecipeLayout recipeLayout, GrinderRecipe recipe, IIngredients ingredients) {
 		IGuiItemStackGroup itemStackGroup = recipeLayout.getItemStacks();
 
-		itemStackGroup.init(0, true, 43, 19);
-		itemStackGroup.init(1, true, 7, 30);
-		itemStackGroup.init(2, false, 115, 19);
+		itemStackGroup.init(0, true, 43, 22);
+		itemStackGroup.init(1, true, 7, 43);
+		itemStackGroup.init(2, false, 134, 22);
 		
 		itemStackGroup.set(ingredients);
 	}

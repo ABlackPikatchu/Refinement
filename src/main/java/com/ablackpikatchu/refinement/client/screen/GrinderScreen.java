@@ -38,8 +38,8 @@ public class GrinderScreen extends ContainerScreen<GrinderContainer> {
 	
 	@Override
 	protected void renderLabels(MatrixStack matrixStack, int x, int y) {
-		this.font.draw(matrixStack, this.inventory.getDisplayName(), 27.0f, 40.0f, 0xA3703A);
-		this.font.draw(matrixStack, this.menu.te.getDisplayName(), 8.0f, 6.0f, 0xA3703A);
+		this.font.draw(matrixStack, this.inventory.getDisplayName(), 7.0f, 65.0f, 0xA3703A);
+		this.font.draw(matrixStack, this.menu.te.getDisplayName(), 7.0f, 7.0f, 0xA3703A);
 	}
 
 	@SuppressWarnings("deprecation")
@@ -52,6 +52,6 @@ public class GrinderScreen extends ContainerScreen<GrinderContainer> {
 		int y = (this.height - this.imageHeight) / 2;
 		this.blit(matrixStack, x, y, 0, 0, this.imageWidth, this.imageHeight);
 		
-		this.blit(matrixStack, this.leftPos + 71, this.topPos + 22, 176, 0, this.menu.getProgressionScaled(), 10);
+		this.blit(matrixStack, this.leftPos + 68, this.topPos + 8, 176, 0, this.menu.getProgressionScaled(), 47);
 	}
 }
