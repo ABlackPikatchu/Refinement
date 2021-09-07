@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "#refinement:unfired_molds/gem",
+    "#refinement:unfired_molds/ingot"
+  ]
+}
