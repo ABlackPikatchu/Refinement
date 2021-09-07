@@ -136,6 +136,8 @@ public class ItemInit {
 	// Coal/Charcoal
 	public static final RegistryObject<Item> COAL_DUST = ITEMS.register("coal_dust",
 			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+	public static final RegistryObject<Item> REFINED_COAL_DUST = ITEMS.register("refined_coal_dust",
+			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 	public static final RegistryObject<Item> CHARCOAL_DUST = ITEMS.register("charcoal_dust",
 			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 	public static final RegistryObject<Item> REFINED_COAL = ITEMS.register("refined_coal",
@@ -195,8 +197,8 @@ public class ItemInit {
 	public static final RegistryObject<Item> UNFIRED_REFINED_DIAMOND_COGWHEEL = ITEMS.register(
 			"unfired_refined_diamond_cogwheel",
 			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
-	
-	//Armors
+
+	// Armors
 	public static final RegistryObject<Item> REFINED_IRON_HELMET = ITEMS.register("refined_iron_helmet",
 			() -> new ArmorItem(ModArmorMaterial.REFINEDIRONARMOR, EquipmentSlotType.HEAD,
 					new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
@@ -236,15 +238,14 @@ public class ItemInit {
 	public static final RegistryObject<Item> REFINED_NETHERITE_HELMET = ITEMS.register("refined_netherite_helmet",
 			() -> new ArmorItem(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.HEAD,
 					new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
-	public static final RegistryObject<Item> REFINED_NETHERITE_CHESTPLATE = ITEMS.register("refined_netherite_chestplate",
-			() -> new ArmorItem(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.CHEST,
-					new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+	public static final RegistryObject<Item> REFINED_NETHERITE_CHESTPLATE = ITEMS
+			.register("refined_netherite_chestplate", () -> new ArmorItem(ModArmorMaterial.REFINEDNETHERITEARMOR,
+					EquipmentSlotType.CHEST, new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 	public static final RegistryObject<Item> REFINED_NETHERITE_LEGGINGS = ITEMS.register("refined_netherite_leggings",
 			() -> new ArmorItem(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.LEGS,
 					new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 	public static final RegistryObject<Item> REFINED_NETHERITE_BOOTS = ITEMS.register("refined_netherite_boots",
 			() -> new ArmorItem(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.FEET,
 					new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
-	
-	
+
 }
