@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:ingots/refined_gold",
+    "#forge:ingots/refined_iron",
+    "#forge:ingots/refined_netherite"
+  ]
+}

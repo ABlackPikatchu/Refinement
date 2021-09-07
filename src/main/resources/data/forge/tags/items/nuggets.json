@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:nuggets/refined_gold",
+    "#forge:nuggets/refined_iron",
+    "#forge:nuggets/refined_netherite"
+  ]
+}

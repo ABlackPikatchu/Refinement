@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:dusts/charcoal",
+    "#forge:dusts/coal",
+    "#forge:dusts/diamond",
+    "#forge:dusts/gold",
+    "#forge:dusts/iron",
+    "#forge:dusts/netherite",
+    "#forge:dusts/refined_coal",
+    "#forge:dusts/refined_diamond",
+    "#forge:dusts/refined_gold",
+    "#forge:dusts/refined_iron",
+    "#forge:dusts/refined_netherite",
+    "#forge:dusts/refining"
+  ]
+}

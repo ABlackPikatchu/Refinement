@@ -68,6 +68,7 @@
 	
 	
 	"item.refinement.coal_dust": "Coal Dust",
+	"item.refinement.refined_coal_dust": "Refined Coal Dust",
 	"item.refinement.charcoal_dust": "Charcoal Dust",
 	"item.refinement.refined_coal": "Refined Coal",
 	"block.refinement.refined_coal_block": "Block Of Refined Coal",
