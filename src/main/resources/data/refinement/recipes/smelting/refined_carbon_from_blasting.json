@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:blasting",
+    "ingredient": {
+        "item": "refinement:unfired_refined_carbon_ingot"
+    },
+    "result": "refinement:refined_carbon_ingot",
+    "experience": 0,
+    "cookingtime": 200
+}

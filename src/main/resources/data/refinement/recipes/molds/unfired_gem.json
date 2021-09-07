@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#i#",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:clay_ball"
+        },
+        "i": {
+            "tag": "forge:gems"
+        }
+    },
+    "result": "refinement:unfired_gem_mold"
+}

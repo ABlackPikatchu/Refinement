@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#i#",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:clay_ball"
+        },
+        "i": {
+            "tag": "forge:ingots"
+        }
+    },
+    "result": "refinement:unfired_ingot_mold"
+}
