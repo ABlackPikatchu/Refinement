@@ -3,6 +3,7 @@
   "values": [
     "#forge:ingots/refined_gold",
     "#forge:ingots/refined_iron",
-    "#forge:ingots/refined_netherite"
+    "#forge:ingots/refined_netherite",
+    "#forge:ingots/refiend_carbon"
   ]
 }

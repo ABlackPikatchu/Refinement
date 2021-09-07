@@ -68,11 +68,11 @@
 	
 	
 	"item.refinement.coal_dust": "Coal Dust",
-	"item.refinement.refined_coal_dust": "Refined Coal Dust",
+	"item.refinement.refined_carbon_dust": "Refined Carbon Dust",
 	"item.refinement.charcoal_dust": "Charcoal Dust",
-	"item.refinement.refined_coal_ingot": "Refined Coal Ingot",
-	"block.refinement.refined_coal_block": "Block Of Refined Coal",
-	"item.refinement.refined_coal_block": "Block Of Refined Coal",
+	"item.refinement.refined_carbon_ingot": "Refined Carbon Ingot",
+	"block.refinement.refined_carbon_block": "Block Of Refined Carbon",
+	"item.refinement.refined_carbon_block": "Block Of Refined Carbon",
 	"item.refinement.grit": "Grit",
 	"item.refinement.iron_infused_grit": "Iron Infused Grit",
 	"item.refinement.diamond_infused_grit": "Diamond Infused Grit",

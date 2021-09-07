@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "refinement:coal_dust"
+    "refinement:coal_dust",
+    "refinement:charcoal_dust"
   ]
 }

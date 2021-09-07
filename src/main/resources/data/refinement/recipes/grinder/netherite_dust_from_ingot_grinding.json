@@ -1,0 +1,10 @@
+{
+    "type": "refinement:grinder",
+    "input": {
+        "tag": "forge:ingots/netherite"
+    },
+    "output": {
+        "item": "refinement:netherite_dust",
+        "count": 1
+    }
+}

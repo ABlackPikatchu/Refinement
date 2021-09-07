@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#forge:storage_blocks/refined_coal",
+    "#forge:storage_blocks/refined_carbon",
     "#forge:storage_blocks/refined_diamond",
     "#forge:storage_blocks/refined_gold",
     "#forge:storage_blocks/refined_iron",

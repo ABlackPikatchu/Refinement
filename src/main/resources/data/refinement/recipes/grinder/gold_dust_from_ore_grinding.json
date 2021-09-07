@@ -1,10 +1,10 @@
 {
     "type": "refinement:grinder",
     "input": {
-        "tag": "forge:ingots/iron"
+        "tag": "forge:ores/gold"
     },
     "output": {
-        "item": "refinement:iron_dust",
+        "item": "refinement:gold_dust",
         "count": 2
     }
 }

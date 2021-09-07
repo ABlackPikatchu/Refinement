@@ -1,0 +1,10 @@
+{
+    "type": "refinement:grinder",
+    "input": {
+        "tag": "forge:gems/diamond"
+    },
+    "output": {
+        "item": "refinement:diamond_dust",
+        "count": 1
+    }
+}

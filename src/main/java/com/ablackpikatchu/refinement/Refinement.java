@@ -51,7 +51,7 @@ public class Refinement {
 	@SubscribeEvent
 	public static void onRegisterItems(final RegistryEvent.Register<Item> event) {
 		BlockInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
-			if (block == BlockInit.REFINED_COAL_BLOCK.get())
+			if (block == BlockInit.REFINED_CARBON_BLOCK.get())
 				event.getRegistry().register(
 						new RefinedCoalBlockItem(block, new Item.Properties().tab(RefinementItemGroup.REFINEMENT))
 								.setRegistryName(block.getRegistryName()));

@@ -6,7 +6,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "refinement:refined_coal_block"
+					"name": "refinement:refined_carbon_block"
 				}
 			]
 		}

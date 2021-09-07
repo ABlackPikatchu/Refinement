@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "bbb",
+        "bbb",
+        "bbb"
+    ],
+    "key": {
+        "i": {
+            "item": "refinement:refined_gold_ingot"
+        }
+    },
+    "result": {
+        "item": "refinement:refined_gold_block",
+        "count": 1
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "type": "refinement:grinder",
+    "input": {
+        "tag": "forge:ores/iron"
+    },
+    "output": {
+        "item": "refinement:iron_dust",
+        "count": 2
+    }
+}

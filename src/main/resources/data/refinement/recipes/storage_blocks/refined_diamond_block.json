@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "bbb",
+        "bbb",
+        "bbb"
+    ],
+    "key": {
+        "i": {
+            "item": "refinement:refined_diamond"
+        }
+    },
+    "result": {
+        "item": "refinement:refined_diamond_block",
+        "count": 1
+    }
+}

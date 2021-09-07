@@ -27,7 +27,7 @@ public class GrinderRecipe implements IRecipe<IInventory> {
 	private final Ingredient input;
 	private final ItemStack output;
 	private final ResourceLocation id;
-	private final Ingredient refinedCoal = Ingredient.of(new ItemStack(ItemInit.REFINED_COAL_INGOT.get()));
+	private final Ingredient refinedCoal = Ingredient.of(new ItemStack(ItemInit.REFINED_CARBON_INGOT.get()));
 
 	public GrinderRecipe(ResourceLocation id, Ingredient input, ItemStack output) {
 		this.id = id;

@@ -1,0 +1,10 @@
+{
+    "type": "refinement:grinder",
+    "input": {
+        "item": "minecraft:charcoal"
+    },
+    "output": {
+        "item": "refinement:charcoal_dust",
+        "count": 1
+    }
+}
