@@ -37,7 +37,7 @@ public class GrinderContainer extends Container {
 		// Tile Entity
 		this.addSlot(new Slot((IInventory) te, 0, 44, 20)); //Input
 		this.addSlot(new OutputSlot((IInventory) te, 1, 116, 20)); //Output
-		this.addSlot(new ItemReservedSlot((IInventory) te, 2, 8, 31, ItemInit.REFINED_COAL.get())); //Coal
+		this.addSlot(new ItemReservedSlot((IInventory) te, 2, 8, 31, ItemInit.REFINED_COAL_INGOT.get())); //Coal
 
 		// Main Player Inventory
 		for (int row = 0; row < 3; row++) {

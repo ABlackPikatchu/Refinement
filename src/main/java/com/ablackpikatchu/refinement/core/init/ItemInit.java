@@ -140,7 +140,7 @@ public class ItemInit {
 			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 	public static final RegistryObject<Item> CHARCOAL_DUST = ITEMS.register("charcoal_dust",
 			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
-	public static final RegistryObject<Item> REFINED_COAL = ITEMS.register("refined_coal",
+	public static final RegistryObject<Item> REFINED_COAL_INGOT = ITEMS.register("refined_coal_ingot",
 			() -> new RefinedCoal(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 
 	// Refining Materials

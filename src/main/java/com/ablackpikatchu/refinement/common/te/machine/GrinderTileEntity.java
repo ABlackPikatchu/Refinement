@@ -55,7 +55,7 @@ public class GrinderTileEntity extends LockableSidedInventoryTileEntity implemen
 			for (final IRecipe<?> recipe : this.level.getRecipeManager().getAllRecipesFor(RecipeInit.GRINDER_RECIPE)) {
 				final GrinderRecipe grinderRecipe = (GrinderRecipe) recipe;
 				if (grinderRecipe.isValid(this.getItem(0))
-						&& this.getItem(2).getItem() == ItemInit.REFINED_COAL.get()) {
+						&& this.getItem(2).getItem() == ItemInit.REFINED_COAL_INGOT.get()) {
 					if (this.currentWaitTime == this.maxWaitTime) {
 						TileEntityHelper.updateTE(this);
 						if (TileEntityHelper.canPlaceItemInStack(this.getItem(1), recipe.getResultItem())) {
@@ -165,7 +165,7 @@ public class GrinderTileEntity extends LockableSidedInventoryTileEntity implemen
 		else if (side == Direction.DOWN && index == 0)
 			return false;
 		else if (index == 2) {
-			if (stack.getItem() == ItemInit.REFINED_COAL.get())
+			if (stack.getItem() == ItemInit.REFINED_COAL_INGOT.get())
 				return true;
 			else
 				return false;
