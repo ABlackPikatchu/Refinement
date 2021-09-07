@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "#refinement:molds/gem",
+    "#refinement:molds/ingot"
+  ]
+}

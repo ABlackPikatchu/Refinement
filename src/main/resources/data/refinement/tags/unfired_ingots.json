@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#refinement:unfired_ingots/refined_gold",
+    "#refinement:unfired_ingots/refined_iron",
+    "#refinement:unfired_ingots/refined_netherite"
+  ]
+}

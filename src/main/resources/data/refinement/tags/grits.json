@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#refinement:grits/grit",
+    "#refinement:grits/iron",
+    "#refinement:grits/diamond",
+    "#refinement:grits/netherite"
+  ]
+}
