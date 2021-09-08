@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " S ",
+        " # ",
+        " R "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:gravel"
+        },
+        "S": {
+            "tag": "forge:dusts/coal"
+        },
+        "R": {
+            "item": "refinement:mixing_bowl"
+        }
+    },
+    "result": {
+        "item": "refinement:refining_dust",
+        "count": 1
+    }
+}

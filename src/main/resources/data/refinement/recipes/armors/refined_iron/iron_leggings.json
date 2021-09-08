@@ -1,17 +1,17 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "bbb",
-        "bbb",
-        "bbb"
+        "###",
+        "# #",
+        "# #"
     ],
     "key": {
-        "b": {
+        "#": {
             "item": "refinement:refined_iron_ingot"
         }
     },
     "result": {
-        "item": "refinement:refined_iron_block",
+        "item": "refinement:refined_iron_leggings",
         "count": 1
     }
 }

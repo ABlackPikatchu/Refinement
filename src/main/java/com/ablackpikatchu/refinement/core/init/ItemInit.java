@@ -199,6 +199,8 @@ public class ItemInit {
 	public static final RegistryObject<Item> UNFIRED_REFINED_DIAMOND_COGWHEEL = ITEMS.register(
 			"unfired_refined_diamond_cogwheel",
 			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+	public static final RegistryObject<Item> WOODEN_COGWHEEL = ITEMS.register("wooden_cogwheel",
+			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 
 	// Armors
 	public static final RegistryObject<Item> REFINED_IRON_HELMET = ITEMS.register("refined_iron_helmet",

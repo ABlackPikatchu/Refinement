@@ -1,17 +1,20 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "bbb",
-        "bbb",
-        "bbb"
+        "## ",
+        " S ",
+        " S "
     ],
     "key": {
-        "b": {
+        "#": {
             "item": "refinement:refined_gold_ingot"
+        },
+        "S": {
+        	"tag": "forge:rods/wooden"
         }
     },
     "result": {
-        "item": "refinement:refined_gold_block",
+        "item": "refinement:refined_gold_hoe",
         "count": 1
     }
 }

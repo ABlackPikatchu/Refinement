@@ -1,9 +1,13 @@
 {
   "replace": false,
   "values": [
-    "#forge:ingots/refined_gold",
-    "#forge:ingots/refined_iron",
-    "#forge:ingots/refined_netherite",
-    "#forge:ingots/refiend_carbon"
+    "#forge:ingots/gold",
+    "#forge:ingots/iron",
+    "#forge:ingots/netherite",
+    "#forge:ingots/carbon",
+    "#refinement:ingots/refined_iron",
+    "#refinement:ingots/refined_gold",
+    "#refinement:ingots/refined_carbon",
+    "#refinement:ingots/refined_netherite"
   ]
 }

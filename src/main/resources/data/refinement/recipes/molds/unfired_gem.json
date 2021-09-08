@@ -13,5 +13,8 @@
             "tag": "forge:gems"
         }
     },
-    "result": "refinement:unfired_gem_mold"
+    "result": {
+    	"item": "refinement:unfired_gem_mold",
+    	"count": 1
+    }
 }

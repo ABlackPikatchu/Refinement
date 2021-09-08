@@ -13,5 +13,8 @@
             "tag": "refinement:cogwheels"
         }
     },
-    "result": "refinement:unfired_cogwheel_mold"
+    "result": {
+    	"item": "refinement:unfired_cogwheel_mold",
+    	"count": 1
+    }
 }

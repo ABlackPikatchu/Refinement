@@ -13,5 +13,8 @@
             "tag": "forge:ingots"
         }
     },
-    "result": "refinement:unfired_ingot_mold"
+    "result": {
+    	"item": "refinement:unfired_ingot_mold",
+    	"count": 1
+    }
 }

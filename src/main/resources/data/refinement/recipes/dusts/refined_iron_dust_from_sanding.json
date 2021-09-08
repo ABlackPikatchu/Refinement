@@ -1,17 +1,19 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        "bbb",
-        "bbb",
-        "bbb"
+        "i",
+        "G"
     ],
     "key": {
-        "b": {
+        "i": {
             "item": "refinement:refined_iron_ingot"
+        },
+        "G": {
+            "tag": "refinement:grit_papers"
         }
     },
     "result": {
-        "item": "refinement:refined_iron_block",
+        "item": "refinement:refined_iron_dust",
         "count": 1
     }
 }
