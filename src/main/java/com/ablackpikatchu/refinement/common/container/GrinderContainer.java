@@ -104,4 +104,4 @@ public class GrinderContainer extends Container {
 				? this.currentWaitTime.get() * 35 / this.te.maxWaitTime
 				: 0;
 	}
-}
+} 
