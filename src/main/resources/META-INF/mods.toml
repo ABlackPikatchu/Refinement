@@ -6,10 +6,10 @@ issueTrackerURL="https://github.com/ABlackPikatchu/Refinement/issues"
 modId="refinement"
 version="${file.jarVersion}"
 displayName="Refinement"
+displayURL="https://github.com/ABlackPikatchu/Refinement"
 logoFile="refinement_logo.png"
 credits="Thanks to the Refinement Dev team for all the hard work!"
 authors="ABlackPikatchu, matyrobbrt and True Penut"
-homepage="https://github.com/ABlackPikatchu/Refinement"
 description='''
 Refinement is a mod that adds several new materials, tools, armors and machines.
 '''
