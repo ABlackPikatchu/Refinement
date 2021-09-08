@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:blasting",
+    "ingredient": {
+        "item": "refinement:unfired_refined_diamond_cogwheel"
+    },
+    "result": "refinement:refined_diamond_cogwheel",
+    "experience": 0,
+    "cookingtime": 200
+}

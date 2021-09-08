@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "bbb",
+        "bbb",
+        "bbb"
+    ],
+    "key": {
+        "b": {
+            "item": "refinement:refined_netherite_ingot"
+        }
+    },
+    "result": {
+        "item": "refinement:refined_netherite_block",
+        "count": 1
+    }
+}

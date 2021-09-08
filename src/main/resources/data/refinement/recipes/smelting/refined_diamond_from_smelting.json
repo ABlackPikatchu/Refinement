@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "refinement:unfired_refined_diamond"
+    },
+    "result": "refinement:refined_diamond",
+    "experience": 0,
+    "cookingtime": 200
+}

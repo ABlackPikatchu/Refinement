@@ -35,20 +35,20 @@ public class GrinderContainer extends Container {
 		this.canInteractWithCallable = IWorldPosCallable.create(te.getLevel(), te.getBlockPos());
 
 		// Tile Entity
-		this.addSlot(new Slot((IInventory) te, 0, 44, 23)); //Input
-		this.addSlot(new OutputSlot((IInventory) te, 1, 135, 23)); //Output
-		this.addSlot(new ItemReservedSlot((IInventory) te, 2, 8, 44, ItemInit.REFINED_COAL.get())); //Coal
+		this.addSlot(new Slot((IInventory) te, 0, 44, 20)); //Input
+		this.addSlot(new OutputSlot((IInventory) te, 1, 116, 20)); //Output
+		this.addSlot(new ItemReservedSlot((IInventory) te, 2, 8, 31, ItemInit.REFINED_CARBON_INGOT.get())); //Coal
 
 		// Main Player Inventory
 		for (int row = 0; row < 3; row++) {
 			for (int col = 0; col < 9; col++) {
-				this.addSlot(new Slot(playerInv, col + row * 9 + 9, 8 + col * 18, 159 - (4 - row) * 18 - 10));
+				this.addSlot(new Slot(playerInv, col + row * 9 + 9, 8 + col * 18, 133 - (4 - row) * 18 - 10));
 			}
 		}
 
 		// Player Hotbar
 		for (int col = 0; col < 9; col++) {
-			this.addSlot(new Slot(playerInv, col, 8 + col * 18, 135));
+			this.addSlot(new Slot(playerInv, col, 8 + col * 18, 109));
 		}
 
 		this.addDataSlot(currentWaitTime = new FunctionalIntReferenceHolder(() -> this.te.currentWaitTime,
@@ -101,7 +101,7 @@ public class GrinderContainer extends Container {
 	@OnlyIn(Dist.CLIENT)
 	public int getProgressionScaled() {
 		return this.currentWaitTime.get() != 0 && this.te.maxWaitTime != 0
-				? this.currentWaitTime.get() * 59 / this.te.maxWaitTime
+				? this.currentWaitTime.get() * 35 / this.te.maxWaitTime
 				: 0;
 	}
-}
+} 

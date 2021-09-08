@@ -136,12 +136,14 @@ public class ItemInit {
 	// Coal/Charcoal
 	public static final RegistryObject<Item> COAL_DUST = ITEMS.register("coal_dust",
 			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
-	public static final RegistryObject<Item> REFINED_COAL_DUST = ITEMS.register("refined_coal_dust",
+	public static final RegistryObject<Item> REFINED_CARBON_DUST = ITEMS.register("refined_carbon_dust",
 			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 	public static final RegistryObject<Item> CHARCOAL_DUST = ITEMS.register("charcoal_dust",
 			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
-	public static final RegistryObject<Item> REFINED_COAL = ITEMS.register("refined_coal",
+	public static final RegistryObject<Item> REFINED_CARBON_INGOT = ITEMS.register("refined_carbon_ingot",
 			() -> new RefinedCoal(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+	public static final RegistryObject<Item> UNFIRED_REFINED_CARBON_INGOT = ITEMS.register(
+			"unfired_refined_carbon_ingot", () -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 
 	// Refining Materials
 	public static final RegistryObject<Item> REFINING_DUST = ITEMS.register("refining_dust",
@@ -196,6 +198,8 @@ public class ItemInit {
 			() -> new Cogwheel(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 	public static final RegistryObject<Item> UNFIRED_REFINED_DIAMOND_COGWHEEL = ITEMS.register(
 			"unfired_refined_diamond_cogwheel",
+			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+	public static final RegistryObject<Item> WOODEN_COGWHEEL = ITEMS.register("wooden_cogwheel",
 			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 
 	// Armors

@@ -1,6 +1,0 @@
-{
-	"parent": "block/cube_all",
-	"textures": {
-		"all": "refinement:blocks/refined_coal_block"
-	}
-}

@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "i",
+        "G"
+    ],
+    "key": {
+        "i": {
+            "tag": "forge:gems/diamond"
+        },
+        "G": {
+            "tag": "refinement:grit_papers"
+        }
+    },
+    "result": {
+        "item": "refinement:diamond_dust",
+        "count": 1
+    }
+}

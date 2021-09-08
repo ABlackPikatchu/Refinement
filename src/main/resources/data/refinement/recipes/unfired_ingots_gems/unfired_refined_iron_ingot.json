@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " / ",
+        "/S/",
+        "   "
+    ],
+    "key": {
+        "/": {
+            "item": "refinement:refined_iron_dust"
+        },
+        "S": {
+            "item": "refinement:ingot_mold"
+        }
+    },
+    "result": {
+    	"item": "refinement:unfired_refined_iron_ingot",
+    	"count": 1
+    }
+}

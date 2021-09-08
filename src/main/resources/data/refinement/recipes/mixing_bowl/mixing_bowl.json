@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " / ",
+        "_ _",
+        " _ "
+    ],
+    "key": {
+        "/": {
+            "tag": "forge:rods/wooden"
+        },
+        "_": {
+            "tag": "minecraft:planks"
+        }
+    },
+    "result": {
+    	"item": "refinement:mixing_bowl",
+    	"count": 1
+    }
+    
+    
+}

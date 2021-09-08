@@ -1,0 +1,9 @@
+{
+    "type": "minecraft:blasting",
+    "ingredient": {
+        "item": "refinement:unfired_refined_netherite_ingot"
+    },
+    "result": "refinement:refined_netherite_ingot",
+    "experience": 0,
+    "cookingtime": 200
+}

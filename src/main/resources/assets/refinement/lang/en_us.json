@@ -68,11 +68,12 @@
 	
 	
 	"item.refinement.coal_dust": "Coal Dust",
-	"item.refinement.refined_coal_dust": "Refined Coal Dust",
+	"item.refinement.refined_carbon_dust": "Refined Carbon Dust",
 	"item.refinement.charcoal_dust": "Charcoal Dust",
-	"item.refinement.refined_coal": "Refined Coal",
-	"block.refinement.refined_coal_block": "Block Of Refined Coal",
-	"item.refinement.refined_coal_block": "Block Of Refined Coal",
+	"item.refinement.refined_carbon_ingot": "Refined Carbon Ingot",
+	"item.refinement.unfired_refined_carbon_ingot": "Unfired Refined Carbon Ingot",
+	"block.refinement.refined_carbon_block": "Block Of Refined Carbon",
+	"item.refinement.refined_carbon_block": "Block Of Refined Carbon",
 	"item.refinement.grit": "Grit",
 	"item.refinement.iron_infused_grit": "Iron Infused Grit",
 	"item.refinement.diamond_infused_grit": "Diamond Infused Grit",
@@ -97,6 +98,7 @@
 	"block.refinement.machine_frame": "Machine Frame",
 	"item.refinement.cogwheel_mold": "Cogwheel Mold",
 	"item.refinement.unfired_cogwheel_mold": "Unfired Cogwheel Mold",
+	"item.refinement.wooden_cogwheel": "Wooden Cogwheel",
 	
 	
 	"block.refinement.refined_iron_block": "Block Of Refined Iron",

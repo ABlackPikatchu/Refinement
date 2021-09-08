@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "CRC",
+        "WFW",
+        "CRC"
+    ],
+    "key": {
+        "C": {
+            "item": "refinement:refined_iron_ingot"
+        },
+        "R": {
+        	"item": "refinement:machine_parts"
+        },
+        "F": {
+        	"item": "minecraft:furnace"
+        },
+        "W": {
+        	"item": "refinement:refined_gold_cogwheel"
+        }
+    },
+    "result": {
+        "item": "refinement:machine_frame",
+        "count": 1
+    }
+}
