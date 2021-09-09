@@ -32,6 +32,7 @@ public class RefinementJEIPlugin implements IModPlugin {
 		RecipeManager manager = Minecraft.getInstance().level.getRecipeManager();
 		
 		registration.addRecipes(getRecipes(manager, RecipeInit.GRINDER_RECIPE), GrinderRecipeCategory.ID);
+		registration.addRecipes(getRecipes(manager, RecipeInit.MIXER_RECIPE), MixerRecipeCategory.ID);
 	}
 	
 	@Override
@@ -39,6 +40,7 @@ public class RefinementJEIPlugin implements IModPlugin {
 		IGuiHelper helper = registration.getJeiHelpers().getGuiHelper();
 		
 		registration.addRecipeCategories(new GrinderRecipeCategory(helper));
+		registration.addRecipeCategories(new MixerRecipeCategory(helper));
 	}
 	
 	private static Collection<?> getRecipes(RecipeManager manager, IRecipeType<?> type) {

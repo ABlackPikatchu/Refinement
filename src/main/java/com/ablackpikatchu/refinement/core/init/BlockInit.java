@@ -2,6 +2,7 @@ package com.ablackpikatchu.refinement.core.init;
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.block.GrinderBlock;
+import com.ablackpikatchu.refinement.common.block.MixerBlock;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -38,5 +39,6 @@ public class BlockInit {
 	
 	//TE Blocks
 	public static final RegistryObject<Block> GRINDER = BLOCKS.register("grinder", () -> new GrinderBlock());
-
+	public static final RegistryObject<Block> MIXER = BLOCKS.register("mixer", () -> new MixerBlock());
+	
 }

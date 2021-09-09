@@ -2,6 +2,7 @@ package com.ablackpikatchu.refinement.core.util;
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.client.screen.GrinderScreen;
+import com.ablackpikatchu.refinement.client.screen.MixerScreen;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
 
 import net.minecraft.client.gui.ScreenManager;
@@ -17,6 +18,7 @@ public class ClientEventBusSubscriber {
 	@SubscribeEvent
 	public static void clientSetup(FMLClientSetupEvent event) {
 		ScreenManager.register(ContainerTypesInit.GRINDER_CONTAINER_TYPE.get(), GrinderScreen::new);
+		ScreenManager.register(ContainerTypesInit.MIXER_CONTAINER_TYPE.get(), MixerScreen::new);
 	}
 
 }

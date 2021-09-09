@@ -2,6 +2,7 @@ package com.ablackpikatchu.refinement.core.init;
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.container.GrinderContainer;
+import com.ablackpikatchu.refinement.common.container.MixerContainer;
 
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
@@ -16,4 +17,7 @@ public class ContainerTypesInit {
 	
 	public static final RegistryObject<ContainerType<GrinderContainer>> GRINDER_CONTAINER_TYPE = CONTAINER_TYPES
 			.register("grinder", () -> IForgeContainerType.create(GrinderContainer::new));
+	
+	public static final RegistryObject<ContainerType<MixerContainer>> MIXER_CONTAINER_TYPE = CONTAINER_TYPES
+			.register("mixer", () -> IForgeContainerType.create(MixerContainer::new));
 }
