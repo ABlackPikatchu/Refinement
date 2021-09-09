@@ -108,12 +108,15 @@
 	
 	//TE blocks
 	"block.refinement.grinder": "Grinder",
+	"block.refinement.mixer": "Mixer",
 	
 	//Containers
 	"container.refinement.grinder": "Grinder",
+	"container.refinement.mixer": "Mixer",
 	
 	//Category
 	"category.refinement.grinder_recipe": "Grinder",
+	"category.refinement.mixer_recipe": "Mixer",
 	
 	"itemGroup.refinement": "Refinement"
 }

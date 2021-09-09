@@ -17,7 +17,7 @@ public class TileEntityHelper {
 		if (stack == ItemStack.EMPTY)
 			return true;
 		else if (stack.getItem() == stackToPlace.getItem()
-				&& stack.getCount() <= stack.getMaxStackSize() - stackToPlace.getCount())
+				&& stack.getCount() <= (stack.getMaxStackSize() - stackToPlace.getCount()))
 			return true;
 		else if (stack.getItem() == Items.AIR)
 			return true;

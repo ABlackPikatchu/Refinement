@@ -7,7 +7,7 @@ import com.ablackpikatchu.refinement.core.init.RecipeInit;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -21,27 +21,29 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public class GrinderRecipe implements IRecipe<IInventory> {
+public class MixerRecipe implements IRecipe<Inventory> {
 	public static final Serializer SERIALIZER = new Serializer();
 
 	private final Ingredient input;
+	private final Ingredient secondaryInput;
 	private final ItemStack output;
 	private final ResourceLocation id;
 	private final Ingredient refinedCoal = Ingredient.of(new ItemStack(ItemInit.REFINED_CARBON_INGOT.get()));
 
-	public GrinderRecipe(ResourceLocation id, Ingredient input, ItemStack output) {
+	public MixerRecipe(ResourceLocation id, Ingredient input, Ingredient secondaryInput, ItemStack output) {
 		this.id = id;
 		this.input = input;
+		this.secondaryInput = secondaryInput;
 		this.output = output;
 	}
 
 	@Override
-	public boolean matches(IInventory p_77569_1_, World p_77569_2_) {
+	public boolean matches(Inventory p_77569_1_, World p_77569_2_) {
 		return this.input.test(p_77569_1_.getItem(0));
 	}
 
 	@Override
-	public ItemStack assemble(IInventory p_77572_1_) {
+	public ItemStack assemble(Inventory p_77572_1_) {
 		return null;
 	}
 
@@ -67,53 +69,58 @@ public class GrinderRecipe implements IRecipe<IInventory> {
 
 	@Override
 	public IRecipeType<?> getType() {
-		return RecipeInit.GRINDER_RECIPE;
+		return RecipeInit.MIXER_RECIPE;
 	}
 
 	@Override
 	public NonNullList<Ingredient> getIngredients() {
 		NonNullList<Ingredient> i = NonNullList.create();
 		i.add(input);
+		i.add(secondaryInput);
 		i.add(refinedCoal);
 		return i;
 	}
 
 	@Override
 	public ItemStack getToastSymbol() {
-		return new ItemStack(BlockInit.GRINDER.get().asItem());
+		return new ItemStack(BlockInit.MIXER.get().asItem());
 	}
 
-	public boolean isValid(ItemStack input) {
-		return this.input.test(input);
+	public boolean isValid(ItemStack input, ItemStack input2) {
+		return this.input.test(input) && this.secondaryInput.test(input2);
 	}
 
 	private static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>>
-			implements IRecipeSerializer<GrinderRecipe> {
+			implements IRecipeSerializer<MixerRecipe> {
 		public Serializer() {
-			this.setRegistryName(Refinement.MOD_ID, "grinder");
+			this.setRegistryName(Refinement.MOD_ID, "mixer");
 		}
 
 		@Override
-		public GrinderRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+		public MixerRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
 			final JsonElement inputEl = JSONUtils.isArrayNode(json, "input") ? JSONUtils.getAsJsonArray(json, "input")
 					: JSONUtils.getAsJsonObject(json, "input");
+			final JsonElement inputEl2 = JSONUtils.isArrayNode(json, "secondary_input") ? JSONUtils.getAsJsonArray(json, "secondary_input")
+					: JSONUtils.getAsJsonObject(json, "secondary_input");
 			final ItemStack output = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "output"));
 			final Ingredient input = Ingredient.fromJson(inputEl);
-			return new GrinderRecipe(recipeId, input, output);
+			final Ingredient input2 = Ingredient.fromJson(inputEl2);
+			return new MixerRecipe(recipeId, input, input2, output);
 		}
 
 		@Override
-		public GrinderRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
+		public MixerRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
 			final Ingredient input = Ingredient.fromNetwork(buffer);
+			final Ingredient input2 = Ingredient.fromNetwork(buffer);
 			final ItemStack output = buffer.readItem();
-			return new GrinderRecipe(recipeId, input, output);
+			return new MixerRecipe(recipeId, input, input2, output);
 		}
 
 		@Override
-		public void toNetwork(PacketBuffer buffer, GrinderRecipe recipe) {
+		public void toNetwork(PacketBuffer buffer, MixerRecipe recipe) {
 			recipe.input.toNetwork(buffer);
+			recipe.secondaryInput.toNetwork(buffer);
 			buffer.writeItem(recipe.output);
 		}
 	}
-
 }
