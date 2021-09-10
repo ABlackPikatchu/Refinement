@@ -52,6 +52,6 @@ public class GrinderScreen extends ContainerScreen<GrinderContainer> {
 		int y = (this.height - this.imageHeight) / 2;
 		this.blit(matrixStack, x, y, 0, 0, this.imageWidth, this.imageHeight);
 		
-		this.blit(matrixStack, this.leftPos + 68, this.topPos + 8, 176, 0, this.menu.getProgressionScaled(), 47);
+		this.blit(matrixStack, this.leftPos + 68, this.topPos + 9, 176, 0, this.menu.getProgressionScaled(), 47);
 	}
 }

@@ -59,7 +59,9 @@ public class GrinderTileEntity extends LockableSidedInventoryTileEntity implemen
 					if (this.currentWaitTime == this.maxWaitTime) {
 						TileEntityHelper.updateTE(this);
 						if (TileEntityHelper.canPlaceItemInStack(this.getItem(1), recipe.getResultItem())) {
-							this.getItem(0).shrink(1);
+							for (ItemStack recipeInput : grinderRecipe.getIngredients().get(0).getItems()) {
+								this.getItem(0).shrink(recipeInput.getCount());
+							}
 							this.getItem(2).shrink(1);
 							int oldCount = 0;
 							if (this.getItem(1) != ItemStack.EMPTY)
