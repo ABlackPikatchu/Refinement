@@ -39,7 +39,7 @@ public class Refinement {
 
 		ModLoadingContext.get().registerConfig(Type.COMMON, CommonConfig.SPEC, "refinement-common.toml");
 		ModLoadingContext.get().registerConfig(Type.CLIENT, ClientConfig.SPEC, "refinement-client.toml");
-		
+
 		bus.addGenericListener(IRecipeSerializer.class, RecipeInit::registerRecipes);
 
 		ItemInit.ITEMS.register(bus);
@@ -54,9 +54,7 @@ public class Refinement {
 	public static void onRegisterItems(final RegistryEvent.Register<Item> event) {
 		BlockInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
 			if (block == BlockInit.REFINED_CARBON_BLOCK.get())
-				event.getRegistry().register(
-						new RefinedCoalBlockItem(block, new Item.Properties().tab(RefinementItemGroup.REFINEMENT))
-								.setRegistryName(block.getRegistryName()));
+				event.getRegistry().register(new RefinedCoalBlockItem().setRegistryName(block.getRegistryName()));
 			else
 				event.getRegistry()
 						.register(new BlockItem(block, new Item.Properties().tab(RefinementItemGroup.REFINEMENT

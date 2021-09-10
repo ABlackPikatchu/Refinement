@@ -5,15 +5,16 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.ablackpikatchu.refinement.Refinement;
-import com.ablackpikatchu.refinement.common.block.MixerBlock;
-import com.ablackpikatchu.refinement.common.container.MixerContainer;
-import com.ablackpikatchu.refinement.common.recipe.MixerRecipe;
+import com.ablackpikatchu.refinement.common.block.MoldPressBlock;
+import com.ablackpikatchu.refinement.common.container.MoldPressContainer;
+import com.ablackpikatchu.refinement.common.recipe.MoldPressRecipe;
 import com.ablackpikatchu.refinement.common.te.LockableSidedInventoryTileEntity;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
 import com.ablackpikatchu.refinement.core.util.helper.TileEntityHelper;
+import com.ablackpikatchu.refinement.core.util.lists.ItemLists;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerInventory;
@@ -29,7 +30,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.util.Constants;
 
-public class MixerTileEntity extends LockableSidedInventoryTileEntity implements ITickableTileEntity {
+public class MoldPressTileEntity extends LockableSidedInventoryTileEntity implements ITickableTileEntity {
 	List<ItemStack> allItems = null;
 	private ITextComponent customName;
 	public static int slots = 5;
@@ -38,44 +39,44 @@ public class MixerTileEntity extends LockableSidedInventoryTileEntity implements
 	public int maxWaitTime;
 	public int usedCarbon;
 	private static final int[] SLOTS_FOR_UP = new int[] { 0 };
-	private static final int[] SLOTS_FOR_DOWN = new int[] { 2 };
-	private static final int[] SLOTS_FOR_SIDES = new int[] { 1, 3 };
+	private static final int[] SLOTS_FOR_DOWN = new int[] { 1 };
+	private static final int[] SLOTS_FOR_SIDES = new int[] { 3 };
 
-	public MixerTileEntity(final TileEntityType<?> tileEntityTypeIn) {
+	public MoldPressTileEntity(final TileEntityType<?> tileEntityTypeIn) {
 		super(tileEntityTypeIn, slots);
 	}
 
-	public MixerTileEntity() {
-		this(TileEntityTypesInit.MIXER_TILE_ENTITY_TYPE.get());
+	public MoldPressTileEntity() {
+		this(TileEntityTypesInit.MOLD_PRESS_TILE_ENTITY_TYPE.get());
 	}
 
 	@Override
 	public void tick() {
 		if (!this.level.isClientSide()) {
 			if (this.getItem(4).getItem() == ItemInit.SPEED_UPGRADE.get()) {
-				this.maxWaitTime = CommonConfig.MIXER_DEFAULT_PROCESS_TIME.get()
-						- (CommonConfig.MIXER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get() * this.getItem(4).getCount());
+				this.maxWaitTime = CommonConfig.MOLD_PRESS_DEFAULT_PROCESS_TIME.get()
+						- (CommonConfig.MOLD_PRESS_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get()
+								* this.getItem(4).getCount());
 				this.usedCarbon = this.getItem(4).getCount() / 2 + 1;
 			} else {
-				this.maxWaitTime = CommonConfig.MIXER_DEFAULT_PROCESS_TIME.get();
+				this.maxWaitTime = CommonConfig.MOLD_PRESS_DEFAULT_PROCESS_TIME.get();
 				this.usedCarbon = 1;
 			}
-			this.level.setBlockAndUpdate(this.getBlockPos(), this.getBlockState().setValue(MixerBlock.LIT, false));
-			for (final IRecipe<?> recipe : this.level.getRecipeManager().getAllRecipesFor(RecipeInit.MIXER_RECIPE)) {
-				final MixerRecipe mixerRecipe = (MixerRecipe) recipe;
-				if (mixerRecipe.isValid(this.getItem(0), this.getItem(1))
+			this.level.setBlockAndUpdate(this.getBlockPos(), this.getBlockState().setValue(MoldPressBlock.LIT, false));
+			for (final IRecipe<?> recipe : this.level.getRecipeManager().getAllRecipesFor(RecipeInit.MOLD_PRESS_RECIPE)) {
+				final MoldPressRecipe moldPressRecipe = (MoldPressRecipe) recipe;
+				if (moldPressRecipe.isValid(this.getItem(0), this.getItem(2))
 						&& this.getItem(3).getItem() == ItemInit.REFINED_CARBON_INGOT.get()
 						&& this.getItem(3).getCount() >= this.usedCarbon) {
 					if (this.currentWaitTime >= this.maxWaitTime) {
 						TileEntityHelper.updateTE(this);
-						if (TileEntityHelper.canPlaceItemInStack(this.getItem(2), recipe.getResultItem())) {
-							this.getItem(0).shrink(mixerRecipe.getInputCount());
-							this.getItem(1).shrink(mixerRecipe.getSecondaryInputCount());
+						if (TileEntityHelper.canPlaceItemInStack(this.getItem(1), recipe.getResultItem())) {
+							this.getItem(0).shrink(moldPressRecipe.getInputCount());
 							this.getItem(3).shrink(this.usedCarbon);
 							int oldCount = 0;
-							if (this.getItem(2) != ItemStack.EMPTY)
-								oldCount = this.getItem(2).getCount();
-							this.setItem(2, new ItemStack(recipe.getResultItem().getItem(),
+							if (this.getItem(1) != ItemStack.EMPTY)
+								oldCount = this.getItem(1).getCount();
+							this.setItem(1, new ItemStack(recipe.getResultItem().getItem(),
 									recipe.getResultItem().getCount() + oldCount));
 							this.currentWaitTime = 0;
 							TileEntityHelper.updateTE(this);
@@ -84,7 +85,7 @@ public class MixerTileEntity extends LockableSidedInventoryTileEntity implements
 						this.currentWaitTime++;
 						this.setChanged();
 						this.level.setBlockAndUpdate(this.getBlockPos(),
-								this.getBlockState().setValue(MixerBlock.LIT, true));
+								this.getBlockState().setValue(MoldPressBlock.LIT, true));
 					}
 				}
 			}
@@ -114,7 +115,7 @@ public class MixerTileEntity extends LockableSidedInventoryTileEntity implements
 
 	@Override
 	protected ITextComponent getDefaultName() {
-		return new TranslationTextComponent("container." + Refinement.MOD_ID + ".mixer");
+		return new TranslationTextComponent("container." + Refinement.MOD_ID + ".mold_press");
 	}
 
 	public void setCustomName(ITextComponent name) {
@@ -137,7 +138,7 @@ public class MixerTileEntity extends LockableSidedInventoryTileEntity implements
 
 	@Override
 	protected Container createMenu(final int windowID, final PlayerInventory playerInv) {
-		return new MixerContainer(windowID, playerInv, this);
+		return new MoldPressContainer(windowID, playerInv, this);
 	}
 
 	@Override
@@ -171,31 +172,28 @@ public class MixerTileEntity extends LockableSidedInventoryTileEntity implements
 
 	@Override
 	public boolean canPlaceItemThroughFace(int index, ItemStack stack, Direction side) {
-		if (index == 2)
+		if (index == 1)
 			return false;
-		else if (side == Direction.DOWN && index != 2)
+		else if (side == Direction.DOWN && index == 0)
 			return false;
 		else if (index == 3) {
 			if (stack.getItem() == ItemInit.REFINED_CARBON_INGOT.get())
 				return true;
 			else
 				return false;
-		} else if (index == 1) {
-			if (stack.getItem() == ItemInit.REFINED_CARBON_INGOT.get())
-				return false;
-			else
-				return true;
 		} else if (index == 4)
 			return false;
+		else if (index == 2) return ItemLists.isMold(stack.getItem());
 		else
 			return true;
 	}
 
 	@Override
 	public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction side) {
-		if (index != 2)
+		if (index != 1)
 			return false;
 		else
 			return true;
 	}
+
 }

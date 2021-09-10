@@ -1,0 +1,24 @@
+{
+	"parent": "item/generated",
+    "overrides": [
+   		{
+            "predicate": {
+                "refinement:stack_count": 1
+            },
+            "model": "refinement:item/upgrades/speed_upgrade_1"
+        },
+        {
+            "predicate": {
+                "refinement:stack_count": 2
+            },
+            "model": "refinement:item/upgrades/speed_upgrade_2"
+        },
+        {
+            "predicate": {
+                "refinement:stack_count": 3
+            },
+            "model": "refinement:item/upgrades/speed_upgrade_3"
+        }
+    ]
+}
+}

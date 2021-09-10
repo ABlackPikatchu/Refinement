@@ -182,6 +182,10 @@ public class ItemInit {
 			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 	public static final RegistryObject<Item> COGWHEEL_MOLD = ITEMS.register("cogwheel_mold",
 			() -> new Mold(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+	
+	//Machine Stuff
+	public static final RegistryObject<Item> SPEED_UPGRADE = ITEMS.register("speed_upgrade",
+			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT).stacksTo(8)));
 
 	// Misc
 	public static final RegistryObject<Item> MACHINE_PARTS = ITEMS.register("machine_parts",

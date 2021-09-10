@@ -1,0 +1,12 @@
+{
+	"type": "refinement:mold_press",
+	"input": {
+		"item": "refinement:iron_dust"
+	},
+	"mold": {
+		"item": "refinement:ingot_mold"
+	},
+	"output": {
+		"item": "minecraft:iron_ingot"
+	}
+}
