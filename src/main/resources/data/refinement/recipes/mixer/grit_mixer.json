@@ -1,0 +1,13 @@
+{
+    "type": "refinement:mixer",
+    "input": {
+        "item": "minecraft:gravel"
+    },
+    "secondary_input": {
+    	"item": "minecraft:sand"
+    },
+    "output": {
+        "item": "refinement:grit",
+        "count": 4
+    }
+}
