@@ -1,0 +1,13 @@
+{
+    "type": "refinement:mixer",
+    "input": {
+        "tag": "forge:dusts/iron"
+    },
+    "secondary_input": {
+    	"item": "refinement:grit"
+    },
+    "output": {
+        "item": "refinement:iron_infused_grit",
+        "count": 4
+    }
+}
