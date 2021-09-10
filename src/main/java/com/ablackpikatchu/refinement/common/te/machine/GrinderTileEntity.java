@@ -32,10 +32,11 @@ import net.minecraftforge.common.util.Constants;
 public class GrinderTileEntity extends LockableSidedInventoryTileEntity implements ITickableTileEntity {
 	List<ItemStack> allItems = null;
 	private ITextComponent customName;
-	public static int slots = 3;
+	public static int slots = 4;
 	protected NonNullList<ItemStack> items = NonNullList.withSize(slots, ItemStack.EMPTY);
 	public int currentWaitTime;
-	public int maxWaitTime = CommonConfig.GRINDER_DEFAULT_PROCESS_TIME.get();
+	public int maxWaitTime;
+	public int usedCarbon;
 	private static final int[] SLOTS_FOR_UP = new int[] { 0 };
 	private static final int[] SLOTS_FOR_DOWN = new int[] { 1 };
 	private static final int[] SLOTS_FOR_SIDES = new int[] { 2 };
@@ -51,16 +52,26 @@ public class GrinderTileEntity extends LockableSidedInventoryTileEntity implemen
 	@Override
 	public void tick() {
 		if (!this.level.isClientSide()) {
+			if (this.getItem(3).getItem() == ItemInit.SPEED_UPGRADE.get()) {
+				this.maxWaitTime = CommonConfig.GRINDER_DEFAULT_PROCESS_TIME.get()
+						- (CommonConfig.GRINDER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get()
+								* this.getItem(3).getCount());
+				this.usedCarbon = this.getItem(3).getCount() / 2 + 1;
+			} else {
+				this.maxWaitTime = CommonConfig.GRINDER_DEFAULT_PROCESS_TIME.get();
+				this.usedCarbon = 1;
+			}
 			this.level.setBlockAndUpdate(this.getBlockPos(), this.getBlockState().setValue(GrinderBlock.LIT, false));
 			for (final IRecipe<?> recipe : this.level.getRecipeManager().getAllRecipesFor(RecipeInit.GRINDER_RECIPE)) {
 				final GrinderRecipe grinderRecipe = (GrinderRecipe) recipe;
 				if (grinderRecipe.isValid(this.getItem(0))
-						&& this.getItem(2).getItem() == ItemInit.REFINED_CARBON_INGOT.get()) {
-					if (this.currentWaitTime == this.maxWaitTime) {
+						&& this.getItem(2).getItem() == ItemInit.REFINED_CARBON_INGOT.get()
+						&& this.getItem(2).getCount() >= this.usedCarbon) {
+					if (this.currentWaitTime >= this.maxWaitTime) {
 						TileEntityHelper.updateTE(this);
 						if (TileEntityHelper.canPlaceItemInStack(this.getItem(1), recipe.getResultItem())) {
 							this.getItem(0).shrink(grinderRecipe.getInputCount());
-							this.getItem(2).shrink(1);
+							this.getItem(2).shrink(this.usedCarbon);
 							int oldCount = 0;
 							if (this.getItem(1) != ItemStack.EMPTY)
 								oldCount = this.getItem(1).getCount();
@@ -169,7 +180,9 @@ public class GrinderTileEntity extends LockableSidedInventoryTileEntity implemen
 				return true;
 			else
 				return false;
-		} else
+		} else if (index == 3)
+			return false;
+		else
 			return true;
 	}
 

@@ -26,7 +26,8 @@ public class GrinderContainer extends Container {
 	public final GrinderTileEntity te;
 	private final IWorldPosCallable canInteractWithCallable;
 	public FunctionalIntReferenceHolder currentWaitTime;
-
+	public FunctionalIntReferenceHolder maxWaitTime;
+	
 	public GrinderContainer(final int windowId, final PlayerInventory playerInv,
 			final GrinderTileEntity te) {
 		super(ContainerTypesInit.GRINDER_CONTAINER_TYPE.get(), windowId);
@@ -37,6 +38,7 @@ public class GrinderContainer extends Container {
 		this.addSlot(new Slot((IInventory) te, 0, 44, 23)); //Input
 		this.addSlot(new OutputSlot((IInventory) te, 1, 135, 23)); //Output
 		this.addSlot(new ItemReservedSlot((IInventory) te, 2, 8, 44, ItemInit.REFINED_CARBON_INGOT.get())); //Coal
+		this.addSlot(new ItemReservedSlot((IInventory) te, 3, 152, 58, ItemInit.SPEED_UPGRADE.get())); //Speed Upgarde
 
 		// Main Player Inventory
 		for (int row = 0; row < 3; row++) {
@@ -52,6 +54,8 @@ public class GrinderContainer extends Container {
 
 		this.addDataSlot(currentWaitTime = new FunctionalIntReferenceHolder(() -> this.te.currentWaitTime,
 				value -> this.te.currentWaitTime = value));
+		this.addDataSlot(maxWaitTime = new FunctionalIntReferenceHolder(() -> this.te.maxWaitTime,
+				value -> this.te.maxWaitTime = value));
 	}
 
 	public GrinderContainer(final int windowId, final PlayerInventory playerInv, final PacketBuffer data) {
@@ -99,8 +103,8 @@ public class GrinderContainer extends Container {
 
 	@OnlyIn(Dist.CLIENT)
 	public int getProgressionScaled() {
-		return this.currentWaitTime.get() != 0 && this.te.maxWaitTime != 0
-				? this.currentWaitTime.get() * 59 / this.te.maxWaitTime
+		return this.currentWaitTime.get() != 0 && this.maxWaitTime.get() != 0
+				? this.currentWaitTime.get() * 59 / this.maxWaitTime.get()
 				: 0;
 	}
 }

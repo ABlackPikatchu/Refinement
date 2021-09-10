@@ -1,15 +1,17 @@
 package com.ablackpikatchu.refinement.common.item;
 
-import net.minecraft.block.Block;
+import com.ablackpikatchu.refinement.core.init.BlockInit;
+import com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup;
+
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class RefinedCoalBlockItem extends Item{
+public class RefinedCoalBlockItem extends BlockItem {
 
-	public RefinedCoalBlockItem(Block block, Properties properties) {
-		super(properties);
+	public RefinedCoalBlockItem() {
+		super(BlockInit.REFINED_CARBON_BLOCK.get(), new Item.Properties().tab(RefinementItemGroup.REFINEMENT));
 	}
-
 
 	@Override
 	public int getBurnTime(ItemStack itemStack) {

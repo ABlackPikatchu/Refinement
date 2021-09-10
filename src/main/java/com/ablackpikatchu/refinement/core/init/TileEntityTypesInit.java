@@ -3,6 +3,7 @@ package com.ablackpikatchu.refinement.core.init;
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.te.machine.GrinderTileEntity;
 import com.ablackpikatchu.refinement.common.te.machine.MixerTileEntity;
+import com.ablackpikatchu.refinement.common.te.machine.MoldPressTileEntity;
 
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
@@ -20,5 +21,8 @@ public class TileEntityTypesInit {
 	public static final RegistryObject<TileEntityType<MixerTileEntity>> MIXER_TILE_ENTITY_TYPE = TILE_ENTITY_TYPE
 			.register("mixer", () -> TileEntityType.Builder
 					.of(MixerTileEntity::new, BlockInit.MIXER.get()).build(null));
+	public static final RegistryObject<TileEntityType<MoldPressTileEntity>> MOLD_PRESS_TILE_ENTITY_TYPE = TILE_ENTITY_TYPE
+			.register("mold_press", () -> TileEntityType.Builder
+					.of(MoldPressTileEntity::new, BlockInit.MOLD_PRESS.get()).build(null));
 
 }
