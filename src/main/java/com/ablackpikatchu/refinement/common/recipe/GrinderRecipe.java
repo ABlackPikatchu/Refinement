@@ -25,14 +25,16 @@ public class GrinderRecipe implements IRecipe<IInventory> {
 	public static final Serializer SERIALIZER = new Serializer();
 
 	private final Ingredient input;
+	private final int count;
 	private final ItemStack output;
 	private final ResourceLocation id;
 	private final Ingredient refinedCoal = Ingredient.of(new ItemStack(ItemInit.REFINED_CARBON_INGOT.get()));
 
-	public GrinderRecipe(ResourceLocation id, Ingredient input, ItemStack output) {
+	public GrinderRecipe(ResourceLocation id, Ingredient input, ItemStack output, int count) {
 		this.id = id;
 		this.input = input;
 		this.output = output;
+		this.count = count;
 	}
 
 	@Override
@@ -82,9 +84,13 @@ public class GrinderRecipe implements IRecipe<IInventory> {
 	public ItemStack getToastSymbol() {
 		return new ItemStack(BlockInit.GRINDER.get().asItem());
 	}
-
+	
 	public boolean isValid(ItemStack input) {
-		return this.input.test(input);
+		return (this.input.test(input) && input.getCount() >= this.count);
+	}
+	
+	public int getInputCount() {
+		return this.count;
 	}
 
 	private static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>>
@@ -99,14 +105,29 @@ public class GrinderRecipe implements IRecipe<IInventory> {
 					: JSONUtils.getAsJsonObject(json, "input");
 			final ItemStack output = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "output"));
 			final Ingredient input = Ingredient.fromJson(inputEl);
-			return new GrinderRecipe(recipeId, input, output);
+			JsonObject object = JSONUtils.getAsJsonObject(json, "input");
+			int actualCount = 1;
+			if (object.has("count")) {
+				int count = object.get("count").getAsInt();
+                if (count > 1) {
+                	actualCount = count;
+                    for (ItemStack stack : input.getItems()) {
+                        stack.setCount(count);
+                    }
+                }
+			}
+			return new GrinderRecipe(recipeId, input, output, actualCount);
 		}
 
 		@Override
 		public GrinderRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
 			final Ingredient input = Ingredient.fromNetwork(buffer);
+			int count = 1;
+			for (ItemStack stack : input.getItems()) {
+				count = stack.getCount();
+			}
 			final ItemStack output = buffer.readItem();
-			return new GrinderRecipe(recipeId, input, output);
+			return new GrinderRecipe(recipeId, input, output, count);
 		}
 
 		@Override

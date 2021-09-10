@@ -1,0 +1,11 @@
+{
+    "type": "refinement:grinder",
+    "input": {
+        "tag": "forge:cobblestone",
+        "count": 16
+    },
+    "output": {
+        "item": "minecraft:gravel",
+        "count": 16
+    }
+}

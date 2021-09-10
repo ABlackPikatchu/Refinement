@@ -61,7 +61,7 @@ public class MixerRecipeCategory implements IRecipeCategory<MixerRecipe> {
 	
 	@Override
 	public void draw(MixerRecipe recipe, MatrixStack matrixStack, double mouseX, double mouseY) {
-		progressBar.draw(matrixStack, 0, 0);
+		progressBar.draw(matrixStack, 51, 19);
 	}
 
 	@Override
