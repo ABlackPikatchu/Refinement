@@ -88,6 +88,10 @@ public class GrinderRecipe implements IRecipe<IInventory> {
 	public boolean isValid(ItemStack input) {
 		return (this.input.test(input) && input.getCount() >= this.count);
 	}
+	
+	public int getInputCount() {
+		return this.count;
+	}
 
 	private static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>>
 			implements IRecipeSerializer<GrinderRecipe> {

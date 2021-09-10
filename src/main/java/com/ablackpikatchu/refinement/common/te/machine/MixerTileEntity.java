@@ -59,8 +59,8 @@ public class MixerTileEntity extends LockableSidedInventoryTileEntity implements
 					if (this.currentWaitTime == this.maxWaitTime) {
 						TileEntityHelper.updateTE(this);
 						if (TileEntityHelper.canPlaceItemInStack(this.getItem(2), recipe.getResultItem())) {
-							this.getItem(0).shrink(1);
-							this.getItem(1).shrink(1);
+							this.getItem(0).shrink(mixerRecipe.getInputCount());
+							this.getItem(1).shrink(mixerRecipe.getSecondaryInputCount());
 							this.getItem(3).shrink(1);
 							int oldCount = 0;
 							if (this.getItem(2) != ItemStack.EMPTY)

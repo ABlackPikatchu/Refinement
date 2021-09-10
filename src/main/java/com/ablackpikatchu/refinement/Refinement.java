@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.ablackpikatchu.refinement.common.item.RefinedCoalBlockItem;
+import com.ablackpikatchu.refinement.core.config.ClientConfig;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
@@ -37,7 +38,8 @@ public class Refinement {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
 		ModLoadingContext.get().registerConfig(Type.COMMON, CommonConfig.SPEC, "refinement-common.toml");
-
+		ModLoadingContext.get().registerConfig(Type.CLIENT, ClientConfig.SPEC, "refinement-client.toml");
+		
 		bus.addGenericListener(IRecipeSerializer.class, RecipeInit::registerRecipes);
 
 		ItemInit.ITEMS.register(bus);

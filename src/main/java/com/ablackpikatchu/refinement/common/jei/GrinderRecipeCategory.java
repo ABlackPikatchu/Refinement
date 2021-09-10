@@ -3,11 +3,15 @@ package com.ablackpikatchu.refinement.common.jei;
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.client.screen.GrinderScreen;
 import com.ablackpikatchu.refinement.common.recipe.GrinderRecipe;
+import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
+import com.mojang.blaze3d.matrix.MatrixStack;
 
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.drawable.IDrawableAnimated;
+import mezz.jei.api.gui.drawable.IDrawableStatic;
 import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
@@ -21,6 +25,8 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderRecipe> {
 	public static final ResourceLocation ID = new ResourceLocation(Refinement.MOD_ID, ".grinder_recipe_category");
 	private final IDrawable back;
 	private final IDrawable icon;
+	private final IDrawableStatic staticProgressBar;
+	private final IDrawableAnimated progressBar;
 
 	@Override
 	public ResourceLocation getUid() {
@@ -30,6 +36,8 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderRecipe> {
 	public GrinderRecipeCategory(IGuiHelper helper) {
 		this.back = helper.createDrawable(GrinderScreen.GRINDER_JEI_SCREEN, 0, 0, 176, 72);
 		this.icon = helper.createDrawableIngredient(new ItemStack(BlockInit.GRINDER.get().asItem()));
+		this.staticProgressBar = helper.createDrawable(GrinderScreen.GRINDER_JEI_SCREEN, 176, 0, 59, 47);
+		this.progressBar = helper.createAnimatedDrawable(staticProgressBar, CommonConfig.GRINDER_DEFAULT_PROCESS_TIME.get(), IDrawableAnimated.StartDirection.LEFT, false);
 	}
 
 	@Override
@@ -50,6 +58,11 @@ public class GrinderRecipeCategory implements IRecipeCategory<GrinderRecipe> {
 	@Override
 	public IDrawable getIcon() {
 		return icon;
+	}
+	
+	@Override
+	public void draw(GrinderRecipe recipe, MatrixStack matrixStack, double mouseX, double mouseY) {
+		progressBar.draw(matrixStack, 68, 9);
 	}
 
 	@Override

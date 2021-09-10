@@ -26,14 +26,19 @@ public class MixerRecipe implements IRecipe<Inventory> {
 
 	private final Ingredient input;
 	private final Ingredient secondaryInput;
+	private final int inputCount;
+	private final int secondaryInputCount;
 	private final ItemStack output;
 	private final ResourceLocation id;
 	private final Ingredient refinedCoal = Ingredient.of(new ItemStack(ItemInit.REFINED_CARBON_INGOT.get()));
 
-	public MixerRecipe(ResourceLocation id, Ingredient input, Ingredient secondaryInput, ItemStack output) {
+	public MixerRecipe(ResourceLocation id, Ingredient input, Ingredient secondaryInput, ItemStack output,
+			int inputCount, int secondaryInputCount) {
 		this.id = id;
 		this.input = input;
 		this.secondaryInput = secondaryInput;
+		this.inputCount = inputCount;
+		this.secondaryInputCount = secondaryInputCount;
 		this.output = output;
 	}
 
@@ -87,7 +92,16 @@ public class MixerRecipe implements IRecipe<Inventory> {
 	}
 
 	public boolean isValid(ItemStack input, ItemStack input2) {
-		return this.input.test(input) && this.secondaryInput.test(input2);
+		return (this.input.test(input) && this.secondaryInput.test(input2) && input.getCount() >= this.inputCount
+				&& input2.getCount() >= this.secondaryInputCount);
+	}
+	
+	public int getInputCount() {
+		return this.inputCount;
+	}
+	
+	public int getSecondaryInputCount() {
+		return this.secondaryInputCount;
 	}
 
 	private static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>>
@@ -100,20 +114,51 @@ public class MixerRecipe implements IRecipe<Inventory> {
 		public MixerRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
 			final JsonElement inputEl = JSONUtils.isArrayNode(json, "input") ? JSONUtils.getAsJsonArray(json, "input")
 					: JSONUtils.getAsJsonObject(json, "input");
-			final JsonElement inputEl2 = JSONUtils.isArrayNode(json, "secondary_input") ? JSONUtils.getAsJsonArray(json, "secondary_input")
+			final JsonElement inputEl2 = JSONUtils.isArrayNode(json, "secondary_input")
+					? JSONUtils.getAsJsonArray(json, "secondary_input")
 					: JSONUtils.getAsJsonObject(json, "secondary_input");
 			final ItemStack output = ShapedRecipe.itemFromJson(JSONUtils.getAsJsonObject(json, "output"));
 			final Ingredient input = Ingredient.fromJson(inputEl);
 			final Ingredient input2 = Ingredient.fromJson(inputEl2);
-			return new MixerRecipe(recipeId, input, input2, output);
+			JsonObject object = JSONUtils.getAsJsonObject(json, "input");
+			int actualCount = 1;
+			if (object.has("count")) {
+				int count = object.get("count").getAsInt();
+				if (count > 1) {
+					actualCount = count;
+					for (ItemStack stack : input.getItems()) {
+						stack.setCount(count);
+					}
+				}
+			}
+			JsonObject object2 = JSONUtils.getAsJsonObject(json, "secondary_input");
+			int actualCount2 = 1;
+			if (object2.has("count")) {
+				int count = object2.get("count").getAsInt();
+				if (count > 1) {
+					actualCount2 = count;
+					for (ItemStack stack : input2.getItems()) {
+						stack.setCount(count);
+					}
+				}
+			}
+			return new MixerRecipe(recipeId, input, input2, output, actualCount, actualCount2);
 		}
 
 		@Override
 		public MixerRecipe fromNetwork(ResourceLocation recipeId, PacketBuffer buffer) {
 			final Ingredient input = Ingredient.fromNetwork(buffer);
+			int count = 1;
+			for (ItemStack stack : input.getItems()) {
+				count = stack.getCount();
+			}
 			final Ingredient input2 = Ingredient.fromNetwork(buffer);
+			int count2 = 1;
+			for (ItemStack stack : input2.getItems()) {
+				count2 = stack.getCount();
+			}
 			final ItemStack output = buffer.readItem();
-			return new MixerRecipe(recipeId, input, input2, output);
+			return new MixerRecipe(recipeId, input, input2, output, count, count2);
 		}
 
 		@Override
