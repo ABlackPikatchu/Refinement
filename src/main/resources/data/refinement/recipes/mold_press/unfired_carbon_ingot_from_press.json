@@ -1,0 +1,12 @@
+{
+    "type": "refinement:mold_press",
+    "input": {
+        "item": "refinement:refined_carbon_dust"
+    },
+    "mold": {
+        "item": "refinement:ingot_mold"
+    },
+    "output": {
+        "item": "refinement:unfired_refined_carbon_ingot"
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "RD#",
+        "PNP",
+        "#DR"
+    ],
+    "key": {
+        "#": {
+            "item": "refinement:refined_carbon_ingot"
+        },
+        "N": {
+        	"item": "refinement:refined_netherite_ingot"
+        },
+        "D": {
+        	"item": "refinement:refined_diamond"
+        },
+        "P": {
+        	"item": "refinement:machine_parts"
+        },
+        "R": {
+        	"item": "refinement:refined_iron_ingot"
+        }
+    },
+    "result": {
+        "item": "refinement:speed_upgrade",
+        "count": 2
+    }
+}
