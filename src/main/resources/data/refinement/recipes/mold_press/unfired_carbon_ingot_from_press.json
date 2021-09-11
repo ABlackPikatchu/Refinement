@@ -7,6 +7,7 @@
         "item": "refinement:ingot_mold"
     },
     "output": {
-        "item": "refinement:unfired_refined_carbon_ingot"
+        "item": "refinement:unfired_refined_carbon_ingot",
+        "count": 1
     }
 }
