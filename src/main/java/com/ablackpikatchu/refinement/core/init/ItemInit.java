@@ -3,6 +3,7 @@ package com.ablackpikatchu.refinement.core.init;
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.item.Cogwheel;
 import com.ablackpikatchu.refinement.common.item.GritPaper;
+import com.ablackpikatchu.refinement.common.item.Magnet;
 import com.ablackpikatchu.refinement.common.item.MixingBowl;
 import com.ablackpikatchu.refinement.common.item.Mold;
 import com.ablackpikatchu.refinement.common.item.RefinedCoal;
@@ -204,6 +205,7 @@ public class ItemInit {
 			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 	public static final RegistryObject<Item> WOODEN_COGWHEEL = ITEMS.register("wooden_cogwheel",
 			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+	public static final RegistryObject<Magnet> MAGNET = ITEMS.register("magnet", Magnet::new);
 
 	// Armors
 	public static final RegistryObject<Item> REFINED_IRON_HELMET = ITEMS.register("refined_iron_helmet",
