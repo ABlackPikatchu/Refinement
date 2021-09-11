@@ -33,7 +33,7 @@ public class BlockInit {
 					.harvestLevel(3).harvestTool(ToolType.PICKAXE).sound(SoundType.NETHERITE_BLOCK)));
 	public static final RegistryObject<Block> MACHINE_FRAME = BLOCKS.register("machine_frame",
 			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).strength(5f)
-					.harvestLevel(1).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)));
+					.harvestLevel(1).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).noOcclusion()));
 	public static final RegistryObject<Block> REFINED_CARBON_BLOCK = BLOCKS.register("refined_carbon_block",
 			() -> new Block(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(5f)
 					.harvestLevel(0).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)));

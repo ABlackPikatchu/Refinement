@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.ablackpikatchu.refinement.common.item.RefinedCoalBlockItem;
+import com.ablackpikatchu.refinement.core.Client;
 import com.ablackpikatchu.refinement.core.config.ClientConfig;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
@@ -25,6 +26,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.config.ModConfig.Type;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod("refinement")
@@ -62,5 +64,9 @@ public class Refinement {
 						)).setRegistryName(block.getRegistryName()));
 		});
 	}
-
+	
+	@SubscribeEvent
+	public static void clientSetup(final FMLClientSetupEvent event) {
+		Client.setRenderLayers();
+	}
 }
