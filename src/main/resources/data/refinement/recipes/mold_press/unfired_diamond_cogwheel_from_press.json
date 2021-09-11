@@ -1,0 +1,12 @@
+{
+    "type": "refinement:mold_press",
+    "input": {
+        "item": "refinement:refined_diamond_dust"
+    },
+    "mold": {
+        "item": "refinement:cogwheel_mold"
+    },
+    "output": {
+        "item": "refinement:unfired_refined_diamond_cogwheel"
+    }
+}
