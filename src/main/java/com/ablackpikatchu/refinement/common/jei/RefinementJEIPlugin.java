@@ -33,6 +33,7 @@ public class RefinementJEIPlugin implements IModPlugin {
 		
 		registration.addRecipes(getRecipes(manager, RecipeInit.GRINDER_RECIPE), GrinderRecipeCategory.ID);
 		registration.addRecipes(getRecipes(manager, RecipeInit.MIXER_RECIPE), MixerRecipeCategory.ID);
+		registration.addRecipes(getRecipes(manager, RecipeInit.MOLD_PRESS_RECIPE), MoldPressRecipeCatgory.ID);
 	}
 	
 	@Override
@@ -41,6 +42,7 @@ public class RefinementJEIPlugin implements IModPlugin {
 		
 		registration.addRecipeCategories(new GrinderRecipeCategory(helper));
 		registration.addRecipeCategories(new MixerRecipeCategory(helper));
+		registration.addRecipeCategories(new MoldPressRecipeCatgory(helper));
 	}
 	
 	private static Collection<?> getRecipes(RecipeManager manager, IRecipeType<?> type) {
