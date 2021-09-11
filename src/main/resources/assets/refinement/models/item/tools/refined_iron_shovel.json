@@ -1,0 +1,6 @@
+{
+	"parent": "item/handheld",
+	"textures": {
+		"layer0": "refinement:items/tools/refined_iron_shovel"
+	}
+}

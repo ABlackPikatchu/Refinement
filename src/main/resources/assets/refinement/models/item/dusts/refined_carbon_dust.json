@@ -1,0 +1,6 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "refinement:items/dusts/refined_carbon_dust"
+	}
+}

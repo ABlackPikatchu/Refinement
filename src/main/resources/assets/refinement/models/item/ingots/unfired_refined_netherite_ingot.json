@@ -1,0 +1,6 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "refinement:items/ingots/unfired_refined_netherite_ingot"
+	}
+}

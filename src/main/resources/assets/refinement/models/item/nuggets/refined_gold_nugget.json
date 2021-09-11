@@ -1,0 +1,6 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "refinement:items/nuggets/refined_gold_nugget"
+	}
+}

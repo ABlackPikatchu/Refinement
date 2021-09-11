@@ -1,6 +1,0 @@
-{
-	"parent": "item/handheld",
-	"textures": {
-		"layer0": "refinement:items/refined_netherite_hoe"
-	}
-}
