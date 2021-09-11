@@ -1,7 +1,7 @@
 {
     "type": "refinement:mold_press",
     "input": {
-        "item": "refinement:refined_ironn_dust"
+        "item": "refinement:refined_iron_dust"
     },
     "mold": {
         "item": "refinement:ingot_mold"
