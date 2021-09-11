@@ -99,8 +99,9 @@
 	"item.refinement.cogwheel_mold": "Cogwheel Mold",
 	"item.refinement.unfired_cogwheel_mold": "Unfired Cogwheel Mold",
 	"item.refinement.wooden_cogwheel": "Wooden Cogwheel",
+	"item.refinement.miners_stew": "Miner's Stew",
 	
-	
+	//Blocks
 	"block.refinement.refined_iron_block": "Block Of Refined Iron",
 	"block.refinement.refined_gold_block": "Block Of Refined Gold",
 	"block.refinement.refined_diamond_block": "Block Of Refined Diamond",

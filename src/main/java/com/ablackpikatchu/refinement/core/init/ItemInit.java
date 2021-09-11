@@ -16,6 +16,7 @@ import net.minecraft.item.AxeItem;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.PickaxeItem;
+import net.minecraft.item.Rarity;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.SwordItem;
 import net.minecraftforge.fml.RegistryObject;
@@ -180,8 +181,8 @@ public class ItemInit {
 			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 	public static final RegistryObject<Item> COGWHEEL_MOLD = ITEMS.register("cogwheel_mold",
 			() -> new Mold(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
-	
-	//Machine Stuff
+
+	// Machine Stuff
 	public static final RegistryObject<Item> SPEED_UPGRADE = ITEMS.register("speed_upgrade",
 			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT).stacksTo(8)));
 
@@ -253,5 +254,9 @@ public class ItemInit {
 	public static final RegistryObject<Item> REFINED_NETHERITE_BOOTS = ITEMS.register("refined_netherite_boots",
 			() -> new ArmorItem(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.FEET,
 					new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+	
+	//Foods
+	public static final RegistryObject<Item> MINERS_STEW = ITEMS.register("miners_stew",
+			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT).food(FoodInit.MINERS_STEW).rarity(Rarity.RARE)));
 
 }
