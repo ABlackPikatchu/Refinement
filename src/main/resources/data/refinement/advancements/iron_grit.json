@@ -1,0 +1,41 @@
+{
+	"__comment": "Made with TheDestruc7i0n's advancements generator: https://advancements.thedestruc7i0n.ca",
+	"display": {
+		"title": {
+			"text": "Iron Grit",
+			"color": "light_purple"
+		},
+		"description": {
+			"text": "Second tier of grit"
+		},
+		"icon": {
+			"item": "refinement:iron_infused_grit"
+		},
+		"frame": "task",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": false
+	},
+	"criteria": {
+		"iron grit": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "refinement:iron_infused_grit",
+						"count": {
+							"min": 1,
+							"max": 1
+						}
+					}
+				]
+			}
+		}
+	},
+	"requirements": [
+		[
+			"iron grit"
+		]
+	],
+	"parent": "refinement:make_grit"
+}

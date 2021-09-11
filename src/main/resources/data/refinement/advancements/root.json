@@ -1,0 +1,35 @@
+{
+    "__comment": "Made with TheDestruc7i0n's advancements generator: https://advancements.thedestruc7i0n.ca",
+    "display": {
+        "title": {
+            "text": "Refinement!",
+            "color": "gold",
+            "bold": true,
+            "underlined": false,
+            "strikethrough": false,
+            "obfuscated": false
+        },
+        "description": {
+            "text": "Lets get started with Refinement!",
+            "color": "white"
+        },
+        "icon": {
+            "item": "refinement:refined_diamond"
+        },
+        "frame": "goal",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false,
+        "background": "minecraft:textures/gui/advancements/backgrounds/stone.png"
+    },
+    "criteria": {
+        "Start": {
+            "trigger": "minecraft:tick"
+        }
+    },
+    "requirements": [
+        [
+            "Start"
+        ]
+    ]
+}

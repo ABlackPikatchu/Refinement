@@ -1,0 +1,41 @@
+{
+	"__comment": "Made with TheDestruc7i0n's advancements generator: https://advancements.thedestruc7i0n.ca",
+	"display": {
+		"title": {
+			"text": "Diamond Grit Paper",
+			"color": "light_purple"
+		},
+		"description": {
+			"text": "Third tier of grit paper. It lasts even longer!"
+		},
+		"icon": {
+			"item": "refinement:diamond_grit_paper"
+		},
+		"frame": "task",
+		"show_toast": true,
+		"announce_to_chat": true,
+		"hidden": false
+	},
+	"criteria": {
+		"craft": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "refinement:diamond_grit_paper",
+						"count": {
+							"min": 1,
+							"max": 1
+						}
+					}
+				]
+			}
+		}
+	},
+	"requirements": [
+		[
+			"craft"
+		]
+	],
+	"parent": "refinement:iron_grit_paper"
+}
