@@ -10,8 +10,7 @@
             "obfuscated": false
         },
         "description": {
-            "text": "Lets get started with Refinement!",
-            "color": "white"
+            "text": "Lets get started with Refinement!"
         },
         "icon": {
             "item": "refinement:refined_diamond"

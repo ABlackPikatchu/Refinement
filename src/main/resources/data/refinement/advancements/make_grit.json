@@ -6,8 +6,7 @@
             "color": "light_purple"
         },
         "description": {
-            "text": "To start with refinement, craft a mixing bowl",
-            "color": "white"
+            "text": "To start with refinement, craft a mixing bowl"
         },
         "icon": {
             "item": "refinement:mixing_bowl"
