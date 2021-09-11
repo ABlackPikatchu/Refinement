@@ -115,8 +115,6 @@ public class ItemInit {
 	public static final RegistryObject<Item> UNFIRED_REFINED_NETHERITE_INGOT = ITEMS.register(
 			"unfired_refined_netherite_ingot",
 			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
-	public static final RegistryObject<Item> REFINED_NETHERITE_NUGGET = ITEMS.register("refined_netherite_nugget",
-			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 	public static final RegistryObject<Item> REFINED_NETHERITE_SWORD = ITEMS.register("refined_netherite_sword",
 			() -> new SwordItem(ModItemTier.REFINEDNETHERITE, 3, -2.4F,
 					new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
