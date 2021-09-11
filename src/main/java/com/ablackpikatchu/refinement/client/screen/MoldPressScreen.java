@@ -42,7 +42,7 @@ public class MoldPressScreen extends ContainerScreen<MoldPressContainer> {
 	@Override
 	protected void renderLabels(MatrixStack matrixStack, int x, int y) {
 		this.font.draw(matrixStack, this.inventory.getDisplayName(), 7.0f, 65.0f, 0xA3703A);
-		this.font.draw(matrixStack, this.menu.te.getDisplayName(), 4.0f, 7.0f, 0xA3703A);
+		this.font.draw(matrixStack, this.menu.te.getDisplayName(), 5.0f, 7.0f, 0xA3703A);
 	}
 
 	@SuppressWarnings({ "deprecation", "resource" })

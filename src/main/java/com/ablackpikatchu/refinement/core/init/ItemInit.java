@@ -6,6 +6,7 @@ import com.ablackpikatchu.refinement.common.item.GritPaper;
 import com.ablackpikatchu.refinement.common.item.MixingBowl;
 import com.ablackpikatchu.refinement.common.item.Mold;
 import com.ablackpikatchu.refinement.common.item.RefinedCoal;
+import com.ablackpikatchu.refinement.common.item.food.MinersStew;
 import com.ablackpikatchu.refinement.common.material.ModArmorMaterial;
 import com.ablackpikatchu.refinement.common.material.ModItemTier;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup;
@@ -16,7 +17,6 @@ import net.minecraft.item.AxeItem;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.PickaxeItem;
-import net.minecraft.item.Rarity;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.SwordItem;
 import net.minecraftforge.fml.RegistryObject;
@@ -256,7 +256,6 @@ public class ItemInit {
 					new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 	
 	//Foods
-	public static final RegistryObject<Item> MINERS_STEW = ITEMS.register("miners_stew",
-			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT).food(FoodInit.MINERS_STEW).rarity(Rarity.RARE)));
+	public static final RegistryObject<Item> MINERS_STEW = ITEMS.register("miners_stew", MinersStew::new);
 
 }
