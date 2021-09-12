@@ -8,6 +8,9 @@ import com.ablackpikatchu.refinement.common.item.MixingBowl;
 import com.ablackpikatchu.refinement.common.item.Mold;
 import com.ablackpikatchu.refinement.common.item.RefinedCoal;
 import com.ablackpikatchu.refinement.common.item.RefinedCoalBlockItem;
+import com.ablackpikatchu.refinement.common.item.food.MinersApple;
+import com.ablackpikatchu.refinement.common.item.food.MinersCarrot;
+import com.ablackpikatchu.refinement.common.item.food.MinersJerky;
 import com.ablackpikatchu.refinement.common.item.food.MinersStew;
 import com.ablackpikatchu.refinement.common.material.ModArmorMaterial;
 import com.ablackpikatchu.refinement.common.material.ModItemTier;
@@ -294,5 +297,8 @@ public class ItemInit {
 
 	// Foods
 	public static final RegistryObject<Item> MINERS_STEW = ITEMS.register("miners_stew", MinersStew::new);
+	public static final RegistryObject<Item> MINERS_CARROT = ITEMS.register("miners_carrot", MinersCarrot::new);
+	public static final RegistryObject<Item> MINERS_APPLE = ITEMS.register("miners_apple", MinersApple::new);
+	public static final RegistryObject<Item> MINERS_JERKY = ITEMS.register("miners_jerky", MinersJerky::new);
 
 }

@@ -9,6 +9,7 @@ import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
+import com.ablackpikatchu.refinement.core.init.PotionInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
 
@@ -42,6 +43,7 @@ public class Refinement {
 		ItemInit.ITEMS.register(bus);
 		TileEntityTypesInit.TILE_ENTITY_TYPE.register(bus);
 		ContainerTypesInit.CONTAINER_TYPES.register(bus);
+		PotionInit.EFFECTS.register(bus);
 
 		MinecraftForge.EVENT_BUS.register(this);
 	}
