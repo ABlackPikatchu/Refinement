@@ -127,6 +127,11 @@
 	"category.refinement.mold_press_recipe": "Mold Press",
 	
 	"itemGroup.refinement": "Refinement",
+	"itemGroup.refinement_materials": "Refinement Materials",
+	"itemGroup.refinement_tools_weapons": "Refinement Tools & Weapons",
+	"itemGroup.refinement_machine": "Refinement Machines",
+	"itemGroup.refinement_armor": "Refinement Armors",
+	"itemGroup.refinement_food": "Refinement Foods",
 	
 	//Death Messages
 	"death.attack.minersStewDamage": "%1$s choked on precious metals",
