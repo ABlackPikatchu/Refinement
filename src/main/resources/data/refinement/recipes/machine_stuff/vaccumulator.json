@@ -1,0 +1,29 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"I#I",
+		"PMP",
+		"IBI"
+	],
+	"key": {
+		"M": {
+			"item": "refinement:machine_frame"
+		},
+		"P": {
+			"item": "refinement:machine_parts"
+		},
+		"#": {
+			"item": "refinement:magnet"
+		},
+		"I": {
+			"tag": "forge:ingots/iron"
+		},
+		"B": {
+			"tag": "forge:storage_blocks/iron"
+		}
+	},
+	"result": {
+		"item": "refinement:vaccumulator",
+		"count": 1
+	}
+}
