@@ -1,13 +1,11 @@
+
 {
     "type": "minecraft:crafting_shapeless",
-    "pattern": [
-        "b"
-    ],
-    "key": {
-        "b": {
+    "ingredients": [
+        {
             "item": "refinement:refined_gold_block"
         }
-    },
+    ],
     "result": {
         "item": "refinement:refined_gold_ingot",
         "count": 9

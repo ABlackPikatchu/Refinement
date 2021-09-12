@@ -1,0 +1,17 @@
+{
+    "name": "Modpack Creator Info",
+    "icon": "minecraft:book",
+    "category": "refinement:general_info",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "This mod was developed for the use in modpacks. $(br2)The materials are here to help you gate other mods using the resources in this mod."
+        },
+        {
+        	"type": "patchouli:link",
+        	"url": "https://github.com/ABlackPikatchu/Refinement",
+            "link_text": "Github Repo",
+      		"text": "The button below will lead you to the Refinement repository. You can find the recipes for the machines in the mod inside the recipes folder. Use these to add your own recipes using Crafttweaker and KubeJS."
+      	}
+    ]
+}
