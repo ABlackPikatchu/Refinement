@@ -21,6 +21,9 @@ public class CommonConfig {
 
 	// Magnet
 	public static final ForgeConfigSpec.ConfigValue<Double> MAGNET_RANGE;
+	
+	//Vaccumulator
+	public static final ForgeConfigSpec.ConfigValue<Double> VACCUMULATOR_RANGE;
 
 	static {
 
@@ -55,6 +58,9 @@ public class CommonConfig {
 
 		MAGNET_RANGE = BUILDER.comment("The range of the Magnet (in blocks) (Default value is 7.0)")
 				.define("Magnet Range", 7.0);
+		
+		VACCUMULATOR_RANGE = BUILDER.comment("The range of the Vaccumulator (in blocks) (Default value is 7.0)")
+				.define("Vaccumulator Range", 7.0);
 
 		BUILDER.pop();
 		SPEC = BUILDER.build();

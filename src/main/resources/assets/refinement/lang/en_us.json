@@ -115,11 +115,13 @@
 	"block.refinement.grinder": "Grinder",
 	"block.refinement.mixer": "Mixer",
 	"block.refinement.mold_press": "Mold Press",
+	"block.refinement.vaccumulator": "Vaccumulator",
 	
 	//Containers
 	"container.refinement.grinder": "Grinder",
 	"container.refinement.mixer": "Mixer",
 	"container.refinement.mold_press": "Mold Press",
+	"container.refinement.vaccumulator": "Vaccumulator",
 	
 	//Category
 	"category.refinement.grinder_recipe": "Grinder",

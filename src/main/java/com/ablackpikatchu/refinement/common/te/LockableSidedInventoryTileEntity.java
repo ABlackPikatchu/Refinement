@@ -3,8 +3,8 @@ package com.ablackpikatchu.refinement.common.te;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import com.ablackpikatchu.refinement.core.util.InventoryUtils;
 import com.ablackpikatchu.refinement.core.util.MCMathUtils;
+import com.ablackpikatchu.refinement.core.util.helper.TileEntityHelper;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -178,10 +178,10 @@ public abstract class LockableSidedInventoryTileEntity extends LockableTileEntit
 	}
 
 	@SuppressWarnings("unused")
-	private boolean hasRoomForOutputItem(ItemStack stack) {
+	public boolean hasRoomForOutputItem(ItemStack stack) {
 		for (int i : getOutputSlots()) {
 			ItemStack output = getItem(i);
-			if (InventoryUtils.canItemsStack(stack, output)) {
+			if (TileEntityHelper.canPlaceItemInStack(output, stack)) {
 				return true;
 			}
 		}
@@ -192,7 +192,7 @@ public abstract class LockableSidedInventoryTileEntity extends LockableTileEntit
 		// Merge the item into any output slot it can fit in
 		for (int i : getOutputSlots()) {
 			ItemStack output = getItem(i);
-			if (InventoryUtils.canItemsStack(stack, output)) {
+			if (TileEntityHelper.canPlaceItemInStack(output, stack)) {
 				if (output.isEmpty()) {
 					setItem(i, stack);
 				} else {
