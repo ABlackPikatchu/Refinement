@@ -254,8 +254,8 @@ public class ItemInit {
 	public static final RegistryObject<Item> REFINED_NETHERITE_BOOTS = ITEMS.register("refined_netherite_boots",
 			() -> new ArmorItem(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.FEET,
 					new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
-	
-	//Foods
+
+	// Foods
 	public static final RegistryObject<Item> MINERS_STEW = ITEMS.register("miners_stew", MinersStew::new);
 
 }

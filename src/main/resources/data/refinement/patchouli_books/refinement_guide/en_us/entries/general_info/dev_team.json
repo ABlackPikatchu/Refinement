@@ -1,0 +1,17 @@
+{
+    "name": "Dev Team",
+    "icon": "refinement:refined_diamond",
+    "category": "refinement:general_info",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "The Refinement Dev Team have worked hard to release this mod! $(br) It was originally developed to be used with Cy4Pack, but has become more then that! $(br2) The authors of the mod are ABlackPikatchu, matyrobbrt and True Penut."
+        },
+        {
+        	"type": "patchouli:link",
+        	"url": "https://discord.gg/7DmqvFYfVe",
+            "link_text": "Refinement Discord!",
+      		"text": "The button below will lead you to the Refinement discord where you can talk with the dev team, make suggestions and report bugs!"
+        }
+    ]
+}

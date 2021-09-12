@@ -1,0 +1,10 @@
+{
+    "name": "Refinement Guide",
+    "landing_text": "$(#800080)Welcome to Refinement $(playername)! $(br2)This book will guide you through the progression of the mod and show you all that you can do!",
+    "model": "refinement:refinement_guide",
+    "creative_tab": "refinement",
+    "book_texture": "patchouli:textures/gui/book_purple.png",
+    "index_icon": "minecraft:writable_book",
+    "show_progress": false,
+    "version": 1
+}
