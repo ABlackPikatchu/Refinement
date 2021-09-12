@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "BR ",
+        "   ",
+        "   "
+    ],
+    "key": {
+        "B": {
+            "item": "minecraft:book"
+        },
+        "R": {
+        	"item": "refinement:refining_dust"
+        }
+    },
+    "result": {
+        "item": "patchouli:guide_book",
+		"nbt": "{\"patchouli:book\": \"refinement:refinement_guide\"}",
+        "count": 1
+    }
+}
