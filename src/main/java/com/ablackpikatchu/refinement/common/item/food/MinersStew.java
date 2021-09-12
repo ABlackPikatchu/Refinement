@@ -1,7 +1,7 @@
 package com.ablackpikatchu.refinement.common.item.food;
 
 import com.ablackpikatchu.refinement.core.init.DamageSourcesInit;
-import com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup;
+import com.ablackpikatchu.refinement.core.itemgroup.RefinementFoodGroup;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,7 +21,7 @@ public class MinersStew extends Item {
 	public MinersStew() {
 		super(new Item.Properties()
 				.food(new Food.Builder().nutrition(6).saturationMod(13.3f).alwaysEat().fast().build())
-				.rarity(Rarity.RARE).tab(RefinementItemGroup.REFINEMENT).stacksTo(1));
+				.rarity(Rarity.RARE).tab(RefinementFoodGroup.REFINEMENT_FOOD).stacksTo(1));
 	}
 
 	@Override

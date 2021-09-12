@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
-import com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup;
+import com.ablackpikatchu.refinement.core.itemgroup.RefinementToolsWeaponsGroup;
 import com.ablackpikatchu.refinement.core.util.helper.NBTHelper;
 
 import net.minecraft.enchantment.Enchantment;
@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 public class Magnet extends Item {
 
 	public Magnet() {
-		super(new Item.Properties().defaultDurability(2048).tab(RefinementItemGroup.REFINEMENT));
+		super(new Item.Properties().defaultDurability(2048).tab(RefinementToolsWeaponsGroup.REFINEMENT_TOOLS_WEAPONS));
 	}
 
 	@Override
