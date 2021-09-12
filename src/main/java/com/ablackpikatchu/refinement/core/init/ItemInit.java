@@ -7,11 +7,11 @@ import com.ablackpikatchu.refinement.common.item.Magnet;
 import com.ablackpikatchu.refinement.common.item.MixingBowl;
 import com.ablackpikatchu.refinement.common.item.Mold;
 import com.ablackpikatchu.refinement.common.item.RefinedCoal;
+import com.ablackpikatchu.refinement.common.item.RefinedCoalBlockItem;
 import com.ablackpikatchu.refinement.common.item.food.MinersStew;
 import com.ablackpikatchu.refinement.common.material.ModArmorMaterial;
 import com.ablackpikatchu.refinement.common.material.ModItemTier;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementArmorGroup;
-import com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementMachineGroup;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementMaterialsGroup;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementToolsWeaponsGroup;
@@ -19,6 +19,7 @@ import com.ablackpikatchu.refinement.core.itemgroup.RefinementToolsWeaponsGroup;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.PickaxeItem;
@@ -31,9 +32,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class ItemInit {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS,
 			Refinement.MOD_ID);
-	
-	//Materials
-	//Iron
+
+	// Materials
+	// Iron
 	public static final RegistryObject<Item> IRON_DUST = ITEMS.register("iron_dust",
 			() -> new Item(new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
 	public static final RegistryObject<Item> REFINED_IRON_DUST = ITEMS.register("refined_iron_dust",
@@ -44,7 +45,10 @@ public class ItemInit {
 			() -> new Item(new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
 	public static final RegistryObject<Item> REFINED_IRON_NUGGET = ITEMS.register("refined_iron_nugget",
 			() -> new Item(new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
-	//Gold
+	public static final RegistryObject<BlockItem> REFINED_IRON_BLOCK = ITEMS.register("refined_iron_block",
+			() -> new BlockItem(BlockInit.REFINED_IRON_BLOCK.get(),
+					new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
+	// Gold
 	public static final RegistryObject<Item> GOLD_DUST = ITEMS.register("gold_dust",
 			() -> new Item(new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
 	public static final RegistryObject<Item> REFINED_GOLD_DUST = ITEMS.register("refined_gold_dust",
@@ -55,7 +59,10 @@ public class ItemInit {
 			() -> new Item(new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
 	public static final RegistryObject<Item> REFINED_GOLD_NUGGET = ITEMS.register("refined_gold_nugget",
 			() -> new Item(new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
-	//Diamond
+	public static final RegistryObject<BlockItem> REFINED_GOLD_BLOCK = ITEMS.register("refined_gold_block",
+			() -> new BlockItem(BlockInit.REFINED_GOLD_BLOCK.get(),
+					new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
+	// Diamond
 	public static final RegistryObject<Item> DIAMOND_DUST = ITEMS.register("diamond_dust",
 			() -> new Item(new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
 	public static final RegistryObject<Item> REFINED_DIAMOND_DUST = ITEMS.register("refined_diamond_dust",
@@ -64,7 +71,10 @@ public class ItemInit {
 			() -> new Item(new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
 	public static final RegistryObject<Item> REFINED_DIAMOND = ITEMS.register("refined_diamond",
 			() -> new Item(new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
-	//Netherite
+	public static final RegistryObject<BlockItem> REFINED_DIAMOND_BLOCK = ITEMS.register("refined_diamond_block",
+			() -> new BlockItem(BlockInit.REFINED_DIAMOND_BLOCK.get(),
+					new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
+	// Netherite
 	public static final RegistryObject<Item> NETHERITE_DUST = ITEMS.register("netherite_dust",
 			() -> new Item(new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
 	public static final RegistryObject<Item> REFINED_NETHERITE_DUST = ITEMS.register("refined_netherite_dust",
@@ -74,6 +84,9 @@ public class ItemInit {
 			() -> new Item(new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
 	public static final RegistryObject<Item> REFINED_NETHERITE_INGOT = ITEMS.register("refined_netherite_ingot",
 			() -> new Item(new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
+	public static final RegistryObject<BlockItem> REFINED_NETHERITE_BLOCK = ITEMS.register("refined_netherite_block",
+			() -> new BlockItem(BlockInit.REFINED_NETHERITE_BLOCK.get(),
+					new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
 	// Coal/Charcoal
 	public static final RegistryObject<Item> COAL_DUST = ITEMS.register("coal_dust",
 			() -> new Item(new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
@@ -82,10 +95,13 @@ public class ItemInit {
 	public static final RegistryObject<Item> REFINED_CARBON_DUST = ITEMS.register("refined_carbon_dust",
 			() -> new Item(new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
 	public static final RegistryObject<Item> UNFIRED_REFINED_CARBON_INGOT = ITEMS.register(
-			"unfired_refined_carbon_ingot", () -> new Item(new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
+			"unfired_refined_carbon_ingot",
+			() -> new Item(new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
 	public static final RegistryObject<Item> REFINED_CARBON_INGOT = ITEMS.register("refined_carbon_ingot",
 			() -> new RefinedCoal(new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
-	//Custom Materials
+	public static final RegistryObject<BlockItem> REFINED_CARBON_BLOCK = ITEMS.register("refined_carbon_block",
+			() -> new RefinedCoalBlockItem());
+	// Custom Materials
 	public static final RegistryObject<Item> REFINING_DUST = ITEMS.register("refining_dust",
 			() -> new Item(new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
 	public static final RegistryObject<Item> GRIT = ITEMS.register("grit",
@@ -96,7 +112,7 @@ public class ItemInit {
 			() -> new Item(new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
 	public static final RegistryObject<Item> NETHERITE_INFUSED_GRIT = ITEMS.register("netherite_infused_grit",
 			() -> new Item(new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
-	//Tools & Weapons
+	// Tools & Weapons
 	// Iron
 	public static final RegistryObject<Item> REFINED_IRON_SWORD = ITEMS.register("refined_iron_sword",
 			() -> new SwordItem(ModItemTier.REFINEDIRON, 3, -2.4F,
@@ -161,17 +177,19 @@ public class ItemInit {
 	public static final RegistryObject<Item> REFINED_NETHERITE_HOE = ITEMS.register("refined_netherite_hoe",
 			() -> new HoeItem(ModItemTier.REFINEDNETHERITE, -4, 0.0F,
 					new Item.Properties().tab(RefinementToolsWeaponsGroup.REFINEMENT_TOOLS_WEAPONS)));
-	//Custom Tools
-	public static final RegistryObject<Item> MIXING_BOWL = ITEMS.register("mixing_bowl",
-			() -> new MixingBowl(new Item.Properties().tab(RefinementToolsWeaponsGroup.REFINEMENT_TOOLS_WEAPONS).defaultDurability(20)));
-	public static final RegistryObject<Item> GRIT_PAPER = ITEMS.register("grit_paper",
-			() -> new GritPaper(new Item.Properties().tab(RefinementToolsWeaponsGroup.REFINEMENT_TOOLS_WEAPONS).defaultDurability(12)));
-	public static final RegistryObject<Item> IRON_GRIT_PAPER = ITEMS.register("iron_grit_paper",
-			() -> new GritPaper(new Item.Properties().tab(RefinementToolsWeaponsGroup.REFINEMENT_TOOLS_WEAPONS).defaultDurability(20)));
+	// Custom Tools
+	public static final RegistryObject<Item> MIXING_BOWL = ITEMS.register("mixing_bowl", () -> new MixingBowl(
+			new Item.Properties().tab(RefinementToolsWeaponsGroup.REFINEMENT_TOOLS_WEAPONS).defaultDurability(20)));
+	public static final RegistryObject<Item> GRIT_PAPER = ITEMS.register("grit_paper", () -> new GritPaper(
+			new Item.Properties().tab(RefinementToolsWeaponsGroup.REFINEMENT_TOOLS_WEAPONS).defaultDurability(12)));
+	public static final RegistryObject<Item> IRON_GRIT_PAPER = ITEMS.register("iron_grit_paper", () -> new GritPaper(
+			new Item.Properties().tab(RefinementToolsWeaponsGroup.REFINEMENT_TOOLS_WEAPONS).defaultDurability(20)));
 	public static final RegistryObject<Item> DIAMOND_GRIT_PAPER = ITEMS.register("diamond_grit_paper",
-			() -> new GritPaper(new Item.Properties().tab(RefinementToolsWeaponsGroup.REFINEMENT_TOOLS_WEAPONS).defaultDurability(26)));
+			() -> new GritPaper(new Item.Properties().tab(RefinementToolsWeaponsGroup.REFINEMENT_TOOLS_WEAPONS)
+					.defaultDurability(26)));
 	public static final RegistryObject<Item> NETHERITE_GRIT_PAPER = ITEMS.register("netherite_grit_paper",
-			() -> new GritPaper(new Item.Properties().tab(RefinementToolsWeaponsGroup.REFINEMENT_TOOLS_WEAPONS).defaultDurability(32)));
+			() -> new GritPaper(new Item.Properties().tab(RefinementToolsWeaponsGroup.REFINEMENT_TOOLS_WEAPONS)
+					.defaultDurability(32)));
 	public static final RegistryObject<Item> UNFIRED_INGOT_MOLD = ITEMS.register("unfired_ingot_mold",
 			() -> new Item(new Item.Properties().tab(RefinementToolsWeaponsGroup.REFINEMENT_TOOLS_WEAPONS)));
 	public static final RegistryObject<Item> INGOT_MOLD = ITEMS.register("ingot_mold",
@@ -194,20 +212,32 @@ public class ItemInit {
 	public static final RegistryObject<Item> WOODEN_COGWHEEL = ITEMS.register("wooden_cogwheel",
 			() -> new Item(new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
 	public static final RegistryObject<Item> UNFIRED_REFINED_IRON_COGWHEEL = ITEMS.register(
-			"unfired_refined_iron_cogwheel", () -> new Item(new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
+			"unfired_refined_iron_cogwheel",
+			() -> new Item(new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
 	public static final RegistryObject<Item> REFINED_IRON_COGWHEEL = ITEMS.register("refined_iron_cogwheel",
 			() -> new Cogwheel(new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
 	public static final RegistryObject<Item> UNFIRED_REFINED_GOLD_COGWHEEL = ITEMS.register(
-			"unfired_refined_gold_cogwheel", () -> new Item(new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
+			"unfired_refined_gold_cogwheel",
+			() -> new Item(new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
 	public static final RegistryObject<Item> REFINED_GOLD_COGWHEEL = ITEMS.register("refined_gold_cogwheel",
-			() -> new Cogwheel(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+			() -> new Cogwheel(new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
 	public static final RegistryObject<Item> UNFIRED_REFINED_DIAMOND_COGWHEEL = ITEMS.register(
 			"unfired_refined_diamond_cogwheel",
 			() -> new Item(new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
 	public static final RegistryObject<Item> REFINED_DIAMOND_COGWHEEL = ITEMS.register("refined_diamond_cogwheel",
 			() -> new Cogwheel(new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
-	
-
+	public static final RegistryObject<BlockItem> MACHINE_FRAME = ITEMS.register("machine_frame",
+			() -> new BlockItem(BlockInit.MACHINE_FRAME.get(),
+					new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
+	public static final RegistryObject<BlockItem> GRINDER = ITEMS.register("grinder",
+			() -> new BlockItem(BlockInit.GRINDER.get(),
+					new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
+	public static final RegistryObject<BlockItem> MIXER = ITEMS.register("mixer",
+			() -> new BlockItem(BlockInit.MIXER.get(),
+					new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
+	public static final RegistryObject<BlockItem> MOLD_PRESS = ITEMS.register("mold_press",
+			() -> new BlockItem(BlockInit.MOLD_PRESS.get(),
+					new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
 
 	// Armors
 	public static final RegistryObject<Item> REFINED_IRON_HELMET = ITEMS.register("refined_iron_helmet",

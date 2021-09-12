@@ -3,7 +3,6 @@ package com.ablackpikatchu.refinement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.ablackpikatchu.refinement.common.item.RefinedCoalBlockItem;
 import com.ablackpikatchu.refinement.core.Client;
 import com.ablackpikatchu.refinement.core.config.ClientConfig;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
@@ -12,17 +11,12 @@ import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
-import com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup;
 
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.config.ModConfig.Type;
@@ -52,18 +46,6 @@ public class Refinement {
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
-	@SubscribeEvent
-	public static void onRegisterItems(final RegistryEvent.Register<Item> event) {
-		BlockInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
-			if (block == BlockInit.REFINED_CARBON_BLOCK.get())
-				event.getRegistry().register(new RefinedCoalBlockItem().setRegistryName(block.getRegistryName()));
-			else
-				event.getRegistry()
-						.register(new BlockItem(block, new Item.Properties().tab(RefinementItemGroup.REFINEMENT
-
-						)).setRegistryName(block.getRegistryName()));
-		});
-	}
 	
 	@SubscribeEvent
 	public static void clientSetup(final FMLClientSetupEvent event) {
