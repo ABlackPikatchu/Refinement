@@ -38,8 +38,8 @@ public class Refinement {
 
 		bus.addGenericListener(IRecipeSerializer.class, RecipeInit::registerRecipes);
 
-		ItemInit.ITEMS.register(bus);
 		BlockInit.BLOCKS.register(bus);
+		ItemInit.ITEMS.register(bus);
 		TileEntityTypesInit.TILE_ENTITY_TYPE.register(bus);
 		ContainerTypesInit.CONTAINER_TYPES.register(bus);
 

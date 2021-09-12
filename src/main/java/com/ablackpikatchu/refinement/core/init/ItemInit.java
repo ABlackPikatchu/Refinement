@@ -238,6 +238,9 @@ public class ItemInit {
 	public static final RegistryObject<BlockItem> MOLD_PRESS = ITEMS.register("mold_press",
 			() -> new BlockItem(BlockInit.MOLD_PRESS.get(),
 					new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
+	public static final RegistryObject<BlockItem> VACCUMULATOR = ITEMS.register("vaccumulator",
+			() -> new BlockItem(BlockInit.VACCUMULATOR.get(),
+					new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
 
 	// Armors
 	public static final RegistryObject<Item> REFINED_IRON_HELMET = ITEMS.register("refined_iron_helmet",
