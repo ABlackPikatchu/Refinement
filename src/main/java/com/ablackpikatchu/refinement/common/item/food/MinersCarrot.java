@@ -1,7 +1,11 @@
 package com.ablackpikatchu.refinement.common.item.food;
 
-import com.ablackpikatchu.refinement.core.itemgroup.RefinementFoodGroup;
+import java.util.List;
 
+import com.ablackpikatchu.refinement.core.itemgroup.RefinementFoodGroup;
+import com.ablackpikatchu.refinement.core.util.text.ToolTipUtils;
+
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Food;
@@ -12,6 +16,7 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 
 public class MinersCarrot extends Item{
@@ -41,6 +46,14 @@ public class MinersCarrot extends Item{
 		}
 		return super.finishUsingItem(stack, world, entity);
 			
+	}
+	
+	@Override
+	public void appendHoverText(ItemStack p_77624_1_, World p_77624_2_, List<ITextComponent> p_77624_3_,
+			ITooltipFlag p_77624_4_) {
+		String[] shiftTooltipNames = {"miners_carrot_shift"};
+		ToolTipUtils.renderShiftTooltips(p_77624_3_, shiftTooltipNames, 0);
+		super.appendHoverText(p_77624_1_, p_77624_2_, p_77624_3_, p_77624_4_);
 	}
 
 }
