@@ -146,5 +146,8 @@
 	//Tooltips
 	"tooltip.refinement.hold_shift": "Hold \u00A7eSHIFT\u00A7r for more information!",
 	
-	"tooltip.refinement.miners_stew_shift": "It hurts on the way down but it has great benefits!"
+	"tooltip.refinement.miners_stew_shift": "It hurts on the way down but it has great benefits!",
+	"tooltip.refinement.miners_jerky_shift": "It uses the food from your stomach to make you resist more powerful attacks!",
+	"tooltip.refinement.miners_apple_shift": "It makes your feet stronger, letting them absorb any fall damage!",
+	"tooltip.refinement.miners_carrot_shift": "It makes your legs longer, letting you jump further!"
 }

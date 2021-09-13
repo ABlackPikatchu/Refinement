@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import com.ablackpikatchu.refinement.core.init.DamageSourcesInit;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementFoodGroup;
-import com.ablackpikatchu.refinement.core.util.ToolTipUtils;
+import com.ablackpikatchu.refinement.core.util.text.ToolTipUtils;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
@@ -39,31 +39,28 @@ public class MinersStew extends Item {
 
 		return super.use(world, player, hand);
 	}
-	
+
 	@Override
 	public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity entity) {
-		
+
 		if (entity instanceof PlayerEntity) {
 			PlayerEntity player = (PlayerEntity) entity;
-			
+
 			player.addEffect(new EffectInstance(Effects.DIG_SPEED, 9600, 0));
 			player.addEffect(new EffectInstance(Effects.NIGHT_VISION, 9600, 0));
 			player.hurt(DamageSourcesInit.MINERS_STEW_DAMAGE, 8.0F);
 			player.addItem(new ItemStack(Items.BOWL));
 		}
-		
+
 		return super.finishUsingItem(stack, world, entity);
 	}
-	
+
 	@Override
-	public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-		
-		String tooltipNames[] = {"miners_stew_shift"};
-		
-		ToolTipUtils.renderShiftTooltip(tooltip, tooltipNames);
-		
+	public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip,
+			ITooltipFlag flagIn) {
+		String shiftTooltipNames[] = { "miners_stew_shift" };
+		ToolTipUtils.renderShiftTooltips(tooltip, shiftTooltipNames, 0);
 		super.appendHoverText(stack, worldIn, tooltip, flagIn);
-		
 	}
 
 }

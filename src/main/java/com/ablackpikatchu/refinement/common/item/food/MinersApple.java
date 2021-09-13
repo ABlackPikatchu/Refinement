@@ -1,8 +1,12 @@
 package com.ablackpikatchu.refinement.common.item.food;
 
+import java.util.List;
+
 import com.ablackpikatchu.refinement.core.init.PotionInit;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementFoodGroup;
+import com.ablackpikatchu.refinement.core.util.text.ToolTipUtils;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Food;
@@ -12,6 +16,7 @@ import net.minecraft.item.Rarity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 
 public class MinersApple extends Item{
@@ -42,6 +47,14 @@ public class MinersApple extends Item{
 		}
 		return super.finishUsingItem(stack, world, entity);
 			
+	}
+	
+	@Override
+	public void appendHoverText(ItemStack p_77624_1_, World p_77624_2_, List<ITextComponent> p_77624_3_,
+			ITooltipFlag p_77624_4_) {
+		String[] shiftTooltipNames = { "miners_apple_shift" };
+		ToolTipUtils.renderShiftTooltips(p_77624_3_, shiftTooltipNames, 0);
+		super.appendHoverText(p_77624_1_, p_77624_2_, p_77624_3_, p_77624_4_);
 	}
 
 }
