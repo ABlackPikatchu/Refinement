@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "refinement:refined_gold_ingot"
+    }
+  ],
+  "result": {
+    "item": "refinement:refined_gold_nugget",
+    "count": 9
+  }
+}
