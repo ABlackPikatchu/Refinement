@@ -14,7 +14,7 @@ import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Item;
-import net.minecraft.tags.ITag;
+import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 
 public class RecipeProvider extends net.minecraft.data.RecipeProvider {
@@ -23,7 +23,13 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 	public static HashMap<Item, Item> SHAPELESS_INGOT_NUGGET = new HashMap<>();
 
 	public static HashMap<Item, Item> SANDING_DUST = new HashMap<>();
-	public static HashMap<ITag<Item>, Item> SANDING_DUST_TAG = new HashMap<>();
+
+	public static HashMap<Item, Item> HELMETS = new HashMap<>();
+	public static HashMap<Item, Item> CHESTPLATES = new HashMap<>();
+	public static HashMap<Item, Item> LEGGINGS = new HashMap<>();
+	public static HashMap<Item, Item> BOOTS = new HashMap<>();
+
+	public static HashMap<Item, Item> AXES = new HashMap<>();
 
 	public RecipeProvider(DataGenerator p_i48262_1_) {
 		super(p_i48262_1_);
@@ -48,17 +54,40 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 					consumer, nuggets(ingot.getRegistryName().getPath() + "_to_" + nugget.getRegistryName().getPath()));
 		});
 
-		addDustFromSanding(SANDING_DUST, SANDING_DUST_TAG);
+		addDustFromSanding(SANDING_DUST);
 		SANDING_DUST.forEach((input, output) -> {
 			ShapedRecipeBuilder.shaped(output).pattern("i").pattern("p").define('p', TagInit.Items.GRIT_PAPERS)
 					.define('i', input).unlockedBy("has_item", has(input)).save(consumer, sanding(
 							"item/" + input.getRegistryName().getPath() + "_to_" + output.getRegistryName().getPath()));
 		});
-		SANDING_DUST_TAG.forEach((input, output) -> {
-			ShapedRecipeBuilder.shaped(output).pattern("i").pattern("p").define('p', TagInit.Items.GRIT_PAPERS)
-					.define('i', input).unlockedBy("has_item", has(input))
-					.save(consumer, sanding("tags/" + input.getValues().get(0).getRegistryName().getPath() + "_to_"
-							+ output.getRegistryName().getPath()));
+
+		addHelmets(HELMETS, CHESTPLATES, LEGGINGS, BOOTS);
+		HELMETS.forEach((material, output) -> {
+			ShapedRecipeBuilder.shaped(output).pattern("###").pattern("# #").define('#', material)
+					.unlockedBy("has_item", has(material))
+					.save(consumer, armour("helmets/" + output.getRegistryName().getPath()));
+		});
+		CHESTPLATES.forEach((material, output) -> {
+			ShapedRecipeBuilder.shaped(output).pattern("# #").pattern("###").pattern("###").define('#', material)
+					.unlockedBy("has_item", has(material))
+					.save(consumer, armour("chestplates/" + output.getRegistryName().getPath()));
+		});
+		LEGGINGS.forEach((material, output) -> {
+			ShapedRecipeBuilder.shaped(output).pattern("###").pattern("# #").pattern("# #").define('#', material)
+					.unlockedBy("has_item", has(material))
+					.save(consumer, armour("leggings/" + output.getRegistryName().getPath()));
+		});
+		BOOTS.forEach((material, output) -> {
+			ShapedRecipeBuilder.shaped(output).pattern("# #").pattern("# #").define('#', material)
+					.unlockedBy("has_item", has(material))
+					.save(consumer, armour("boots/" + output.getRegistryName().getPath()));
+		});
+
+		addTools(AXES);
+		AXES.forEach((material, output) -> {
+			ShapedRecipeBuilder.shaped(output).pattern("##").pattern("#S").pattern(" S").define('#', material)
+					.define('S', Items.STICK).unlockedBy("has_item", has(material))
+					.save(consumer, tools("axes/" + output.getRegistryName().getPath()));
 		});
 	}
 
@@ -75,13 +104,49 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 		map.put(ItemInit.REFINED_IRON_INGOT.get(), ItemInit.REFINED_IRON_NUGGET.get());
 	}
 
-	public void addDustFromSanding(HashMap<Item, Item> map, HashMap<ITag<Item>, Item> tagMap) {
+	public void addDustFromSanding(HashMap<Item, Item> map) {
 		map.put(ItemInit.REFINED_DIAMOND.get(), ItemInit.REFINED_DIAMOND_DUST.get());
 		map.put(ItemInit.REFINED_CARBON_INGOT.get(), ItemInit.REFINED_CARBON_DUST.get());
 		map.put(ItemInit.REFINED_GOLD_INGOT.get(), ItemInit.REFINED_GOLD_DUST.get());
 		map.put(ItemInit.REFINED_IRON_INGOT.get(), ItemInit.REFINED_IRON_DUST.get());
 		map.put(ItemInit.REFINED_NETHERITE_INGOT.get(), ItemInit.REFINED_NETHERITE_DUST.get());
 		map.put(ItemInit.PURE_CRYSTAL.get(), ItemInit.REFINING_DUST.get());
+		map.put(Items.IRON_INGOT, ItemInit.IRON_DUST.get());
+		map.put(Items.GOLD_INGOT, ItemInit.GOLD_DUST.get());
+		map.put(Items.DIAMOND, ItemInit.DIAMOND_DUST.get());
+		map.put(Items.NETHERITE_INGOT, ItemInit.NETHERITE_DUST.get());
+		map.put(Items.COAL, ItemInit.COAL_DUST.get());
+		map.put(Items.CHARCOAL, ItemInit.CHARCOAL_DUST.get());
+	}
+
+	public void addHelmets(HashMap<Item, Item> helmetMap, HashMap<Item, Item> chestplateMap,
+			HashMap<Item, Item> leggingsMap, HashMap<Item, Item> bootsMap) {
+		helmetMap.put(ItemInit.REFINED_IRON_INGOT.get(), ItemInit.REFINED_IRON_HELMET.get());
+		helmetMap.put(ItemInit.REFINED_GOLD_INGOT.get(), ItemInit.REFINED_GOLD_HELMET.get());
+		helmetMap.put(ItemInit.REFINED_DIAMOND.get(), ItemInit.REFINED_DIAMOND_HELMET.get());
+		helmetMap.put(ItemInit.REFINED_NETHERITE_INGOT.get(), ItemInit.REFINED_NETHERITE_HELMET.get());
+
+		chestplateMap.put(ItemInit.REFINED_IRON_INGOT.get(), ItemInit.REFINED_IRON_CHESTPLATE.get());
+		chestplateMap.put(ItemInit.REFINED_GOLD_INGOT.get(), ItemInit.REFINED_GOLD_CHESTPLATE.get());
+		chestplateMap.put(ItemInit.REFINED_DIAMOND.get(), ItemInit.REFINED_DIAMOND_CHESTPLATE.get());
+		chestplateMap.put(ItemInit.REFINED_NETHERITE_INGOT.get(), ItemInit.REFINED_NETHERITE_CHESTPLATE.get());
+
+		leggingsMap.put(ItemInit.REFINED_IRON_INGOT.get(), ItemInit.REFINED_IRON_LEGGINGS.get());
+		leggingsMap.put(ItemInit.REFINED_GOLD_INGOT.get(), ItemInit.REFINED_GOLD_LEGGINGS.get());
+		leggingsMap.put(ItemInit.REFINED_DIAMOND.get(), ItemInit.REFINED_DIAMOND_LEGGINGS.get());
+		leggingsMap.put(ItemInit.REFINED_NETHERITE_INGOT.get(), ItemInit.REFINED_NETHERITE_LEGGINGS.get());
+
+		bootsMap.put(ItemInit.REFINED_IRON_INGOT.get(), ItemInit.REFINED_IRON_BOOTS.get());
+		bootsMap.put(ItemInit.REFINED_GOLD_INGOT.get(), ItemInit.REFINED_GOLD_BOOTS.get());
+		bootsMap.put(ItemInit.REFINED_DIAMOND.get(), ItemInit.REFINED_DIAMOND_BOOTS.get());
+		bootsMap.put(ItemInit.REFINED_NETHERITE_INGOT.get(), ItemInit.REFINED_NETHERITE_BOOTS.get());
+	}
+
+	public void addTools(HashMap<Item, Item> axeMap) {
+		axeMap.put(ItemInit.REFINED_IRON_INGOT.get(), ItemInit.REFINED_IRON_AXE.get());
+		axeMap.put(ItemInit.REFINED_GOLD_INGOT.get(), ItemInit.REFINED_GOLD_AXE.get());
+		axeMap.put(ItemInit.REFINED_DIAMOND.get(), ItemInit.REFINED_DIAMOND_AXE.get());
+		axeMap.put(ItemInit.REFINED_NETHERITE_INGOT.get(), ItemInit.REFINED_NETHERITE_AXE.get());
 	}
 
 	public static ResourceLocation storageBlocks(String name) {
@@ -94,6 +159,14 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 
 	public static ResourceLocation sanding(String name) {
 		return new ResourceLocation(Refinement.MOD_ID, "sanding/" + name);
+	}
+
+	public static ResourceLocation armour(String name) {
+		return new ResourceLocation(Refinement.MOD_ID, "armours/" + name);
+	}
+	
+	public static ResourceLocation tools(String name) {
+		return new ResourceLocation(Refinement.MOD_ID, "tools/" + name);
 	}
 
 }

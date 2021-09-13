@@ -2,6 +2,8 @@ package com.ablackpikatchu.refinement.data;
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.data.client.ItemModelProvider;
+import com.ablackpikatchu.refinement.data.common.BlockTagsProvider;
+import com.ablackpikatchu.refinement.data.common.ItemTagsProvider;
 import com.ablackpikatchu.refinement.data.common.RecipeProvider;
 
 import net.minecraft.data.DataGenerator;
@@ -21,6 +23,8 @@ public class DataGenerators {
 		
 		gen.addProvider(new ItemModelProvider(gen, existingFileHelper));
 		
+		BlockTagsProvider blockTags = new BlockTagsProvider(gen, existingFileHelper);
+		gen.addProvider(new ItemTagsProvider(gen, blockTags, existingFileHelper));
 		gen.addProvider(new RecipeProvider(gen));
 	}
 

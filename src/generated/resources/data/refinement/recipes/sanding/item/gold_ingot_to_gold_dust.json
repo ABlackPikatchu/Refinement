@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "p"
+  ],
+  "key": {
+    "p": {
+      "tag": "refinement:grit_papers"
+    },
+    "i": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "refinement:gold_dust"
+  }
+}

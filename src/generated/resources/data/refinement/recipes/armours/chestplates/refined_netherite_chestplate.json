@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "refinement:refined_netherite_ingot"
+    }
+  },
+  "result": {
+    "item": "refinement:refined_netherite_chestplate"
+  }
+}
