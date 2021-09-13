@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "refinement:netherite_dust"
+    "refinement:netherite_dust",
+    "refinement:refined_netherite_dust"
   ]
 }

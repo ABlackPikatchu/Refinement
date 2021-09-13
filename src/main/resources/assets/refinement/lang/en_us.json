@@ -105,6 +105,9 @@
 	"item.refinement.miners_jerky": "Miner's Jerky",
 	"item.refinement.miners_bread": "Miner's Bread",
 	"item.refinement.magnet": "Magnet",
+	"block.refinement.pure_crystal_ore": "Pure Crystal Ore",
+	"item.refinement.pure_crystal_ore": "Pure Crystal Ore",
+	"item.refinement.pure_crystal": "Pure Crystal",
 	
 	//Blocks
 	"block.refinement.refined_iron_block": "Block Of Refined Iron",

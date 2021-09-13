@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "refinement:iron_dust"
+    "refinement:iron_dust",
+    "refinement:refined_iron_dust"
   ]
 }

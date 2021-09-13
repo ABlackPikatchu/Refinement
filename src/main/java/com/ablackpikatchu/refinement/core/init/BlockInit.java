@@ -46,6 +46,10 @@ public class BlockInit {
 					() -> new Block(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(5f)
 							.harvestLevel(0).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)
 							.requiresCorrectToolForDrops()));
+	public static final RegistryObject<Block> PURE_CRYSTAL_ORE = BLOCKS.register("pure_crystal_ore",
+			() -> new Block(AbstractBlock.Properties.of(Material.STONE, MaterialColor.STONE)
+					.harvestTool(ToolType.PICKAXE).harvestLevel(2).requiresCorrectToolForDrops().strength(5.0F, 6.0F)
+					.sound(SoundType.STONE)));
 
 	// TE Blocks
 	public static final RegistryObject<Block> GRINDER = BLOCKS.register("grinder", () -> new GrinderBlock());
