@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "refinement:gold_dust"
+    "refinement:gold_dust",
+    "refinement:refined+gold_dust"
   ]
 }

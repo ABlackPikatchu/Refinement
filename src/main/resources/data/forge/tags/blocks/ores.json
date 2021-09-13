@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "refinement:refined_diamond_dust"
+    "#forge:ores/pure_crystal"
   ]
 }

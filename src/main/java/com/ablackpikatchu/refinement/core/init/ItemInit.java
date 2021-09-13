@@ -106,6 +106,11 @@ public class ItemInit {
 	public static final RegistryObject<BlockItem> REFINED_CARBON_BLOCK = ITEMS.register("refined_carbon_block",
 			() -> new RefinedCoalBlockItem());
 	// Custom Materials
+	public static final RegistryObject<BlockItem> PURE_CRYSTAL_ORE = ITEMS.register("pure_crystal_ore", () ->
+			new BlockItem(BlockInit.PURE_CRYSTAL_ORE.get(),
+					new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
+	public static final RegistryObject<Item> PURE_CRYSTAL = ITEMS.register("pure_crystal",
+			() -> new Item(new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
 	public static final RegistryObject<Item> REFINING_DUST = ITEMS.register("refining_dust",
 			() -> new Item(new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
 	public static final RegistryObject<Item> GRIT = ITEMS.register("grit",

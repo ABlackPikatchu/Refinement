@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#forge:gems/refined_diamond"
+    "refinement:refined_diamond",
+    "refinement:pure_crystal"
   ]
 }
