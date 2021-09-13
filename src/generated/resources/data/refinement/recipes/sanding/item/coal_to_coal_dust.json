@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "p"
+  ],
+  "key": {
+    "p": {
+      "tag": "refinement:grit_papers"
+    },
+    "i": {
+      "item": "minecraft:coal"
+    }
+  },
+  "result": {
+    "item": "refinement:coal_dust"
+  }
+}
