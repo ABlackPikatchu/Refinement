@@ -9,6 +9,7 @@ import com.ablackpikatchu.refinement.common.item.Mold;
 import com.ablackpikatchu.refinement.common.item.RefinedCoal;
 import com.ablackpikatchu.refinement.common.item.RefinedCoalBlockItem;
 import com.ablackpikatchu.refinement.common.item.food.MinersApple;
+import com.ablackpikatchu.refinement.common.item.food.MinersBread;
 import com.ablackpikatchu.refinement.common.item.food.MinersCarrot;
 import com.ablackpikatchu.refinement.common.item.food.MinersJerky;
 import com.ablackpikatchu.refinement.common.item.food.MinersStew;
@@ -300,5 +301,6 @@ public class ItemInit {
 	public static final RegistryObject<Item> MINERS_CARROT = ITEMS.register("miners_carrot", MinersCarrot::new);
 	public static final RegistryObject<Item> MINERS_APPLE = ITEMS.register("miners_apple", MinersApple::new);
 	public static final RegistryObject<Item> MINERS_JERKY = ITEMS.register("miners_jerky", MinersJerky::new);
+	public static final RegistryObject<Item> MINERS_BREAD = ITEMS.register("miners_bread", MinersBread::new);
 
 }
