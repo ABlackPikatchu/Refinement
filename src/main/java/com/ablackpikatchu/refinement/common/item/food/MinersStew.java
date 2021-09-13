@@ -1,8 +1,14 @@
 package com.ablackpikatchu.refinement.common.item.food;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import com.ablackpikatchu.refinement.core.init.DamageSourcesInit;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementFoodGroup;
 
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Food;
@@ -14,6 +20,8 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
 public class MinersStew extends Item {
@@ -46,6 +54,20 @@ public class MinersStew extends Item {
 		}
 		
 		return super.finishUsingItem(stack, world, entity);
+	}
+	
+	@Override
+	public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+		
+		if(Screen.hasShiftDown()) {
+			tooltip.add(new TranslationTextComponent("tooltip.refinement.miners_stew_shift"));
+		} else {
+		
+		tooltip.add(new TranslationTextComponent("tooltip.refinement.miners_stew"));
+		}
+		
+		super.appendHoverText(stack, worldIn, tooltip, flagIn);
+		
 	}
 
 }
