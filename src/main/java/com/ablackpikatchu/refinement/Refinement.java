@@ -3,7 +3,7 @@ package com.ablackpikatchu.refinement;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.ablackpikatchu.refinement.core.Client;
+import com.ablackpikatchu.refinement.client.render.RenderLayers;
 import com.ablackpikatchu.refinement.core.config.ClientConfig;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
@@ -51,6 +51,6 @@ public class Refinement {
 	
 	@SubscribeEvent
 	public static void clientSetup(final FMLClientSetupEvent event) {
-		Client.setRenderLayers();
+		RenderLayers.setRenderLayers();
 	}
 }

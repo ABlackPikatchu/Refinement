@@ -7,6 +7,7 @@ import com.ablackpikatchu.refinement.core.util.MCMathUtils;
 import com.ablackpikatchu.refinement.core.util.helper.TileEntityHelper;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -97,7 +98,7 @@ public abstract class LockableSidedInventoryTileEntity extends LockableTileEntit
 		ItemStackHelper.loadAllItems(tags, items);
 		for (int i = 0; i <= getContainerSize() - 1; ++i) {
 			if (items.get(i) != null)
-			this.setItem(i, items.get(i));
+				this.setItem(i, items.get(i));
 		}
 	}
 
@@ -111,7 +112,7 @@ public abstract class LockableSidedInventoryTileEntity extends LockableTileEntit
 		ItemStackHelper.saveAllItems(tags, saveItems);
 		return tags;
 	}
-	
+
 	public NonNullList<ItemStack> getAllItems() {
 		return this.items;
 	}
@@ -144,6 +145,7 @@ public abstract class LockableSidedInventoryTileEntity extends LockableTileEntit
 
 	@Override
 	public void setRemoved() {
+		dropContents();
 		super.setRemoved();
 		for (LazyOptional<? extends IItemHandler> handler : handlers) {
 			handler.invalidate();
@@ -177,7 +179,6 @@ public abstract class LockableSidedInventoryTileEntity extends LockableTileEntit
 		}
 	}
 
-	@SuppressWarnings("unused")
 	public boolean hasRoomForOutputItem(ItemStack stack) {
 		for (int i : getOutputSlots()) {
 			ItemStack output = getItem(i);
@@ -204,4 +205,15 @@ public abstract class LockableSidedInventoryTileEntity extends LockableTileEntit
 	}
 
 	protected abstract int[] getOutputSlots();
+
+	/**
+	 * Drops the contents of the tile entity
+	 */
+	public void dropContents() {
+		getAllItems().forEach(item -> {
+			ItemEntity itemEntity = new ItemEntity(level, worldPosition.getX(), worldPosition.getY(),
+					worldPosition.getZ(), item);
+			level.addFreshEntity(itemEntity);
+		});
+	}
 }

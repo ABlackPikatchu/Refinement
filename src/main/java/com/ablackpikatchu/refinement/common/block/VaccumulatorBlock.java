@@ -10,7 +10,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.Container;
@@ -28,31 +27,14 @@ import net.minecraftforge.fml.network.NetworkHooks;
 public class VaccumulatorBlock extends Block {
 	
 	public VaccumulatorBlock() {
-		super(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(10f)
-				.sound(SoundType.METAL).harvestLevel(4));
+		super(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(6f)
+				.sound(SoundType.METAL).harvestLevel(4).noOcclusion());
 	}
 	
 	@Override
 	protected void createBlockStateDefinition(Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
 	}
-	
-	/*
-	@SuppressWarnings("deprecation")
-	@Override
-	public BlockState mirror(BlockState state, Mirror mirrorIn) {
-		return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
-	}
-
-	@Override
-	public BlockState rotate(BlockState state, Rotation rot) {
-		return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
-	}
-	
-	public BlockState getStateForPlacement(BlockItemUseContext context) {
-		return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
-	}
-	*/
 	
 	@Override
 	public boolean hasAnalogOutputSignal(BlockState state) {
@@ -99,16 +81,6 @@ public class VaccumulatorBlock extends Block {
 	
 	@Override
 	public void onRemove(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-		TileEntity tile = worldIn.getBlockEntity(pos);
-
-		if (tile instanceof VaccumulatorTileEntity && state.getBlock() != newState.getBlock()) {
-			VaccumulatorTileEntity vaccumulator = (VaccumulatorTileEntity) tile;
-			vaccumulator.getAllItems().forEach(item -> {
-				ItemEntity itemEntity = new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), item);
-				worldIn.addFreshEntity(itemEntity);
-			});
-		}
-
 		if (state.hasTileEntity() && state.getBlock() != newState.getBlock()) {
 			worldIn.removeBlockEntity(pos);
 		}

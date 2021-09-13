@@ -20,30 +20,39 @@ public class BlockInit {
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS,
 			Refinement.MOD_ID);
 
-	public static final RegistryObject<Block> REFINED_IRON_BLOCK = BLOCKS.register("refined_iron_block",
-			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).strength(5f)
-					.harvestLevel(1).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)));
+	public static final RegistryObject<Block> REFINED_IRON_BLOCK = BLOCKS
+			.register("refined_iron_block",
+					() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).strength(5f)
+							.harvestLevel(1).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)
+							.requiresCorrectToolForDrops()));
 	public static final RegistryObject<Block> REFINED_GOLD_BLOCK = BLOCKS.register("refined_gold_block",
 			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.GOLD).strength(3f).harvestLevel(2)
-					.harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)));
-	public static final RegistryObject<Block> REFINED_DIAMOND_BLOCK = BLOCKS.register("refined_diamond_block",
-			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.DIAMOND).strength(5f)
-					.harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)));
+					.harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).requiresCorrectToolForDrops()));
+	public static final RegistryObject<Block> REFINED_DIAMOND_BLOCK = BLOCKS
+			.register("refined_diamond_block",
+					() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.DIAMOND).strength(5f)
+							.harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)
+							.requiresCorrectToolForDrops()));
 	public static final RegistryObject<Block> REFINED_NETHERITE_BLOCK = BLOCKS.register("refined_netherite_block",
 			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).strength(50f)
-					.harvestLevel(3).harvestTool(ToolType.PICKAXE).sound(SoundType.NETHERITE_BLOCK)));
+					.harvestLevel(3).harvestTool(ToolType.PICKAXE).sound(SoundType.NETHERITE_BLOCK)
+					.requiresCorrectToolForDrops()));
 	public static final RegistryObject<Block> MACHINE_FRAME = BLOCKS.register("machine_frame",
 			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).strength(5f)
-					.harvestLevel(1).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).noOcclusion()));
-	public static final RegistryObject<Block> REFINED_CARBON_BLOCK = BLOCKS.register("refined_carbon_block",
-			() -> new Block(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(5f)
-					.harvestLevel(0).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)));
-	
-	//TE Blocks
+					.harvestLevel(1).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).noOcclusion()
+					.requiresCorrectToolForDrops()));
+	public static final RegistryObject<Block> REFINED_CARBON_BLOCK = BLOCKS
+			.register("refined_carbon_block",
+					() -> new Block(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(5f)
+							.harvestLevel(0).harvestTool(ToolType.PICKAXE).sound(SoundType.STONE)
+							.requiresCorrectToolForDrops()));
+
+	// TE Blocks
 	public static final RegistryObject<Block> GRINDER = BLOCKS.register("grinder", () -> new GrinderBlock());
 	public static final RegistryObject<Block> MIXER = BLOCKS.register("mixer", () -> new MixerBlock());
 	public static final RegistryObject<Block> MOLD_PRESS = BLOCKS.register("mold_press", () -> new MoldPressBlock());
-	
-	public static final RegistryObject<Block> VACCUMULATOR = BLOCKS.register("vaccumulator", () -> new VaccumulatorBlock());
-	
+
+	public static final RegistryObject<Block> VACCUMULATOR = BLOCKS.register("vaccumulator",
+			() -> new VaccumulatorBlock());
+
 }

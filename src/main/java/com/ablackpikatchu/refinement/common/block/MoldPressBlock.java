@@ -10,7 +10,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.Container;
@@ -114,16 +113,6 @@ public class MoldPressBlock extends Block {
 	
 	@Override
 	public void onRemove(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-		TileEntity tile = worldIn.getBlockEntity(pos);
-
-		if (tile instanceof MoldPressTileEntity && state.getBlock() != newState.getBlock()) {
-			MoldPressTileEntity moldPress = (MoldPressTileEntity) tile;
-			moldPress.getAllItems().forEach(item -> {
-				ItemEntity itemEntity = new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), item);
-				worldIn.addFreshEntity(itemEntity);
-			});
-		}
-
 		if (state.hasTileEntity() && state.getBlock() != newState.getBlock()) {
 			worldIn.removeBlockEntity(pos);
 		}
