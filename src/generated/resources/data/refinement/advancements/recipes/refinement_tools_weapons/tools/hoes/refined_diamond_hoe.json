@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "refinement:tools/shovels/refined_diamond_sword"
+      "refinement:tools/hoes/refined_diamond_hoe"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "refinement:tools/shovels/refined_diamond_sword"
+        "recipe": "refinement:tools/hoes/refined_diamond_hoe"
       }
     }
   },

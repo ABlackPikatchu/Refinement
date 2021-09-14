@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "refinement:tools/shovels/refined_diamond_hoe"
+      "refinement:tools/hoes/refined_iron_hoe"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "refinement:refined_diamond"
+            "item": "refinement:refined_iron_ingot"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "refinement:tools/shovels/refined_diamond_hoe"
+        "recipe": "refinement:tools/hoes/refined_iron_hoe"
       }
     }
   },

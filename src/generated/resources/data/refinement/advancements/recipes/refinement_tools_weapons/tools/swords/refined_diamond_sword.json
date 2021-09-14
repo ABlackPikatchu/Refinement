@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "refinement:tools/shovels/refined_netherite_sword"
+      "refinement:tools/swords/refined_diamond_sword"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "refinement:refined_netherite_ingot"
+            "item": "refinement:refined_diamond"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "refinement:tools/shovels/refined_netherite_sword"
+        "recipe": "refinement:tools/swords/refined_diamond_sword"
       }
     }
   },

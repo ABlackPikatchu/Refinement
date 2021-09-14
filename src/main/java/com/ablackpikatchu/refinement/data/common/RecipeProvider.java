@@ -109,13 +109,13 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 		HOES.forEach((material, output) -> {
 			ShapedRecipeBuilder.shaped(output).pattern("## ").pattern(" S ").pattern(" S ").define('#', material)
 					.define('S', Items.STICK).unlockedBy("has_item", has(material))
-					.save(consumer, tools("shovels/" + output.getRegistryName().getPath()));
+					.save(consumer, tools("hoes/" + output.getRegistryName().getPath()));
 		});
 		
 		SWORDS.forEach((material, output) -> {
 			ShapedRecipeBuilder.shaped(output).pattern(" # ").pattern(" # ").pattern(" S ").define('#', material)
 					.define('S', Items.STICK).unlockedBy("has_item", has(material))
-					.save(consumer, tools("shovels/" + output.getRegistryName().getPath()));
+					.save(consumer, tools("swords/" + output.getRegistryName().getPath()));
 		});
 	}
 
