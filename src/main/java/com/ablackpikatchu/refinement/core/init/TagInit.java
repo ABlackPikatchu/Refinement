@@ -25,7 +25,7 @@ public class TagInit {
 		public static final INamedTag<Item> DIAMOND_DUST = forge("dusts/diamond");
 		public static final INamedTag<Item> NETHERITE_DUST = forge("dusts/netherite");
 		public static final INamedTag<Item> COAL_DUST = forge("dusts/coal");
-		public static final INamedTag<Item> CHARCOAL_DUST = forge("dusts/charcoal");
+		public static final INamedTag<Item> CHARCOAL_DUST = forge("dusts/coal");
 		
 		//Gems
 		public static final INamedTag<Item> DIAMOND = forge("gems/diamond");

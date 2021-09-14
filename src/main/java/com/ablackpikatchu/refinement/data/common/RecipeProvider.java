@@ -23,6 +23,7 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 	public static HashMap<Item, Item> SHAPELESS_INGOT_NUGGET = new HashMap<>();
 
 	public static HashMap<Item, Item> SANDING_DUST = new HashMap<>();
+	public static HashMap<Item, Item> MIXING_DUST = new HashMap<>();
 
 	public static HashMap<Item, Item> HELMETS = new HashMap<>();
 	public static HashMap<Item, Item> CHESTPLATES = new HashMap<>();
@@ -87,6 +88,14 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 					.save(consumer, armour("boots/" + output.getRegistryName().getPath()));
 		});
 
+		addMixing(MIXING_DUST);
+		MIXING_DUST.forEach((material, output) -> {
+			ShapedRecipeBuilder.shaped(output).pattern(" # ").pattern(" D ").pattern(" B ")
+					.define('D', ItemInit.REFINING_DUST.get()).define('#', material).define('B', ItemInit.MIXING_BOWL.get()
+					).unlockedBy("has_item", has(material))
+					.save(consumer, mixing_bowl("refined_dusts/" + output.getRegistryName().getPath()));
+		});
+
 		addTools(AXES, PICKAXES, SHOVELS, HOES, SWORDS);
 		AXES.forEach((material, output) -> {
 			ShapedRecipeBuilder.shaped(output).pattern("##").pattern("#S").pattern(" S").define('#', material)
@@ -105,13 +114,13 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 					.define('S', Items.STICK).unlockedBy("has_item", has(material))
 					.save(consumer, tools("shovels/" + output.getRegistryName().getPath()));
 		});
-		
+
 		HOES.forEach((material, output) -> {
 			ShapedRecipeBuilder.shaped(output).pattern("## ").pattern(" S ").pattern(" S ").define('#', material)
 					.define('S', Items.STICK).unlockedBy("has_item", has(material))
 					.save(consumer, tools("hoes/" + output.getRegistryName().getPath()));
 		});
-		
+
 		SWORDS.forEach((material, output) -> {
 			ShapedRecipeBuilder.shaped(output).pattern(" # ").pattern(" # ").pattern(" S ").define('#', material)
 					.define('S', Items.STICK).unlockedBy("has_item", has(material))
@@ -147,6 +156,14 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 		map.put(Items.CHARCOAL, ItemInit.CHARCOAL_DUST.get());
 	}
 
+	public void addMixing(HashMap<Item, Item> dusts) {
+		dusts.put(ItemInit.IRON_DUST.get(), ItemInit.REFINED_IRON_DUST.get());
+		dusts.put(ItemInit.GOLD_DUST.get(), ItemInit.REFINED_GOLD_DUST.get());
+		dusts.put(ItemInit.DIAMOND_DUST.get(), ItemInit.REFINED_DIAMOND_DUST.get());
+		dusts.put(ItemInit.NETHERITE_DUST.get(), ItemInit.REFINED_NETHERITE_DUST.get());
+		dusts.put(ItemInit.COAL_DUST.get(), ItemInit.REFINED_CARBON_DUST.get());
+	}
+
 	public void addArmours(HashMap<Item, Item> helmetMap, HashMap<Item, Item> chestplateMap,
 			HashMap<Item, Item> leggingsMap, HashMap<Item, Item> bootsMap) {
 		helmetMap.put(ItemInit.REFINED_IRON_INGOT.get(), ItemInit.REFINED_IRON_HELMET.get());
@@ -170,7 +187,8 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 		bootsMap.put(ItemInit.REFINED_NETHERITE_INGOT.get(), ItemInit.REFINED_NETHERITE_BOOTS.get());
 	}
 
-	public void addTools(HashMap<Item, Item> axeMap, HashMap<Item, Item> pickaxeMap, HashMap<Item, Item> shovelMap, HashMap<Item, Item> hoeMap, HashMap<Item, Item> swordMap) {
+	public void addTools(HashMap<Item, Item> axeMap, HashMap<Item, Item> pickaxeMap, HashMap<Item, Item> shovelMap,
+			HashMap<Item, Item> hoeMap, HashMap<Item, Item> swordMap) {
 		axeMap.put(ItemInit.REFINED_IRON_INGOT.get(), ItemInit.REFINED_IRON_AXE.get());
 		axeMap.put(ItemInit.REFINED_GOLD_INGOT.get(), ItemInit.REFINED_GOLD_AXE.get());
 		axeMap.put(ItemInit.REFINED_DIAMOND.get(), ItemInit.REFINED_DIAMOND_AXE.get());
@@ -180,17 +198,17 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 		pickaxeMap.put(ItemInit.REFINED_GOLD_INGOT.get(), ItemInit.REFINED_GOLD_PICKAXE.get());
 		pickaxeMap.put(ItemInit.REFINED_DIAMOND.get(), ItemInit.REFINED_DIAMOND_PICKAXE.get());
 		pickaxeMap.put(ItemInit.REFINED_NETHERITE_INGOT.get(), ItemInit.REFINED_NETHERITE_PICKAXE.get());
-		
+
 		shovelMap.put(ItemInit.REFINED_IRON_INGOT.get(), ItemInit.REFINED_IRON_SHOVEL.get());
 		shovelMap.put(ItemInit.REFINED_GOLD_INGOT.get(), ItemInit.REFINED_GOLD_SHOVEL.get());
 		shovelMap.put(ItemInit.REFINED_DIAMOND.get(), ItemInit.REFINED_DIAMOND_SHOVEL.get());
 		shovelMap.put(ItemInit.REFINED_NETHERITE_INGOT.get(), ItemInit.REFINED_NETHERITE_SHOVEL.get());
-		
+
 		hoeMap.put(ItemInit.REFINED_IRON_INGOT.get(), ItemInit.REFINED_IRON_HOE.get());
 		hoeMap.put(ItemInit.REFINED_GOLD_INGOT.get(), ItemInit.REFINED_GOLD_HOE.get());
 		hoeMap.put(ItemInit.REFINED_DIAMOND.get(), ItemInit.REFINED_DIAMOND_HOE.get());
 		hoeMap.put(ItemInit.REFINED_NETHERITE_INGOT.get(), ItemInit.REFINED_NETHERITE_HOE.get());
-		
+
 		swordMap.put(ItemInit.REFINED_IRON_INGOT.get(), ItemInit.REFINED_IRON_SWORD.get());
 		swordMap.put(ItemInit.REFINED_GOLD_INGOT.get(), ItemInit.REFINED_GOLD_SWORD.get());
 		swordMap.put(ItemInit.REFINED_DIAMOND.get(), ItemInit.REFINED_DIAMOND_SWORD.get());
@@ -216,6 +234,9 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 
 	public static ResourceLocation tools(String name) {
 		return new ResourceLocation(Refinement.MOD_ID, "tools/" + name);
+	}
+	public static ResourceLocation mixing_bowl(String name ) {
+		return new ResourceLocation(Refinement.MOD_ID, "mixing_bowl/" + name);
 	}
 
 }
