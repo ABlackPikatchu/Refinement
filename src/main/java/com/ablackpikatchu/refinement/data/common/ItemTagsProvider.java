@@ -14,9 +14,19 @@ public class ItemTagsProvider extends net.minecraft.data.ItemTagsProvider {
 		super(p_i232552_1_, p_i232552_2_, Refinement.MOD_ID, existingFileHelper);
 	}
 	
+	
 	@Override
 	protected void addTags() {
+		//ingot
 		tag(Tags.Items.INGOTS_IRON).add(net.minecraft.item.Items.IRON_INGOT);
+		tag(Tags.Items.INGOTS_GOLD).add(net.minecraft.item.Items.GOLD_INGOT);
+		tag(Tags.Items.INGOTS_NETHERITE).add(net.minecraft.item.Items.NETHERITE_INGOT);
+		tag(Tags.Items.INGOTS_IRON).add(com.ablackpikatchu.refinement.core.init.ItemInit.REFINED_IRON_INGOT.get());
+		tag(Tags.Items.INGOTS_GOLD).add(com.ablackpikatchu.refinement.core.init.ItemInit.REFINED_GOLD_INGOT.get());
+		tag(Tags.Items.INGOTS_NETHERITE).add(com.ablackpikatchu.refinement.core.init.ItemInit.REFINED_NETHERITE_INGOT.get());
+		
+		
+		
 	}
 
 }

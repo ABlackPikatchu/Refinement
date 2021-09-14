@@ -13,11 +13,36 @@ public class TagInit {
 		
 		public static final INamedTag<Item> GRIT_PAPERS = mod("grit_papers");
 		
+		
+		//Ingot
+		
 		public static final INamedTag<Item> IRON_INGOT = forge("ingots/iron");
+		public static final INamedTag<Item> GOLD_INGOT = forge("ingots/gold");
+		public static final INamedTag<Item> NETHERITE_INGOT = forge("ingots/netherite");
+		public static final INamedTag<Item> REFINED_IRON_INGOT = forge("ingots/iron");
+		public static final INamedTag<Item> REFINED_GOLD_INGOT = forge("ingots/gold");
+		public static final INamedTag<Item> REFINED_NETHERITE_INGOT = forge("ingots/netherite");
+		
+		//Dusts
+		public static final INamedTag<Item> IRON_DUST = forge("dusts/iron");
+		public static final INamedTag<Item> GOLD_DUST = forge("dusts/gold");
+		public static final INamedTag<Item> DIAMOND_DUST = forge("dusts/diamond");
+		public static final INamedTag<Item> NETHERITE_DUST = forge("dusts/netherite");
+		public static final INamedTag<Item> COAL_DUST = forge("dusts/coal");
+		public static final INamedTag<Item> CHARCOAL_DUST = forge("dusts/charcoal");
+		public static final INamedTag<Item> REFINED_IRON_DUST = forge("dusts/iron");
+		public static final INamedTag<Item> REFINED_GOLD_DUST = forge("dusts/gold");
+		public static final INamedTag<Item> REFINED_DIAMOND_DUST = forge("dusts/diamond");
+		public static final INamedTag<Item> REFINED_NETHERITE_DUST = forge("dusts/netherite");
+		
+		//Gems
+		public static final INamedTag<Item> REFINED_DIAMOND = forge("gems/diamond");
+		public static final INamedTag<Item> DIAMOND = forge("gems/diamond");
 
 		private static INamedTag<Item> forge(String path) {
 			return ItemTags.bind(new ResourceLocation("forge", path).toString());
 		}
+
 
 		private static INamedTag<Item> mod(String path) {
 			return ItemTags.bind(new ResourceLocation(Refinement.MOD_ID, path).toString());
