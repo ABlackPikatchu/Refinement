@@ -43,6 +43,8 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 	public static HashMap<ItemStack, Pair<Item, Integer>> GRINDER_RECIPES = new HashMap<>();
 	public static HashMap<Pair<ITag<Item>, Integer>, Pair<Item, Integer>> GRINDER_RECIPES_TAG = new HashMap<>();
 
+	public static HashMap<Pair<Pair<Item, Integer>, Pair<Item, Integer>>, Pair<Item, Integer>> MIXER_RECIPES = new HashMap<>();
+
 	public RecipeProvider(DataGenerator p_i48262_1_) {
 		super(p_i48262_1_);
 	}
@@ -125,12 +127,12 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 					.define('S', Items.STICK).unlockedBy("has_item", has(material))
 					.save(consumer, tools("swords/" + output.getRegistryName().getPath()));
 		});
-		
+
 		RecipeMaps.addMixing(MIXING_DUST);
 		MIXING_DUST.forEach((material, output) -> {
 			ShapedRecipeBuilder.shaped(output).pattern(" # ").pattern(" D ").pattern(" B ")
-					.define('D', ItemInit.REFINING_DUST.get()).define('#', material).define('B', ItemInit.MIXING_BOWL.get()
-					).unlockedBy("has_item", has(material))
+					.define('D', ItemInit.REFINING_DUST.get()).define('#', material)
+					.define('B', ItemInit.MIXING_BOWL.get()).unlockedBy("has_item", has(material))
 					.save(consumer, mixing_bowl("refined_dusts/" + output.getRegistryName().getPath()));
 		});
 
@@ -143,6 +145,15 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 			GrinderRecipeBuilder.recipeBuilder(output.getFirst(), output.getSecond())
 					.addIngredient(input.getFirst(), input.getSecond()).build(consumer);
 		});
+
+		RecipeMaps.addMixerRecipes(MIXER_RECIPES);
+		MIXER_RECIPES.forEach((inputPair, output) -> {
+			MixerRecipeBuilder.recipeBuilder(output.getFirst(), output.getSecond())
+					.addIngredient(inputPair.getFirst().getFirst(), inputPair.getFirst().getSecond())
+					.addSecondaryIngredient(inputPair.getSecond().getFirst(), inputPair.getSecond().getSecond())
+					.build(consumer);
+		});
+
 	}
 
 	public static ResourceLocation storageBlocks(String name) {

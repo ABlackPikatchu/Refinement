@@ -94,7 +94,7 @@ public class RecipeMaps {
 		swordMap.put(ItemInit.REFINED_NETHERITE_INGOT.get(), ItemInit.REFINED_NETHERITE_SWORD.get());
 
 	}
-	
+
 	public static void addMixing(HashMap<Item, Item> dusts) {
 		dusts.put(ItemInit.IRON_DUST.get(), ItemInit.REFINED_IRON_DUST.get());
 		dusts.put(ItemInit.GOLD_DUST.get(), ItemInit.REFINED_GOLD_DUST.get());
@@ -109,6 +109,14 @@ public class RecipeMaps {
 
 		tagMap.put(new Pair<ITag<Item>, Integer>(TagInit.Items.COBBLESTONE, 16),
 				new Pair<Item, Integer>(Items.GRAVEL, 16));
+	}
+
+	public static void addMixerRecipes(
+			HashMap<Pair<Pair<Item, Integer>, Pair<Item, Integer>>, Pair<Item, Integer>> map) {
+
+		map.put(new Pair<Pair<Item, Integer>, Pair<Item, Integer>>(new Pair<Item, Integer>(Items.GRAVEL, 1),
+				new Pair<Item, Integer>(Items.SAND, 1)), new Pair<Item, Integer>(ItemInit.GRIT_PAPER.get(), 1));
+
 	}
 
 }

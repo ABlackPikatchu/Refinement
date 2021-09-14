@@ -4,7 +4,10 @@ import com.ablackpikatchu.refinement.Refinement;
 
 import net.minecraft.item.Item;
 import net.minecraft.tags.ITag;
+import net.minecraft.tags.ITagCollectionSupplier;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagRegistry;
+import net.minecraft.tags.TagRegistryManager;
 import net.minecraft.util.ResourceLocation;
 
 public class TagInit {
