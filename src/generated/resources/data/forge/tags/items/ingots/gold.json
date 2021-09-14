@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "minecraft:gold_ingot",
-    "refinement:refined_gold_ingot"
+    "minecraft:gold_ingot"
   ]
 }

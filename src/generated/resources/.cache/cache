@@ -1,7 +1,7 @@
 d912ac7543dc3c4ea19bf5f969954bc9307d2a2b assets/refinement/models/item/grinder.json
-27e6d275e23772fbeb0e6079e78b064a73101988 data/forge/tags/items/ingots/gold.json
-914fd8f828f4aa86292b110294c3d2a194709cf3 data/forge/tags/items/ingots/iron.json
-763bfc0478864bec8b44fb3bca663ae821023538 data/forge/tags/items/ingots/netherite.json
+ccf55ee576147856b91baecda4eefc792c7a6119 data/forge/tags/items/ingots/gold.json
+64382c7d434efa6154d4ebe7654bab2568a60caf data/forge/tags/items/ingots/iron.json
+3e1a38bcdc75cc654425fba987475d794357aefd data/forge/tags/items/ingots/netherite.json
 9b02199f157d92277fbcdc6071f016271b9c43d2 data/refinement/advancements/recipes/refinement_armor/armours/boots/refined_diamond_boots.json
 8440f2e1dd9de9bee0e0d371728b2dd040f9d736 data/refinement/advancements/recipes/refinement_armor/armours/boots/refined_gold_boots.json
 b0bfe4f9c52e8a3fc8019fd3d25b1cd195936c83 data/refinement/advancements/recipes/refinement_armor/armours/boots/refined_iron_boots.json
