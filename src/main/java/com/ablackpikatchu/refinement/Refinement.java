@@ -23,6 +23,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.config.ModConfig.Type;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import software.bernie.geckolib3.GeckoLib;
 
 @Mod("refinement")
 @Mod.EventBusSubscriber(modid = Refinement.MOD_ID, bus = Bus.MOD)
@@ -32,6 +33,7 @@ public class Refinement {
 	public static final String MOD_ID = "refinement";
 
 	public Refinement() {
+		GeckoLib.initialize();
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
 		ModLoadingContext.get().registerConfig(Type.COMMON, CommonConfig.SPEC, "refinement-common.toml");
