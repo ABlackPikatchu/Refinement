@@ -1,0 +1,34 @@
+{
+    "name": "Netherite",
+    "icon": "refinement:refined_netherite_ingot",
+    "category": "refinement:materials",
+    "pages": [
+        {
+            "type": "patchouli:spotlight",
+            "item": "refinement:refined_netherite_ingot",
+            "text": "This is the Refined Netherite Ingot. Its properties are better then regular netherite. Lets see how to make it! $(br2)First you have to sand an ingot down with some grit paper. $(br)Then combine it with some refining dust."
+        },
+        {
+        	"type": "patchouli:crafting",
+        	"recipe": "refinement:sanding/item/netherite_ingot_to_netherite_dust",
+        	"recipe2": "refinement:mixing_bowl/refined_netherite_dust_bowl"
+        },
+        {
+        	"type": "patchouli:text",
+        	"text": "Now that you have the Refined Netherite Dust, you have to make it into an unfired ingot."
+        	
+        },
+        {
+        	"type": "patchouli:crafting",
+        	"recipe": "refinement:unfired_ingots_gems/unfired_refined_netherite_ingot"
+        },
+        {
+        	"type": "patchouli:text",
+        	"text": "After you have the unfired ingot you have to smelt that to get the Refined Netherite Ingot! $(br2) Note: You can also smelt it in a blasting furnace!"
+        },
+        {
+        	"type": "patchouli:smelting",
+        	"recipe": "refinement:smelting/refined_netherite_from_smelting"
+        }
+    ]
+}
