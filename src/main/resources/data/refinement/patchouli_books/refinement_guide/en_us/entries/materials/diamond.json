@@ -1,0 +1,34 @@
+{
+    "name": "Diamond",
+    "icon": "refinement:refined_diamond",
+    "category": "refinement:materials",
+    "pages": [
+        {
+            "type": "patchouli:spotlight",
+            "item": "refinement:refined_diamond",
+            "text": "This is the Refined Diamond. its properties are better then regular diamond. Lets see how to make it! $(br2)First you have to sand a gem down with some grit paper. $(br)Then combine it with some refining dust."
+        },
+        {
+        	"type": "patchouli:crafting",
+        	"recipe": "refinement:sanding/item/diamond_to_diamond_dust",
+        	"recipe2": "refinement:mixing_bowl/refined_diamond_dust_bowl"
+        },
+        {
+        	"type": "patchouli:text",
+        	"text": "Now that you have the Refined Diamond Dust, you have to make it into an unfired gem."
+        	
+        },
+        {
+        	"type": "patchouli:crafting",
+        	"recipe": "refinement:unfired_ingots_gems/unfired_refined_diamond"
+        },
+        {
+        	"type": "patchouli:text",
+        	"text": "After you have the unfired gem you have to smelt that to get the Refined Diamondt! $(br2) Note: You can also smelt it in a blasting furnace!"
+        },
+        {
+        	"type": "patchouli:smelting",
+        	"recipe": "refinement:smelting/refined_diamond_from_smelting"
+        }
+    ]
+}
