@@ -5,7 +5,6 @@ import java.util.function.Consumer;
 
 import javax.annotation.Nullable;
 
-import com.ablackpikatchu.refinement.common.recipe.GrinderRecipe;
 import com.ablackpikatchu.refinement.common.recipe.MixerRecipe;
 import com.ablackpikatchu.refinement.core.util.NameUtils;
 import com.google.gson.JsonObject;

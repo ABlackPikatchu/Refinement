@@ -113,10 +113,36 @@ public class RecipeMaps {
 
 	public static void addMixerRecipes(
 			HashMap<Pair<Pair<Item, Integer>, Pair<Item, Integer>>, Pair<Item, Integer>> map) {
+		newRecipes.mixer(map, new Pair<Item, Integer>(ItemInit.GRIT_PAPER.get(), 4),
+				new Pair<Item, Integer>(Items.GRAVEL, 1), new Pair<Item, Integer>(Items.SAND, 1));
 
-		map.put(new Pair<Pair<Item, Integer>, Pair<Item, Integer>>(new Pair<Item, Integer>(Items.GRAVEL, 1),
-				new Pair<Item, Integer>(Items.SAND, 1)), new Pair<Item, Integer>(ItemInit.GRIT_PAPER.get(), 1));
+	}
 
+	public static void addMoldPressRecipes(HashMap<Pair<Pair<Item, Integer>, Item>, Pair<Item, Integer>> map,
+			HashMap<Pair<Pair<ITag<Item>, Integer>, Item>, Pair<Item, Integer>> tagMap) {
+		newRecipes.moldPress(map, new Pair<Item, Integer>(ItemInit.UNFIRED_REFINED_CARBON_INGOT.get(), 1),
+				new Pair<Item, Integer>(ItemInit.REFINED_CARBON_DUST.get(), 1), ItemInit.INGOT_MOLD.get());
+
+		newRecipes.moldPressTag(tagMap, new Pair<Item, Integer>(Items.IRON_INGOT, 1),
+				new Pair<ITag<Item>, Integer>(TagInit.Items.IRON_DUST, 1), ItemInit.INGOT_MOLD.get());
+	}
+
+	public static class newRecipes {
+
+		private static void mixer(HashMap<Pair<Pair<Item, Integer>, Pair<Item, Integer>>, Pair<Item, Integer>> map,
+				Pair<Item, Integer> output, Pair<Item, Integer> input, Pair<Item, Integer> secondaryInput) {
+			map.put(new Pair<Pair<Item, Integer>, Pair<Item, Integer>>(input, secondaryInput), output);
+		}
+
+		private static void moldPress(HashMap<Pair<Pair<Item, Integer>, Item>, Pair<Item, Integer>> map,
+				Pair<Item, Integer> output, Pair<Item, Integer> input, Item mold) {
+			map.put(new Pair<Pair<Item, Integer>, Item>(input, mold), output);
+		}
+
+		private static void moldPressTag(HashMap<Pair<Pair<ITag<Item>, Integer>, Item>, Pair<Item, Integer>> map,
+				Pair<Item, Integer> output, Pair<ITag<Item>, Integer> input, Item mold) {
+			map.put(new Pair<Pair<ITag<Item>, Integer>, Item>(input, mold), output);
+		}
 	}
 
 }
