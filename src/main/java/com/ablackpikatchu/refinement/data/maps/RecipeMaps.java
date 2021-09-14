@@ -94,6 +94,14 @@ public class RecipeMaps {
 		swordMap.put(ItemInit.REFINED_NETHERITE_INGOT.get(), ItemInit.REFINED_NETHERITE_SWORD.get());
 
 	}
+	
+	public static void addMixing(HashMap<Item, Item> dusts) {
+		dusts.put(ItemInit.IRON_DUST.get(), ItemInit.REFINED_IRON_DUST.get());
+		dusts.put(ItemInit.GOLD_DUST.get(), ItemInit.REFINED_GOLD_DUST.get());
+		dusts.put(ItemInit.DIAMOND_DUST.get(), ItemInit.REFINED_DIAMOND_DUST.get());
+		dusts.put(ItemInit.NETHERITE_DUST.get(), ItemInit.REFINED_NETHERITE_DUST.get());
+		dusts.put(ItemInit.COAL_DUST.get(), ItemInit.REFINED_CARBON_DUST.get());
+	}
 
 	public static void addGrinderRecipes(HashMap<ItemStack, Pair<Item, Integer>> map,
 			HashMap<Pair<ITag<Item>, Integer>, Pair<Item, Integer>> tagMap) {

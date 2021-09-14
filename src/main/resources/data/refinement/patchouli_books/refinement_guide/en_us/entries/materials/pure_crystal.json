@@ -1,0 +1,16 @@
+{
+    "name": "Pure Crystal",
+    "icon": "refinement:pure_crystal",
+    "category": "refinement:materials",
+    "pages": [
+        {
+            "type": "patchouli:spotlight",
+            "item": "refinement:pure_crystal",
+            "text": "This is the Pure Crystal. $(br)This crystal is so pure and extraordinary, it refines anything infused with it. $(br) It comes from Pure Crystal Ore which is mined starting at Y level 20. $(br) It is used to make refining dust, the dust that will help you make the other refined dusts in the mod!"
+        },
+        {
+        	"type": "patchouli:crafting",
+        	"recipe": "refinement:sanding/item/pure_crystal_to_refining_dust"
+        }
+    ]
+}

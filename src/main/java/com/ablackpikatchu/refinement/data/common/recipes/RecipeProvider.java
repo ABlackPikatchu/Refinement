@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.function.Consumer;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.TagInit;
 import com.ablackpikatchu.refinement.data.maps.RecipeMaps;
 import com.mojang.datafixers.util.Pair;
@@ -26,6 +27,7 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 	public static HashMap<Item, Item> SHAPELESS_INGOT_NUGGET = new HashMap<>();
 
 	public static HashMap<Item, Item> SANDING_DUST = new HashMap<>();
+	public static HashMap<Item, Item> MIXING_DUST = new HashMap<>();
 
 	public static HashMap<Item, Item> HELMETS = new HashMap<>();
 	public static HashMap<Item, Item> CHESTPLATES = new HashMap<>();
@@ -123,6 +125,14 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 					.define('S', Items.STICK).unlockedBy("has_item", has(material))
 					.save(consumer, tools("swords/" + output.getRegistryName().getPath()));
 		});
+		
+		RecipeMaps.addMixing(MIXING_DUST);
+		MIXING_DUST.forEach((material, output) -> {
+			ShapedRecipeBuilder.shaped(output).pattern(" # ").pattern(" D ").pattern(" B ")
+					.define('D', ItemInit.REFINING_DUST.get()).define('#', material).define('B', ItemInit.MIXING_BOWL.get()
+					).unlockedBy("has_item", has(material))
+					.save(consumer, mixing_bowl("refined_dusts/" + output.getRegistryName().getPath()));
+		});
 
 		RecipeMaps.addGrinderRecipes(GRINDER_RECIPES, GRINDER_RECIPES_TAG);
 		GRINDER_RECIPES.forEach((input, output) -> {
@@ -153,6 +163,10 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 
 	public static ResourceLocation tools(String name) {
 		return new ResourceLocation(Refinement.MOD_ID, "tools/" + name);
+	}
+
+	public static ResourceLocation mixing_bowl(String name) {
+		return new ResourceLocation(Refinement.MOD_ID, "mixing_bowl/" + name);
 	}
 
 }

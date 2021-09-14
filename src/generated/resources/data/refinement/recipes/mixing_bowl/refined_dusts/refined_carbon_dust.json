@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    " D ",
+    " B "
+  ],
+  "key": {
+    "D": {
+      "item": "refinement:refining_dust"
+    },
+    "#": {
+      "item": "refinement:coal_dust"
+    },
+    "B": {
+      "item": "refinement:mixing_bowl"
+    }
+  },
+  "result": {
+    "item": "refinement:refined_carbon_dust"
+  }
+}

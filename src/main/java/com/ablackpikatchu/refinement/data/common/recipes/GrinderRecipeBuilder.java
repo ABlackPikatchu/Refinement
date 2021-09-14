@@ -116,7 +116,7 @@ public class GrinderRecipeBuilder {
 		
 		private JsonObject serializeTag() {
 			JsonObject ret = new JsonObject();
-			ret.addProperty("tag", tag.substring(tag.indexOf('[') + 1).replace("]", ""));
+			ret.addProperty("tag", tag.substring(tag.indexOf("[") + 1).replace("]", ""));
 			ret.addProperty("count", inputCount);
 			return ret;
 		}
