@@ -4,7 +4,7 @@ import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.data.client.ItemModelProvider;
 import com.ablackpikatchu.refinement.data.common.BlockTagsProvider;
 import com.ablackpikatchu.refinement.data.common.ItemTagsProvider;
-import com.ablackpikatchu.refinement.data.common.RecipeProvider;
+import com.ablackpikatchu.refinement.data.common.recipes.RecipeProvider;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
