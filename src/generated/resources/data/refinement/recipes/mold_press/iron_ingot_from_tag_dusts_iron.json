@@ -1,0 +1,13 @@
+{
+  "type": "refinement:mold_press",
+  "input": {
+    "tag": "forge:dusts/iron",
+    "count": 1
+  },
+  "mold": {
+    "item": "refinement:ingot_mold"
+  },
+  "output": {
+    "item": "minecraft:iron_ingot"
+  }
+}

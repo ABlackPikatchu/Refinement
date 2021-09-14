@@ -45,6 +45,9 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 
 	public static HashMap<Pair<Pair<Item, Integer>, Pair<Item, Integer>>, Pair<Item, Integer>> MIXER_RECIPES = new HashMap<>();
 
+	public static HashMap<Pair<Pair<Item, Integer>, Item>, Pair<Item, Integer>> MOLD_PRESS_RECIPES = new HashMap<>();
+	public static HashMap<Pair<Pair<ITag<Item>, Integer>, Item>, Pair<Item, Integer>> MOLD_PRESS_RECIPES_TAG = new HashMap<>();
+
 	public RecipeProvider(DataGenerator p_i48262_1_) {
 		super(p_i48262_1_);
 	}
@@ -152,6 +155,18 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 					.addIngredient(inputPair.getFirst().getFirst(), inputPair.getFirst().getSecond())
 					.addSecondaryIngredient(inputPair.getSecond().getFirst(), inputPair.getSecond().getSecond())
 					.build(consumer);
+		});
+
+		RecipeMaps.addMoldPressRecipes(MOLD_PRESS_RECIPES, MOLD_PRESS_RECIPES_TAG);
+		MOLD_PRESS_RECIPES.forEach((input, output) -> {
+			MoldPressRecipeBuilder.recipeBuilder(output.getFirst(), output.getSecond())
+					.addIngredient(input.getFirst().getFirst(), input.getFirst().getSecond()).addMold(input.getSecond())
+					.build(consumer);
+		});
+		MOLD_PRESS_RECIPES_TAG.forEach((input, output) -> {
+			MoldPressRecipeBuilder.recipeBuilder(output.getFirst(), output.getSecond())
+			.addIngredient(input.getFirst().getFirst(), input.getFirst().getSecond()).addMold(input.getSecond())
+			.build(consumer);
 		});
 
 	}
