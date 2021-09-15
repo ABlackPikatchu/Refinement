@@ -8,7 +8,7 @@ import net.minecraftforge.common.util.Lazy;
 public enum OreType {
 
 	PURE(Lazy.of(BlockInit.PURE_CRYSTAL_ORE), 6, 4, 20);
-        BLANK(Lazy.of(BlockInit.BlANK_ORE), 2, 1, 8);
+        BLANK(Lazy.of(BlockInit.BLANK_ORE), 2, 1, 8);
 
 	private final Lazy<Block> block;
 	private final int maxVeinSize;
