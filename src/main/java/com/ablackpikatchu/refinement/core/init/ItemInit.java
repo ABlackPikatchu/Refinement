@@ -16,6 +16,7 @@ import com.ablackpikatchu.refinement.common.item.food.MinersStew;
 import com.ablackpikatchu.refinement.common.material.ModArmorMaterial;
 import com.ablackpikatchu.refinement.common.material.ModItemTier;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementArmorGroup;
+import com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementMachineGroup;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementMaterialsGroup;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementToolsWeaponsGroup;
@@ -106,8 +107,8 @@ public class ItemInit {
 	public static final RegistryObject<BlockItem> REFINED_CARBON_BLOCK = ITEMS.register("refined_carbon_block",
 			() -> new RefinedCoalBlockItem());
 	// Custom Materials
-	public static final RegistryObject<BlockItem> PURE_CRYSTAL_ORE = ITEMS.register("pure_crystal_ore", () ->
-			new BlockItem(BlockInit.PURE_CRYSTAL_ORE.get(),
+	public static final RegistryObject<BlockItem> PURE_CRYSTAL_ORE = ITEMS.register("pure_crystal_ore",
+			() -> new BlockItem(BlockInit.PURE_CRYSTAL_ORE.get(),
 					new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
 	public static final RegistryObject<Item> PURE_CRYSTAL = ITEMS.register("pure_crystal",
 			() -> new Item(new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
@@ -300,6 +301,10 @@ public class ItemInit {
 	public static final RegistryObject<Item> REFINED_NETHERITE_BOOTS = ITEMS.register("refined_netherite_boots",
 			() -> new ArmorItem(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.FEET,
 					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
+
+	// Misc Item
+	public static final RegistryObject<BlockItem> BLANK_ORE_ITEM = ITEMS.register("blank_ore",
+			() -> new BlockItem(BlockInit.BLANK_ORE.get(), new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 
 	// Foods
 	public static final RegistryObject<Item> MINERS_STEW = ITEMS.register("miners_stew", MinersStew::new);

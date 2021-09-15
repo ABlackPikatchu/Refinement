@@ -1,7 +1,9 @@
 package com.ablackpikatchu.refinement.data;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.data.client.BlockStatesProvider;
 import com.ablackpikatchu.refinement.data.client.ItemModelProvider;
+import com.ablackpikatchu.refinement.data.client.LangProvider;
 import com.ablackpikatchu.refinement.data.common.BlockTagsProvider;
 import com.ablackpikatchu.refinement.data.common.ItemTagsProvider;
 import com.ablackpikatchu.refinement.data.common.recipes.RecipeProvider;
@@ -21,7 +23,9 @@ public class DataGenerators {
 		DataGenerator gen = event.getGenerator();
 		ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 		
+		gen.addProvider(new BlockStatesProvider(gen, existingFileHelper));
 		gen.addProvider(new ItemModelProvider(gen, existingFileHelper));
+		gen.addProvider(new LangProvider(gen));
 		
 		BlockTagsProvider blockTags = new BlockTagsProvider(gen, existingFileHelper);
 		gen.addProvider(new ItemTagsProvider(gen, blockTags, existingFileHelper));
