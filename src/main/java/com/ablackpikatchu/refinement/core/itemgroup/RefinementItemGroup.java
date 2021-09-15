@@ -17,5 +17,9 @@ public class RefinementItemGroup extends ItemGroup {
 	public ItemStack makeIcon() {
 		return new ItemStack(ItemInit.REFINED_DIAMOND.get());
 	}
+	
+	public String getName() {
+		return "refinement";
+	}
 
 }

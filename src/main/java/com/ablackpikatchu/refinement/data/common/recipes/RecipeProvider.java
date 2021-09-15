@@ -7,6 +7,9 @@ import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.TagInit;
 import com.ablackpikatchu.refinement.data.maps.RecipeMaps;
+import com.ablackpikatchu.refinement.datafixers.util.recipe.IngredientInput;
+import com.ablackpikatchu.refinement.datafixers.util.recipe.Output;
+import com.ablackpikatchu.refinement.datafixers.util.recipe.TagInput;
 import com.mojang.datafixers.util.Pair;
 
 import net.minecraft.block.Block;
@@ -15,9 +18,7 @@ import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.ResourceLocation;
 
@@ -40,8 +41,8 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 	public static HashMap<Item, Item> HOES = new HashMap<>();
 	public static HashMap<Item, Item> SWORDS = new HashMap<>();
 
-	public static HashMap<ItemStack, Pair<Item, Integer>> GRINDER_RECIPES = new HashMap<>();
-	public static HashMap<Pair<ITag<Item>, Integer>, Pair<Item, Integer>> GRINDER_RECIPES_TAG = new HashMap<>();
+	public static HashMap<IngredientInput, Output> GRINDER_RECIPES = new HashMap<>();
+	public static HashMap<TagInput, Output> GRINDER_RECIPES_TAG = new HashMap<>();
 
 	public static HashMap<Pair<Pair<Item, Integer>, Pair<Item, Integer>>, Pair<Item, Integer>> MIXER_RECIPES = new HashMap<>();
 
@@ -136,17 +137,17 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 			ShapedRecipeBuilder.shaped(output).pattern(" # ").pattern(" D ").pattern(" B ")
 					.define('D', ItemInit.REFINING_DUST.get()).define('#', material)
 					.define('B', ItemInit.MIXING_BOWL.get()).unlockedBy("has_item", has(material))
-					.save(consumer, mixing_bowl("refined_dusts/" + output.getRegistryName().getPath()));
+					.save(consumer, mixingBowl("refined_dusts/" + output.getRegistryName().getPath()));
 		});
 
 		RecipeMaps.addGrinderRecipes(GRINDER_RECIPES, GRINDER_RECIPES_TAG);
 		GRINDER_RECIPES.forEach((input, output) -> {
-			GrinderRecipeBuilder.recipeBuilder(output.getFirst(), output.getSecond())
-					.addIngredient(Ingredient.of(input), input.getCount()).build(consumer);
+			GrinderRecipeBuilder.recipeBuilder(output.getItem(), output.getCount())
+					.addIngredient(input.getIngredient(), input.getCount()).build(consumer);
 		});
 		GRINDER_RECIPES_TAG.forEach((input, output) -> {
-			GrinderRecipeBuilder.recipeBuilder(output.getFirst(), output.getSecond())
-					.addIngredient(input.getFirst(), input.getSecond()).build(consumer);
+			GrinderRecipeBuilder.recipeBuilder(output.getItem(), output.getCount())
+					.addIngredient(input.getTag(), input.getCount()).build(consumer);
 		});
 
 		RecipeMaps.addMixerRecipes(MIXER_RECIPES);
@@ -165,8 +166,12 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 		});
 		MOLD_PRESS_RECIPES_TAG.forEach((input, output) -> {
 			MoldPressRecipeBuilder.recipeBuilder(output.getFirst(), output.getSecond())
-			.addIngredient(input.getFirst().getFirst(), input.getFirst().getSecond()).addMold(input.getSecond())
-			.build(consumer);
+					.addIngredient(input.getFirst().getFirst(), input.getFirst().getSecond()).addMold(input.getSecond())
+					.build(consumer);
+		});
+
+		ShapedRecipes.shapedRecipes().forEach((recipe, name) -> {
+			recipe.save(consumer, name);
 		});
 
 	}
@@ -191,7 +196,7 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 		return new ResourceLocation(Refinement.MOD_ID, "tools/" + name);
 	}
 
-	public static ResourceLocation mixing_bowl(String name) {
+	public static ResourceLocation mixingBowl(String name) {
 		return new ResourceLocation(Refinement.MOD_ID, "mixing_bowl/" + name);
 	}
 
