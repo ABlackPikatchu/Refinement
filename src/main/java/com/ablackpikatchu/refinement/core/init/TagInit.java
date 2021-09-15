@@ -29,6 +29,9 @@ public class TagInit {
 		// Gems
 		public static final ITag.INamedTag<Item> DIAMOND = forge("gems/diamond");
 
+		//Ores
+		public static final ITag.INamedTag<Item> ORES = forge("ores");
+		
 		// Forge
 		public static final ITag.INamedTag<Item> COBBLESTONE = forge("cobblestone");
 

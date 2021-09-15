@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "refinement:block/blank_ore"
+    }
+  }
+}

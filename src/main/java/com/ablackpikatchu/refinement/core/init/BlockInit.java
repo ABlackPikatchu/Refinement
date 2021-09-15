@@ -1,6 +1,7 @@
 package com.ablackpikatchu.refinement.core.init;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.common.block.BlankOreBlock;
 import com.ablackpikatchu.refinement.common.block.GrinderBlock;
 import com.ablackpikatchu.refinement.common.block.MixerBlock;
 import com.ablackpikatchu.refinement.common.block.MoldPressBlock;
@@ -50,6 +51,8 @@ public class BlockInit {
 			() -> new Block(AbstractBlock.Properties.of(Material.STONE, MaterialColor.STONE)
 					.harvestTool(ToolType.PICKAXE).harvestLevel(2).requiresCorrectToolForDrops().strength(5.0F, 6.0F)
 					.sound(SoundType.STONE)));
+	
+	public static final RegistryObject<BlankOreBlock> BLANK_ORE = BLOCKS.register("blank_ore", BlankOreBlock::new);
 
 	// TE Blocks
 	public static final RegistryObject<Block> GRINDER = BLOCKS.register("grinder", () -> new GrinderBlock());

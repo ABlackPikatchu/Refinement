@@ -1,0 +1,18 @@
+{
+  "block.refinement.blank_ore": "Blank Ore",
+  "block.refinement.grinder": "Grinder",
+  "block.refinement.machine_frame": "Machine Frame",
+  "block.refinement.mixer": "Mixer",
+  "block.refinement.mold_press": "Mold Press",
+  "block.refinement.pure_crystal_ore": "Pure Crystal Ore",
+  "block.refinement.refined_carbon_block": "Refined Carbon Block",
+  "block.refinement.refined_diamond_block": "Refined Diamond Block",
+  "block.refinement.refined_gold_block": "Refined Gold Block",
+  "block.refinement.refined_iron_block": "Refined Iron Block",
+  "block.refinement.refined_netherite_block": "Refined Netherite Block",
+  "block.refinement.vaccumulator": "Vacuumulator",
+  "death.attack.minersStewDamage": "%1$s choked on precious metals",
+  "death.attack.minersStewDamage.player": "%1$s's lack of air defeated them while fighting %2$s",
+  "effect.refinement.negate_fall": "Negate Fall Damage",
+  "tooltip.refinement.hold_shift": "Hold \u00A7eSHIFT\u00A7r for more information!"
+}
