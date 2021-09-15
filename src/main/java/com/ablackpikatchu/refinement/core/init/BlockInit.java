@@ -52,7 +52,7 @@ public class BlockInit {
 					.harvestTool(ToolType.PICKAXE).harvestLevel(2).requiresCorrectToolForDrops().strength(5.0F, 6.0F)
 					.sound(SoundType.STONE)));
 	
-	public static final RegistryObject<BlankOreBlock> BLANK_ORE = BLOCKS.register("blank_ore", BlankOreBlock::new);
+	public static final RegistryObject<Block> BLANK_ORE = BLOCKS.register("blank_ore", () -> new BlankOreBlock());
 
 	// TE Blocks
 	public static final RegistryObject<Block> GRINDER = BLOCKS.register("grinder", () -> new GrinderBlock());
