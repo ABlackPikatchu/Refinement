@@ -112,12 +112,31 @@ public class RecipeMaps {
 	}
 
 	public static void addMixerRecipes(HashMap<MixerInput, Output> map) {
+		
+		//Item
 		map.put(new MixerInput(new IngredientInput(Items.GRAVEL, 1), new IngredientInput(Items.SAND, 1)),
 				new Output(ItemInit.GRIT_PAPER.get(), 4));
 
+		//Tag
 		map.put(new MixerInput(new TagInput(TagInit.Items.DIAMOND_DUST, 1),
 				new IngredientInput(ItemInit.IRON_INFUSED_GRIT.get(), 1)),
 				new Output(ItemInit.DIAMOND_INFUSED_GRIT.get(), 4));
+		map.put(new MixerInput(new TagInput(TagInit.Items.NETHERITE_DUST, 1),
+				new IngredientInput(ItemInit.DIAMOND_INFUSED_GRIT.get(), 1)),
+				new Output(ItemInit.NETHERITE_INFUSED_GRIT.get(), 4));
+		map.put(new MixerInput(new TagInput(TagInit.Items.IRON_DUST, 1), new IngredientInput(ItemInit.GRIT.get(), 1)),
+				new Output(ItemInit.IRON_INFUSED_GRIT.get(), 4));
+		
+		map.put(new MixerInput(new TagInput(TagInit.Items.COAL_DUST, 1), new IngredientInput(ItemInit.REFINING_DUST.get(), 1)),
+				new Output(ItemInit.REFINED_CARBON_DUST.get(), 2));
+		map.put(new MixerInput(new TagInput(TagInit.Items.IRON_DUST, 1), new IngredientInput(ItemInit.REFINING_DUST.get(), 1)),
+				new Output(ItemInit.REFINED_IRON_DUST.get(), 2));
+		map.put(new MixerInput(new TagInput(TagInit.Items.GOLD_DUST, 1), new IngredientInput(ItemInit.REFINING_DUST.get(), 1)),
+				new Output(ItemInit.REFINED_GOLD_DUST.get(), 2));
+		map.put(new MixerInput(new TagInput(TagInit.Items.DIAMOND_DUST, 1), new IngredientInput(ItemInit.REFINING_DUST.get(), 1)),
+				new Output(ItemInit.REFINED_DIAMOND_DUST.get(), 2));
+		map.put(new MixerInput(new TagInput(TagInit.Items.NETHERITE_DUST, 1), new IngredientInput(ItemInit.REFINING_DUST.get(), 1)),
+				new Output(ItemInit.REFINED_NETHERITE_DUST.get(), 2));
 
 	}
 
