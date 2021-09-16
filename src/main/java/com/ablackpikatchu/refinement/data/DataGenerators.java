@@ -30,6 +30,7 @@ public class DataGenerators {
 		BlockTagsProvider blockTags = new BlockTagsProvider(gen, existingFileHelper);
 		gen.addProvider(new ItemTagsProvider(gen, blockTags, existingFileHelper));
 		gen.addProvider(new RecipeProvider(gen));
+		gen.addProvider(blockTags);
 	}
 
 }

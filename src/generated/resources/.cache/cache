@@ -1,6 +1,15 @@
 f501d4fb6c5ca16031c868e0a638ead45d3a93b6 assets/refinement/blockstates/blank_ore.json
 e4b0a1bc3f1c751e1ddb172f26b353142ad6850a assets/refinement/lang/en_us.json
 d912ac7543dc3c4ea19bf5f969954bc9307d2a2b assets/refinement/models/item/grinder.json
+0eb15b5f5794d955784332ea687203b9957a51f5 data/forge/tags/blocks/ores.json
+6ba6be3c6e20856a1981bd0d00cbde8011280733 data/forge/tags/blocks/ores/blank.json
+a65f19c0545ca58ef7fec0427da1a451347dba1d data/forge/tags/blocks/ores/pure_crystal.json
+38aaa55dd7d2fde0c4de5215467d0398357d1a50 data/forge/tags/blocks/storage_blocks.json
+bc46034073ee067ac7030634576c408597afcde8 data/forge/tags/blocks/storage_blocks/refined_carbon.json
+e66e95e230a6515ce399e04a24945f0e9b7b526b data/forge/tags/blocks/storage_blocks/refined_diamond.json
+0815d270c3d9c183cebbf7e0791fbb8b215abe68 data/forge/tags/blocks/storage_blocks/refined_gold.json
+b0ea45f8e6333a56fae252915f11b00e732c5968 data/forge/tags/blocks/storage_blocks/refined_iron.json
+f64384fa195dacb9a996104af6d2654470b44cbd data/forge/tags/blocks/storage_blocks/refined_netherite.json
 ba9da028fd34d15592ef5d79e2b1079437ec1409 data/forge/tags/items/dusts.json
 2c2399bb2e8c3f7556d91e47129249c67908a4a2 data/forge/tags/items/dusts/charcoal.json
 f863e65a9201ea46867c7aa29fc2fcd000b1d0bf data/forge/tags/items/dusts/coal.json

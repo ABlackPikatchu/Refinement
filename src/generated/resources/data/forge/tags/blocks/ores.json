@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "refinement:pure_crystal_ore",
+    "refinement:blank_ore"
+  ]
+}
