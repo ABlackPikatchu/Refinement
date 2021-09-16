@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "refinement:miners_apple",
+    "refinement:miners_bread",
+    "refinement:miners_carrot",
+    "refinement:miners_jerky",
+    "refinement:miners_stew"
+  ]
+}

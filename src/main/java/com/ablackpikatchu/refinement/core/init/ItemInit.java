@@ -8,6 +8,7 @@ import com.ablackpikatchu.refinement.common.item.MixingBowl;
 import com.ablackpikatchu.refinement.common.item.Mold;
 import com.ablackpikatchu.refinement.common.item.RefinedCoal;
 import com.ablackpikatchu.refinement.common.item.RefinedCoalBlockItem;
+import com.ablackpikatchu.refinement.common.item.box.FoodBox;
 import com.ablackpikatchu.refinement.common.item.food.MinersApple;
 import com.ablackpikatchu.refinement.common.item.food.MinersBread;
 import com.ablackpikatchu.refinement.common.item.food.MinersCarrot;
@@ -301,6 +302,9 @@ public class ItemInit {
 	public static final RegistryObject<Item> REFINED_NETHERITE_BOOTS = ITEMS.register("refined_netherite_boots",
 			() -> new ArmorItem(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.FEET,
 					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
+	
+	//Boxes
+	public static final RegistryObject<Item> FOOD_BOX = ITEMS.register("food_box", () -> new FoodBox());
 
 	// Misc Item
 	public static final RegistryObject<BlockItem> BLANK_ORE_ITEM = ITEMS.register("blank_ore",
