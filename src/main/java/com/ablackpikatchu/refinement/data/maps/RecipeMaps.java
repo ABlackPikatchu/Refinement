@@ -4,12 +4,14 @@ import java.util.HashMap;
 
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
-import com.ablackpikatchu.refinement.core.init.ItemTagInit;
+import com.ablackpikatchu.refinement.core.init.TagInit;
+import com.ablackpikatchu.refinement.datafixers.util.recipe.IngredientInput;
+import com.ablackpikatchu.refinement.datafixers.util.recipe.Output;
+import com.ablackpikatchu.refinement.datafixers.util.recipe.TagInput;
 import com.mojang.datafixers.util.Pair;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.tags.ITag;
 
@@ -103,12 +105,12 @@ public class RecipeMaps {
 		dusts.put(ItemInit.COAL_DUST.get(), ItemInit.REFINED_CARBON_DUST.get());
 	}
 
-	public static void addGrinderRecipes(HashMap<ItemStack, Pair<Item, Integer>> map,
-			HashMap<Pair<ITag<Item>, Integer>, Pair<Item, Integer>> tagMap) {
-		map.put(new ItemStack(Items.GRAVEL, 16), new Pair<Item, Integer>(Items.SAND, 16));
+	public static void addGrinderRecipes(HashMap<IngredientInput, Output> map,
+			HashMap<TagInput, Output> tagMap) {
+		map.put(new IngredientInput(Items.GRAVEL, 16), new Output(Items.SAND, 16));
 
-		tagMap.put(new Pair<ITag<Item>, Integer>(ItemTagInit.Items.COBBLESTONE, 16),
-				new Pair<Item, Integer>(Items.GRAVEL, 16));
+		tagMap.put(new TagInput(TagInit.Items.COBBLESTONE, 16),
+				new Output(Items.GRAVEL, 16));
 	}
 
 	public static void addMixerRecipes(
@@ -124,7 +126,7 @@ public class RecipeMaps {
 				new Pair<Item, Integer>(ItemInit.REFINED_CARBON_DUST.get(), 1), ItemInit.INGOT_MOLD.get());
 
 		newRecipes.moldPressTag(tagMap, new Pair<Item, Integer>(Items.IRON_INGOT, 1),
-				new Pair<ITag<Item>, Integer>(ItemTagInit.Items.IRON_DUST, 1), ItemInit.INGOT_MOLD.get());
+				new Pair<ITag<Item>, Integer>(TagInit.Items.IRON_DUST, 1), ItemInit.INGOT_MOLD.get());
 	}
 
 	public static class newRecipes {

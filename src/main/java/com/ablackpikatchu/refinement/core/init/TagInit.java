@@ -7,7 +7,7 @@ import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 
-public class ItemTagInit {
+public class TagInit {
 
 	public static final class Items {
 		
@@ -16,12 +16,14 @@ public class ItemTagInit {
 		public static final ITag.INamedTag<Item> IRON_GRIT_PAPER = mod("grit_papers/iron");
 		public static final ITag.INamedTag<Item> DIAMOND_GRIT_PAPER = mod("grit_papers/diamond");
 		public static final ITag.INamedTag<Item> NETHERITE_GRIT_PAPER = mod("grit_papers/netherite");
+		
 		//Cogwheels
 		public static final ITag.INamedTag<Item> COGWHEELS = mod("cogwheels");
 		public static final ITag.INamedTag<Item> WOODEN_COGWHEEL = mod("cogwheels/wooden");
 		public static final ITag.INamedTag<Item> REFINED_IRON_COGWHEEL = mod("cogwheels/refined_iron");
 		public static final ITag.INamedTag<Item> REFINED_GOLD_COGWHEEL = mod("cogwheels/refined_gold");
 		public static final ITag.INamedTag<Item> REFINED_DIAMOND_COGWHEEL = mod("cogwheels/refined_diamond");
+		
 		//Grits
 		public static final ITag.INamedTag<Item> GRITS = mod("grits");
 		public static final ITag.INamedTag<Item> GRIT = mod("grits/grit");
