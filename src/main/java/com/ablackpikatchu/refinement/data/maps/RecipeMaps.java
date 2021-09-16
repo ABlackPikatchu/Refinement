@@ -8,12 +8,12 @@ import com.ablackpikatchu.refinement.core.init.TagInit;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.IngredientInput;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.Output;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.TagInput;
-import com.mojang.datafixers.util.Pair;
+import com.ablackpikatchu.refinement.datafixers.util.recipe.mixer.MixerInput;
+import com.ablackpikatchu.refinement.datafixers.util.recipe.mold_press.MoldPressInput;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraft.tags.ITag;
 
 public class RecipeMaps {
 
@@ -105,46 +105,29 @@ public class RecipeMaps {
 		dusts.put(ItemInit.COAL_DUST.get(), ItemInit.REFINED_CARBON_DUST.get());
 	}
 
-	public static void addGrinderRecipes(HashMap<IngredientInput, Output> map,
-			HashMap<TagInput, Output> tagMap) {
+	public static void addGrinderRecipes(HashMap<IngredientInput, Output> map, HashMap<TagInput, Output> tagMap) {
 		map.put(new IngredientInput(Items.GRAVEL, 16), new Output(Items.SAND, 16));
 
-		tagMap.put(new TagInput(TagInit.Items.COBBLESTONE, 16),
-				new Output(Items.GRAVEL, 16));
+		tagMap.put(new TagInput(TagInit.Items.COBBLESTONE, 16), new Output(Items.GRAVEL, 16));
 	}
 
-	public static void addMixerRecipes(
-			HashMap<Pair<Pair<Item, Integer>, Pair<Item, Integer>>, Pair<Item, Integer>> map) {
-		newRecipes.mixer(map, new Pair<Item, Integer>(ItemInit.GRIT_PAPER.get(), 4),
-				new Pair<Item, Integer>(Items.GRAVEL, 1), new Pair<Item, Integer>(Items.SAND, 1));
+	public static void addMixerRecipes(HashMap<MixerInput, Output> map) {
+		map.put(new MixerInput(new IngredientInput(Items.GRAVEL, 1), new IngredientInput(Items.SAND, 1)),
+				new Output(ItemInit.GRIT_PAPER.get(), 4));
+
+		map.put(new MixerInput(new TagInput(TagInit.Items.DIAMOND_DUST, 1),
+				new IngredientInput(ItemInit.IRON_INFUSED_GRIT.get(), 1)),
+				new Output(ItemInit.DIAMOND_INFUSED_GRIT.get(), 4));
 
 	}
 
-	public static void addMoldPressRecipes(HashMap<Pair<Pair<Item, Integer>, Item>, Pair<Item, Integer>> map,
-			HashMap<Pair<Pair<ITag<Item>, Integer>, Item>, Pair<Item, Integer>> tagMap) {
-		newRecipes.moldPress(map, new Pair<Item, Integer>(ItemInit.UNFIRED_REFINED_CARBON_INGOT.get(), 1),
-				new Pair<Item, Integer>(ItemInit.REFINED_CARBON_DUST.get(), 1), ItemInit.INGOT_MOLD.get());
+	public static void addMoldPressRecipes(HashMap<MoldPressInput, Output> map) {
+		map.put(new MoldPressInput(new IngredientInput(ItemInit.REFINED_CARBON_DUST.get(), 1),
+				ItemInit.INGOT_MOLD.get()), new Output(ItemInit.UNFIRED_REFINED_CARBON_INGOT.get(), 1));
 
-		newRecipes.moldPressTag(tagMap, new Pair<Item, Integer>(Items.IRON_INGOT, 1),
-				new Pair<ITag<Item>, Integer>(TagInit.Items.IRON_DUST, 1), ItemInit.INGOT_MOLD.get());
-	}
+		map.put(new MoldPressInput(new TagInput(TagInit.Items.IRON_DUST, 1), ItemInit.INGOT_MOLD.get()),
+				new Output(Items.IRON_INGOT, 1));
 
-	public static class newRecipes {
-
-		private static void mixer(HashMap<Pair<Pair<Item, Integer>, Pair<Item, Integer>>, Pair<Item, Integer>> map,
-				Pair<Item, Integer> output, Pair<Item, Integer> input, Pair<Item, Integer> secondaryInput) {
-			map.put(new Pair<Pair<Item, Integer>, Pair<Item, Integer>>(input, secondaryInput), output);
-		}
-
-		private static void moldPress(HashMap<Pair<Pair<Item, Integer>, Item>, Pair<Item, Integer>> map,
-				Pair<Item, Integer> output, Pair<Item, Integer> input, Item mold) {
-			map.put(new Pair<Pair<Item, Integer>, Item>(input, mold), output);
-		}
-
-		private static void moldPressTag(HashMap<Pair<Pair<ITag<Item>, Integer>, Item>, Pair<Item, Integer>> map,
-				Pair<Item, Integer> output, Pair<ITag<Item>, Integer> input, Item mold) {
-			map.put(new Pair<Pair<ITag<Item>, Integer>, Item>(input, mold), output);
-		}
 	}
 
 }

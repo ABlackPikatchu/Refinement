@@ -1,26 +1,32 @@
 package com.ablackpikatchu.refinement.datafixers.util.recipe.shaped;
 
+import net.minecraft.data.ShapedRecipeBuilder;
+
 public class Pattern {
 
-	private final String first;
-	private final String second;
-	private final String third;
+	private final String top;
+	private final String middle;
+	private final String bottom;
 	
-	public Pattern(String first, String second, String third) {
-		this.first = first;
-		this.second = second;
-		this.third = third;
+	public Pattern(String top, String middle, String bottom) {
+		this.top = top;
+		this.middle = middle;
+		this.bottom = bottom;
 	}
 	
-	public String getFirst() {
-		return this.first;
+	public String getTop() {
+		return this.top;
 	}
 	
-	public String getSecond() {
-		return this.second;
+	public String getMiddle() {
+		return this.middle;
 	}
 	
-	public String getThird() {
-		return this.third;
+	public String getBottom() {
+		return this.bottom;
+	}
+	
+	public void getShapedRecipePattern(ShapedRecipeBuilder recipe) {
+		recipe.pattern(this.top).pattern(this.middle).pattern(this.bottom);
 	}
 }

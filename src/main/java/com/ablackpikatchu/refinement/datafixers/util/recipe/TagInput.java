@@ -7,11 +7,6 @@ public class TagInput {
 	private final ITag<Item> tag;
 	private final int count;
 
-	public TagInput(ITag<Item> tag) {
-		this.tag = tag;
-		this.count = 1;
-	}
-
 	public TagInput(ITag<Item> tag, int count) {
 		this.tag = tag;
 		this.count = count;

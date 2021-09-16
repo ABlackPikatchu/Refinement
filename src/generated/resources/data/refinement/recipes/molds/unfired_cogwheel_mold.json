@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#I#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:clay_ball"
+    },
+    "I": {
+      "tag": "refinement:cogwheels"
+    }
+  },
+  "result": {
+    "item": "refinement:unfired_cogwheel_mold"
+  }
+}
