@@ -12,6 +12,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -51,7 +52,7 @@ public class BlockInit {
 			() -> new Block(AbstractBlock.Properties.of(Material.STONE, MaterialColor.STONE)
 					.harvestTool(ToolType.PICKAXE).harvestLevel(2).requiresCorrectToolForDrops().strength(5.0F, 6.0F)
 					.sound(SoundType.STONE)));
-	
+
 	public static final RegistryObject<Block> BLANK_ORE = BLOCKS.register("blank_ore", () -> new BlankOreBlock());
 
 	// TE Blocks
@@ -61,5 +62,4 @@ public class BlockInit {
 
 	public static final RegistryObject<Block> VACCUMULATOR = BLOCKS.register("vaccumulator",
 			() -> new VaccumulatorBlock());
-
 }

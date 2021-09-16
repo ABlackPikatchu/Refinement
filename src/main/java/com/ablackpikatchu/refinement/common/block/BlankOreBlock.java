@@ -3,7 +3,7 @@ package com.ablackpikatchu.refinement.common.block;
 import java.util.List;
 import java.util.Random;
 
-import com.ablackpikatchu.refinement.core.init.ItemTagInit;
+import com.ablackpikatchu.refinement.core.init.TagInit;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -26,7 +26,7 @@ public class BlankOreBlock extends Block {
 
 	@Override
 	public void onRemove(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
-		List<Item> oreItems = ItemTagInit.Items.ORES.getValues();
+		List<Item> oreItems = TagInit.Items.ORES.getValues();
 		Random rand = new Random();
 
 		ItemStack ore = new ItemStack(oreItems.get(rand.nextInt(oreItems.size())), 1);

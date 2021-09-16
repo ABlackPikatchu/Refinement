@@ -2,67 +2,67 @@ package com.ablackpikatchu.refinement.core.init;
 
 import com.ablackpikatchu.refinement.Refinement;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 
-public class ItemTagInit {
+public class TagInit {
 
 	public static final class Items {
-		
-		//Grit Papers
+
+		// Grit Papers
 		public static final ITag.INamedTag<Item> GRIT_PAPERS = mod("grit_papers");
 		public static final ITag.INamedTag<Item> IRON_GRIT_PAPER = mod("grit_papers/iron");
 		public static final ITag.INamedTag<Item> DIAMOND_GRIT_PAPER = mod("grit_papers/diamond");
 		public static final ITag.INamedTag<Item> NETHERITE_GRIT_PAPER = mod("grit_papers/netherite");
-		
-		//Cogwheels
+
+		// Cogwheels
 		public static final ITag.INamedTag<Item> COGWHEELS = mod("cogwheels");
 		public static final ITag.INamedTag<Item> WOODEN_COGWHEEL = mod("cogwheels/wooden");
 		public static final ITag.INamedTag<Item> REFINED_IRON_COGWHEEL = mod("cogwheels/refined_iron");
 		public static final ITag.INamedTag<Item> REFINED_GOLD_COGWHEEL = mod("cogwheels/refined_gold");
 		public static final ITag.INamedTag<Item> REFINED_DIAMOND_COGWHEEL = mod("cogwheels/refined_diamond");
-		
-		//Grits
+
+		// Grits
 		public static final ITag.INamedTag<Item> GRITS = mod("grits");
 		public static final ITag.INamedTag<Item> GRIT = mod("grits/grit");
 		public static final ITag.INamedTag<Item> IRON_GRIT = mod("grits/iron");
 		public static final ITag.INamedTag<Item> DIAMOND_GRIT = mod("grits/diamond");
 		public static final ITag.INamedTag<Item> NETHERITE_GRIT = mod("grits/netherite");
-		
-		//Molds
+
+		// Molds
 		public static final ITag.INamedTag<Item> MOLDS = mod("molds");
 		public static final ITag.INamedTag<Item> GEM_MOLD = mod("molds/gem");
 		public static final ITag.INamedTag<Item> INGOT_MOLD = mod("molds/ingot");
 		public static final ITag.INamedTag<Item> COGWHEEL_MOLD = mod("molds/cogwheel");
-		
-		//Unfired Cogwheels
+
+		// Unfired Cogwheels
 		public static final ITag.INamedTag<Item> UNFIRED_COGWHEELS = mod("unfired_cogwheels");
 		public static final ITag.INamedTag<Item> UNFIRED_IRON_COGWHEEL = mod("unfired_cogwheels/refined_iron");
 		public static final ITag.INamedTag<Item> UNFIRED_GOLD_COGWHEEL = mod("unfired_cogwheels/refined_gold");
 		public static final ITag.INamedTag<Item> UNFIRED_DIAMOND_COGWHEEL = mod("unfired_cogwheels/refined_diamond");
-		
-		//Unfired Gems
+
+		// Unfired Gems
 		public static final ITag.INamedTag<Item> UNFIRED_GEMS = mod("unfired_gems");
 		public static final ITag.INamedTag<Item> UNFIRED_DIAMOND = mod("unfired_gems/diamond");
-		
-		//Unfired Ingots
+
+		// Unfired Ingots
 		public static final ITag.INamedTag<Item> UNFIRED_INGOTS = mod("unfired_ingots");
 		public static final ITag.INamedTag<Item> UNFIRED_IRON_INGOT = mod("unfired_ingots/refined_iron");
 		public static final ITag.INamedTag<Item> UNFIRED_GOLD_INGOT = mod("unfired_ingots/refined_gold");
 		public static final ITag.INamedTag<Item> UNFIRED_NETHERITE_INGOT = mod("unfired_ingots/refined_netherite");
 		public static final ITag.INamedTag<Item> UNFIRED_CARBON_INGOT = mod("unfired_ingots/refined_carbon");
-		
-		//Unfired Molds
+
+		// Unfired Molds
 		public static final ITag.INamedTag<Item> UNFIRED_MOLDS = mod("unfired_molds");
 		public static final ITag.INamedTag<Item> UNFIRED_GEM_MOLD = mod("unfired_molds/gem");
 		public static final ITag.INamedTag<Item> UNFIRED_INGOT_MOLD = mod("unfired_molds/ingot");
 		public static final ITag.INamedTag<Item> UNFIRED_COGWHEEL_MOLD = mod("unfired_molds/cogwheel");
-		
-		
-		
-		/* 
+
+		/*
 		 * 
 		 * Forge
 		 * 
@@ -99,19 +99,18 @@ public class ItemTagInit {
 		public static final ITag.INamedTag<Item> REFINED_DIAMOND = forge("gems/refined_diamond");
 		public static final ITag.INamedTag<Item> PURE_CRYSTAL = forge("gems/pure_crystal");
 
-		//Blocks
+		// Blocks
 		public static final ITag.INamedTag<Item> COBBLESTONE = forge("cobblestone");
 		public static final ITag.INamedTag<Item> ORES = forge("ores");
 		public static final ITag.INamedTag<Item> PURE_CRYSTAL_ORE = forge("ores/pure_crystal");
 		public static final ITag.INamedTag<Item> BLANK_ORE = forge("ores/blank");
-		
+
 		public static final ITag.INamedTag<Item> STORAGE_BLOCKS = forge("storage_blocks");
 		public static final ITag.INamedTag<Item> IRON_STORAGE = forge("storage_blocks/refined_iron");
 		public static final ITag.INamedTag<Item> GOLD_STORAGE = forge("storage_blocks/refined_gold");
 		public static final ITag.INamedTag<Item> DIAMOND_STORAGE = forge("storage_blocks/refined_diamond");
 		public static final ITag.INamedTag<Item> NETHERITE_STORAGE = forge("storage_blocks/refined_netherite");
 		public static final ITag.INamedTag<Item> CARBON_STORAGE = forge("storage_blocks/refined_carbon");
-		
 
 		private static ITag.INamedTag<Item> forge(String path) {
 			return ItemTags.bind(new ResourceLocation("forge", path).toString());
@@ -120,6 +119,26 @@ public class ItemTagInit {
 		private static ITag.INamedTag<Item> mod(String path) {
 			return ItemTags.bind(new ResourceLocation(Refinement.MOD_ID, path).toString());
 		}
+	}
+
+	public static final class Blocks {
+
+		public static final ITag.INamedTag<Block> COBBLESTONE = forge("cobblestone");
+		public static final ITag.INamedTag<Block> ORES = forge("ores");
+		public static final ITag.INamedTag<Block> PURE_CRYSTAL_ORE = forge("ores/pure_crystal");
+		public static final ITag.INamedTag<Block> BLANK_ORE = forge("ores/blank");
+
+		public static final ITag.INamedTag<Block> STORAGE_BLOCKS = forge("storage_blocks");
+		public static final ITag.INamedTag<Block> IRON_STORAGE = forge("storage_blocks/refined_iron");
+		public static final ITag.INamedTag<Block> GOLD_STORAGE = forge("storage_blocks/refined_gold");
+		public static final ITag.INamedTag<Block> DIAMOND_STORAGE = forge("storage_blocks/refined_diamond");
+		public static final ITag.INamedTag<Block> NETHERITE_STORAGE = forge("storage_blocks/refined_netherite");
+		public static final ITag.INamedTag<Block> CARBON_STORAGE = forge("storage_blocks/refined_carbon");
+
+		private static ITag.INamedTag<Block> forge(String path) {
+			return BlockTags.bind(new ResourceLocation("forge", path).toString());
+		}
+
 	}
 
 }
