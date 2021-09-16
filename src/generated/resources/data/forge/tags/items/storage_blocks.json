@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "refinement:refined_iron_block",
+    "refinement:refined_gold_block",
+    "refinement:refined_diamond_block",
+    "refinement:refined_netherite_block",
+    "refinement:refined_carbon_block"
+  ]
+}

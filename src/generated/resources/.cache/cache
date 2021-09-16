@@ -1,6 +1,7 @@
 f501d4fb6c5ca16031c868e0a638ead45d3a93b6 assets/refinement/blockstates/blank_ore.json
 e4b0a1bc3f1c751e1ddb172f26b353142ad6850a assets/refinement/lang/en_us.json
 d912ac7543dc3c4ea19bf5f969954bc9307d2a2b assets/refinement/models/item/grinder.json
+ba9da028fd34d15592ef5d79e2b1079437ec1409 data/forge/tags/items/dusts.json
 2c2399bb2e8c3f7556d91e47129249c67908a4a2 data/forge/tags/items/dusts/charcoal.json
 f863e65a9201ea46867c7aa29fc2fcd000b1d0bf data/forge/tags/items/dusts/coal.json
 ebabbdabf2fde7c307c0446a82939a6f4683943f data/forge/tags/items/dusts/diamond.json
@@ -13,9 +14,11 @@ ba7ea5578e2cdda96e3b095ea620348f164ebc44 data/forge/tags/items/dusts/refined_gol
 0a608166cb9b4f00b11f56aa5527cfe7e01aeac8 data/forge/tags/items/dusts/refined_iron.json
 b5a7c5bf8465b35fe8b5cdcb8c61bdfc7d991381 data/forge/tags/items/dusts/refined_netherite.json
 81145336be6436a68de2e79ef7f87117426a3249 data/forge/tags/items/dusts/refining.json
+de8c93588c9efaf37619b7520892ea672f32287e data/forge/tags/items/gems.json
 94ff722e094a3479433cad0e4a1386f68f170e7b data/forge/tags/items/gems/diamond.json
 a9c3920b1bf92361afa08809bb617068ab96759d data/forge/tags/items/gems/pure_crystal.json
 bc32c76994c316573678cd6908085541c57b0e92 data/forge/tags/items/gems/refined_diamond.json
+f80cffb867df166f239baafe7880861f4a52e6df data/forge/tags/items/ingots.json
 ccf55ee576147856b91baecda4eefc792c7a6119 data/forge/tags/items/ingots/gold.json
 64382c7d434efa6154d4ebe7654bab2568a60caf data/forge/tags/items/ingots/iron.json
 3e1a38bcdc75cc654425fba987475d794357aefd data/forge/tags/items/ingots/netherite.json
@@ -23,6 +26,15 @@ ccf55ee576147856b91baecda4eefc792c7a6119 data/forge/tags/items/ingots/gold.json
 40ba21e0bb6e5ca9ec8fdf18e04371262631256e data/forge/tags/items/ingots/refined_gold.json
 9138d3fbfe060ede17eb8954544dbdff115255d7 data/forge/tags/items/ingots/refined_iron.json
 a137ae6f1a6c94349e6f36aa7b9477a8a06cbcb4 data/forge/tags/items/ingots/refined_netherite.json
+0eb15b5f5794d955784332ea687203b9957a51f5 data/forge/tags/items/ores.json
+6ba6be3c6e20856a1981bd0d00cbde8011280733 data/forge/tags/items/ores/blank.json
+a65f19c0545ca58ef7fec0427da1a451347dba1d data/forge/tags/items/ores/pure_crystal.json
+38aaa55dd7d2fde0c4de5215467d0398357d1a50 data/forge/tags/items/storage_blocks.json
+bc46034073ee067ac7030634576c408597afcde8 data/forge/tags/items/storage_blocks/refined_carbon.json
+e66e95e230a6515ce399e04a24945f0e9b7b526b data/forge/tags/items/storage_blocks/refined_diamond.json
+0815d270c3d9c183cebbf7e0791fbb8b215abe68 data/forge/tags/items/storage_blocks/refined_gold.json
+b0ea45f8e6333a56fae252915f11b00e732c5968 data/forge/tags/items/storage_blocks/refined_iron.json
+f64384fa195dacb9a996104af6d2654470b44cbd data/forge/tags/items/storage_blocks/refined_netherite.json
 9b02199f157d92277fbcdc6071f016271b9c43d2 data/refinement/advancements/recipes/refinement_armor/armours/boots/refined_diamond_boots.json
 8440f2e1dd9de9bee0e0d371728b2dd040f9d736 data/refinement/advancements/recipes/refinement_armor/armours/boots/refined_gold_boots.json
 b0bfe4f9c52e8a3fc8019fd3d25b1cd195936c83 data/refinement/advancements/recipes/refinement_armor/armours/boots/refined_iron_boots.json

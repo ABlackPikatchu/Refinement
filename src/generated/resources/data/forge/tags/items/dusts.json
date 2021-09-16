@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "refinement:refined_iron_dust",
+    "refinement:refined_gold_dust",
+    "refinement:refined_diamond_dust",
+    "refinement:refined_netherite_dust",
+    "refinement:refined_carbon_dust",
+    "refinement:refining_dust"
+  ]
+}

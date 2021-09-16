@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "refinement:refined_iron_ingot",
+    "refinement:refined_gold_ingot",
+    "refinement:refined_netherite_ingot",
+    "refinement:refined_carbon_ingot"
+  ]
+}

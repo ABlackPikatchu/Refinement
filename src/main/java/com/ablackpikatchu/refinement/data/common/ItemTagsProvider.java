@@ -128,8 +128,8 @@ public class ItemTagsProvider extends net.minecraft.data.ItemTagsProvider {
     	//Ores
     	tag(ItemTagInit.Items.ORES).add(ItemInit.PURE_CRYSTAL_ORE.get());
     	tag(ItemTagInit.Items.PURE_CRYSTAL_ORE).add(ItemInit.PURE_CRYSTAL_ORE.get());
-    	tag(ItemTagInit.Items.ORES).add(ItemInit.BLANK_ORE.get());
-    	tag(ItemTagInit.Items.BLANK_ORE).add(ItemInit.BLANK_ORE.get());
+    	tag(ItemTagInit.Items.ORES).add(ItemInit.BLANK_ORE_ITEM.get());
+    	tag(ItemTagInit.Items.BLANK_ORE).add(ItemInit.BLANK_ORE_ITEM.get());
     	
     	//Storage Blocks
     	tag(ItemTagInit.Items.STORAGE_BLOCKS).add(ItemInit.REFINED_IRON_BLOCK.get());

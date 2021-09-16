@@ -109,7 +109,7 @@ public class RecipeMaps {
 			HashMap<TagInput, Output> tagMap) {
 		map.put(new IngredientInput(Items.GRAVEL, 16), new Output(Items.SAND, 16));
 
-		tagMap.put(new TagInput(TagInit.Items.COBBLESTONE, 16),
+		tagMap.put(new TagInput(ItemTagInit.Items.COBBLESTONE, 16),
 				new Output(Items.GRAVEL, 16));
 	}
 
