@@ -10,7 +10,8 @@ import com.ablackpikatchu.refinement.data.maps.RecipeMaps;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.IngredientInput;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.Output;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.TagInput;
-import com.mojang.datafixers.util.Pair;
+import com.ablackpikatchu.refinement.datafixers.util.recipe.mixer.MixerInput;
+import com.ablackpikatchu.refinement.datafixers.util.recipe.mold_press.MoldPressInput;
 
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
@@ -19,7 +20,6 @@ import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraft.tags.ITag;
 import net.minecraft.util.ResourceLocation;
 
 public class RecipeProvider extends net.minecraft.data.RecipeProvider {
@@ -44,10 +44,9 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 	public static HashMap<IngredientInput, Output> GRINDER_RECIPES = new HashMap<>();
 	public static HashMap<TagInput, Output> GRINDER_RECIPES_TAG = new HashMap<>();
 
-	public static HashMap<Pair<Pair<Item, Integer>, Pair<Item, Integer>>, Pair<Item, Integer>> MIXER_RECIPES = new HashMap<>();
+	public static HashMap<MixerInput, Output> MIXER_RECIPES = new HashMap<>();
 
-	public static HashMap<Pair<Pair<Item, Integer>, Item>, Pair<Item, Integer>> MOLD_PRESS_RECIPES = new HashMap<>();
-	public static HashMap<Pair<Pair<ITag<Item>, Integer>, Item>, Pair<Item, Integer>> MOLD_PRESS_RECIPES_TAG = new HashMap<>();
+	public static HashMap<MoldPressInput, Output> MOLD_PRESS_RECIPES = new HashMap<>();
 
 	public RecipeProvider(DataGenerator p_i48262_1_) {
 		super(p_i48262_1_);
@@ -55,6 +54,11 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 
 	@Override
 	protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer) {
+
+		ShapedRecipes.shapedRecipes().forEach((recipe, name) -> {
+			recipe.save(consumer, name);
+		});
+
 		RecipeMaps.addShapelessBlockIngotEntries(SHAPELESS_BLOCK_INGOT);
 		SHAPELESS_BLOCK_INGOT.forEach((block, item) -> {
 			ShapelessRecipeBuilder.shapeless(block).requires(item, 9).unlockedBy("has_item", has(item)).save(consumer,
@@ -151,27 +155,18 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 		});
 
 		RecipeMaps.addMixerRecipes(MIXER_RECIPES);
-		MIXER_RECIPES.forEach((inputPair, output) -> {
-			MixerRecipeBuilder.recipeBuilder(output.getFirst(), output.getSecond())
-					.addIngredient(inputPair.getFirst().getFirst(), inputPair.getFirst().getSecond())
-					.addSecondaryIngredient(inputPair.getSecond().getFirst(), inputPair.getSecond().getSecond())
-					.build(consumer);
+		MIXER_RECIPES.forEach((input, output) -> {
+			MixerRecipeBuilder recipe = new MixerRecipeBuilder(output.getItem(), output.getCount());
+			input.getMixerRecipe(recipe);
+			recipe.build(consumer);
+
 		});
 
-		RecipeMaps.addMoldPressRecipes(MOLD_PRESS_RECIPES, MOLD_PRESS_RECIPES_TAG);
+		RecipeMaps.addMoldPressRecipes(MOLD_PRESS_RECIPES);
 		MOLD_PRESS_RECIPES.forEach((input, output) -> {
-			MoldPressRecipeBuilder.recipeBuilder(output.getFirst(), output.getSecond())
-					.addIngredient(input.getFirst().getFirst(), input.getFirst().getSecond()).addMold(input.getSecond())
-					.build(consumer);
-		});
-		MOLD_PRESS_RECIPES_TAG.forEach((input, output) -> {
-			MoldPressRecipeBuilder.recipeBuilder(output.getFirst(), output.getSecond())
-					.addIngredient(input.getFirst().getFirst(), input.getFirst().getSecond()).addMold(input.getSecond())
-					.build(consumer);
-		});
-
-		ShapedRecipes.shapedRecipes().forEach((recipe, name) -> {
-			recipe.save(consumer, name);
+			MoldPressRecipeBuilder recipe = new MoldPressRecipeBuilder(output.getItem(), output.getCount());
+			input.getMoldPressRecipe(recipe);
+			recipe.build(consumer);
 		});
 
 	}

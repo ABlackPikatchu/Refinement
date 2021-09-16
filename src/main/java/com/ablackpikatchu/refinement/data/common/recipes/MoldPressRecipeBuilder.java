@@ -28,14 +28,14 @@ public class MoldPressRecipeBuilder {
 	private final int resultCount;
 	private Item mold;
 
-	public MoldPressRecipeBuilder(IRecipeSerializer<?> serializer, Item resultItem, int count) {
-		this.serializer = serializer;
+	public MoldPressRecipeBuilder(Item resultItem, int count) {
+		this.serializer = MoldPressRecipe.SERIALIZER;
 		this.resultItem = resultItem;
 		this.resultCount = count;
 	}
 
 	public static MoldPressRecipeBuilder recipeBuilder(IItemProvider result, int count) {
-		return new MoldPressRecipeBuilder(MoldPressRecipe.SERIALIZER, result.asItem(), count);
+		return new MoldPressRecipeBuilder(result.asItem(), count);
 	}
 
 	public MoldPressRecipeBuilder addIngredient(IItemProvider item) {

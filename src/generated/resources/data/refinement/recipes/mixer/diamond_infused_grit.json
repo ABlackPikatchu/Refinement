@@ -1,0 +1,15 @@
+{
+  "type": "refinement:mixer",
+  "input": {
+    "tag": "forge:dusts/diamond",
+    "count": 1
+  },
+  "secondary_input": {
+    "item": "refinement:iron_infused_grit",
+    "count": 1
+  },
+  "output": {
+    "item": "refinement:diamond_infused_grit",
+    "count": 4
+  }
+}

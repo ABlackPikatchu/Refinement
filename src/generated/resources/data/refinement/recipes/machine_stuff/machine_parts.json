@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CRC",
+    "GDG",
+    "CRC"
+  ],
+  "key": {
+    "C": {
+      "item": "refinement:refined_iron_cogwheel"
+    },
+    "R": {
+      "item": "refinement:refined_iron_ingot"
+    },
+    "G": {
+      "item": "refinement:refined_gold_ingot"
+    },
+    "D": {
+      "item": "refinement:refined_diamond"
+    }
+  },
+  "result": {
+    "item": "refinement:machine_parts",
+    "count": 4
+  }
+}

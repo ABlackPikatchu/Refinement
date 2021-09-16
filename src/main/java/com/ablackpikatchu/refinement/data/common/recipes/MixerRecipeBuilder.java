@@ -14,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 
@@ -23,17 +24,21 @@ public class MixerRecipeBuilder {
 	private int inputCount = 0;
 	private final ArrayList<Ingredient> ingredients2 = new ArrayList<>();
 	private int inputCount2 = 0;
+	private String tag;
+	private boolean isTag = false;
+	private String tag2;
+	private boolean isTag2 = false;
 	private final Item resultItem;
 	private final int resultCount;
 
-	public MixerRecipeBuilder(IRecipeSerializer<?> serializer, Item resultItem, int count) {
-		this.serializer = serializer;
+	public MixerRecipeBuilder(Item resultItem, int count) {
+		this.serializer = MixerRecipe.SERIALIZER;
 		this.resultItem = resultItem;
 		this.resultCount = count;
 	}
 
 	public static MixerRecipeBuilder recipeBuilder(IItemProvider result, int count) {
-		return new MixerRecipeBuilder(MixerRecipe.SERIALIZER, result.asItem(), count);
+		return new MixerRecipeBuilder(result.asItem(), count);
 	}
 
 	public MixerRecipeBuilder addIngredient(IItemProvider item) {
@@ -51,6 +56,20 @@ public class MixerRecipeBuilder {
 	public MixerRecipeBuilder addIngredient(Ingredient ingredient, int count) {
 		this.ingredients.add(ingredient);
 		this.inputCount = count;
+		return this;
+	}
+	
+	public MixerRecipeBuilder addIngredient(ITag<Item> tag, int count) {
+		this.isTag = true;
+		this.tag = tag.toString();
+		this.inputCount = count;
+		return this;
+	}
+	
+	public MixerRecipeBuilder addSecondaryIngredient(ITag<Item> tag, int count) {
+		this.isTag2 = true;
+		this.tag2 = tag.toString();
+		this.inputCount2 = count;
 		return this;
 	}
 	
@@ -90,8 +109,10 @@ public class MixerRecipeBuilder {
 
 		@Override
 		public void serializeRecipeData(JsonObject json) {
-			json.add("input", serializeInput());
-			json.add("secondary_input", serializeSecondaryInput());
+			if (!isTag) json.add("input", serializeInput());
+			else json.add("input", serializeTag(tag));
+			if (!isTag2) json.add("secondary_input", serializeSecondaryInput());
+			else json.add("secondary_input", serializeTag(tag2));
 			json.add("output", serializeResult());
 		}
 
@@ -123,6 +144,13 @@ public class MixerRecipeBuilder {
 			if (resultCount > 1) {
 				ret.addProperty("count", resultCount);
 			}
+			return ret;
+		}
+		
+		private JsonObject serializeTag(String tag) {
+			JsonObject ret = new JsonObject();
+			ret.addProperty("tag", tag.substring(tag.indexOf("[") + 1).replace("]", ""));
+			ret.addProperty("count", inputCount);
 			return ret;
 		}
 
