@@ -1,0 +1,15 @@
+{
+  "type": "refinement:mixer",
+  "input": {
+    "tag": "forge:dusts/coal",
+    "count": 1
+  },
+  "secondary_input": {
+    "item": "refinement:refining_dust",
+    "count": 1
+  },
+  "output": {
+    "item": "refinement:refined_carbon_dust",
+    "count": 2
+  }
+}

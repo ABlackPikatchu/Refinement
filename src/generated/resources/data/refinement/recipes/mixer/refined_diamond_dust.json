@@ -1,0 +1,15 @@
+{
+  "type": "refinement:mixer",
+  "input": {
+    "tag": "forge:dusts/diamond",
+    "count": 1
+  },
+  "secondary_input": {
+    "item": "refinement:refining_dust",
+    "count": 1
+  },
+  "output": {
+    "item": "refinement:refined_diamond_dust",
+    "count": 2
+  }
+}
