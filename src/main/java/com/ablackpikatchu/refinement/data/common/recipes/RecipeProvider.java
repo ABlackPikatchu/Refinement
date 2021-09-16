@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
-import com.ablackpikatchu.refinement.core.init.TagInit;
+import com.ablackpikatchu.refinement.core.init.ItemTagInit;
 import com.ablackpikatchu.refinement.data.maps.RecipeMaps;
 import com.mojang.datafixers.util.Pair;
 
@@ -73,7 +73,7 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 
 		RecipeMaps.addDustFromSanding(SANDING_DUST);
 		SANDING_DUST.forEach((input, output) -> {
-			ShapedRecipeBuilder.shaped(output).pattern("i").pattern("p").define('p', TagInit.Items.GRIT_PAPERS)
+			ShapedRecipeBuilder.shaped(output).pattern("i").pattern("p").define('p', ItemTagInit.Items.GRIT_PAPERS)
 					.define('i', input).unlockedBy("has_item", has(input)).save(consumer, sanding(
 							"item/" + input.getRegistryName().getPath() + "_to_" + output.getRegistryName().getPath()));
 		});
