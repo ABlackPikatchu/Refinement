@@ -61,7 +61,10 @@ public class TagInit {
 		public static final ITag.INamedTag<Item> UNFIRED_GEM_MOLD = mod("unfired_molds/gem");
 		public static final ITag.INamedTag<Item> UNFIRED_INGOT_MOLD = mod("unfired_molds/ingot");
 		public static final ITag.INamedTag<Item> UNFIRED_COGWHEEL_MOLD = mod("unfired_molds/cogwheel");
-
+		
+		//Boxes
+		public static final ITag.INamedTag<Item> FOOD_BOX = mod("boxes/food");
+		
 		/*
 		 * 
 		 * Forge

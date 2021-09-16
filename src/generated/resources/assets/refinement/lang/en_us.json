@@ -27,6 +27,7 @@
   "item.refinement.diamond_dust": "Diamond Dust",
   "item.refinement.diamond_grit_paper": "Diamond Grit Paper",
   "item.refinement.diamond_infused_grit": "Diamond Infused Grit",
+  "item.refinement.food_box": "Food Box",
   "item.refinement.gem_mold": "Gem Mold",
   "item.refinement.gold_dust": "Gold Dust",
   "item.refinement.grit": "Grit",
@@ -118,5 +119,9 @@
   "itemGroup.refinement_machine": "Refinement Machines",
   "itemGroup.refinement_materials": "Refinement Materials",
   "itemGroup.refinement_tools_weapons": "Refinement Tools & Weapons",
-  "tooltip.refinement.hold_shift": "Hold \u00A7eSHIFT\u00A7r for more information!"
+  "tooltip.refinement.hold_shift": "Hold \u00A7eSHIFT\u00A7r for more information!",
+  "tooltip.refinement.miners_apple_shift": "It makes your feet stronger, letting them absorb any fall damage!",
+  "tooltip.refinement.miners_carrot_shift": "It makes your legs longer, letting you jump further!",
+  "tooltip.refinement.miners_jerky_shift": "It uses the food from your stomach to make you resist more powerful attacks!",
+  "tooltip.refinement.miners_stew_shift": "It hurts on the way down but it has great benefits!"
 }
