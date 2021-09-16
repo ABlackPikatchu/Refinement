@@ -7,7 +7,7 @@ import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 
-public class TagInit {
+public class ItemTagInit {
 
 	public static final class Items {
 		
@@ -102,6 +102,13 @@ public class TagInit {
 		public static final ITag.INamedTag<Item> ORES = forge("ores");
 		public static final ITag.INamedTag<Item> PURE_CRYSTAL_ORE = forge("ores/pure_crystal");
 		public static final ITag.INamedTag<Item> BLANK_ORE = forge("ores/blank");
+		
+		public static final ITag.INamedTag<Item> STORAGE_BLOCKS = forge("storage_blocks");
+		public static final ITag.INamedTag<Item> IRON_STORAGE = forge("storage_blocks/refined_iron");
+		public static final ITag.INamedTag<Item> GOLD_STORAGE = forge("storage_blocks/refined_gold");
+		public static final ITag.INamedTag<Item> DIAMOND_STORAGE = forge("storage_blocks/refined_diamond");
+		public static final ITag.INamedTag<Item> NETHERITE_STORAGE = forge("storage_blocks/refined_netherite");
+		public static final ITag.INamedTag<Item> CARBON_STORAGE = forge("storage_blocks/refined_carbon");
 		
 
 		private static ITag.INamedTag<Item> forge(String path) {
