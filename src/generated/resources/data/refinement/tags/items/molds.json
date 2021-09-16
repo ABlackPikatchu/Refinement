@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "refinement:ingot_mold",
+    "refinement:gem_mold",
+    "refinement:cogwheel_mold"
+  ]
+}

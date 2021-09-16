@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "#refinement:cogwheels/refined_diamond",
-    "#refinement:cogwheels/refined_gold",
-    "#refinement:cogwheels/refined_iron",
-    "#refinement:cogwheels/wooden"
-  ]
-}

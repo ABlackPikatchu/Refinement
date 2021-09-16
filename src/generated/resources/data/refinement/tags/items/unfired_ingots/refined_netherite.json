@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "refinement:unfired_refined_netherite_ingot",
     "refinement:unfired_refined_netherite_ingot"
   ]
 }

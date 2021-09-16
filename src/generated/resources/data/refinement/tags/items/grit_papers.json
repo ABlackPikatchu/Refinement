@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "refinement:iron_grit_paper",
+    "refinement:diamond_grit_paper",
+    "refinement:netherite_grit_paper"
+  ]
+}
