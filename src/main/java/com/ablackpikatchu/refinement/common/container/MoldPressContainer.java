@@ -2,13 +2,13 @@ package com.ablackpikatchu.refinement.common.container;
 
 import java.util.Objects;
 
-import com.ablackpikatchu.refinement.common.slot.ItemReservedSlot;
 import com.ablackpikatchu.refinement.common.slot.ItemsReservedSlot;
 import com.ablackpikatchu.refinement.common.slot.OutputSlot;
+import com.ablackpikatchu.refinement.common.slot.itemspecific.CarbonSlot;
+import com.ablackpikatchu.refinement.common.slot.itemspecific.SpeedUpgradeSlot;
 import com.ablackpikatchu.refinement.common.te.machine.MoldPressTileEntity;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
-import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.util.FunctionalIntReferenceHolder;
 import com.ablackpikatchu.refinement.core.util.lists.ItemLists;
 
@@ -21,6 +21,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IWorldPosCallable;
+
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -40,9 +41,9 @@ public class MoldPressContainer extends Container {
 		// Tile Entity
 		this.addSlot(new Slot((IInventory) te, 0, 62, 6)); //Input
 		this.addSlot(new OutputSlot((IInventory) te, 1, 119, 6)); //Output
-		this.addSlot(new ItemsReservedSlot((IInventory) te, 2, 62, 53, ItemLists.molds)); //Mold
-		this.addSlot(new ItemReservedSlot((IInventory) te, 3, 8, 44, ItemInit.REFINED_CARBON_INGOT.get())); //Coal
-		this.addSlot(new ItemReservedSlot((IInventory) te, 4, 152, 58, ItemInit.SPEED_UPGRADE.get())); //Speed Upgarde
+		this.addSlot(new ItemsReservedSlot((IInventory) te, 2, 62, 53, ItemLists.MOLDS)); //Mold
+		this.addSlot(new CarbonSlot(te, 3, 8, 44)); //Coal
+		this.addSlot(new SpeedUpgradeSlot((IInventory) te, 4, 152, 58)); //Speed Upgarde
 
 		// Main Player Inventory
 		for (int row = 0; row < 3; row++) {

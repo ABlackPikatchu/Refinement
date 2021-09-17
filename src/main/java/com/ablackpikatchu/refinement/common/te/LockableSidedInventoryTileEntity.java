@@ -24,9 +24,12 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.IItemHandlerModifiable;
+import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
 public abstract class LockableSidedInventoryTileEntity extends LockableTileEntity implements ISidedInventory {
+	private final LazyOptional<IItemHandlerModifiable> inventory = LazyOptional.of(this::createInventory);
 	protected NonNullList<ItemStack> items;
 	private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.UP,
 			Direction.DOWN, Direction.NORTH);
@@ -215,5 +218,14 @@ public abstract class LockableSidedInventoryTileEntity extends LockableTileEntit
 					worldPosition.getZ(), item);
 			level.addFreshEntity(itemEntity);
 		});
+	}
+	
+	public IItemHandlerModifiable getInventory() {
+		return inventory.orElseThrow(() -> new IllegalStateException("Inventory not initialized correctly"));
+	}
+	
+	@Nonnull
+	public IItemHandlerModifiable createInventory() {
+		return new ItemStackHandler(getContainerSize());
 	}
 }

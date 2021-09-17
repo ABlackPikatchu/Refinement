@@ -2,12 +2,12 @@ package com.ablackpikatchu.refinement.common.container;
 
 import java.util.Objects;
 
-import com.ablackpikatchu.refinement.common.slot.ItemReservedSlot;
 import com.ablackpikatchu.refinement.common.slot.OutputSlot;
+import com.ablackpikatchu.refinement.common.slot.itemspecific.CarbonSlot;
+import com.ablackpikatchu.refinement.common.slot.itemspecific.SpeedUpgradeSlot;
 import com.ablackpikatchu.refinement.common.te.machine.MixerTileEntity;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
-import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.util.FunctionalIntReferenceHolder;
 
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,6 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IWorldPosCallable;
+
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -38,8 +39,8 @@ public class MixerContainer extends Container {
 		this.addSlot(new Slot((IInventory) te, 0, 44, 14)); // Input 1
 		this.addSlot(new Slot((IInventory) te, 1, 44, 43)); // Input 2
 		this.addSlot(new OutputSlot((IInventory) te, 2, 135, 28)); // Output
-		this.addSlot(new ItemReservedSlot((IInventory) te, 3, 8, 49, ItemInit.REFINED_CARBON_INGOT.get())); // Coal
-		this.addSlot(new ItemReservedSlot((IInventory) te, 4, 152, 63, ItemInit.SPEED_UPGRADE.get())); //Speed Upgrade
+		this.addSlot(new CarbonSlot(te, 3, 8, 49)); // Coal
+		this.addSlot(new SpeedUpgradeSlot((IInventory) te, 4, 152, 63)); //Speed Upgrade
 
 		// Main Player Inventory
 		for (int row = 0; row < 3; row++) {

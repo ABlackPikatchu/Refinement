@@ -1,7 +1,7 @@
 package com.ablackpikatchu.refinement.common.jei;
 
 import com.ablackpikatchu.refinement.Refinement;
-import com.ablackpikatchu.refinement.client.screen.MoldPressScreen;
+import com.ablackpikatchu.refinement.client.screen.tileentity.MoldPressScreen;
 import com.ablackpikatchu.refinement.common.recipe.MoldPressRecipe;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.BlockInit;

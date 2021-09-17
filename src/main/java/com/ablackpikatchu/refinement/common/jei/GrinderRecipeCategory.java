@@ -1,7 +1,7 @@
 package com.ablackpikatchu.refinement.common.jei;
 
 import com.ablackpikatchu.refinement.Refinement;
-import com.ablackpikatchu.refinement.client.screen.GrinderScreen;
+import com.ablackpikatchu.refinement.client.screen.tileentity.GrinderScreen;
 import com.ablackpikatchu.refinement.common.recipe.GrinderRecipe;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
