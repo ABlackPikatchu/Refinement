@@ -1,10 +1,10 @@
 package com.ablackpikatchu.refinement.core.util;
 
 import com.ablackpikatchu.refinement.Refinement;
-import com.ablackpikatchu.refinement.client.screen.GrinderScreen;
-import com.ablackpikatchu.refinement.client.screen.MixerScreen;
-import com.ablackpikatchu.refinement.client.screen.MoldPressScreen;
-import com.ablackpikatchu.refinement.client.screen.VaccumulatorScreen;
+import com.ablackpikatchu.refinement.client.screen.tileentity.GrinderScreen;
+import com.ablackpikatchu.refinement.client.screen.tileentity.MixerScreen;
+import com.ablackpikatchu.refinement.client.screen.tileentity.MoldPressScreen;
+import com.ablackpikatchu.refinement.client.screen.tileentity.VaccumulatorScreen;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
 
 import net.minecraft.client.gui.ScreenManager;

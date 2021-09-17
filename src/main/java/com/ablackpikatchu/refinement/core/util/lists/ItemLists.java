@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 
 public class ItemLists {
 
-	public static Item[] molds = { ItemInit.GEM_MOLD.get(), ItemInit.INGOT_MOLD.get(), ItemInit.COGWHEEL_MOLD.get() };
+	public static Item[] MOLDS = { ItemInit.GEM_MOLD.get(), ItemInit.INGOT_MOLD.get(), ItemInit.COGWHEEL_MOLD.get() };
 	
 	public static boolean isItemInTheList(Item[] items, Item item) {
 		for (Item listItem : items) {
@@ -16,7 +16,7 @@ public class ItemLists {
 	}
 	
 	public static boolean isMold(Item item) {
-		return isItemInTheList(molds, item);
+		return isItemInTheList(MOLDS, item);
 	}
 
 }
