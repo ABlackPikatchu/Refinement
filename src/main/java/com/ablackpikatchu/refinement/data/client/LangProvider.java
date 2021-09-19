@@ -73,6 +73,10 @@ public class LangProvider extends LanguageProvider {
 		addTooltip("miners_jerky_shift", "It uses the food from your stomach to make you resist more powerful attacks!");
 		addTooltip("miners_apple_shift", "It makes your feet stronger, letting them absorb any fall damage!");
 		addTooltip("miners_carrot_shift", "It makes your legs longer, letting you jump further!");
+		
+		//Key Binds
+		addKeybind("conversion_key", "Ore Unify");
+		add("key.category." + Refinement.MOD_ID, "Refinement");
 
 		// Blocks
 		BlockInit.BLOCKS.getEntries().parallelStream().map(RegistryObject<Block>::get).forEach(block -> {
@@ -102,6 +106,10 @@ public class LangProvider extends LanguageProvider {
 	
 	private void addCategory(String key, String value) {
 		this.add("category." + Refinement.MOD_ID + "." + key, value);
+	}
+	
+	private void addKeybind(String key, String value) {
+		this.add("key." + Refinement.MOD_ID + "." + key, value);
 	}
 
 }

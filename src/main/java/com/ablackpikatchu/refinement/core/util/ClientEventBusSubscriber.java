@@ -6,6 +6,7 @@ import com.ablackpikatchu.refinement.client.screen.tileentity.MixerScreen;
 import com.ablackpikatchu.refinement.client.screen.tileentity.MoldPressScreen;
 import com.ablackpikatchu.refinement.client.screen.tileentity.VaccumulatorScreen;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
+import com.ablackpikatchu.refinement.core.init.KeybindsInit;
 
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraftforge.api.distmarker.Dist;
@@ -19,6 +20,9 @@ public class ClientEventBusSubscriber {
 	
 	@SubscribeEvent
 	public static void clientSetup(FMLClientSetupEvent event) {
+		
+		KeybindsInit.register(event);
+		
 		ScreenManager.register(ContainerTypesInit.GRINDER_CONTAINER_TYPE.get(), GrinderScreen::new);
 		ScreenManager.register(ContainerTypesInit.MIXER_CONTAINER_TYPE.get(), MixerScreen::new);
 		ScreenManager.register(ContainerTypesInit.MOLD_PRESS_CONTAINER_TYPE.get(), MoldPressScreen::new);

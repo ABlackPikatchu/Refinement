@@ -119,6 +119,8 @@
   "itemGroup.refinement_machine": "Refinement Machines",
   "itemGroup.refinement_materials": "Refinement Materials",
   "itemGroup.refinement_tools_weapons": "Refinement Tools & Weapons",
+  "key.category.refinement": "Refinement",
+  "key.refinement.conversion_key": "Ore Unify",
   "tooltip.refinement.hold_shift": "Hold \u00A7eSHIFT\u00A7r for more information!",
   "tooltip.refinement.miners_apple_shift": "It makes your feet stronger, letting them absorb any fall damage!",
   "tooltip.refinement.miners_carrot_shift": "It makes your legs longer, letting you jump further!",

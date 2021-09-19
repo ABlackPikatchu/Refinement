@@ -12,9 +12,14 @@ import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.PotionInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
+import com.ablackpikatchu.refinement.core.network.RefinementNetwork;
+import com.ablackpikatchu.refinement.core.util.Conversions;
 
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.crafting.IRecipeSerializer;
+
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -22,7 +27,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.config.ModConfig.Type;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import software.bernie.geckolib3.GeckoLib;
 
 @Mod("refinement")
@@ -34,25 +41,44 @@ public class Refinement {
 
 	public Refinement() {
 		GeckoLib.initialize();
-		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+
+		// mod bus events
+		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
 		ModLoadingContext.get().registerConfig(Type.COMMON, CommonConfig.SPEC, "refinement-common.toml");
 		ModLoadingContext.get().registerConfig(Type.CLIENT, ClientConfig.SPEC, "refinement-client.toml");
 
-		bus.addGenericListener(IRecipeSerializer.class, RecipeInit::registerRecipes);
+		modBus.addGenericListener(IRecipeSerializer.class, RecipeInit::registerRecipes);
 
-		BlockInit.BLOCKS.register(bus);
-		ItemInit.ITEMS.register(bus);
-		TileEntityTypesInit.TILE_ENTITY_TYPE.register(bus);
-		ContainerTypesInit.CONTAINER_TYPES.register(bus);
-		PotionInit.EFFECTS.register(bus);
+		BlockInit.BLOCKS.register(modBus);
+		ItemInit.ITEMS.register(modBus);
+		TileEntityTypesInit.TILE_ENTITY_TYPE.register(modBus);
+		ContainerTypesInit.CONTAINER_TYPES.register(modBus);
+		PotionInit.EFFECTS.register(modBus);
 
 		MinecraftForge.EVENT_BUS.register(this);
+		
+		modBus.addListener(this::commonSetup);
+
+		// forge bus events
+		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
+		forgeBus.addListener(this::oreConversion);
 	}
 
-	
+	public void oreConversion(TickEvent.ServerTickEvent event) {
+		if (CommonConfig.ENABLE_CONVERSION.get() && CommonConfig.INVENTORY_TRIGGER_CONVERSION.get()) {
+			for (PlayerEntity player : ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayers()) {
+				Conversions.convert(player);
+			}
+		}
+	}
+
 	@SubscribeEvent
 	public static void clientSetup(final FMLClientSetupEvent event) {
 		RenderLayers.setRenderLayers();
+	}
+	
+	public void commonSetup(final FMLCommonSetupEvent event) {
+		RefinementNetwork.init();
 	}
 }
