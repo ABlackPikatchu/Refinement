@@ -21,13 +21,17 @@ public class CommonConfig {
 
 	// Magnet
 	public static final ForgeConfigSpec.ConfigValue<Double> MAGNET_RANGE;
-	
-	//Vaccumulator
+
+	// Vaccumulator
 	public static final ForgeConfigSpec.ConfigValue<Double> VACCUMULATOR_RANGE;
+
+	// Conversions
+	public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_CONVERSION;
+	public static final ForgeConfigSpec.ConfigValue<Boolean> INVENTORY_TRIGGER_CONVERSION;
 
 	static {
 
-		BUILDER.push("Machine Config");
+		BUILDER.push("Machine_Config");
 
 		BUILDER.push("Grinder");
 		GRINDER_DEFAULT_PROCESS_TIME = BUILDER.comment(
@@ -47,7 +51,7 @@ public class CommonConfig {
 				.define("Speed Upgrade Time Decreased", 10);
 		BUILDER.pop();
 
-		BUILDER.push("Mold Press");
+		BUILDER.push("Mold_Press");
 		MOLD_PRESS_DEFAULT_PROCESS_TIME = BUILDER.comment(
 				"The default process time for the Mold Press, in ticks. (with no speed upgrades) (Default value is 200)")
 				.define("Default Process Time", 200);
@@ -55,14 +59,29 @@ public class CommonConfig {
 				"The ticks amount each speed upgrades decreses the process time of the Mixer. (Default value is 15)")
 				.define("Speed Upgrade Time Decreased", 15);
 		BUILDER.pop();
+		
+		BUILDER.pop();
+
+		BUILDER.push("Conversions");
+
+		ENABLE_CONVERSION = BUILDER.comment("If the ore unfiying should be enabled (Default value is false)")
+				.define("Conversion Enabled", false);
+		INVENTORY_TRIGGER_CONVERSION = BUILDER.comment(
+				"(ONLY IF Conversion Enabled IS TRUE) If the ore unifying should trigger in the player inventory (without pressing the Ore Unify key) (Default value is true)")
+				.define("Conversion Inventory Trigger", true);
+
+		BUILDER.pop();
+
+		BUILDER.push("Magnets");
 
 		MAGNET_RANGE = BUILDER.comment("The range of the Magnet (in blocks) (Default value is 7.0)")
 				.define("Magnet Range", 7.0);
-		
+
 		VACCUMULATOR_RANGE = BUILDER.comment("The range of the Vaccumulator (in blocks) (Default value is 7.0)")
 				.define("Vaccumulator Range", 7.0);
 
 		BUILDER.pop();
+
 		SPEC = BUILDER.build();
 
 	}
