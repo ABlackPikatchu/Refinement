@@ -56,6 +56,30 @@ public class ShapedRecipes {
 				new KeyIngredient('R', ItemInit.REFINED_IRON_INGOT.get()),
 				new KeyIngredient('D', ItemInit.REFINED_DIAMOND_COGWHEEL.get()),
 				new KeyIngredient('F', ItemInit.MACHINE_FRAME.get()));
+		
+		newShapedRecipe(new Output(ItemInit.MIXER.get(), 1), new Pattern("RPR", "DFD", "RMR"),
+				machineStuff(itemName(ItemInit.MIXER.get())),
+				new KeyIngredient('P', ItemInit.MACHINE_PARTS),
+				new KeyIngredient('R', ItemInit.REFINED_IRON_INGOT.get()),
+				new KeyIngredient('D', ItemInit.REFINED_DIAMOND_COGWHEEL.get()),
+				new KeyIngredient('F', ItemInit.MACHINE_FRAME.get()),
+				new KeyIngredient('M', ItemInit.MIXING_BOWL.get()));
+		
+		newShapedRecipe(new Output(ItemInit.MOLD_PRESS.get(), 1), new Pattern("RPR", "DFD", "R#R"),
+				machineStuff(itemName(ItemInit.MOLD_PRESS.get())),
+				new KeyIngredient('P', ItemInit.MACHINE_PARTS),
+				new KeyIngredient('R', ItemInit.REFINED_IRON_INGOT.get()),
+				new KeyIngredient('D', ItemInit.REFINED_IRON_COGWHEEL.get()),
+				new KeyIngredient('F', ItemInit.MACHINE_FRAME.get()),
+				new KeyIngredient('#', ItemInit.REFINED_DIAMOND.get()));
+		
+		newShapedRecipe(new Output(ItemInit.VACCUMULATOR.get(), 1), new Pattern("I#I", "PMP", "IBI"),
+				machineStuff(itemName(ItemInit.VACCUMULATOR.get())),
+				new KeyIngredient('I', TagInit.Items.IRON_INGOT),
+				new KeyIngredient('#', ItemInit.MAGNET.get()),
+				new KeyIngredient('P', ItemInit.MACHINE_PARTS.get()),
+				new KeyIngredient('M', ItemInit.MACHINE_FRAME.get()),
+				new KeyIngredient('B', TagInit.Items.IRON_STORAGE));
 
 		newShapedRecipe(new Output(ItemInit.MAGNET.get(), 1), new Pattern(" # ", "G G", "R B"),
 				tools(itemName(ItemInit.MAGNET.get())), new KeyIngredient('#', Items.IRON_BLOCK),
