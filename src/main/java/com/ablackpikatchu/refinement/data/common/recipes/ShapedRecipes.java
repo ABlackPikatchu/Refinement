@@ -79,7 +79,7 @@ public class ShapedRecipes {
 				tools(itemName(ItemInit.MAGNET.get())), new KeyIngredient('#', Items.IRON_BLOCK),
 				new KeyIngredient('G', Items.GOLD_INGOT), new KeyIngredient('R', Items.REDSTONE_BLOCK),
 				new KeyIngredient('B', Items.BLUE_DYE));
-		
+
 		newShapedRecipe(new Output(ItemInit.MIXING_BOWL.get(), 1), new Pattern(" / ", "_ _", " _ "),
 				tools(itemName(ItemInit.MIXING_BOWL.get())), new KeyIngredient('/', Items.STICK),
 				new KeyIngredient('_', Items.OAK_SLAB));
@@ -151,26 +151,26 @@ public class ShapedRecipes {
 				new KeyIngredient('D', TagInit.Items.DIAMOND), new KeyIngredient('I', TagInit.Items.IRON_INGOT),
 				new KeyIngredient('E', Items.EMERALD), new KeyIngredient('C', TagInit.Items.COBBLESTONE),
 				new KeyIngredient('R', Items.REDSTONE), new KeyIngredient('B', Items.BOWL));
-		
+
 		newShapedRecipe(new Output(ItemInit.UNFIRED_REFINED_CARBON_INGOT.get(), 1), new Pattern(" / ", "/M/", "   "),
-				unfired(itemName(ItemInit.UNFIRED_REFINED_CARBON_INGOT)), new KeyIngredient('/', ItemInit.REFINED_CARBON_DUST),
-				new KeyIngredient('M', ItemInit.INGOT_MOLD));
-		
+				unfired(itemName(ItemInit.UNFIRED_REFINED_CARBON_INGOT)),
+				new KeyIngredient('/', ItemInit.REFINED_CARBON_DUST), new KeyIngredient('M', ItemInit.INGOT_MOLD));
+
 		newShapedRecipe(new Output(ItemInit.UNFIRED_REFINED_IRON_INGOT.get(), 1), new Pattern(" / ", "/M/", "   "),
-				unfired(itemName(ItemInit.UNFIRED_REFINED_IRON_INGOT)), new KeyIngredient('/', ItemInit.REFINED_IRON_DUST),
-				new KeyIngredient('M', ItemInit.INGOT_MOLD));
-		
+				unfired(itemName(ItemInit.UNFIRED_REFINED_IRON_INGOT)),
+				new KeyIngredient('/', ItemInit.REFINED_IRON_DUST), new KeyIngredient('M', ItemInit.INGOT_MOLD));
+
 		newShapedRecipe(new Output(ItemInit.UNFIRED_REFINED_GOLD_INGOT.get(), 1), new Pattern(" / ", "/M/", "   "),
-				unfired(itemName(ItemInit.UNFIRED_REFINED_GOLD_INGOT)), new KeyIngredient('/', ItemInit.REFINED_GOLD_DUST),
-				new KeyIngredient('M', ItemInit.INGOT_MOLD));
-		
+				unfired(itemName(ItemInit.UNFIRED_REFINED_GOLD_INGOT)),
+				new KeyIngredient('/', ItemInit.REFINED_GOLD_DUST), new KeyIngredient('M', ItemInit.INGOT_MOLD));
+
 		newShapedRecipe(new Output(ItemInit.UNFIRED_REFINED_NETHERITE_INGOT.get(), 1), new Pattern(" / ", "/M/", "   "),
-				unfired(itemName(ItemInit.UNFIRED_REFINED_NETHERITE_INGOT)), new KeyIngredient('/', ItemInit.REFINED_NETHERITE_DUST),
-				new KeyIngredient('M', ItemInit.INGOT_MOLD));
-		
+				unfired(itemName(ItemInit.UNFIRED_REFINED_NETHERITE_INGOT)),
+				new KeyIngredient('/', ItemInit.REFINED_NETHERITE_DUST), new KeyIngredient('M', ItemInit.INGOT_MOLD));
+
 		newShapedRecipe(new Output(ItemInit.UNFIRED_REFINED_DIAMOND.get(), 1), new Pattern(" / ", "/M/", "   "),
-				unfired(itemName(ItemInit.UNFIRED_REFINED_DIAMOND)), new KeyIngredient('/', ItemInit.REFINED_DIAMOND_DUST),
-				new KeyIngredient('M', ItemInit.GEM_MOLD));
+				unfired(itemName(ItemInit.UNFIRED_REFINED_DIAMOND)),
+				new KeyIngredient('/', ItemInit.REFINED_DIAMOND_DUST), new KeyIngredient('M', ItemInit.GEM_MOLD));
 
 		shapedRecipes.forEach((recipe, name) -> {
 			recipe.unlockedBy("has_item", has(Items.AIR));
@@ -214,7 +214,7 @@ public class ShapedRecipes {
 	public static ResourceLocation food(@Nullable String name) {
 		return new ResourceLocation(Refinement.MOD_ID, "food/" + name);
 	}
-	
+
 	public static ResourceLocation unfired(@Nullable String name) {
 		return new ResourceLocation(Refinement.MOD_ID, "unfired/" + name);
 	}

@@ -47,6 +47,7 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 	public static HashMap<MixerInput, Output> MIXER_RECIPES = new HashMap<>();
 
 	public static HashMap<MoldPressInput, Output> MOLD_PRESS_RECIPES = new HashMap<>();
+	
 
 	public RecipeProvider(DataGenerator p_i48262_1_) {
 		super(p_i48262_1_);
