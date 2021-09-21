@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " / ",
+    "/M/",
+    "   "
+  ],
+  "key": {
+    "/": {
+      "item": "refinement:refined_diamond_dust"
+    },
+    "M": {
+      "item": "refinement:gem_mold"
+    }
+  },
+  "result": {
+    "item": "refinement:unfired_refined_diamond"
+  }
+}

@@ -20,7 +20,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
-
 import net.minecraftforge.fml.RegistryObject;
 
 public class ShapedRecipes {
@@ -50,22 +49,128 @@ public class ShapedRecipes {
 				new KeyIngredient('G', ItemInit.REFINED_GOLD_INGOT.get()),
 				new KeyIngredient('D', ItemInit.REFINED_DIAMOND.get()));
 
+		newShapedRecipe(new Output(ItemInit.GRINDER.get(), 1), new Pattern("RPR", "DFD", "RPR"),
+				machineStuff(itemName(ItemInit.GRINDER.get())), new KeyIngredient('P', ItemInit.MACHINE_PARTS),
+				new KeyIngredient('R', ItemInit.REFINED_IRON_INGOT.get()),
+				new KeyIngredient('D', ItemInit.REFINED_DIAMOND_COGWHEEL.get()),
+				new KeyIngredient('F', ItemInit.MACHINE_FRAME.get()));
+
+		newShapedRecipe(new Output(ItemInit.MIXER.get(), 1), new Pattern("RPR", "DFD", "RMR"),
+				machineStuff(itemName(ItemInit.MIXER.get())), new KeyIngredient('P', ItemInit.MACHINE_PARTS),
+				new KeyIngredient('R', ItemInit.REFINED_IRON_INGOT.get()),
+				new KeyIngredient('D', ItemInit.REFINED_DIAMOND_COGWHEEL.get()),
+				new KeyIngredient('F', ItemInit.MACHINE_FRAME.get()),
+				new KeyIngredient('M', ItemInit.MIXING_BOWL.get()));
+
+		newShapedRecipe(new Output(ItemInit.MOLD_PRESS.get(), 1), new Pattern("RPR", "DFD", "R#R"),
+				machineStuff(itemName(ItemInit.MOLD_PRESS.get())), new KeyIngredient('P', ItemInit.MACHINE_PARTS),
+				new KeyIngredient('R', ItemInit.REFINED_IRON_INGOT.get()),
+				new KeyIngredient('D', ItemInit.REFINED_IRON_COGWHEEL.get()),
+				new KeyIngredient('F', ItemInit.MACHINE_FRAME.get()),
+				new KeyIngredient('#', ItemInit.REFINED_DIAMOND.get()));
+
+		newShapedRecipe(new Output(ItemInit.VACCUMULATOR.get(), 1), new Pattern("I#I", "PMP", "IBI"),
+				machineStuff(itemName(ItemInit.VACCUMULATOR.get())), new KeyIngredient('I', TagInit.Items.IRON_INGOT),
+				new KeyIngredient('#', ItemInit.MAGNET.get()), new KeyIngredient('P', ItemInit.MACHINE_PARTS.get()),
+				new KeyIngredient('M', ItemInit.MACHINE_FRAME.get()),
+				new KeyIngredient('B', TagInit.Items.IRON_STORAGE));
+
 		newShapedRecipe(new Output(ItemInit.MAGNET.get(), 1), new Pattern(" # ", "G G", "R B"),
 				tools(itemName(ItemInit.MAGNET.get())), new KeyIngredient('#', Items.IRON_BLOCK),
 				new KeyIngredient('G', Items.GOLD_INGOT), new KeyIngredient('R', Items.REDSTONE_BLOCK),
 				new KeyIngredient('B', Items.BLUE_DYE));
 
+		newShapedRecipe(new Output(ItemInit.MIXING_BOWL.get(), 1), new Pattern(" / ", "_ _", " _ "),
+				tools(itemName(ItemInit.MIXING_BOWL.get())), new KeyIngredient('/', Items.STICK),
+				new KeyIngredient('_', Items.OAK_SLAB));
+
+		newShapedRecipe(new Output(ItemInit.GRIT_PAPER.get(), 1), new Pattern("III", "PPP", "   "),
+				tools(itemName(ItemInit.GRIT_PAPER.get())), new KeyIngredient('I', ItemInit.GRIT),
+				new KeyIngredient('P', Items.PAPER));
+
+		newShapedRecipe(new Output(ItemInit.IRON_GRIT_PAPER.get(), 1), new Pattern("III", "PPP", "   "),
+				tools(itemName(ItemInit.IRON_GRIT_PAPER.get())), new KeyIngredient('I', ItemInit.IRON_INFUSED_GRIT),
+				new KeyIngredient('P', Items.PAPER));
+
+		newShapedRecipe(new Output(ItemInit.DIAMOND_GRIT_PAPER.get(), 1), new Pattern("III", "PPP", "   "),
+				tools(itemName(ItemInit.DIAMOND_GRIT_PAPER.get())),
+				new KeyIngredient('I', ItemInit.DIAMOND_INFUSED_GRIT), new KeyIngredient('P', Items.PAPER));
+
+		newShapedRecipe(new Output(ItemInit.NETHERITE_GRIT_PAPER.get(), 1), new Pattern("III", "PPP", "   "),
+				tools(itemName(ItemInit.NETHERITE_GRIT_PAPER.get())),
+				new KeyIngredient('I', ItemInit.NETHERITE_INFUSED_GRIT), new KeyIngredient('P', Items.PAPER));
+
 		newShapedRecipe(new Output(ItemInit.UNFIRED_COGWHEEL_MOLD.get(), 1), new Pattern("###", "#I#", "###"),
 				molds(itemName(ItemInit.UNFIRED_COGWHEEL_MOLD)), new KeyIngredient('#', Items.CLAY_BALL),
 				new KeyIngredient('I', TagInit.Items.COGWHEELS));
-		
+
 		newShapedRecipe(new Output(ItemInit.UNFIRED_GEM_MOLD.get(), 1), new Pattern("###", "#I#", "###"),
 				molds(itemName(ItemInit.UNFIRED_GEM_MOLD)), new KeyIngredient('#', Items.CLAY_BALL),
 				new KeyIngredient('I', TagInit.Items.GEMS));
-		
+
 		newShapedRecipe(new Output(ItemInit.UNFIRED_INGOT_MOLD.get(), 1), new Pattern("###", "#I#", "###"),
 				molds(itemName(ItemInit.UNFIRED_INGOT_MOLD)), new KeyIngredient('#', Items.CLAY_BALL),
 				new KeyIngredient('I', TagInit.Items.INGOTS));
+
+		newShapedRecipe(new Output(ItemInit.GRIT.get(), 6), new Pattern("SGS", "GSG", " B "),
+				mixingBowl(itemName(ItemInit.GRIT)), new KeyIngredient('S', Items.SAND),
+				new KeyIngredient('G', Items.GRAVEL), new KeyIngredient('B', ItemInit.MIXING_BOWL));
+
+		newShapedRecipe(new Output(ItemInit.IRON_INFUSED_GRIT.get(), 2), new Pattern(" G ", " R ", " B "),
+				mixingBowl(itemName(ItemInit.IRON_INFUSED_GRIT)), new KeyIngredient('G', ItemInit.REFINED_IRON_DUST),
+				new KeyIngredient('R', ItemInit.GRIT), new KeyIngredient('B', ItemInit.MIXING_BOWL));
+
+		newShapedRecipe(new Output(ItemInit.DIAMOND_INFUSED_GRIT.get(), 2), new Pattern(" G ", " R ", " B "),
+				mixingBowl(itemName(ItemInit.DIAMOND_INFUSED_GRIT)),
+				new KeyIngredient('G', ItemInit.REFINED_DIAMOND_DUST), new KeyIngredient('R', ItemInit.GRIT),
+				new KeyIngredient('B', ItemInit.MIXING_BOWL));
+
+		newShapedRecipe(new Output(ItemInit.NETHERITE_INFUSED_GRIT.get(), 2), new Pattern(" G ", " R ", " B "),
+				mixingBowl(itemName(ItemInit.NETHERITE_INFUSED_GRIT)),
+				new KeyIngredient('G', ItemInit.REFINED_NETHERITE_DUST), new KeyIngredient('R', ItemInit.GRIT),
+				new KeyIngredient('B', ItemInit.MIXING_BOWL));
+
+		newShapedRecipe(new Output(ItemInit.UNFIRED_REFINED_DIAMOND_COGWHEEL.get(), 1),
+				new Pattern("###", " S ", "   "), cogwheels(itemName(ItemInit.UNFIRED_REFINED_DIAMOND_COGWHEEL)),
+				new KeyIngredient('#', ItemInit.REFINED_DIAMOND_DUST), new KeyIngredient('S', ItemInit.COGWHEEL_MOLD));
+
+		newShapedRecipe(new Output(ItemInit.UNFIRED_REFINED_IRON_COGWHEEL.get(), 1), new Pattern("###", " S ", "   "),
+				cogwheels(itemName(ItemInit.UNFIRED_REFINED_IRON_COGWHEEL)),
+				new KeyIngredient('#', ItemInit.REFINED_IRON_DUST), new KeyIngredient('S', ItemInit.COGWHEEL_MOLD));
+
+		newShapedRecipe(new Output(ItemInit.UNFIRED_REFINED_GOLD_COGWHEEL.get(), 1), new Pattern("###", " S ", "   "),
+				cogwheels(itemName(ItemInit.UNFIRED_REFINED_GOLD_COGWHEEL)),
+				new KeyIngredient('#', ItemInit.REFINED_GOLD_DUST), new KeyIngredient('S', ItemInit.COGWHEEL_MOLD));
+
+		newShapedRecipe(new Output(ItemInit.WOODEN_COGWHEEL.get(), 1), new Pattern("#O#", "O O", "#O#"),
+				cogwheels(itemName(ItemInit.WOODEN_COGWHEEL)), new KeyIngredient('#', Items.OAK_PLANKS),
+				new KeyIngredient('O', Items.OAK_BUTTON));
+
+		newShapedRecipe(new Output(ItemInit.MINERS_STEW.get(), 1), new Pattern("GDI", "ECR", " B "),
+				food(itemName(ItemInit.MINERS_STEW)), new KeyIngredient('G', TagInit.Items.GOLD_INGOT),
+				new KeyIngredient('D', TagInit.Items.DIAMOND), new KeyIngredient('I', TagInit.Items.IRON_INGOT),
+				new KeyIngredient('E', Items.EMERALD), new KeyIngredient('C', TagInit.Items.COBBLESTONE),
+				new KeyIngredient('R', Items.REDSTONE), new KeyIngredient('B', Items.BOWL));
+
+		newShapedRecipe(new Output(ItemInit.UNFIRED_REFINED_CARBON_INGOT.get(), 1), new Pattern(" / ", "/M/", "   "),
+				unfired(itemName(ItemInit.UNFIRED_REFINED_CARBON_INGOT)),
+				new KeyIngredient('/', ItemInit.REFINED_CARBON_DUST), new KeyIngredient('M', ItemInit.INGOT_MOLD));
+
+		newShapedRecipe(new Output(ItemInit.UNFIRED_REFINED_IRON_INGOT.get(), 1), new Pattern(" / ", "/M/", "   "),
+				unfired(itemName(ItemInit.UNFIRED_REFINED_IRON_INGOT)),
+				new KeyIngredient('/', ItemInit.REFINED_IRON_DUST), new KeyIngredient('M', ItemInit.INGOT_MOLD));
+
+		newShapedRecipe(new Output(ItemInit.UNFIRED_REFINED_GOLD_INGOT.get(), 1), new Pattern(" / ", "/M/", "   "),
+				unfired(itemName(ItemInit.UNFIRED_REFINED_GOLD_INGOT)),
+				new KeyIngredient('/', ItemInit.REFINED_GOLD_DUST), new KeyIngredient('M', ItemInit.INGOT_MOLD));
+
+		newShapedRecipe(new Output(ItemInit.UNFIRED_REFINED_NETHERITE_INGOT.get(), 1), new Pattern(" / ", "/M/", "   "),
+				unfired(itemName(ItemInit.UNFIRED_REFINED_NETHERITE_INGOT)),
+				new KeyIngredient('/', ItemInit.REFINED_NETHERITE_DUST), new KeyIngredient('M', ItemInit.INGOT_MOLD));
+
+		newShapedRecipe(new Output(ItemInit.UNFIRED_REFINED_DIAMOND.get(), 1), new Pattern(" / ", "/M/", "   "),
+				unfired(itemName(ItemInit.UNFIRED_REFINED_DIAMOND)),
+				new KeyIngredient('/', ItemInit.REFINED_DIAMOND_DUST), new KeyIngredient('M', ItemInit.GEM_MOLD));
 
 		shapedRecipes.forEach((recipe, name) -> {
 			recipe.unlockedBy("has_item", has(Items.AIR));
@@ -90,12 +195,28 @@ public class ShapedRecipes {
 		return new ResourceLocation(Refinement.MOD_ID, "machine_stuff/" + name);
 	}
 
+	public static ResourceLocation mixingBowl(@Nullable String name) {
+		return new ResourceLocation(Refinement.MOD_ID, "mixing_bowl/" + name);
+	}
+
 	public static ResourceLocation tools(@Nullable String name) {
 		return new ResourceLocation(Refinement.MOD_ID, "tools/" + name);
 	}
 
 	public static ResourceLocation molds(@Nullable String name) {
 		return new ResourceLocation(Refinement.MOD_ID, "molds/" + name);
+	}
+
+	public static ResourceLocation cogwheels(@Nullable String name) {
+		return new ResourceLocation(Refinement.MOD_ID, "cogwheels/" + name);
+	}
+
+	public static ResourceLocation food(@Nullable String name) {
+		return new ResourceLocation(Refinement.MOD_ID, "food/" + name);
+	}
+
+	public static ResourceLocation unfired(@Nullable String name) {
+		return new ResourceLocation(Refinement.MOD_ID, "unfired/" + name);
 	}
 
 	public static String itemName(Item item) {

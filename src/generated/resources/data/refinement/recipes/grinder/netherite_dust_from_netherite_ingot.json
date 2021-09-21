@@ -1,0 +1,10 @@
+{
+  "type": "refinement:grinder",
+  "input": {
+    "item": "minecraft:netherite_ingot",
+    "count": 1
+  },
+  "output": {
+    "item": "refinement:netherite_dust"
+  }
+}

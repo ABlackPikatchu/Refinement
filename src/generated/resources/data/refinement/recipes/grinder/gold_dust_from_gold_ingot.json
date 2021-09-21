@@ -1,0 +1,10 @@
+{
+  "type": "refinement:grinder",
+  "input": {
+    "item": "minecraft:gold_ingot",
+    "count": 1
+  },
+  "output": {
+    "item": "refinement:gold_dust"
+  }
+}

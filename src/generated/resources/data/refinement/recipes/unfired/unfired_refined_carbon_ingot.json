@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " / ",
+    "/M/",
+    "   "
+  ],
+  "key": {
+    "/": {
+      "item": "refinement:refined_carbon_dust"
+    },
+    "M": {
+      "item": "refinement:ingot_mold"
+    }
+  },
+  "result": {
+    "item": "refinement:unfired_refined_carbon_ingot"
+  }
+}
