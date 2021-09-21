@@ -120,25 +120,31 @@ public class RecipeMaps {
 		map.put(new IngredientInput(Items.DIAMOND, 1), new Output(ItemInit.DIAMOND_DUST.get(), 1));
 		map.put(new IngredientInput(Items.DIAMOND_ORE, 1), new Output(ItemInit.DIAMOND_DUST.get(), 2));
 		map.put(new IngredientInput(Items.NETHERITE_INGOT, 1), new Output(ItemInit.NETHERITE_DUST.get(), 1));
-		map.put(new IngredientInput(Ingredient.of(ItemInit.PURE_CRYSTAL.get()), 1), new Output(ItemInit.REFINING_DUST.get(), 1));
-		map.put(new IngredientInput(Ingredient.of(ItemInit.PURE_CRYSTAL_ORE.get()), 1), new Output(ItemInit.REFINING_DUST.get(), 2));
-		map.put(new IngredientInput(Ingredient.of(ItemInit.REFINED_CARBON_INGOT.get()), 1), new Output(ItemInit.REFINED_CARBON_DUST.get(), 1));
-		map.put(new IngredientInput(Ingredient.of(ItemInit.REFINED_DIAMOND.get()), 1), new Output(ItemInit.REFINED_DIAMOND_DUST.get(), 1));
-		map.put(new IngredientInput(Ingredient.of(ItemInit.REFINED_IRON_INGOT.get()), 1), new Output(ItemInit.REFINED_IRON_DUST.get(), 1));
-		map.put(new IngredientInput(Ingredient.of(ItemInit.REFINED_GOLD_INGOT.get()), 1), new Output(ItemInit.REFINED_GOLD_DUST.get(), 1));
-		map.put(new IngredientInput(Ingredient.of(ItemInit.REFINED_NETHERITE_INGOT.get()), 1), new Output(ItemInit.REFINED_NETHERITE_DUST.get(), 1));
-		
+		map.put(new IngredientInput(Ingredient.of(ItemInit.PURE_CRYSTAL.get()), 1),
+				new Output(ItemInit.REFINING_DUST.get(), 1));
+		map.put(new IngredientInput(Ingredient.of(ItemInit.PURE_CRYSTAL_ORE.get()), 1),
+				new Output(ItemInit.REFINING_DUST.get(), 2));
+		map.put(new IngredientInput(Ingredient.of(ItemInit.REFINED_CARBON_INGOT.get()), 1),
+				new Output(ItemInit.REFINED_CARBON_DUST.get(), 1));
+		map.put(new IngredientInput(Ingredient.of(ItemInit.REFINED_DIAMOND.get()), 1),
+				new Output(ItemInit.REFINED_DIAMOND_DUST.get(), 1));
+		map.put(new IngredientInput(Ingredient.of(ItemInit.REFINED_IRON_INGOT.get()), 1),
+				new Output(ItemInit.REFINED_IRON_DUST.get(), 1));
+		map.put(new IngredientInput(Ingredient.of(ItemInit.REFINED_GOLD_INGOT.get()), 1),
+				new Output(ItemInit.REFINED_GOLD_DUST.get(), 1));
+		map.put(new IngredientInput(Ingredient.of(ItemInit.REFINED_NETHERITE_INGOT.get()), 1),
+				new Output(ItemInit.REFINED_NETHERITE_DUST.get(), 1));
 
 		tagMap.put(new TagInput(TagInit.Items.COBBLESTONE, 16), new Output(Items.GRAVEL, 16));
 	}
 
 	public static void addMixerRecipes(HashMap<MixerInput, Output> map) {
-		
-		//Item
+
+		// Item
 		map.put(new MixerInput(new IngredientInput(Items.GRAVEL, 1), new IngredientInput(Items.SAND, 1)),
 				new Output(ItemInit.GRIT_PAPER.get(), 4));
 
-		//Tag
+		// Tag
 		map.put(new MixerInput(new TagInput(TagInit.Items.DIAMOND_DUST, 1),
 				new IngredientInput(ItemInit.IRON_INFUSED_GRIT.get(), 1)),
 				new Output(ItemInit.DIAMOND_INFUSED_GRIT.get(), 4));
@@ -147,16 +153,19 @@ public class RecipeMaps {
 				new Output(ItemInit.NETHERITE_INFUSED_GRIT.get(), 4));
 		map.put(new MixerInput(new TagInput(TagInit.Items.IRON_DUST, 1), new IngredientInput(ItemInit.GRIT.get(), 1)),
 				new Output(ItemInit.IRON_INFUSED_GRIT.get(), 4));
-		
-		map.put(new MixerInput(new TagInput(TagInit.Items.COAL_DUST, 1), new IngredientInput(ItemInit.REFINING_DUST.get(), 1)),
+
+		map.put(new MixerInput(new TagInput(TagInit.Items.COAL_DUST, 1),
+				new IngredientInput(ItemInit.REFINING_DUST.get(), 1)),
 				new Output(ItemInit.REFINED_CARBON_DUST.get(), 2));
-		map.put(new MixerInput(new TagInput(TagInit.Items.IRON_DUST, 1), new IngredientInput(ItemInit.REFINING_DUST.get(), 1)),
-				new Output(ItemInit.REFINED_IRON_DUST.get(), 2));
-		map.put(new MixerInput(new TagInput(TagInit.Items.GOLD_DUST, 1), new IngredientInput(ItemInit.REFINING_DUST.get(), 1)),
-				new Output(ItemInit.REFINED_GOLD_DUST.get(), 2));
-		map.put(new MixerInput(new TagInput(TagInit.Items.DIAMOND_DUST, 1), new IngredientInput(ItemInit.REFINING_DUST.get(), 1)),
+		map.put(new MixerInput(new TagInput(TagInit.Items.IRON_DUST, 1),
+				new IngredientInput(ItemInit.REFINING_DUST.get(), 1)), new Output(ItemInit.REFINED_IRON_DUST.get(), 2));
+		map.put(new MixerInput(new TagInput(TagInit.Items.GOLD_DUST, 1),
+				new IngredientInput(ItemInit.REFINING_DUST.get(), 1)), new Output(ItemInit.REFINED_GOLD_DUST.get(), 2));
+		map.put(new MixerInput(new TagInput(TagInit.Items.DIAMOND_DUST, 1),
+				new IngredientInput(ItemInit.REFINING_DUST.get(), 1)),
 				new Output(ItemInit.REFINED_DIAMOND_DUST.get(), 2));
-		map.put(new MixerInput(new TagInput(TagInit.Items.NETHERITE_DUST, 1), new IngredientInput(ItemInit.REFINING_DUST.get(), 1)),
+		map.put(new MixerInput(new TagInput(TagInit.Items.NETHERITE_DUST, 1),
+				new IngredientInput(ItemInit.REFINING_DUST.get(), 1)),
 				new Output(ItemInit.REFINED_NETHERITE_DUST.get(), 2));
 
 	}
@@ -164,9 +173,22 @@ public class RecipeMaps {
 	public static void addMoldPressRecipes(HashMap<MoldPressInput, Output> map) {
 		map.put(new MoldPressInput(new IngredientInput(ItemInit.REFINED_CARBON_DUST.get(), 1),
 				ItemInit.INGOT_MOLD.get()), new Output(ItemInit.UNFIRED_REFINED_CARBON_INGOT.get(), 1));
-
-		map.put(new MoldPressInput(new TagInput(TagInit.Items.IRON_DUST, 1), ItemInit.INGOT_MOLD.get()),
-				new Output(Items.IRON_INGOT, 1));
+		map.put(new MoldPressInput(new IngredientInput(ItemInit.REFINED_IRON_DUST.get(), 1), ItemInit.INGOT_MOLD.get()),
+				new Output(ItemInit.UNFIRED_REFINED_IRON_INGOT.get(), 1));
+		map.put(new MoldPressInput(new IngredientInput(ItemInit.REFINED_GOLD_DUST.get(), 1), ItemInit.INGOT_MOLD.get()),
+				new Output(ItemInit.UNFIRED_REFINED_GOLD_INGOT.get(), 1));
+		map.put(new MoldPressInput(new IngredientInput(ItemInit.REFINED_NETHERITE_DUST.get(), 1), ItemInit.INGOT_MOLD.get()),
+				new Output(ItemInit.UNFIRED_REFINED_NETHERITE_INGOT.get(), 1));
+		map.put(new MoldPressInput(new IngredientInput(ItemInit.REFINED_DIAMOND_DUST.get(), 1), ItemInit.GEM_MOLD.get()),
+				new Output(ItemInit.UNFIRED_REFINED_DIAMOND.get(), 1));
+		map.put(new MoldPressInput(new IngredientInput(ItemInit.REFINING_DUST.get(), 1), ItemInit.GEM_MOLD.get()),
+				new Output(ItemInit.PURE_CRYSTAL.get(), 1));
+		map.put(new MoldPressInput(new IngredientInput(ItemInit.REFINED_IRON_DUST.get(), 2), ItemInit.COGWHEEL_MOLD.get()),
+				new Output(ItemInit.UNFIRED_REFINED_IRON_COGWHEEL.get(), 1));
+		map.put(new MoldPressInput(new IngredientInput(ItemInit.REFINED_GOLD_DUST.get(), 2), ItemInit.COGWHEEL_MOLD.get()),
+				new Output(ItemInit.UNFIRED_REFINED_GOLD_COGWHEEL.get(), 1));
+		map.put(new MoldPressInput(new IngredientInput(ItemInit.REFINED_DIAMOND_DUST.get(), 2), ItemInit.COGWHEEL_MOLD.get()),
+				new Output(ItemInit.UNFIRED_REFINED_DIAMOND_COGWHEEL.get(), 1));
 
 	}
 
