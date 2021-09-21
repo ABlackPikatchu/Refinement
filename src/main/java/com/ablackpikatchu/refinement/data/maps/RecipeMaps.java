@@ -117,8 +117,6 @@ public class RecipeMaps {
 		map.put(new IngredientInput(Items.GOLD_ORE, 1), new Output(ItemInit.GOLD_DUST.get(), 2));
 		map.put(new IngredientInput(Items.IRON_INGOT, 1), new Output(ItemInit.IRON_DUST.get(), 1));
 		map.put(new IngredientInput(Items.IRON_ORE, 1), new Output(ItemInit.IRON_DUST.get(), 2));
-		map.put(new IngredientInput(Items.DIAMOND, 1), new Output(ItemInit.DIAMOND_DUST.get(), 1));
-		map.put(new IngredientInput(Items.DIAMOND_ORE, 1), new Output(ItemInit.DIAMOND_DUST.get(), 2));
 		map.put(new IngredientInput(Items.NETHERITE_INGOT, 1), new Output(ItemInit.NETHERITE_DUST.get(), 1));
 		map.put(new IngredientInput(Ingredient.of(ItemInit.PURE_CRYSTAL.get()), 1),
 				new Output(ItemInit.REFINING_DUST.get(), 1));

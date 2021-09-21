@@ -1,0 +1,13 @@
+{
+  "type": "refinement:mold_press",
+  "input": {
+    "item": "refinement:refining_dust",
+    "count": 1
+  },
+  "mold": {
+    "item": "refinement:gem_mold"
+  },
+  "output": {
+    "item": "refinement:pure_crystal"
+  }
+}

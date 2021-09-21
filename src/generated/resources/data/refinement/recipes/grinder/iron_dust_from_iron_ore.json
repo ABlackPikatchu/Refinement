@@ -1,0 +1,11 @@
+{
+  "type": "refinement:grinder",
+  "input": {
+    "item": "minecraft:iron_ore",
+    "count": 1
+  },
+  "output": {
+    "item": "refinement:iron_dust",
+    "count": 2
+  }
+}

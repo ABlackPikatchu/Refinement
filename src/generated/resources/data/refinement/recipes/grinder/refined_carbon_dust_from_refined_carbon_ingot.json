@@ -1,0 +1,10 @@
+{
+  "type": "refinement:grinder",
+  "input": {
+    "item": "refinement:refined_carbon_ingot",
+    "count": 1
+  },
+  "output": {
+    "item": "refinement:refined_carbon_dust"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "refinement:grinder",
+  "input": {
+    "item": "refinement:pure_crystal_ore",
+    "count": 1
+  },
+  "output": {
+    "item": "refinement:refining_dust",
+    "count": 2
+  }
+}

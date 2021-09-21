@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G ",
+    " R ",
+    " B "
+  ],
+  "key": {
+    "G": {
+      "item": "refinement:refined_netherite_dust"
+    },
+    "R": {
+      "item": "refinement:grit"
+    },
+    "B": {
+      "item": "refinement:mixing_bowl"
+    }
+  },
+  "result": {
+    "item": "refinement:netherite_infused_grit",
+    "count": 2
+  }
+}

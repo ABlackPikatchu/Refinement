@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "PPP",
+    "   "
+  ],
+  "key": {
+    "I": {
+      "item": "refinement:diamond_infused_grit"
+    },
+    "P": {
+      "item": "minecraft:paper"
+    }
+  },
+  "result": {
+    "item": "refinement:diamond_grit_paper"
+  }
+}
