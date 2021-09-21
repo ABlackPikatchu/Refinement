@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " / ",
+    "_ _",
+    " _ "
+  ],
+  "key": {
+    "/": {
+      "item": "minecraft:stick"
+    },
+    "_": {
+      "item": "minecraft:oak_slab"
+    }
+  },
+  "result": {
+    "item": "refinement:mixing_bowl"
+  }
+}

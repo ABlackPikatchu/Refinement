@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    " S ",
+    "   "
+  ],
+  "key": {
+    "#": {
+      "item": "refinement:refined_gold_dust"
+    },
+    "S": {
+      "item": "refinement:cogwheel_mold"
+    }
+  },
+  "result": {
+    "item": "refinement:unfired_refined_gold_cogwheel"
+  }
+}

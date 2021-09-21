@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#O#",
+    "O O",
+    "#O#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:oak_planks"
+    },
+    "O": {
+      "item": "minecraft:oak_button"
+    }
+  },
+  "result": {
+    "item": "refinement:wooden_cogwheel"
+  }
+}
