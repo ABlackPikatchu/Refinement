@@ -3,11 +3,17 @@ package com.ablackpikatchu.refinement.data.common;
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.TagInit;
+import com.ablackpikatchu.refinement.core.util.lists.ItemLists;
 
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.item.Item;
+import net.minecraft.item.Items;
+import net.minecraft.util.ResourceLocation;
+
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class ItemTagsProvider extends net.minecraft.data.ItemTagsProvider {
 
@@ -143,12 +149,34 @@ public class ItemTagsProvider extends net.minecraft.data.ItemTagsProvider {
     	tag(TagInit.Items.STORAGE_BLOCKS).add(ItemInit.REFINED_CARBON_BLOCK.get());
     	tag(TagInit.Items.CARBON_STORAGE).add(ItemInit.REFINED_CARBON_BLOCK.get());
 		
-		//Boxed
+		//Boxes
     	tag(TagInit.Items.FOOD_BOX).add(ItemInit.MINERS_APPLE.get());
     	tag(TagInit.Items.FOOD_BOX).add(ItemInit.MINERS_BREAD.get());
     	tag(TagInit.Items.FOOD_BOX).add(ItemInit.MINERS_CARROT.get());
     	tag(TagInit.Items.FOOD_BOX).add(ItemInit.MINERS_JERKY.get());
     	tag(TagInit.Items.FOOD_BOX).add(ItemInit.MINERS_STEW.get());
+    	
+    	//MC Dyes
+    	for (Item dye : ItemLists.DYES) {
+			Item terracota = ForgeRegistries.ITEMS.getValue(new ResourceLocation(dye.getRegistryName().getNamespace(),
+					dye.getRegistryName().getPath().replace("dye", "terracotta")));
+			tag(TagInit.Items.TERRACOTTAS).add(terracota);
+			
+			Item concretePowder = ForgeRegistries.ITEMS.getValue(new ResourceLocation(dye.getRegistryName().getNamespace(),
+					dye.getRegistryName().getPath().replace("dye", "concrete_powder")));
+			tag(TagInit.Items.CONCRETE_POWDERS).add(concretePowder);
+			
+			Item glass = ForgeRegistries.ITEMS.getValue(new ResourceLocation(dye.getRegistryName().getNamespace(),
+					dye.getRegistryName().getPath().replace("dye", "stained_glass")));
+			tag(TagInit.Items.MC_GLASS).add(glass);
+			
+			Item glassPane = ForgeRegistries.ITEMS.getValue(new ResourceLocation(dye.getRegistryName().getNamespace(),
+					dye.getRegistryName().getPath().replace("dye", "stained_glass_pane")));
+			tag(TagInit.Items.MC_GLASS_PANE).add(glassPane);
+		};
+		tag(TagInit.Items.TERRACOTTAS).add(Items.TERRACOTTA);
+		tag(TagInit.Items.MC_GLASS).add(Items.GLASS);
+		tag(TagInit.Items.MC_GLASS_PANE).add(Items.GLASS_PANE);
     	
 	}
 

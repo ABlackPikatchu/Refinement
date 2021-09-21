@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "L  ",
+    "LL ",
+    "LLL"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:jungle_planks"
+    }
+  },
+  "result": {
+    "item": "minecraft:jungle_stairs",
+    "count": 8
+  }
+}

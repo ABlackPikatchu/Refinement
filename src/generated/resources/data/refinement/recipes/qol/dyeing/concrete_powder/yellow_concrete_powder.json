@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:concrete_powders"
+    },
+    {
+      "tag": "forge:concrete_powders"
+    },
+    {
+      "tag": "forge:concrete_powders"
+    },
+    {
+      "tag": "forge:concrete_powders"
+    },
+    {
+      "tag": "forge:concrete_powders"
+    },
+    {
+      "tag": "forge:concrete_powders"
+    },
+    {
+      "tag": "forge:concrete_powders"
+    },
+    {
+      "tag": "forge:concrete_powders"
+    },
+    {
+      "item": "minecraft:yellow_dye"
+    }
+  ],
+  "result": {
+    "item": "minecraft:yellow_concrete_powder",
+    "count": 8
+  }
+}

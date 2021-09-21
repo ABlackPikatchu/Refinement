@@ -58,6 +58,8 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 		ShapedRecipes.shapedRecipes().forEach((recipe, name) -> {
 			recipe.save(consumer, name);
 		});
+		
+		addQOLRecipes(consumer);
 
 		RecipeMaps.addShapelessBlockIngotEntries(SHAPELESS_BLOCK_INGOT);
 		SHAPELESS_BLOCK_INGOT.forEach((block, item) -> {
@@ -169,6 +171,30 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 			recipe.build(consumer);
 		});
 
+	}
+	
+	protected void addQOLRecipes(Consumer<IFinishedRecipe> consumer) {
+		QOLRecipes.getShapedDyeingRecipes().forEach((recipe, name) -> {
+			recipe.save(consumer, name);
+		});
+		QOLRecipes.getShapelessDyeingRecipes().forEach((recipe, name) -> {
+			recipe.save(consumer, name);
+		});
+		
+		QOLRecipes.getShapedWoodRecipes().forEach((recipe, name) -> {
+			recipe.save(consumer, name);
+		});
+		QOLRecipes.getShapelessWoodRecipes().forEach((recipe, name) -> {
+			recipe.save(consumer, name);
+		});
+		
+		QOLRecipes.getShapedStairsRecipes().forEach((recipe, name) -> {
+			recipe.save(consumer, name);
+		});
+		
+		QOLRecipes.getShapelessSlabsRecipes().forEach((recipe, name) -> {
+			recipe.save(consumer, name);
+		});
 	}
 
 	public static ResourceLocation storageBlocks(String name) {
