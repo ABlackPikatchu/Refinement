@@ -114,9 +114,21 @@ public class TagInit {
 		public static final ITag.INamedTag<Item> DIAMOND_STORAGE = forge("storage_blocks/refined_diamond");
 		public static final ITag.INamedTag<Item> NETHERITE_STORAGE = forge("storage_blocks/refined_netherite");
 		public static final ITag.INamedTag<Item> CARBON_STORAGE = forge("storage_blocks/refined_carbon");
+		
+		//Misc 
+		public static final ITag.INamedTag<Item> TERRACOTTAS = forge("terracottas");
+		public static final ITag.INamedTag<Item> CONCRETE_POWDERS = forge("concrete_powders");
+		public static final ITag.INamedTag<Item> MC_GLASS = forge("minecraft_glass");
+		public static final ITag.INamedTag<Item> MC_GLASS_PANE = forge("minecraft_glass_pane");
+		
+		public static final ITag.INamedTag<Item> WOOL = minecraft("wool");
 
 		private static ITag.INamedTag<Item> forge(String path) {
 			return ItemTags.bind(new ResourceLocation("forge", path).toString());
+		}
+		
+		private static ITag.INamedTag<Item> minecraft(String path) {
+			return ItemTags.bind(new ResourceLocation("minecraft", path).toString());
 		}
 
 		private static ITag.INamedTag<Item> mod(String path) {

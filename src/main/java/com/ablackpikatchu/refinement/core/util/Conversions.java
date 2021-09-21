@@ -10,11 +10,11 @@ import net.minecraft.item.crafting.IRecipe;
 public class Conversions {
 
 	public static void convert(PlayerEntity player) {
-		for (final IRecipe<?> recipe : player.level.getRecipeManager()
-				.getAllRecipesFor(RecipeInit.ORE_UNIFY_RECIPE)) {
+		for (final IRecipe<?> recipe : player.level.getRecipeManager().getAllRecipesFor(RecipeInit.ORE_UNIFY_RECIPE)) {
 			final OreUnifyRecipe oreUnifyRecipe = (OreUnifyRecipe) recipe;
 			for (int i = 0; i <= player.inventory.getContainerSize(); ++i) {
-				if (oreUnifyRecipe.isValid(player.inventory.getItem(i))) {
+				if (oreUnifyRecipe.isValid(player.inventory.getItem(i))
+						&& player.inventory.getItem(i).getItem() != recipe.getResultItem().getItem()) {
 					int count = player.inventory.getItem(i).getCount();
 					player.inventory.setItem(i, new ItemStack(oreUnifyRecipe.getResultItem().getItem(), count));
 					player.inventory.setChanged();
@@ -22,5 +22,5 @@ public class Conversions {
 			}
 		}
 	}
-	
+
 }

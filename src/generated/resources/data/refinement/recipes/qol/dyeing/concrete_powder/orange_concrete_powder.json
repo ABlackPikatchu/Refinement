@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:concrete_powders"
+    },
+    {
+      "tag": "forge:concrete_powders"
+    },
+    {
+      "tag": "forge:concrete_powders"
+    },
+    {
+      "tag": "forge:concrete_powders"
+    },
+    {
+      "tag": "forge:concrete_powders"
+    },
+    {
+      "tag": "forge:concrete_powders"
+    },
+    {
+      "tag": "forge:concrete_powders"
+    },
+    {
+      "tag": "forge:concrete_powders"
+    },
+    {
+      "item": "minecraft:orange_dye"
+    }
+  ],
+  "result": {
+    "item": "minecraft:orange_concrete_powder",
+    "count": 8
+  }
+}
