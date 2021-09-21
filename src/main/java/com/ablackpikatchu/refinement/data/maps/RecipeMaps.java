@@ -142,7 +142,7 @@ public class RecipeMaps {
 
 		// Item
 		map.put(new MixerInput(new IngredientInput(Items.GRAVEL, 1), new IngredientInput(Items.SAND, 1)),
-				new Output(ItemInit.GRIT_PAPER.get(), 4));
+				new Output(ItemInit.GRIT.get(), 4));
 
 		// Tag
 		map.put(new MixerInput(new TagInput(TagInit.Items.DIAMOND_DUST, 1),

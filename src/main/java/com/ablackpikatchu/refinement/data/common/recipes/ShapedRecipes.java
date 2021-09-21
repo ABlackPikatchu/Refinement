@@ -49,23 +49,62 @@ public class ShapedRecipes {
 				new KeyIngredient('R', ItemInit.REFINED_IRON_INGOT.get()),
 				new KeyIngredient('G', ItemInit.REFINED_GOLD_INGOT.get()),
 				new KeyIngredient('D', ItemInit.REFINED_DIAMOND.get()));
+		
+		newShapedRecipe(new Output(ItemInit.GRINDER.get(), 1), new Pattern("RPR", "DFD", "RPR"),
+				machineStuff(itemName(ItemInit.GRINDER.get())),
+				new KeyIngredient('P', ItemInit.MACHINE_PARTS),
+				new KeyIngredient('R', ItemInit.REFINED_IRON_INGOT.get()),
+				new KeyIngredient('D', ItemInit.REFINED_DIAMOND_COGWHEEL.get()),
+				new KeyIngredient('F', ItemInit.MACHINE_FRAME.get()));
 
 		newShapedRecipe(new Output(ItemInit.MAGNET.get(), 1), new Pattern(" # ", "G G", "R B"),
 				tools(itemName(ItemInit.MAGNET.get())), new KeyIngredient('#', Items.IRON_BLOCK),
 				new KeyIngredient('G', Items.GOLD_INGOT), new KeyIngredient('R', Items.REDSTONE_BLOCK),
 				new KeyIngredient('B', Items.BLUE_DYE));
+		
+		newShapedRecipe(new Output(ItemInit.GRIT_PAPER.get(), 1), new Pattern("III", "PPP", "   "),
+				tools(itemName(ItemInit.GRIT_PAPER.get())), new KeyIngredient('I', ItemInit.GRIT),
+				new KeyIngredient('P', Items.PAPER));
+		
+		newShapedRecipe(new Output(ItemInit.IRON_GRIT_PAPER.get(), 1), new Pattern("III", "PPP", "   "),
+				tools(itemName(ItemInit.IRON_GRIT_PAPER.get())), new KeyIngredient('I', ItemInit.IRON_INFUSED_GRIT),
+				new KeyIngredient('P', Items.PAPER));
+		
+		newShapedRecipe(new Output(ItemInit.DIAMOND_GRIT_PAPER.get(), 1), new Pattern("III", "PPP", "   "),
+				tools(itemName(ItemInit.DIAMOND_GRIT_PAPER.get())), new KeyIngredient('I', ItemInit.DIAMOND_INFUSED_GRIT),
+				new KeyIngredient('P', Items.PAPER));
+		
+		newShapedRecipe(new Output(ItemInit.NETHERITE_GRIT_PAPER.get(), 1), new Pattern("III", "PPP", "   "),
+				tools(itemName(ItemInit.NETHERITE_GRIT_PAPER.get())), new KeyIngredient('I', ItemInit.NETHERITE_INFUSED_GRIT),
+				new KeyIngredient('P', Items.PAPER));
 
 		newShapedRecipe(new Output(ItemInit.UNFIRED_COGWHEEL_MOLD.get(), 1), new Pattern("###", "#I#", "###"),
 				molds(itemName(ItemInit.UNFIRED_COGWHEEL_MOLD)), new KeyIngredient('#', Items.CLAY_BALL),
 				new KeyIngredient('I', TagInit.Items.COGWHEELS));
-		
+
 		newShapedRecipe(new Output(ItemInit.UNFIRED_GEM_MOLD.get(), 1), new Pattern("###", "#I#", "###"),
 				molds(itemName(ItemInit.UNFIRED_GEM_MOLD)), new KeyIngredient('#', Items.CLAY_BALL),
 				new KeyIngredient('I', TagInit.Items.GEMS));
-		
+
 		newShapedRecipe(new Output(ItemInit.UNFIRED_INGOT_MOLD.get(), 1), new Pattern("###", "#I#", "###"),
 				molds(itemName(ItemInit.UNFIRED_INGOT_MOLD)), new KeyIngredient('#', Items.CLAY_BALL),
 				new KeyIngredient('I', TagInit.Items.INGOTS));
+
+		newShapedRecipe(new Output(ItemInit.GRIT.get(), 6), new Pattern("SGS", "GSG", " B "),
+				mixingBowl(itemName(ItemInit.GRIT)), new KeyIngredient('S', Items.SAND),
+				new KeyIngredient('G', Items.GRAVEL), new KeyIngredient('B', ItemInit.MIXING_BOWL));
+		
+		newShapedRecipe(new Output(ItemInit.IRON_INFUSED_GRIT.get(), 2), new Pattern(" G ", " R ", " B "),
+				mixingBowl(itemName(ItemInit.IRON_INFUSED_GRIT)), new KeyIngredient('G', ItemInit.REFINED_IRON_DUST),
+				new KeyIngredient('R', ItemInit.GRIT), new KeyIngredient('B', ItemInit.MIXING_BOWL));
+		
+		newShapedRecipe(new Output(ItemInit.DIAMOND_INFUSED_GRIT.get(), 2), new Pattern(" G ", " R ", " B "),
+				mixingBowl(itemName(ItemInit.DIAMOND_INFUSED_GRIT)), new KeyIngredient('G', ItemInit.REFINED_DIAMOND_DUST),
+				new KeyIngredient('R', ItemInit.GRIT), new KeyIngredient('B', ItemInit.MIXING_BOWL));
+		
+		newShapedRecipe(new Output(ItemInit.NETHERITE_INFUSED_GRIT.get(), 2), new Pattern(" G ", " R ", " B "),
+				mixingBowl(itemName(ItemInit.NETHERITE_INFUSED_GRIT)), new KeyIngredient('G', ItemInit.REFINED_NETHERITE_DUST),
+				new KeyIngredient('R', ItemInit.GRIT), new KeyIngredient('B', ItemInit.MIXING_BOWL));
 
 		shapedRecipes.forEach((recipe, name) -> {
 			recipe.unlockedBy("has_item", has(Items.AIR));
@@ -88,6 +127,10 @@ public class ShapedRecipes {
 
 	public static ResourceLocation machineStuff(@Nullable String name) {
 		return new ResourceLocation(Refinement.MOD_ID, "machine_stuff/" + name);
+	}
+
+	public static ResourceLocation mixingBowl(@Nullable String name) {
+		return new ResourceLocation(Refinement.MOD_ID, "mixing_bowl/" + name);
 	}
 
 	public static ResourceLocation tools(@Nullable String name) {
