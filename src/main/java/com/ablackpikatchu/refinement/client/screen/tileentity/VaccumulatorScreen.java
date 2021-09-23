@@ -44,7 +44,7 @@ public class VaccumulatorScreen extends ContainerScreen<VaccumulatorContainer> {
 		this.font.draw(matrixStack, this.menu.te.getDisplayName(), 8.0f, 6.0f, 0xA3703A);
 	}
 
-	@SuppressWarnings({ "deprecation", "resource" })
+	@SuppressWarnings({ "resource" })
 	@Override
 	protected void renderBg(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
 		ticks++;

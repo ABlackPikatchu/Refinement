@@ -47,7 +47,6 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 	public static HashMap<MixerInput, Output> MIXER_RECIPES = new HashMap<>();
 
 	public static HashMap<MoldPressInput, Output> MOLD_PRESS_RECIPES = new HashMap<>();
-	
 
 	public RecipeProvider(DataGenerator p_i48262_1_) {
 		super(p_i48262_1_);
@@ -59,7 +58,7 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 		ShapedRecipes.shapedRecipes().forEach((recipe, name) -> {
 			recipe.save(consumer, name);
 		});
-		
+
 		addQOLRecipes(consumer);
 
 		RecipeMaps.addShapelessBlockIngotEntries(SHAPELESS_BLOCK_INGOT);
@@ -172,8 +171,28 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 			recipe.build(consumer);
 		});
 
+		SmeltingRecipes.smeltingRecipes().forEach(recipe -> {
+			recipe.getRecipe().save(consumer,
+					cooking(smelting(recipe.getOutput().asItem().getRegistryName().getPath())));
+		});
+
+		SmeltingRecipes.blastingRecipes().forEach(recipe -> {
+			recipe.getRecipe().save(consumer,
+					cooking(blasting(recipe.getOutput().asItem().getRegistryName().getPath())));
+		});
+
+		SmeltingRecipes.Cooking.smokingRecipes().forEach(recipe -> {
+			recipe.getRecipe().save(consumer,
+					cooking(smoking(recipe.getOutput().asItem().getRegistryName().getPath())));
+		});
+
+		SmeltingRecipes.Cooking.campfireCookingRecipes().forEach(recipe -> {
+			recipe.getRecipe().save(consumer,
+					cooking(campfireCooking(recipe.getOutput().asItem().getRegistryName().getPath())));
+		});
+
 	}
-	
+
 	protected void addQOLRecipes(Consumer<IFinishedRecipe> consumer) {
 		QOLRecipes.getShapedDyeingRecipes().forEach((recipe, name) -> {
 			recipe.save(consumer, name);
@@ -181,18 +200,18 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 		QOLRecipes.getShapelessDyeingRecipes().forEach((recipe, name) -> {
 			recipe.save(consumer, name);
 		});
-		
+
 		QOLRecipes.getShapedWoodRecipes().forEach((recipe, name) -> {
 			recipe.save(consumer, name);
 		});
 		QOLRecipes.getShapelessWoodRecipes().forEach((recipe, name) -> {
 			recipe.save(consumer, name);
 		});
-		
+
 		QOLRecipes.getShapedStairsRecipes().forEach((recipe, name) -> {
 			recipe.save(consumer, name);
 		});
-		
+
 		QOLRecipes.getShapelessSlabsRecipes().forEach((recipe, name) -> {
 			recipe.save(consumer, name);
 		});
@@ -220,6 +239,26 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 
 	public static ResourceLocation mixingBowl(String name) {
 		return new ResourceLocation(Refinement.MOD_ID, "mixing_bowl/" + name);
+	}
+
+	public static ResourceLocation cooking(String name) {
+		return new ResourceLocation(Refinement.MOD_ID, "cooking/" + name);
+	}
+
+	public static String smelting(String name) {
+		return "smelting/" + name;
+	}
+
+	public static String blasting(String name) {
+		return "blasting/" + name;
+	}
+
+	public static String smoking(String name) {
+		return "smoking/" + name;
+	}
+
+	public static String campfireCooking(String name) {
+		return "campfire_cooking/" + name;
 	}
 
 }
