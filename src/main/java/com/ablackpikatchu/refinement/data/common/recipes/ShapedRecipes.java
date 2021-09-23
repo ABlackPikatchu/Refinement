@@ -8,8 +8,8 @@ import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.TagInit;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.Output;
-import com.ablackpikatchu.refinement.datafixers.util.recipe.shaped.KeyIngredient;
-import com.ablackpikatchu.refinement.datafixers.util.recipe.shaped.Pattern;
+import com.ablackpikatchu.refinement.datafixers.util.recipe.vanilla.shaped.KeyIngredient;
+import com.ablackpikatchu.refinement.datafixers.util.recipe.vanilla.shaped.Pattern;
 
 import net.minecraft.advancements.criterion.EntityPredicate;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
@@ -180,6 +180,13 @@ public class ShapedRecipes {
 
 	}
 
+	/**
+	 * Adds a new shaped recipe
+	 * @param output the output of the recipe
+	 * @param pattern the pattern of the recipe
+	 * @param name the name of the recipe
+	 * @param ingredients the ingredients of the recipe
+	 */
 	public static void newShapedRecipe(Output output, Pattern pattern, ResourceLocation name,
 			KeyIngredient... ingredients) {
 		ShapedRecipeBuilder recipe = new ShapedRecipeBuilder(output.getItem(), output.getCount());

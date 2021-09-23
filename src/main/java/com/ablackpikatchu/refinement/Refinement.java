@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.ablackpikatchu.refinement.client.render.RenderLayers;
+import com.ablackpikatchu.refinement.common.events.PlayerEvents;
 import com.ablackpikatchu.refinement.core.config.ClientConfig;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
@@ -20,6 +21,7 @@ import net.minecraft.item.crafting.IRecipeSerializer;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -63,6 +65,7 @@ public class Refinement {
 		// forge bus events
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		forgeBus.addListener(this::oreConversion);
+		forgeBus.addListener(EventPriority.HIGHEST, PlayerEvents::onInteract);
 	}
 
 	public void oreConversion(TickEvent.ServerTickEvent event) {

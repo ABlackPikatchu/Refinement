@@ -303,10 +303,14 @@ public class ItemInit {
 			() -> new ArmorItem(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.FEET,
 					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
 	
+	//Seeds
+	public static final RegistryObject<BlockItem> IRON_SEEDS = ITEMS.register("iron_seeds",
+			() -> new BlockItem(BlockInit.IRON_CROP.get(), new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+	
 	//Boxes
 	public static final RegistryObject<Item> FOOD_BOX = ITEMS.register("food_box", () -> new FoodBox());
 
-	// Misc Item
+	// Misc Item Blocks
 	public static final RegistryObject<BlockItem> BLANK_ORE_ITEM = ITEMS.register("blank_ore",
 			() -> new BlockItem(BlockInit.BLANK_ORE.get(), new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "refinement:pure_crystal_ore"
+  },
+  "result": "refinement:pure_crystal",
+  "experience": 0.7,
+  "cookingtime": 200
+}

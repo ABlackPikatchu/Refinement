@@ -45,7 +45,7 @@ public class MoldPressScreen extends ContainerScreen<MoldPressContainer> {
 		this.font.draw(matrixStack, this.menu.te.getDisplayName(), 5.0f, 7.0f, 0xA3703A);
 	}
 
-	@SuppressWarnings({ "deprecation", "resource" })
+	@SuppressWarnings({ "resource" })
 	@Override
 	protected void renderBg(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
 		ticks++;
@@ -76,7 +76,7 @@ public class MoldPressScreen extends ContainerScreen<MoldPressContainer> {
 			}
 		}
 		
-		// Progress Bar
-		//this.blit(matrixStack, this.leftPos + 50, this.topPos + 29, 176, 0, this.menu.getProgressionScaled(), 17);
+		//Progress Bar
+		this.blit(matrixStack, this.leftPos + 50, this.topPos + 29, 176, 0, this.menu.getProgressionScaled(), 17);
 	}
 }

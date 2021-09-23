@@ -1,0 +1,6 @@
+{
+    "parent": "block/crop",
+    "textures": {
+        "crop": "refinement:blocks/crops/iron_crop/stage_1"
+    }
+}
