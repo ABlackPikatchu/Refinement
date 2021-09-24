@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "refinement:block/dna_sequencer",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "refinement:block/dna_sequencer"
+    },
+    "facing=south": {
+      "model": "refinement:block/dna_sequencer",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "refinement:block/dna_sequencer",
+      "y": 270
+    }
+  }
+}

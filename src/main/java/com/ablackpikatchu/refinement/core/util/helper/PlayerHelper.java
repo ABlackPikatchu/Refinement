@@ -24,5 +24,14 @@ public class PlayerHelper {
 			return ItemStack.EMPTY;
 		return ItemStack.EMPTY;
 	}
+	
+	public static boolean canFitItem(PlayerEntity player, ItemStack item) {
+		
+		for (int i = 0; i <= player.inventory.getContainerSize(); i++) {
+			if (player.inventory.canPlaceItem(i, item)) return true;
+		}
+		
+		return false;
+	}
 
 }

@@ -10,6 +10,7 @@ import com.ablackpikatchu.refinement.common.recipe.DNASequencerRecipe;
 import com.ablackpikatchu.refinement.common.te.LockableSidedInventoryTileEntity;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
+import com.ablackpikatchu.refinement.core.init.ParticleTypesInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
 import com.ablackpikatchu.refinement.core.util.helper.TileEntityHelper;
@@ -24,6 +25,7 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
@@ -91,6 +93,8 @@ public class DNASequencerTileEntity extends LockableSidedInventoryTileEntity imp
 						} else {
 							this.currentWaitTime++;
 							this.setChanged();
+							BlockPos pos = this.worldPosition;
+							//this.level.addParticle(ParticleTypesInit.DNA_PARTICLES.get(), (double) pos.getX(), (double) pos.getY(), (double) pos.getZ(), 0.0D, 0.0D, 0.0D);
 						}
 					}
 				}

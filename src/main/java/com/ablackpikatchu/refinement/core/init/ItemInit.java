@@ -14,6 +14,7 @@ import com.ablackpikatchu.refinement.common.item.MixingBowl;
 import com.ablackpikatchu.refinement.common.item.Mold;
 import com.ablackpikatchu.refinement.common.item.RefinedCoal;
 import com.ablackpikatchu.refinement.common.item.RefinedCoalBlockItem;
+import com.ablackpikatchu.refinement.common.item.blockitem.DNASequencerBlockItem;
 import com.ablackpikatchu.refinement.common.item.box.FoodBox;
 import com.ablackpikatchu.refinement.common.item.food.MinersApple;
 import com.ablackpikatchu.refinement.common.item.food.MinersBread;
@@ -261,7 +262,7 @@ public class ItemInit {
 			() -> new BlockItem(BlockInit.VACCUMULATOR.get(),
 					new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
 	public static final RegistryObject<BlockItem> DNA_SEQUENCER = ITEMS.register("dna_sequencer",
-			() -> new BlockItem(BlockInit.DNA_SEQUENCER.get(), new Item.Properties().tab(REFINEMENT_MACHINE)));
+			() -> new DNASequencerBlockItem(BlockInit.DNA_SEQUENCER.get(), new Item.Properties().tab(REFINEMENT_MACHINE)));
 
 	// Armors
 	public static final RegistryObject<Item> REFINED_IRON_HELMET = ITEMS.register("refined_iron_helmet",
@@ -319,6 +320,8 @@ public class ItemInit {
 
 	// Essences
 	public static final RegistryObject<Item> IRON_ESSENCE = ITEMS.register("iron_essence",
+			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+	public static final RegistryObject<Item> NATURE_ESSENCE = ITEMS.register("nature_essence",
 			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 
 	// Boxes

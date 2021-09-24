@@ -38,7 +38,7 @@ public class DNASequencerBlock extends Block {
 	
 	public DNASequencerBlock() {
 		super(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(10f)
-				.sound(SoundType.METAL).harvestLevel(4));
+				.sound(SoundType.METAL).harvestLevel(4).noOcclusion());
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}
 	
