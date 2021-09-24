@@ -4,13 +4,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.ablackpikatchu.refinement.client.render.RenderLayers;
-import com.ablackpikatchu.refinement.common.events.PlayerEvents;
 import com.ablackpikatchu.refinement.common.recipe.conditions.CropsEnabledCondition;
 import com.ablackpikatchu.refinement.common.recipe.conditions.EnableableCondition;
 import com.ablackpikatchu.refinement.core.config.ClientConfig;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
+import com.ablackpikatchu.refinement.core.init.CropInit;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.PotionInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
@@ -25,7 +25,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -57,6 +56,7 @@ public class Refinement {
 		modBus.addGenericListener(IRecipeSerializer.class, RecipeInit::registerRecipes);
 
 		BlockInit.BLOCKS.register(modBus);
+		CropInit.BLOCKS.register(modBus);
 		ItemInit.ITEMS.register(modBus);
 		TileEntityTypesInit.TILE_ENTITY_TYPE.register(modBus);
 		ContainerTypesInit.CONTAINER_TYPES.register(modBus);
@@ -70,7 +70,7 @@ public class Refinement {
 		// forge bus events
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		forgeBus.addListener(this::oreConversion);
-		forgeBus.addListener(EventPriority.HIGHEST, PlayerEvents::onInteract);
+		//forgeBus.addListener(EventPriority.HIGHEST, PlayerEvents::onInteract);
 	}
 
 	public void oreConversion(TickEvent.ServerTickEvent event) {

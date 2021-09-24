@@ -1,6 +1,7 @@
 package com.ablackpikatchu.refinement.core.init;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.common.te.machine.DNASequencerTileEntity;
 import com.ablackpikatchu.refinement.common.te.machine.GrinderTileEntity;
 import com.ablackpikatchu.refinement.common.te.machine.MixerTileEntity;
 import com.ablackpikatchu.refinement.common.te.machine.MoldPressTileEntity;
@@ -25,6 +26,9 @@ public class TileEntityTypesInit {
 	public static final RegistryObject<TileEntityType<MoldPressTileEntity>> MOLD_PRESS_TILE_ENTITY_TYPE = TILE_ENTITY_TYPE
 			.register("mold_press", () -> TileEntityType.Builder
 					.of(MoldPressTileEntity::new, BlockInit.MOLD_PRESS.get()).build(null));
+	public static final RegistryObject<TileEntityType<DNASequencerTileEntity>> DNA_SEQUENCER_TILE_ENTITY_TYPE = TILE_ENTITY_TYPE
+			.register("dna_sequencer", () -> TileEntityType.Builder
+					.of(DNASequencerTileEntity::new, BlockInit.DNA_SEQUENCER.get()).build(null));
 	
 	public static final RegistryObject<TileEntityType<VaccumulatorTileEntity>> VACCUMULATOR_TILE_ENTITY_TYPE = TILE_ENTITY_TYPE
 			.register("vaccumulator", () -> TileEntityType.Builder

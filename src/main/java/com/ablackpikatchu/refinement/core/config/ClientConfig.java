@@ -11,7 +11,7 @@ public class ClientConfig {
 	
 	static {
 		
-		BUILDER.push("GUI Config");
+		BUILDER.push("GUI_Config");
 		
 		SUSSY_GUI = BUILDER.comment("If true, the Refinement GUIs will become sussy!").define("Sussy GUIs", false);
 		

@@ -1,7 +1,7 @@
 package com.ablackpikatchu.refinement.common.recipe.conditions;
 
 import com.ablackpikatchu.refinement.Refinement;
-import com.ablackpikatchu.refinement.common.item.IEnableable;
+import com.ablackpikatchu.refinement.core.util.IEnableable;
 import com.google.gson.JsonObject;
 
 import net.minecraft.item.Item;
