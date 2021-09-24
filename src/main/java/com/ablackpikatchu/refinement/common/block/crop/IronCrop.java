@@ -5,11 +5,19 @@ import com.ablackpikatchu.refinement.core.init.ItemInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropsBlock;
+import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
 
 public class IronCrop extends CropsBlock {
 
@@ -32,10 +40,18 @@ public class IronCrop extends CropsBlock {
 	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 		return SHAPE_BY_AGE[state.getValue(this.getAgeProperty())];
 	}
-	
+
 	@Override
-	public float getSpeedFactor() {
-		return 150.0f;
+	public ActionResultType use(BlockState state, World level, BlockPos pos, PlayerEntity p_225533_4_, Hand p_225533_5_,
+			BlockRayTraceResult p_225533_6_) {
+		
+		if (this.getAge(state) == 7) {
+			ItemStack drops = new ItemStack(Items.IRON_INGOT);
+			level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), drops));
+			level.setBlockAndUpdate(pos, state.setValue(this.getAgeProperty(), 0));
+		}
+
+		return ActionResultType.FAIL;
 	}
 
 }
