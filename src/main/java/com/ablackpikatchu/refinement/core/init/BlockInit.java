@@ -2,15 +2,14 @@ package com.ablackpikatchu.refinement.core.init;
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.block.BlankOreBlock;
+import com.ablackpikatchu.refinement.common.block.DNASequencerBlock;
 import com.ablackpikatchu.refinement.common.block.GrinderBlock;
 import com.ablackpikatchu.refinement.common.block.MixerBlock;
 import com.ablackpikatchu.refinement.common.block.MoldPressBlock;
 import com.ablackpikatchu.refinement.common.block.VaccumulatorBlock;
-import com.ablackpikatchu.refinement.common.block.crop.IronCrop;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -21,6 +20,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class BlockInit {
+	
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS,
 			Refinement.MOD_ID);
 
@@ -56,14 +56,13 @@ public class BlockInit {
 					.sound(SoundType.STONE)));
 
 	public static final RegistryObject<Block> BLANK_ORE = BLOCKS.register("blank_ore", () -> new BlankOreBlock());
-	
-	//Crops
-	public static final RegistryObject<Block> IRON_CROP = BLOCKS.register("iron_crop", () -> new IronCrop(AbstractBlock.Properties.copy(Blocks.WHEAT)));
 
 	// TE Blocks
 	public static final RegistryObject<Block> GRINDER = BLOCKS.register("grinder", () -> new GrinderBlock());
 	public static final RegistryObject<Block> MIXER = BLOCKS.register("mixer", () -> new MixerBlock());
 	public static final RegistryObject<Block> MOLD_PRESS = BLOCKS.register("mold_press", () -> new MoldPressBlock());
+	public static final RegistryObject<Block> DNA_SEQUENCER = BLOCKS.register("dna_sequencer",
+			() -> new DNASequencerBlock());
 
 	public static final RegistryObject<Block> VACCUMULATOR = BLOCKS.register("vaccumulator",
 			() -> new VaccumulatorBlock());

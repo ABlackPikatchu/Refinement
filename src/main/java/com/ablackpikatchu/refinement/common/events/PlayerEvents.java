@@ -22,10 +22,10 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 @Mod.EventBusSubscriber(modid = Refinement.MOD_ID, bus = Bus.MOD)
 public class PlayerEvents {
 
+	/**
 	@SuppressWarnings("static-access")
 	public static void onInteract(PlayerInteractEvent.RightClickBlock event) {
 		
-		/*
 		World level = event.getEntity().level;
 		BlockPos pos = event.getPos();
 		BlockState block = level.getBlockState(pos);
@@ -34,13 +34,13 @@ public class PlayerEvents {
 		if (block.getBlock() == BlockInit.IRON_CROP.get() && block.getValue(IronCrop.AGE) == 7) {
 			List<ItemStack> drops = Lists.newArrayList();
 			if (level instanceof ServerWorld)
-				drops = block.getBlock().getDrops(state, (ServerWorld) level, pos, null);
+				block.getBlock().getDrops(drops, level, pos, state, 0);;
 			for (ItemStack drop : drops) {
 				ItemEntity item = new ItemEntity(level, pos.getX(), pos.getY(), pos.getX(), drop);
 				level.addFreshEntity(item);
 			}
 		}
-		*/
 	}
+	*/
 
 }

@@ -8,7 +8,6 @@ import net.minecraft.block.CropsBlock;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.IItemProvider;
@@ -46,7 +45,7 @@ public class IronCrop extends CropsBlock {
 			BlockRayTraceResult p_225533_6_) {
 		
 		if (this.getAge(state) == 7) {
-			ItemStack drops = new ItemStack(Items.IRON_INGOT);
+			ItemStack drops = new ItemStack(ItemInit.IRON_ESSENCE.get());
 			level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), drops));
 			level.setBlockAndUpdate(pos, state.setValue(this.getAgeProperty(), 0));
 		}

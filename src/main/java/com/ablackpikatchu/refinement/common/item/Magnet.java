@@ -6,6 +6,7 @@ import java.util.Random;
 
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementToolsWeaponsGroup;
+import com.ablackpikatchu.refinement.core.util.IEnableable;
 import com.ablackpikatchu.refinement.core.util.helper.NBTHelper;
 
 import net.minecraft.enchantment.Enchantment;
@@ -32,10 +33,11 @@ public class Magnet extends Item implements IEnableable {
 
 	@Override
 	public ActionResult<ItemStack> use(World p_77659_1_, PlayerEntity p_77659_2_, Hand p_77659_3_) {
-		
+
 		ItemStack stack = p_77659_2_.getItemInHand(p_77659_3_);
-		
-		if (!isEnabled()) return ActionResult.fail(stack);
+
+		if (!isEnabled())
+			return ActionResult.fail(stack);
 
 		NBTHelper.flipBoolean(stack, "Enabled");
 		p_77659_2_.playSound(SoundEvents.EXPERIENCE_ORB_PICKUP, 0.5F,
@@ -46,14 +48,17 @@ public class Magnet extends Item implements IEnableable {
 
 	@Override
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean isSelected) {
-		if (!isEnabled()) return;
-		
+		if (!isEnabled())
+			return;
+
 		if (entity instanceof PlayerEntity && NBTHelper.getBoolean(stack, "Enabled")) {
+
 			PlayerEntity player = (PlayerEntity) entity;
 			double range = CommonConfig.MAGNET_RANGE.get();
 			ArrayList<ItemEntity> rangeItems = (ArrayList<ItemEntity>) world.getEntitiesOfClass(ItemEntity.class,
 					entity.getBoundingBox().inflate(range));
 			for (ItemEntity item : rangeItems) {
+
 				if (!item.isAlive())
 					continue;
 
@@ -102,10 +107,10 @@ public class Magnet extends Item implements IEnableable {
 
 		return false;
 	}
-	
+
 	@Override
 	public void fillItemCategory(ItemGroup tab, NonNullList<ItemStack> items) {
-		this.fillCreativeTabs(this, tab, items);
+		if (isEnabled()) super.fillItemCategory(tab, items);
 	}
 
 	@Override

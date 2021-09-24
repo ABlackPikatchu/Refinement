@@ -1,0 +1,16 @@
+{
+  "type": "refinement:dna_sequencer",
+  "input": {
+    "item": "refinement:iron_essence",
+    "count": 4
+  },
+  "secondary_input": {
+    "item": "minecraft:cobblestone",
+    "count": 2
+  },
+  "output": {
+    "item": "minecraft:iron_ingot",
+    "count": 2,
+    "success_chance": 60
+  }
+}

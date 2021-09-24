@@ -40,29 +40,32 @@ public class LangProvider extends LanguageProvider {
 		add(BlockInit.REFINED_IRON_BLOCK.get(), "Refined Iron Block");
 		add(BlockInit.REFINED_NETHERITE_BLOCK.get(), "Refined Netherite Block");
 		add(BlockInit.VACCUMULATOR.get(), "Vacuumulator");
+		add(BlockInit.DNA_SEQUENCER.get(), "DNA Sequencer");
 
 		// Effects
 		add(PotionInit.NEGATE_FALL.get(), "Negate Fall Damage");
-		
-		//Containers
+
+		// Containers
 		addContainer("mixer", "Mixer");
 		addContainer("grinder", "Grinder");
 		addContainer("mold_press", "Mold Press");
 		addContainer("vaccumulator", "Vacuumulator");
-		
-		//Category
+		addContainer("dna_sequencer", "DNA Sequencer");
+
+		// Category
 		addCategory("mixer_recipe", "Mixer");
 		addCategory("mold_press_recipe", "Mold Press");
 		addCategory("grinder_recipe", "Grinder");
-		
-		//Item Group
+		addCategory("dna_sequencer", "DNA Sequencer");
+
+		// Item Group
 		addItemGroup(RefinementItemGroup.REFINEMENT.getName(), "Refinement");
 		addItemGroup("refinement_materials", "Refinement Materials");
 		addItemGroup("refinement_tools_weapons", "Refinement Tools & Weapons");
 		addItemGroup("refinement_machine", "Refinement Machines");
 		addItemGroup("refinement_armor", "Refinement Armor");
 		addItemGroup("refinement_food", "Refinement Food");
-		
+
 		// Death Messages
 		add("death.attack.minersStewDamage", "%1$s choked on precious metals");
 		add("death.attack.minersStewDamage.player", "%1$s's lack of air defeated them while fighting %2$s");
@@ -73,8 +76,8 @@ public class LangProvider extends LanguageProvider {
 		addTooltip("miners_jerky_shift", "It uses the food from your stomach to make you resist more powerful attacks!");
 		addTooltip("miners_apple_shift", "It makes your feet stronger, letting them absorb any fall damage!");
 		addTooltip("miners_carrot_shift", "It makes your legs longer, letting you jump further!");
-		
-		//Key Binds
+
+		// Key Binds
 		addKeybind("conversion_key", "Ore Unify");
 		add("key.category." + Refinement.MOD_ID, "Refinement");
 
@@ -95,19 +98,19 @@ public class LangProvider extends LanguageProvider {
 	private void addTooltip(String key, String value) {
 		this.add("tooltip." + Refinement.MOD_ID + "." + key, value);
 	}
-	
+
 	private void addContainer(String key, String value) {
 		this.add("container." + Refinement.MOD_ID + "." + key, value);
 	}
-	
+
 	private void addItemGroup(String key, String value) {
 		this.add("itemGroup." + key, value);
 	}
-	
+
 	private void addCategory(String key, String value) {
 		this.add("category." + Refinement.MOD_ID + "." + key, value);
 	}
-	
+
 	private void addKeybind(String key, String value) {
 		this.add("key." + Refinement.MOD_ID + "." + key, value);
 	}

@@ -1,5 +1,11 @@
 package com.ablackpikatchu.refinement.core.init;
 
+import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.REFINEMENT;
+import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.REFINEMENT_ARMOUR;
+import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.REFINEMENT_MACHINE;
+import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.REFINEMENT_MATERIALS;
+import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.REFINEMENT_TOOLS_WEAPONS;
+
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.item.Cogwheel;
 import com.ablackpikatchu.refinement.common.item.GritPaper;
@@ -31,6 +37,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.SwordItem;
+
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -122,7 +129,7 @@ public class ItemInit {
 	public static final RegistryObject<Item> DIAMOND_INFUSED_GRIT = ITEMS.register("diamond_infused_grit",
 			() -> new Item(new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
 	public static final RegistryObject<Item> NETHERITE_INFUSED_GRIT = ITEMS.register("netherite_infused_grit",
-			() -> new Item(new Item.Properties().tab(RefinementMaterialsGroup.REFINEMENT_MATERIALS)));
+			() -> new Item(new Item.Properties().tab(REFINEMENT_MATERIALS)));
 	// Tools & Weapons
 	// Iron
 	public static final RegistryObject<Item> REFINED_IRON_SWORD = ITEMS.register("refined_iron_sword",
@@ -212,7 +219,7 @@ public class ItemInit {
 	public static final RegistryObject<Item> UNFIRED_COGWHEEL_MOLD = ITEMS.register("unfired_cogwheel_mold",
 			() -> new Item(new Item.Properties().tab(RefinementToolsWeaponsGroup.REFINEMENT_TOOLS_WEAPONS)));
 	public static final RegistryObject<Item> COGWHEEL_MOLD = ITEMS.register("cogwheel_mold",
-			() -> new Mold(new Item.Properties().tab(RefinementToolsWeaponsGroup.REFINEMENT_TOOLS_WEAPONS)));
+			() -> new Mold(new Item.Properties().tab(REFINEMENT_TOOLS_WEAPONS)));
 	public static final RegistryObject<Magnet> MAGNET = ITEMS.register("magnet", Magnet::new);
 
 	// Machine
@@ -240,6 +247,7 @@ public class ItemInit {
 	public static final RegistryObject<BlockItem> MACHINE_FRAME = ITEMS.register("machine_frame",
 			() -> new BlockItem(BlockInit.MACHINE_FRAME.get(),
 					new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
+
 	public static final RegistryObject<BlockItem> GRINDER = ITEMS.register("grinder",
 			() -> new BlockItem(BlockInit.GRINDER.get(),
 					new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
@@ -252,6 +260,8 @@ public class ItemInit {
 	public static final RegistryObject<BlockItem> VACCUMULATOR = ITEMS.register("vaccumulator",
 			() -> new BlockItem(BlockInit.VACCUMULATOR.get(),
 					new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
+	public static final RegistryObject<BlockItem> DNA_SEQUENCER = ITEMS.register("dna_sequencer",
+			() -> new BlockItem(BlockInit.DNA_SEQUENCER.get(), new Item.Properties().tab(REFINEMENT_MACHINE)));
 
 	// Armors
 	public static final RegistryObject<Item> REFINED_IRON_HELMET = ITEMS.register("refined_iron_helmet",
@@ -301,20 +311,28 @@ public class ItemInit {
 					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
 	public static final RegistryObject<Item> REFINED_NETHERITE_BOOTS = ITEMS.register("refined_netherite_boots",
 			() -> new ArmorItem(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.FEET,
-					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
-	
-	//Seeds
+					new Item.Properties().tab(REFINEMENT_ARMOUR)));
+
+	// Seeds
 	public static final RegistryObject<BlockItem> IRON_SEEDS = ITEMS.register("iron_seeds",
-			() -> new BlockItem(BlockInit.IRON_CROP.get(), new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
-	
-	//Boxes
+			() -> new BlockItem(CropInit.IRON_CROP.get(), new Item.Properties().tab(REFINEMENT)));
+
+	// Essences
+	public static final RegistryObject<Item> IRON_ESSENCE = ITEMS.register("iron_essence",
+			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+
+	// Boxes
 	public static final RegistryObject<Item> FOOD_BOX = ITEMS.register("food_box", () -> new FoodBox());
 
 	// Misc Item Blocks
 	public static final RegistryObject<BlockItem> BLANK_ORE_ITEM = ITEMS.register("blank_ore",
 			() -> new BlockItem(BlockInit.BLANK_ORE.get(), new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 
-	// Foods
+	// Misc Items
+	public static final RegistryObject<Item> REFINED_BONEMEAL = ITEMS.register("refined_bonemeal",
+			() -> new Item(new Item.Properties().tab(REFINEMENT).stacksTo(16)));
+
+	// Food
 	public static final RegistryObject<Item> MINERS_STEW = ITEMS.register("miners_stew", MinersStew::new);
 	public static final RegistryObject<Item> MINERS_CARROT = ITEMS.register("miners_carrot", MinersCarrot::new);
 	public static final RegistryObject<Item> MINERS_APPLE = ITEMS.register("miners_apple", MinersApple::new);
