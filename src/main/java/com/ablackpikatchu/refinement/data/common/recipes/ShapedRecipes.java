@@ -69,17 +69,6 @@ public class ShapedRecipes {
 				new KeyIngredient('F', ItemInit.MACHINE_FRAME.get()),
 				new KeyIngredient('#', ItemInit.REFINED_DIAMOND.get()));
 
-		newShapedRecipe(new Output(ItemInit.VACCUMULATOR.get(), 1), new Pattern("I#I", "PMP", "IBI"),
-				machineStuff(itemName(ItemInit.VACCUMULATOR.get())), new KeyIngredient('I', TagInit.Items.IRON_INGOT),
-				new KeyIngredient('#', ItemInit.MAGNET.get()), new KeyIngredient('P', ItemInit.MACHINE_PARTS.get()),
-				new KeyIngredient('M', ItemInit.MACHINE_FRAME.get()),
-				new KeyIngredient('B', TagInit.Items.IRON_STORAGE));
-
-		newShapedRecipe(new Output(ItemInit.MAGNET.get(), 1), new Pattern(" # ", "G G", "R B"),
-				tools(itemName(ItemInit.MAGNET.get())), new KeyIngredient('#', Items.IRON_BLOCK),
-				new KeyIngredient('G', Items.GOLD_INGOT), new KeyIngredient('R', Items.REDSTONE_BLOCK),
-				new KeyIngredient('B', Items.BLUE_DYE));
-
 		newShapedRecipe(new Output(ItemInit.MIXING_BOWL.get(), 1), new Pattern(" / ", "_ _", " _ "),
 				tools(itemName(ItemInit.MIXING_BOWL.get())), new KeyIngredient('/', Items.STICK),
 				new KeyIngredient('_', Items.OAK_SLAB));

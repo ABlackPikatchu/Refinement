@@ -16,13 +16,15 @@ import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
-public class Magnet extends Item {
+public class Magnet extends Item implements IEnableable {
 
 	public Magnet() {
 		super(new Item.Properties().defaultDurability(2048).tab(RefinementToolsWeaponsGroup.REFINEMENT_TOOLS_WEAPONS));
@@ -30,8 +32,10 @@ public class Magnet extends Item {
 
 	@Override
 	public ActionResult<ItemStack> use(World p_77659_1_, PlayerEntity p_77659_2_, Hand p_77659_3_) {
-
+		
 		ItemStack stack = p_77659_2_.getItemInHand(p_77659_3_);
+		
+		if (!isEnabled()) return ActionResult.fail(stack);
 
 		NBTHelper.flipBoolean(stack, "Enabled");
 		p_77659_2_.playSound(SoundEvents.EXPERIENCE_ORB_PICKUP, 0.5F,
@@ -42,7 +46,8 @@ public class Magnet extends Item {
 
 	@Override
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean isSelected) {
-
+		if (!isEnabled()) return;
+		
 		if (entity instanceof PlayerEntity && NBTHelper.getBoolean(stack, "Enabled")) {
 			PlayerEntity player = (PlayerEntity) entity;
 			double range = CommonConfig.MAGNET_RANGE.get();
@@ -96,6 +101,16 @@ public class Magnet extends Item {
 		}
 
 		return false;
+	}
+	
+	@Override
+	public void fillItemCategory(ItemGroup tab, NonNullList<ItemStack> items) {
+		this.fillCreativeTabs(this, tab, items);
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return CommonConfig.MAGNET_ENABLED.get();
 	}
 
 }

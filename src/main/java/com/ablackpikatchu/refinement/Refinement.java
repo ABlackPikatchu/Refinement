@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import com.ablackpikatchu.refinement.client.render.RenderLayers;
 import com.ablackpikatchu.refinement.common.events.PlayerEvents;
 import com.ablackpikatchu.refinement.common.recipe.conditions.CropsEnabledCondition;
+import com.ablackpikatchu.refinement.common.recipe.conditions.EnableableCondition;
 import com.ablackpikatchu.refinement.core.config.ClientConfig;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
@@ -62,7 +63,7 @@ public class Refinement {
 		PotionInit.EFFECTS.register(modBus);
 
 		MinecraftForge.EVENT_BUS.register(this);
-		
+
 		modBus.addListener(this::commonSetup);
 		modBus.addGenericListener(IRecipeSerializer.class, this::recipeConditions);
 
@@ -79,16 +80,17 @@ public class Refinement {
 			}
 		}
 	}
-	
+
 	public void recipeConditions(RegistryEvent.Register<IRecipeSerializer<?>> event) {
 		CraftingHelper.register(CropsEnabledCondition.Serializer.INSTANCE);
+		CraftingHelper.register(EnableableCondition.Serializer.INSTANCE);
 	}
 
 	@SubscribeEvent
 	public static void clientSetup(final FMLClientSetupEvent event) {
 		RenderLayers.setRenderLayers();
 	}
-	
+
 	public void commonSetup(final FMLCommonSetupEvent event) {
 		RefinementNetwork.init();
 	}

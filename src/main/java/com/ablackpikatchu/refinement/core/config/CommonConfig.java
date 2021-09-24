@@ -20,6 +20,7 @@ public class CommonConfig {
 	public static final ForgeConfigSpec.ConfigValue<Integer> MOLD_PRESS_TIME_DECREASED_BY_EACH_SPEED_UPGRADE;
 
 	// Magnet
+	public static final ForgeConfigSpec.ConfigValue<Boolean> MAGNET_ENABLED;
 	public static final ForgeConfigSpec.ConfigValue<Double> MAGNET_RANGE;
 
 	// Vaccumulator
@@ -77,11 +78,14 @@ public class CommonConfig {
 
 		BUILDER.push("Magnets");
 
+		MAGNET_ENABLED = BUILDER.comment("If the magnet and the vacuumulator should be enabled (Default value is true)")
+				.define("Magnet Enabled", true);
+
 		MAGNET_RANGE = BUILDER.comment("The range of the Magnet (in blocks) (Default value is 7.0)")
 				.define("Magnet Range", 7.0);
 
-		VACCUMULATOR_RANGE = BUILDER.comment("The range of the Vaccumulator (in blocks) (Default value is 7.0)")
-				.define("Vaccumulator Range", 7.0);
+		VACCUMULATOR_RANGE = BUILDER.comment("The range of the Vacuumulator (in blocks) (Default value is 7.0)")
+				.define("Vacuumulator Range", 7.0);
 
 		BUILDER.pop();
 
