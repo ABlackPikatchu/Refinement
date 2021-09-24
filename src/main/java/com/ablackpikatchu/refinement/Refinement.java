@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.ablackpikatchu.refinement.client.render.RenderLayers;
 import com.ablackpikatchu.refinement.common.events.PlayerEvents;
+import com.ablackpikatchu.refinement.common.recipe.conditions.CropsEnabledCondition;
 import com.ablackpikatchu.refinement.core.config.ClientConfig;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
@@ -20,6 +21,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.crafting.IRecipeSerializer;
 
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -61,6 +64,7 @@ public class Refinement {
 		MinecraftForge.EVENT_BUS.register(this);
 		
 		modBus.addListener(this::commonSetup);
+		modBus.addGenericListener(IRecipeSerializer.class, this::recipeConditions);
 
 		// forge bus events
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
@@ -74,6 +78,10 @@ public class Refinement {
 				Conversions.convert(player);
 			}
 		}
+	}
+	
+	public void recipeConditions(RegistryEvent.Register<IRecipeSerializer<?>> event) {
+		CraftingHelper.register(CropsEnabledCondition.Serializer.INSTANCE);
 	}
 
 	@SubscribeEvent

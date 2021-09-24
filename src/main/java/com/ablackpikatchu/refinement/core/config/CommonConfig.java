@@ -29,6 +29,9 @@ public class CommonConfig {
 	public static final ForgeConfigSpec.ConfigValue<Boolean> ENABLE_CONVERSION;
 	public static final ForgeConfigSpec.ConfigValue<Boolean> INVENTORY_TRIGGER_CONVERSION;
 
+	// Crops
+	public static final ForgeConfigSpec.ConfigValue<Boolean> CROPS_ENABLED;
+
 	static {
 
 		BUILDER.push("Machine_Config");
@@ -59,7 +62,7 @@ public class CommonConfig {
 				"The ticks amount each speed upgrades decreses the process time of the Mixer. (Default value is 15)")
 				.define("Speed Upgrade Time Decreased", 15);
 		BUILDER.pop();
-		
+
 		BUILDER.pop();
 
 		BUILDER.push("Conversions");
@@ -79,6 +82,14 @@ public class CommonConfig {
 
 		VACCUMULATOR_RANGE = BUILDER.comment("The range of the Vaccumulator (in blocks) (Default value is 7.0)")
 				.define("Vaccumulator Range", 7.0);
+
+		BUILDER.pop();
+
+		BUILDER.push("Ore_Crops");
+
+		CROPS_ENABLED = BUILDER.comment(
+				"If the ore crops should be enabled (if false, their recipe will not exist) (Default value is false)")
+				.define("Crops Enabled", false);
 
 		BUILDER.pop();
 

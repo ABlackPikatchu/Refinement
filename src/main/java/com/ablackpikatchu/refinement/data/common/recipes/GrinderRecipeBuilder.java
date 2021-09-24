@@ -34,6 +34,12 @@ public class GrinderRecipeBuilder {
 		this.resultCount = count;
 	}
 
+	/**
+	 * Creates a new grinder recipe
+	 * @param result the recipe result item
+	 * @param count the recipe result count
+	 * @return
+	 */
 	public static GrinderRecipeBuilder recipeBuilder(IItemProvider result, int count) {
 		return new GrinderRecipeBuilder(GrinderRecipe.SERIALIZER, result.asItem(), count);
 	}
