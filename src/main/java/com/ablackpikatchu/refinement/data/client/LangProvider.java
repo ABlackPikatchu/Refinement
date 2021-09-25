@@ -80,6 +80,9 @@ public class LangProvider extends LanguageProvider {
 		// Key Binds
 		addKeybind("conversion_key", "Ore Unify");
 		add("key.category." + Refinement.MOD_ID, "Refinement");
+		
+		//Villager
+		addVillagerName("materials", "Materialer");
 
 		// Blocks
 		BlockInit.BLOCKS.getEntries().parallelStream().map(RegistryObject<Block>::get).forEach(block -> {
@@ -113,6 +116,10 @@ public class LangProvider extends LanguageProvider {
 
 	private void addKeybind(String key, String value) {
 		this.add("key." + Refinement.MOD_ID + "." + key, value);
+	}
+
+	private void addVillagerName(String key, String value) {
+		this.add("entity.minecraft.villager." + Refinement.MOD_ID + "." + key, value);
 	}
 
 }

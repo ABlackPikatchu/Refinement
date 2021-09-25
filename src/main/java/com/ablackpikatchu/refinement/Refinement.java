@@ -16,8 +16,10 @@ import com.ablackpikatchu.refinement.core.init.ParticleTypesInit;
 import com.ablackpikatchu.refinement.core.init.PotionInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
+import com.ablackpikatchu.refinement.core.init.VillagerInit;
 import com.ablackpikatchu.refinement.core.network.RefinementNetwork;
 import com.ablackpikatchu.refinement.core.util.Conversions;
+import com.ablackpikatchu.refinement.core.util.lists.TradeLists;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -63,6 +65,8 @@ public class Refinement {
 		TileEntityTypesInit.TILE_ENTITY_TYPE.register(modBus);
 		ContainerTypesInit.CONTAINER_TYPES.register(modBus);
 		PotionInit.EFFECTS.register(modBus);
+		VillagerInit.VillagerProfessions.VILLAGER_PROFESSIONS.register(modBus);
+		VillagerInit.PointOfInterests.POINT_OF_INTEREST_TYPES.register(modBus);
 
 		MinecraftForge.EVENT_BUS.register(this);
 
@@ -94,5 +98,10 @@ public class Refinement {
 
 	public void commonSetup(final FMLCommonSetupEvent event) {
 		RefinementNetwork.init();
+		event.enqueueWork(() -> {
+			VillagerInit.registerPOIS();
+			TradeLists.fillTradeData();
+		});
+
 	}
 }

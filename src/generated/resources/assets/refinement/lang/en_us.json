@@ -25,6 +25,7 @@
   "death.attack.minersStewDamage": "%1$s choked on precious metals",
   "death.attack.minersStewDamage.player": "%1$s's lack of air defeated them while fighting %2$s",
   "effect.refinement.negate_fall": "Negate Fall Damage",
+  "entity.minecraft.villager.refinement.materials": "Materialer",
   "item.refinement.charcoal_dust": "Charcoal Dust",
   "item.refinement.coal_dust": "Coal Dust",
   "item.refinement.cogwheel_mold": "Cogwheel Mold",
