@@ -15,7 +15,7 @@ import com.ablackpikatchu.refinement.common.item.Mold;
 import com.ablackpikatchu.refinement.common.item.RefinedCoal;
 import com.ablackpikatchu.refinement.common.item.RefinedCoalBlockItem;
 import com.ablackpikatchu.refinement.common.item.blockitem.DNASequencerBlockItem;
-import com.ablackpikatchu.refinement.common.item.box.FoodBox;
+import com.ablackpikatchu.refinement.common.item.box.ModLootBox;
 import com.ablackpikatchu.refinement.common.item.food.MinersApple;
 import com.ablackpikatchu.refinement.common.item.food.MinersBread;
 import com.ablackpikatchu.refinement.common.item.food.MinersCarrot;
@@ -36,8 +36,10 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.PickaxeItem;
+import net.minecraft.item.Rarity;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.SwordItem;
+import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -262,7 +264,8 @@ public class ItemInit {
 			() -> new BlockItem(BlockInit.VACCUMULATOR.get(),
 					new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
 	public static final RegistryObject<BlockItem> DNA_SEQUENCER = ITEMS.register("dna_sequencer",
-			() -> new DNASequencerBlockItem(BlockInit.DNA_SEQUENCER.get(), new Item.Properties().tab(REFINEMENT_MACHINE)));
+			() -> new DNASequencerBlockItem(BlockInit.DNA_SEQUENCER.get(),
+					new Item.Properties().tab(REFINEMENT_MACHINE)));
 
 	// Armors
 	public static final RegistryObject<Item> REFINED_IRON_HELMET = ITEMS.register("refined_iron_helmet",
@@ -325,7 +328,10 @@ public class ItemInit {
 			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 
 	// Boxes
-	public static final RegistryObject<Item> FOOD_BOX = ITEMS.register("food_box", () -> new FoodBox());
+	public static final RegistryObject<Item> FOOD_BOX = ITEMS.register("food_box",
+			() -> new ModLootBox(
+					new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).tab(RefinementItemGroup.REFINEMENT),
+					new ResourceLocation(Refinement.MOD_ID, "boxes/food")));
 
 	// Misc Item Blocks
 	public static final RegistryObject<BlockItem> BLANK_ORE_ITEM = ITEMS.register("blank_ore",
