@@ -1,9 +1,0 @@
-{
-    "type": "minecraft:blasting",
-    "ingredient": {
-        "item": "refinement:unfired_refined_gold_ingot"
-    },
-    "result": "refinement:refined_gold_ingot",
-    "experience": 0,
-    "cookingtime": 200
-}

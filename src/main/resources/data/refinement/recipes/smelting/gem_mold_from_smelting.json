@@ -1,9 +1,0 @@
-{
-    "type": "minecraft:smelting",
-    "ingredient": {
-        "item": "refinement:unfired_gem_mold"
-    },
-    "result": "refinement:gem_mold",
-    "experience": 0,
-    "cookingtime": 200
-}
