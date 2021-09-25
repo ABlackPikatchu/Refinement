@@ -1,5 +1,6 @@
 {
   "block.refinement.blank_ore": "Blank Ore",
+  "block.refinement.coal_crop": "Coal Seeds",
   "block.refinement.dna_sequencer": "DNA Sequencer",
   "block.refinement.grinder": "Grinder",
   "block.refinement.iron_crop": "Iron Seeds",
@@ -28,6 +29,7 @@
   "entity.minecraft.villager.refinement.materials": "Materialer",
   "item.refinement.charcoal_dust": "Charcoal Dust",
   "item.refinement.coal_dust": "Coal Dust",
+  "item.refinement.coal_essence": "Coal Essence",
   "item.refinement.cogwheel_mold": "Cogwheel Mold",
   "item.refinement.diamond_dust": "Diamond Dust",
   "item.refinement.diamond_grit_paper": "Diamond Grit Paper",

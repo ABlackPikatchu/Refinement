@@ -10,6 +10,7 @@ import com.ablackpikatchu.refinement.data.maps.RecipeMaps;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.IngredientInput;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.Output;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.TagInput;
+import com.ablackpikatchu.refinement.datafixers.util.recipe.dna_sequencer.DNASequencerInput;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.mixer.MixerInput;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.mold_press.MoldPressInput;
 
@@ -47,6 +48,8 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 	public static HashMap<MixerInput, Output> MIXER_RECIPES = new HashMap<>();
 
 	public static HashMap<MoldPressInput, Output> MOLD_PRESS_RECIPES = new HashMap<>();
+
+	public static HashMap<DNASequencerInput, Output> DNA_SEQUENCER_RECIPES = new HashMap<>();
 
 	public RecipeProvider(DataGenerator p_i48262_1_) {
 		super(p_i48262_1_);
@@ -168,6 +171,13 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 		MOLD_PRESS_RECIPES.forEach((input, output) -> {
 			MoldPressRecipeBuilder recipe = new MoldPressRecipeBuilder(output.getItem(), output.getCount());
 			input.getMoldPressRecipe(recipe);
+			recipe.build(consumer);
+		});
+
+		RecipeMaps.addDNASequencerRecipes(DNA_SEQUENCER_RECIPES);
+		DNA_SEQUENCER_RECIPES.forEach((input, output) -> {
+			DNASequencerRecipeBuilder recipe = new DNASequencerRecipeBuilder(output.getItem(), output.getCount());
+			input.getDNASequencerRecipe(recipe);
 			recipe.build(consumer);
 		});
 

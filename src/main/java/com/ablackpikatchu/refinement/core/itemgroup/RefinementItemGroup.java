@@ -13,6 +13,7 @@ public class RefinementItemGroup extends ItemGroup {
 	public static final RefinementToolsWeaponsGroup REFINEMENT_TOOLS_WEAPONS = RefinementToolsWeaponsGroup.REFINEMENT_TOOLS_WEAPONS;
 	public static final RefinementMachineGroup REFINEMENT_MACHINE = RefinementMachineGroup.REFINEMENT_MACHINE;
 	public static final RefinementMaterialsGroup REFINEMENT_MATERIALS = RefinementMaterialsGroup.REFINEMENT_MATERIALS;
+	public static final RefinementResourceCropsGroup REFINEMENT_RESOURCE_CROPS = RefinementResourceCropsGroup.REFINEMENT_RESOURCE_CROPS;
 
 	public RefinementItemGroup(int index, String label) {
 		super(index, label);

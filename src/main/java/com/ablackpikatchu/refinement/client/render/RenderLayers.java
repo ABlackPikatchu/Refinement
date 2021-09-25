@@ -7,13 +7,18 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 
+import net.minecraftforge.fml.RegistryObject;
+
 public class RenderLayers {
 
 	public static void setRenderLayers() {
 		RenderTypeLookup.setRenderLayer(BlockInit.MACHINE_FRAME.get(), RenderType.cutout());
 		RenderTypeLookup.setRenderLayer(BlockInit.VACCUMULATOR.get(), RenderType.cutout());
-		cutout(CropInit.IRON_CROP.get());
 		cutout(BlockInit.DNA_SEQUENCER.get());
+		
+		CropInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
+			cutout(block);
+		});
 	}
 
 	private static void cutout(Block block) {

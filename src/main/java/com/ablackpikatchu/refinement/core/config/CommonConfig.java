@@ -18,8 +18,8 @@ public class CommonConfig {
 	// Mold Press
 	public static final ForgeConfigSpec.ConfigValue<Integer> MOLD_PRESS_DEFAULT_PROCESS_TIME;
 	public static final ForgeConfigSpec.ConfigValue<Integer> MOLD_PRESS_TIME_DECREASED_BY_EACH_SPEED_UPGRADE;
-	
-	//DNA Sequencer
+
+	// DNA Sequencer
 	public static final ForgeConfigSpec.ConfigValue<Integer> DNA_SEQUENCER_DEFAULT_PROCESS_TIME;
 	public static final ForgeConfigSpec.ConfigValue<Integer> DNA_SEQUENCER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE;
 
@@ -67,7 +67,7 @@ public class CommonConfig {
 				"The ticks amount each speed upgrades decreses the process time of the Mixer. (Default value is 15)")
 				.define("Speed Upgrade Time Decreased", 15);
 		BUILDER.pop();
-		
+
 		BUILDER.push("DNA_Sequencer");
 		DNA_SEQUENCER_DEFAULT_PROCESS_TIME = BUILDER.comment(
 				"The default process time for the DNA Sequencer, in ticks. (with no speed upgrades) (Default value is 400)")
@@ -105,7 +105,7 @@ public class CommonConfig {
 		BUILDER.push("Ore_Crops");
 
 		CROPS_ENABLED = BUILDER.comment(
-				"If the ore crops should be enabled (if false, their recipe will not exist) (Default value is false)")
+				"If the ore crops should be enabled (if false, their recipe will not exist, and they will not show up in the creative tabs, nor in JEI) (Default value is false)")
 				.define("Crops Enabled", false);
 
 		BUILDER.pop();

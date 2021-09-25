@@ -317,12 +317,10 @@ public class ItemInit {
 			() -> new ArmorItem(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.FEET,
 					new Item.Properties().tab(REFINEMENT_ARMOUR)));
 
-	// Seeds
-	public static final RegistryObject<BlockItem> IRON_SEEDS = ITEMS.register("iron_seeds",
-			() -> new BlockItem(CropInit.IRON_CROP.get(), new Item.Properties().tab(REFINEMENT)));
-
 	// Essences
 	public static final RegistryObject<Item> IRON_ESSENCE = ITEMS.register("iron_essence",
+			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+	public static final RegistryObject<Item> COAL_ESSENCE = ITEMS.register("coal_essence",
 			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 	public static final RegistryObject<Item> NATURE_ESSENCE = ITEMS.register("nature_essence",
 			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
