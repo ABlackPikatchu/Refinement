@@ -8,6 +8,7 @@ import com.ablackpikatchu.refinement.core.init.TagInit;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.IngredientInput;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.Output;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.TagInput;
+import com.ablackpikatchu.refinement.datafixers.util.recipe.dna_sequencer.DNASequencerInput;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.mixer.MixerInput;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.mold_press.MoldPressInput;
 
@@ -175,19 +176,24 @@ public class RecipeMaps {
 				new Output(ItemInit.UNFIRED_REFINED_IRON_INGOT.get(), 1));
 		map.put(new MoldPressInput(new IngredientInput(ItemInit.REFINED_GOLD_DUST.get(), 1), ItemInit.INGOT_MOLD.get()),
 				new Output(ItemInit.UNFIRED_REFINED_GOLD_INGOT.get(), 1));
-		map.put(new MoldPressInput(new IngredientInput(ItemInit.REFINED_NETHERITE_DUST.get(), 1), ItemInit.INGOT_MOLD.get()),
-				new Output(ItemInit.UNFIRED_REFINED_NETHERITE_INGOT.get(), 1));
-		map.put(new MoldPressInput(new IngredientInput(ItemInit.REFINED_DIAMOND_DUST.get(), 1), ItemInit.GEM_MOLD.get()),
-				new Output(ItemInit.UNFIRED_REFINED_DIAMOND.get(), 1));
+		map.put(new MoldPressInput(new IngredientInput(ItemInit.REFINED_NETHERITE_DUST.get(), 1),
+				ItemInit.INGOT_MOLD.get()), new Output(ItemInit.UNFIRED_REFINED_NETHERITE_INGOT.get(), 1));
+		map.put(new MoldPressInput(new IngredientInput(ItemInit.REFINED_DIAMOND_DUST.get(), 1),
+				ItemInit.GEM_MOLD.get()), new Output(ItemInit.UNFIRED_REFINED_DIAMOND.get(), 1));
 		map.put(new MoldPressInput(new IngredientInput(ItemInit.REFINING_DUST.get(), 1), ItemInit.GEM_MOLD.get()),
 				new Output(ItemInit.PURE_CRYSTAL.get(), 1));
-		map.put(new MoldPressInput(new IngredientInput(ItemInit.REFINED_IRON_DUST.get(), 2), ItemInit.COGWHEEL_MOLD.get()),
-				new Output(ItemInit.UNFIRED_REFINED_IRON_COGWHEEL.get(), 1));
-		map.put(new MoldPressInput(new IngredientInput(ItemInit.REFINED_GOLD_DUST.get(), 2), ItemInit.COGWHEEL_MOLD.get()),
-				new Output(ItemInit.UNFIRED_REFINED_GOLD_COGWHEEL.get(), 1));
-		map.put(new MoldPressInput(new IngredientInput(ItemInit.REFINED_DIAMOND_DUST.get(), 2), ItemInit.COGWHEEL_MOLD.get()),
-				new Output(ItemInit.UNFIRED_REFINED_DIAMOND_COGWHEEL.get(), 1));
+		map.put(new MoldPressInput(new IngredientInput(ItemInit.REFINED_IRON_DUST.get(), 2),
+				ItemInit.COGWHEEL_MOLD.get()), new Output(ItemInit.UNFIRED_REFINED_IRON_COGWHEEL.get(), 1));
+		map.put(new MoldPressInput(new IngredientInput(ItemInit.REFINED_GOLD_DUST.get(), 2),
+				ItemInit.COGWHEEL_MOLD.get()), new Output(ItemInit.UNFIRED_REFINED_GOLD_COGWHEEL.get(), 1));
+		map.put(new MoldPressInput(new IngredientInput(ItemInit.REFINED_DIAMOND_DUST.get(), 2),
+				ItemInit.COGWHEEL_MOLD.get()), new Output(ItemInit.UNFIRED_REFINED_DIAMOND_COGWHEEL.get(), 1));
 
+	}
+
+	public static void addDNASequencerRecipes(HashMap<DNASequencerInput, Output> map) {
+		map.put(new DNASequencerInput(new IngredientInput(ItemInit.IRON_ESSENCE.get(), 4),
+				new IngredientInput(Items.COBBLESTONE, 2), 60, false), new Output(Items.IRON_INGOT, 2));
 	}
 
 }

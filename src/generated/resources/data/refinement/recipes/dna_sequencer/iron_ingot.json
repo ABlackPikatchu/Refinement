@@ -12,5 +12,6 @@
     "item": "minecraft:iron_ingot",
     "count": 2,
     "success_chance": 60
-  }
+  },
+  "no_fuel_required": false
 }
