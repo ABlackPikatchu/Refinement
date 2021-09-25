@@ -1,9 +1,0 @@
-{
-    "type": "minecraft:smelting",
-    "ingredient": {
-        "item": "refinement:unfired_refined_gold_cogwheel"
-    },
-    "result": "refinement:refined_gold_cogwheel",
-    "experience": 0,
-    "cookingtime": 200
-}

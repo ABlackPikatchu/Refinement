@@ -1,9 +1,0 @@
-{
-    "type": "minecraft:blasting",
-    "ingredient": {
-        "item": "refinement:unfired_cogwheel_mold"
-    },
-    "result": "refinement:cogwheel_mold",
-    "experience": 0,
-    "cookingtime": 200
-}

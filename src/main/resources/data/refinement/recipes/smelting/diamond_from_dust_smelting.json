@@ -1,9 +1,0 @@
-{
-    "type": "minecraft:smelting",
-    "ingredient": {
-        "item": "refinement:diamond_dust"
-    },
-    "result": "minecraft:diamond",
-    "experience": 0,
-    "cookingtime": 200
-}

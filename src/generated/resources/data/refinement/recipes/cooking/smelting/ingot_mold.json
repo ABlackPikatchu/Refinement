@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "refinement:unfired_ingot_mold"
+  },
+  "result": "refinement:ingot_mold",
+  "experience": 0.7,
+  "cookingtime": 200
+}
