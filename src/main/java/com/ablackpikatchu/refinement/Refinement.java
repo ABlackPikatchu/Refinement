@@ -56,6 +56,7 @@ public class Refinement {
 
 		modBus.addGenericListener(IRecipeSerializer.class, RecipeInit::registerRecipes);
 
+		ParticleTypesInit.PARTICLE_TYPES.register(modBus);
 		BlockInit.BLOCKS.register(modBus);
 		CropInit.BLOCKS.register(modBus);
 		ItemInit.ITEMS.register(modBus);
@@ -71,7 +72,6 @@ public class Refinement {
 		// forge bus events
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
 		forgeBus.addListener(this::oreConversion);
-		//forgeBus.addListener(EventPriority.HIGHEST, PlayerEvents::onInteract);
 	}
 
 	public void oreConversion(TickEvent.ServerTickEvent event) {

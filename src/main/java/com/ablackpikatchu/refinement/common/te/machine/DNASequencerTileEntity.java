@@ -5,12 +5,12 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.common.block.DNASequencerBlock;
 import com.ablackpikatchu.refinement.common.container.DNASequencerContainer;
 import com.ablackpikatchu.refinement.common.recipe.DNASequencerRecipe;
 import com.ablackpikatchu.refinement.common.te.LockableSidedInventoryTileEntity;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
-import com.ablackpikatchu.refinement.core.init.ParticleTypesInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
 import com.ablackpikatchu.refinement.core.util.helper.TileEntityHelper;
@@ -25,7 +25,6 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
@@ -41,6 +40,7 @@ public class DNASequencerTileEntity extends LockableSidedInventoryTileEntity imp
 	public int maxWaitTime;
 	public int usedCarbon;
 	public int successProbability;
+	public boolean isWorking;
 	private static final int[] SLOTS_FOR_UP = new int[] { 0 };
 	private static final int[] SLOTS_FOR_DOWN = new int[] { 2 };
 	private static final int[] SLOTS_FOR_SIDES = new int[] { 1, 3 };
@@ -66,6 +66,8 @@ public class DNASequencerTileEntity extends LockableSidedInventoryTileEntity imp
 				this.usedCarbon = 1;
 			}
 			this.successProbability = -1;
+			this.isWorking = false;
+			TileEntityHelper.setStateProperty(this, DNASequencerBlock.LIT, false);
 			for (final IRecipe<?> recipe : this.level.getRecipeManager()
 					.getAllRecipesFor(RecipeInit.DNA_SEQUENCER_RECIPE)) {
 				final DNASequencerRecipe DNASequencerRecipe = (DNASequencerRecipe) recipe;
@@ -93,13 +95,19 @@ public class DNASequencerTileEntity extends LockableSidedInventoryTileEntity imp
 						} else {
 							this.currentWaitTime++;
 							this.setChanged();
-							BlockPos pos = this.worldPosition;
-							//this.level.addParticle(ParticleTypesInit.DNA_PARTICLES.get(), (double) pos.getX(), (double) pos.getY(), (double) pos.getZ(), 0.0D, 0.0D, 0.0D);
+							this.isWorking = true;
 						}
 					}
 				}
 			}
+
+			if (this.isWorking)
+				TileEntityHelper.setStateProperty(this, DNASequencerBlock.LIT, true);
+			else
+				TileEntityHelper.setStateProperty(this, DNASequencerBlock.LIT, false);
+			TileEntityHelper.updateTE(this);
 		}
+
 	}
 
 	@Override

@@ -3,28 +3,34 @@ package com.ablackpikatchu.refinement.common.item.box;
 import java.util.List;
 import java.util.Random;
 
-import com.ablackpikatchu.refinement.core.init.TagInit;
-import com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup;
-
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Rarity;
+import net.minecraft.tags.ITag;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class FoodBox extends Item {
+public class ModLootBox extends Item {
+	
+	private final ResourceLocation tag;
 
-	public FoodBox() {
-		super(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).tab(RefinementItemGroup.REFINEMENT));
+	public ModLootBox(Properties properties, ResourceLocation tag) {
+		super(properties);
+		this.tag = tag;
 	}
-
+	
+	public ITag.INamedTag<Item> getTag() {
+		return ItemTags.bind(this.tag.toString());
+	}
+	
 	@Override
 	public ActionResult<ItemStack> use(World worldIn, PlayerEntity player, Hand hand) {
 		ItemStack box = player.getItemInHand(hand);
 
-		List<Item> chanceItems = TagInit.Items.FOOD_BOX.getValues();
+		List<Item> chanceItems = this.getTag().getValues();
 		Random rand = new Random();
 
 		Item randomItem = chanceItems.get(rand.nextInt(chanceItems.size()));
