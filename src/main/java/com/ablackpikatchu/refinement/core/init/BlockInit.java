@@ -10,6 +10,7 @@ import com.ablackpikatchu.refinement.common.block.VaccumulatorBlock;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -20,7 +21,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class BlockInit {
-	
+
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS,
 			Refinement.MOD_ID);
 
@@ -66,4 +67,8 @@ public class BlockInit {
 
 	public static final RegistryObject<Block> VACCUMULATOR = BLOCKS.register("vaccumulator",
 			() -> new VaccumulatorBlock());
+
+	// POIs
+	public static final RegistryObject<Block> MATERIALS_STATION = BLOCKS.register("materials_station",
+			() -> new Block(AbstractBlock.Properties.copy(Blocks.SMITHING_TABLE)));
 }

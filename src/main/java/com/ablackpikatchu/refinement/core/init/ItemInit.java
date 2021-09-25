@@ -336,6 +336,8 @@ public class ItemInit {
 	// Misc Item Blocks
 	public static final RegistryObject<BlockItem> BLANK_ORE_ITEM = ITEMS.register("blank_ore",
 			() -> new BlockItem(BlockInit.BLANK_ORE.get(), new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+	public static final RegistryObject<BlockItem> MATERIALS_STATION_ITEM = ITEMS.register("materials_station",
+			() -> new BlockItem(BlockInit.MATERIALS_STATION.get(), new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 
 	// Misc Items
 	public static final RegistryObject<Item> REFINED_BONEMEAL = ITEMS.register("refined_bonemeal",

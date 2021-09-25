@@ -15,6 +15,8 @@ import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
 public class BlankOreBlock extends Block {
@@ -22,6 +24,11 @@ public class BlankOreBlock extends Block {
 	public BlankOreBlock() {
 		super(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_GRAY).strength(10f).sound(SoundType.METAL)
 				.harvestLevel(4));
+	}
+	
+	@Override
+	public int getExpDrop(BlockState state, IWorldReader world, BlockPos pos, int fortune, int silktouch) {
+		return MathHelper.nextInt(RANDOM, 2, 10);
 	}
 
 	@Override
