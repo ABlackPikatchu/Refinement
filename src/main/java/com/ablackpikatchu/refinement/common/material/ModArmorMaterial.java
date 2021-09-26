@@ -23,7 +23,7 @@ public enum ModArmorMaterial implements IArmorMaterial {
 	public static final int[] baseDurability = new int[] { 128, 144, 160, 112 };
 	private final String name;
 	private final int durabilityMultiplier;
-	private final int[] armorVal;
+	private int[] armorVal;
 	private final int enchantability;
 	private final SoundEvent equipSound;
 	private final float toughness;
@@ -80,6 +80,10 @@ public enum ModArmorMaterial implements IArmorMaterial {
 	@Override
 	public float getKnockbackResistance() {
 		return this.knockbackResistance;
+	}
+	
+	public void setDefenseForSlot(EquipmentSlotType slot, int defense) {
+		this.armorVal[slot.getIndex()] = defense;
 	}
 
 }

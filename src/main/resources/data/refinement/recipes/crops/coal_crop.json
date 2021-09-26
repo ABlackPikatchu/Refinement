@@ -13,7 +13,7 @@
   ],
   "key": {
     "I": {
-      "tag": "forge:blocks/coal"
+      "tag": "forge:storage_blocks/coal"
     },
     "S": {
       "tag": "forge:seeds"
