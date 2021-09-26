@@ -1,6 +1,6 @@
 package com.ablackpikatchu.refinement.common.item.blockitem;
 
-import com.ablackpikatchu.refinement.core.init.ItemInit;
+import com.ablackpikatchu.refinement.core.init.CropInit;
 import com.ablackpikatchu.refinement.core.util.helper.PlayerHelper;
 
 import net.minecraft.block.Block;
@@ -27,7 +27,7 @@ public class DNASequencerBlockItem extends BlockItem {
 				ticks++;
 
 			if (ticks >= maxTicks) {
-				ItemStack natureEssence = new ItemStack(ItemInit.NATURE_ESSENCE.get());
+				ItemStack natureEssence = new ItemStack(CropInit.NATURE_ESSENCE.get());
 				if (PlayerHelper.canFitItem(player, natureEssence)) {
 					player.inventory.add(natureEssence);
 					ticks = 0;

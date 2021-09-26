@@ -1,5 +1,11 @@
 {
   "type": "refinement:dna_sequencer",
+  "conditions": [
+    {
+      "type": "refinement:crops_enabled",
+      "value": true
+    }
+  ],
   "input": {
     "item": "refinement:iron_essence",
     "count": 4

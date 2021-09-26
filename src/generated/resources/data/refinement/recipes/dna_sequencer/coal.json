@@ -1,0 +1,23 @@
+{
+  "type": "refinement:dna_sequencer",
+  "conditions": [
+    {
+      "type": "refinement:crops_enabled",
+      "value": true
+    }
+  ],
+  "input": {
+    "item": "refinement:coal_essence",
+    "count": 4
+  },
+  "secondary_input": {
+    "item": "minecraft:cobblestone",
+    "count": 2
+  },
+  "output": {
+    "item": "minecraft:coal",
+    "count": 2,
+    "success_chance": 60
+  },
+  "no_fuel_required": false
+}

@@ -3,6 +3,7 @@ package com.ablackpikatchu.refinement.data.maps;
 import java.util.HashMap;
 
 import com.ablackpikatchu.refinement.core.init.BlockInit;
+import com.ablackpikatchu.refinement.core.init.CropInit;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.TagInit;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.IngredientInput;
@@ -192,8 +193,15 @@ public class RecipeMaps {
 	}
 
 	public static void addDNASequencerRecipes(HashMap<DNASequencerInput, Output> map) {
-		map.put(new DNASequencerInput(new IngredientInput(ItemInit.IRON_ESSENCE.get(), 4),
-				new IngredientInput(Items.COBBLESTONE, 2), 60, false), new Output(Items.IRON_INGOT, 2));
+		map.put(new DNASequencerInput(new IngredientInput(CropInit.IRON_ESSENCE.get(), 4),
+				new IngredientInput(Items.COBBLESTONE, 2), 60).setCropsEnabledCondition(true),
+				new Output(Items.IRON_INGOT, 2));
+		map.put(new DNASequencerInput(new IngredientInput(CropInit.COAL_ESSENCE.get(), 4),
+				new IngredientInput(Items.COBBLESTONE, 2), 60).setCropsEnabledCondition(true),
+				new Output(Items.COAL, 2));
+		map.put(new DNASequencerInput(new IngredientInput(CropInit.GOLD_ESSENCE.get(), 4),
+				new IngredientInput(Items.COBBLESTONE, 2), 60).setCropsEnabledCondition(true),
+				new Output(Items.GOLD_INGOT, 2));
 	}
 
 }

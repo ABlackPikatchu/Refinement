@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.CropInit;
-import com.ablackpikatchu.refinement.core.init.ItemInit;
 
 import net.minecraft.block.Block;
 import net.minecraft.util.IItemProvider;
@@ -25,8 +24,9 @@ public class LootTableMaps {
 	 * should be the resource the crop produces
 	 */
 	public static void addCropLoot(HashMap<Block, IItemProvider> map) {
-		map.put(CropInit.COAL_CROP.get(), ItemInit.COAL_ESSENCE.get());
-		map.put(CropInit.IRON_CROP.get(), ItemInit.IRON_ESSENCE.get());
+		map.put(CropInit.COAL_CROP.get(), CropInit.COAL_ESSENCE.get());
+		map.put(CropInit.IRON_CROP.get(), CropInit.IRON_ESSENCE.get());
+		map.put(CropInit.GOLD_CROP.get(), CropInit.GOLD_ESSENCE.get());
 	}
 
 }

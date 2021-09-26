@@ -40,6 +40,11 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import software.bernie.geckolib3.GeckoLib;
 
+/**
+ * The Refinement mod
+ * @author matyrobbrt
+ * @author ABlackPikatchu
+ */
 @Mod("refinement")
 @Mod.EventBusSubscriber(modid = Refinement.MOD_ID, bus = Bus.MOD)
 public class Refinement {

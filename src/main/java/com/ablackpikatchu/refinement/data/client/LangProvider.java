@@ -44,6 +44,7 @@ public class LangProvider extends LanguageProvider {
 
 		// Effects
 		add(PotionInit.NEGATE_FALL.get(), "Negate Fall Damage");
+		add(PotionInit.GHOSTLY_SHAPE.get(), "Ghostly Shape");
 
 		// Containers
 		addContainer("mixer", "Mixer");
@@ -73,16 +74,17 @@ public class LangProvider extends LanguageProvider {
 		// Tooltips
 		addTooltip("hold_shift", "Hold \u00A7eSHIFT\u00A7r for more information!");
 		addTooltip("miners_stew_shift", "It hurts on the way down but it has great benefits!");
-		addTooltip("miners_jerky_shift", "It uses the food from your stomach to make you resist more powerful attacks!");
+		addTooltip("miners_jerky_shift",
+				"It uses the food from your stomach to make you resist more powerful attacks!");
 		addTooltip("miners_apple_shift", "It makes your feet stronger, letting them absorb any fall damage!");
 		addTooltip("miners_carrot_shift", "It makes your legs longer, letting you jump further!");
 
 		// Key Binds
 		addKeybind("conversion_key", "Ore Unify");
 		add("key.category." + Refinement.MOD_ID, "Refinement");
-		
-		//Villager
-		addVillagerName("materials", "Materialer");
+
+		// Villager
+		addVillagerName("materials", "Materialist");
 
 		// Blocks
 		BlockInit.BLOCKS.getEntries().parallelStream().map(RegistryObject<Block>::get).forEach(block -> {

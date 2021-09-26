@@ -3,9 +3,9 @@ package com.ablackpikatchu.refinement.data.client;
 import java.util.HashMap;
 
 import com.ablackpikatchu.refinement.Refinement;
-import com.ablackpikatchu.refinement.common.block.ModCrop;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.data.maps.LootTableMaps;
+import com.ablackpikatchu.refinement.resourcecrops.common.ModCrop;
 
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
@@ -41,17 +41,17 @@ public class BlockStatesProvider extends BlockStateProvider {
 
 	public void cropBlock(Block block) {
 		getVariantBuilder(block).partialState().with(ModCrop.AGE, 0).modelForState()
-				.modelFile(models().crop(name(block) + "_0", cropModel(block, 0))).addModel().partialState()
-				.with(ModCrop.AGE, 1).modelForState().modelFile(models().crop(name(block) + "_1", cropModel(block, 1)))
+				.modelFile(models().cross(name(block) + "_0", cropModel(block, 0))).addModel().partialState()
+				.with(ModCrop.AGE, 1).modelForState().modelFile(models().cross(name(block) + "_1", cropModel(block, 1)))
 				.addModel().partialState().with(ModCrop.AGE, 2).modelForState()
-				.modelFile(models().crop(name(block) + "_2", cropModel(block, 2))).addModel().partialState()
-				.with(ModCrop.AGE, 3).modelForState().modelFile(models().crop(name(block) + "_3", cropModel(block, 3)))
+				.modelFile(models().cross(name(block) + "_2", cropModel(block, 2))).addModel().partialState()
+				.with(ModCrop.AGE, 3).modelForState().modelFile(models().cross(name(block) + "_3", cropModel(block, 3)))
 				.addModel().partialState().with(ModCrop.AGE, 4).modelForState()
-				.modelFile(models().crop(name(block) + "_4", cropModel(block, 4))).addModel().partialState()
-				.with(ModCrop.AGE, 5).modelForState().modelFile(models().crop(name(block) + "_5", cropModel(block, 5)))
+				.modelFile(models().cross(name(block) + "_4", cropModel(block, 4))).addModel().partialState()
+				.with(ModCrop.AGE, 5).modelForState().modelFile(models().cross(name(block) + "_5", cropModel(block, 5)))
 				.addModel().partialState().with(ModCrop.AGE, 6).modelForState()
-				.modelFile(models().crop(name(block) + "_6", cropModel(block, 6))).addModel().partialState()
-				.with(ModCrop.AGE, 7).modelForState().modelFile(models().crop(name(block) + "_7", cropModel(block, 7)))
+				.modelFile(models().cross(name(block) + "_6", cropModel(block, 6))).addModel().partialState()
+				.with(ModCrop.AGE, 7).modelForState().modelFile(models().cross(name(block) + "_7", cropModel(block, 7)))
 				.addModel();
 	}
 
