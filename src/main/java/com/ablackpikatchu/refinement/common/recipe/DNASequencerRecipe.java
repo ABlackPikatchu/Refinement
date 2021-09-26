@@ -102,7 +102,7 @@ public class DNASequencerRecipe implements IRecipe<IInventory> {
 
 	@Override
 	public ItemStack getToastSymbol() {
-		return new ItemStack(BlockInit.MIXER.get().asItem());
+		return new ItemStack(BlockInit.DNA_SEQUENCER.get().asItem());
 	}
 
 	public boolean isValid(ItemStack input, ItemStack input2) {

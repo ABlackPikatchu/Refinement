@@ -1,4 +1,4 @@
-package com.ablackpikatchu.refinement.common.block;
+package com.ablackpikatchu.refinement.resourcecrops.common;
 
 import java.util.Random;
 
@@ -6,8 +6,10 @@ import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.data.maps.LootTableMaps;
 
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.CropsBlock;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -62,6 +64,25 @@ public class ModCrop extends CropsBlock {
 	 */
 	public ModCrop(Properties properties, ResourceLocation seed, ResourceLocation resource, boolean canBonemeal) {
 		super(properties);
+		this.seed = seed;
+		this.resource = resource;
+		this.canBonemeal = canBonemeal;
+		this.bonemealItem = new ResourceLocation(Refinement.MOD_ID, "refined_bonemeal");
+	}
+
+	/**
+	 * Creates a new resource crop, with the same block properties as
+	 * {@link Blocks#WHEAT} (for registering its block states, models, and loot
+	 * tables see {@link LootTableMaps#addCropLoot})
+	 * 
+	 * @param seed        the registry name of the seed
+	 * @param resource    the registry name of the resource produced
+	 * @param canBonemeal if it can be bonemealed using vanilla bonemeal (note:
+	 *                    using this method means that the crop will be bonemealable
+	 *                    using the {@link ItemInit#REFINED_BONEMEAL} item)
+	 */
+	public ModCrop(ResourceLocation seed, ResourceLocation resource, boolean canBonemeal) {
+		super(AbstractBlock.Properties.copy(Blocks.WHEAT));
 		this.seed = seed;
 		this.resource = resource;
 		this.canBonemeal = canBonemeal;

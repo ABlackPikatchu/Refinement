@@ -6,6 +6,7 @@ import com.ablackpikatchu.refinement.datafixers.util.recipe.TagInput;
 
 /**
  * Class for creating DNA Sequencer data gen recipe inputs
+ * 
  * @author matyrobbrt
  *
  */
@@ -16,74 +17,90 @@ public class DNASequencerInput {
 	private final TagInput mainTag;
 	private final TagInput secondaryTag;
 	private final int successProbability;
-	private final boolean noFuelRequired;
+	private boolean noFuelRequired;
+	private boolean cropsEnabled;
 
 	/**
 	 * Creates a new {@link DNASequencerRecipeBuilder} recipe input
-	 * @param mainInput the main input
-	 * @param secondaryInput the secondary input
-	 * @param successProbability the success chance of the recipe (if is greater than 100 it will be set to 100)
-	 * @param noFuelRequired if the recipe should not consume fuel (if true, it WILL NOT consume fuel; if false, the recipe WILL consume fuel)
+	 * 
+	 * @param mainInput          the main input
+	 * @param secondaryInput     the secondary input
+	 * @param successProbability the success chance of the recipe (if is greater
+	 *                           than 100 it will be set to 100)
 	 */
-	public DNASequencerInput(IngredientInput mainInput, IngredientInput secondaryInput, int successProbability, boolean noFuelRequired) {
+	public DNASequencerInput(IngredientInput mainInput, IngredientInput secondaryInput, int successProbability) {
 		this.mainInput = mainInput;
 		this.secondaryInput = secondaryInput;
 		this.mainTag = null;
 		this.secondaryTag = null;
-		if (successProbability <= 100) this.successProbability = successProbability;
-		else this.successProbability = 100;
-		this.noFuelRequired = noFuelRequired;
+		if (successProbability <= 100)
+			this.successProbability = successProbability;
+		else
+			this.successProbability = 100;
 	}
 
 	/**
 	 * See {@link DNASequencerInput#DNASequencerInput}
+	 * 
 	 * @param mainTag
 	 * @param secondaryInput
 	 * @param successProbability
-	 * @param noFuelRequired
 	 */
-	public DNASequencerInput(TagInput mainTag, IngredientInput secondaryInput, int successProbability, boolean noFuelRequired) {
+	public DNASequencerInput(TagInput mainTag, IngredientInput secondaryInput, int successProbability) {
 		this.mainInput = null;
 		this.mainTag = mainTag;
 		this.secondaryInput = secondaryInput;
 		this.secondaryTag = null;
-		if (successProbability <= 100) this.successProbability = successProbability;
-		else this.successProbability = 100;
-		this.noFuelRequired = noFuelRequired;
+		if (successProbability <= 100)
+			this.successProbability = successProbability;
+		else
+			this.successProbability = 100;
 	}
 
 	/**
 	 * See {@link DNASequencerInput#DNASequencerInput}
+	 * 
 	 * @param mainInput
 	 * @param secondaryTag
 	 * @param successProbability
-	 * @param noFuelRequired
 	 */
-	public DNASequencerInput(IngredientInput mainInput, TagInput secondaryTag, int successProbability, boolean noFuelRequired) {
+	public DNASequencerInput(IngredientInput mainInput, TagInput secondaryTag, int successProbability) {
 		this.mainInput = mainInput;
 		this.secondaryInput = null;
 		this.mainTag = null;
 		this.secondaryTag = secondaryTag;
-		if (successProbability <= 100) this.successProbability = successProbability;
-		else this.successProbability = 100;
-		this.noFuelRequired = noFuelRequired;
+		if (successProbability <= 100)
+			this.successProbability = successProbability;
+		else
+			this.successProbability = 100;
 	}
 
 	/**
 	 * See {@link DNASequencerInput#DNASequencerInput}
+	 * 
 	 * @param mainTag
 	 * @param secondaryTag
 	 * @param successProbability
-	 * @param noFuelRequired
 	 */
-	public DNASequencerInput(TagInput mainTag, TagInput secondaryTag, int successProbability, boolean noFuelRequired) {
+	public DNASequencerInput(TagInput mainTag, TagInput secondaryTag, int successProbability) {
 		this.mainInput = null;
 		this.secondaryInput = null;
 		this.mainTag = mainTag;
 		this.secondaryTag = secondaryTag;
-		if (successProbability <= 100) this.successProbability = successProbability;
-		else this.successProbability = 100;
+		if (successProbability <= 100)
+			this.successProbability = successProbability;
+		else
+			this.successProbability = 100;
+	}
+
+	public DNASequencerInput setCropsEnabledCondition(boolean cropsEnabled) {
+		this.cropsEnabled = cropsEnabled;
+		return this;
+	}
+	
+	public DNASequencerInput setNoFuelRequired(boolean noFuelRequired) {
 		this.noFuelRequired = noFuelRequired;
+		return this;
 	}
 
 	public IngredientInput getMainInput() {
@@ -101,11 +118,11 @@ public class DNASequencerInput {
 	public TagInput getSecondaryTag() {
 		return this.secondaryTag;
 	}
-	
+
 	public int getSuccessProbability() {
 		return this.successProbability;
 	}
-	
+
 	public boolean noFuelRequired() {
 		return this.noFuelRequired;
 	}
@@ -121,9 +138,12 @@ public class DNASequencerInput {
 			recipe.addSecondaryIngredient(secondaryTag.getTag(), secondaryTag.getCount());
 		else
 			recipe.addSecondaryIngredient(secondaryInput.getIngredient(), secondaryInput.getCount());
-		
+
 		recipe.setSuccessProbability(successProbability);
 		recipe.setNoFuelRequired(noFuelRequired);
+
+		if (cropsEnabled)
+			recipe.setCropsEnabledCondition(true);
 
 		return recipe;
 	}

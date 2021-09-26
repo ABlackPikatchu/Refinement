@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.stream.Collectors;
 
-import com.ablackpikatchu.refinement.common.block.ModCrop;
 import com.ablackpikatchu.refinement.data.maps.LootTableMaps;
+import com.ablackpikatchu.refinement.resourcecrops.common.ModCrop;
 
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.Block;

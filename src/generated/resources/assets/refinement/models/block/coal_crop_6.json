@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:block/crop",
+  "parent": "minecraft:block/cross",
   "textures": {
-    "crop": "refinement:blocks/crops/coal_crop/stage_6"
+    "cross": "refinement:blocks/crops/coal_crop/stage_6"
   }
 }

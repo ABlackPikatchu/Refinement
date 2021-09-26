@@ -6,7 +6,9 @@ import java.util.function.Consumer;
 import javax.annotation.Nullable;
 
 import com.ablackpikatchu.refinement.common.recipe.DNASequencerRecipe;
+import com.ablackpikatchu.refinement.common.recipe.conditions.CropsEnabledCondition;
 import com.ablackpikatchu.refinement.core.util.NameUtils;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import net.minecraft.data.IFinishedRecipe;
@@ -33,6 +35,7 @@ public class DNASequencerRecipeBuilder {
 	private final int resultCount;
 	private int successProbability;
 	private boolean noFuelRequired;
+	private boolean cropsEnabled;
 
 	public DNASequencerRecipeBuilder(Item resultItem, int count) {
 		this.serializer = DNASequencerRecipe.SERIALIZER;
@@ -116,6 +119,11 @@ public class DNASequencerRecipeBuilder {
 		return this;
 	}
 
+	public DNASequencerRecipeBuilder setCropsEnabledCondition(boolean cropsEnabled) {
+		this.cropsEnabled = cropsEnabled;
+		return this;
+	}
+
 	public class Result implements IFinishedRecipe {
 		private final ResourceLocation recipeId;
 
@@ -125,6 +133,8 @@ public class DNASequencerRecipeBuilder {
 
 		@Override
 		public void serializeRecipeData(JsonObject json) {
+			if (cropsEnabled)
+				addCondition(json);
 			if (!isTag)
 				json.add("input", serializeInput());
 			else
@@ -176,6 +186,15 @@ public class DNASequencerRecipeBuilder {
 			ret.addProperty("tag", tag.substring(tag.indexOf("[") + 1).replace("]", ""));
 			ret.addProperty("count", inputCount);
 			return ret;
+		}
+
+		private void addCondition(JsonObject ret) {
+			JsonArray conditions = new JsonArray();
+			JsonObject condition = new JsonObject();
+			condition.addProperty("type", CropsEnabledCondition.ID.toString());
+			condition.addProperty("value", true);
+			conditions.add(condition);
+			ret.add("conditions", conditions);
 		}
 
 		@Override

@@ -8,6 +8,7 @@ import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.R
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.item.Cogwheel;
+import com.ablackpikatchu.refinement.common.item.GluttonyBracelet;
 import com.ablackpikatchu.refinement.common.item.GritPaper;
 import com.ablackpikatchu.refinement.common.item.Magnet;
 import com.ablackpikatchu.refinement.common.item.MixingBowl;
@@ -16,14 +17,16 @@ import com.ablackpikatchu.refinement.common.item.RefinedCoal;
 import com.ablackpikatchu.refinement.common.item.RefinedCoalBlockItem;
 import com.ablackpikatchu.refinement.common.item.blockitem.DNASequencerBlockItem;
 import com.ablackpikatchu.refinement.common.item.box.ModLootBox;
+import com.ablackpikatchu.refinement.common.item.food.CuringApple;
 import com.ablackpikatchu.refinement.common.item.food.MinersApple;
 import com.ablackpikatchu.refinement.common.item.food.MinersBread;
 import com.ablackpikatchu.refinement.common.item.food.MinersCarrot;
 import com.ablackpikatchu.refinement.common.item.food.MinersJerky;
-import com.ablackpikatchu.refinement.common.item.food.MinersStew;
+import com.ablackpikatchu.refinement.common.item.food.ModEffectFood;
 import com.ablackpikatchu.refinement.common.material.ModArmorMaterial;
 import com.ablackpikatchu.refinement.common.material.ModItemTier;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementArmorGroup;
+import com.ablackpikatchu.refinement.core.itemgroup.RefinementFoodGroup;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementMachineGroup;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementMaterialsGroup;
@@ -33,12 +36,17 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.Food;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.Rarity;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.SwordItem;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.fml.RegistryObject;
@@ -317,14 +325,6 @@ public class ItemInit {
 			() -> new ArmorItem(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.FEET,
 					new Item.Properties().tab(REFINEMENT_ARMOUR)));
 
-	// Essences
-	public static final RegistryObject<Item> IRON_ESSENCE = ITEMS.register("iron_essence",
-			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
-	public static final RegistryObject<Item> COAL_ESSENCE = ITEMS.register("coal_essence",
-			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
-	public static final RegistryObject<Item> NATURE_ESSENCE = ITEMS.register("nature_essence",
-			() -> new Item(new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
-
 	// Boxes
 	public static final RegistryObject<Item> FOOD_BOX = ITEMS.register("food_box",
 			() -> new ModLootBox(
@@ -335,17 +335,29 @@ public class ItemInit {
 	public static final RegistryObject<BlockItem> BLANK_ORE_ITEM = ITEMS.register("blank_ore",
 			() -> new BlockItem(BlockInit.BLANK_ORE.get(), new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 	public static final RegistryObject<BlockItem> MATERIALS_STATION_ITEM = ITEMS.register("materials_station",
-			() -> new BlockItem(BlockInit.MATERIALS_STATION.get(), new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+			() -> new BlockItem(BlockInit.MATERIALS_STATION.get(),
+					new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 
 	// Misc Items
 	public static final RegistryObject<Item> REFINED_BONEMEAL = ITEMS.register("refined_bonemeal",
 			() -> new Item(new Item.Properties().tab(REFINEMENT).stacksTo(16)));
+	public static final RegistryObject<Item> GLUTTONY_BRACELET = ITEMS.register("gluttony_bracelet",
+			() -> new GluttonyBracelet(new Item.Properties().tab(REFINEMENT).defaultDurability(2048)));
 
 	// Food
-	public static final RegistryObject<Item> MINERS_STEW = ITEMS.register("miners_stew", MinersStew::new);
+	public static final RegistryObject<Item> MINERS_STEW = ITEMS.register("miners_stew",
+			() -> new ModEffectFood(new Item.Properties()
+					.food(new Food.Builder().nutrition(6).saturationMod(13.3f).alwaysEat().fast().build())
+					.rarity(Rarity.RARE).tab(RefinementFoodGroup.REFINEMENT_FOOD).stacksTo(1))
+							.addEffect(new EffectInstance(Effects.DIG_SPEED, 9600, 0))
+							.addEffect(new EffectInstance(Effects.NIGHT_VISION, 9600, 0))
+							.hurtOnUse(DamageSourcesInit.MINERS_STEW_DAMAGE, 8.0F)
+							.leftoverItem(new ItemStack(Items.BOWL)));
+
 	public static final RegistryObject<Item> MINERS_CARROT = ITEMS.register("miners_carrot", MinersCarrot::new);
 	public static final RegistryObject<Item> MINERS_APPLE = ITEMS.register("miners_apple", MinersApple::new);
 	public static final RegistryObject<Item> MINERS_JERKY = ITEMS.register("miners_jerky", MinersJerky::new);
 	public static final RegistryObject<Item> MINERS_BREAD = ITEMS.register("miners_bread", MinersBread::new);
+	public static final RegistryObject<Item> CURING_APPLE = ITEMS.register("curing_apple", CuringApple::new);
 
 }
