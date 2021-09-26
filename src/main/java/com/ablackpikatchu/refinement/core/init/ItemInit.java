@@ -12,6 +12,7 @@ import com.ablackpikatchu.refinement.common.item.GluttonyBracelet;
 import com.ablackpikatchu.refinement.common.item.GritPaper;
 import com.ablackpikatchu.refinement.common.item.Magnet;
 import com.ablackpikatchu.refinement.common.item.MixingBowl;
+import com.ablackpikatchu.refinement.common.item.ModUpgradableArmor;
 import com.ablackpikatchu.refinement.common.item.Mold;
 import com.ablackpikatchu.refinement.common.item.RefinedCoal;
 import com.ablackpikatchu.refinement.common.item.RefinedCoalBlockItem;
@@ -324,6 +325,7 @@ public class ItemInit {
 	public static final RegistryObject<Item> REFINED_NETHERITE_BOOTS = ITEMS.register("refined_netherite_boots",
 			() -> new ArmorItem(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.FEET,
 					new Item.Properties().tab(REFINEMENT_ARMOUR)));
+	public static final RegistryObject<Item> TEST_CHESTPLATE = ITEMS.register("test_chestplate", ModUpgradableArmor::new);
 
 	// Boxes
 	public static final RegistryObject<Item> FOOD_BOX = ITEMS.register("food_box",
@@ -343,6 +345,8 @@ public class ItemInit {
 			() -> new Item(new Item.Properties().tab(REFINEMENT).stacksTo(16)));
 	public static final RegistryObject<Item> GLUTTONY_BRACELET = ITEMS.register("gluttony_bracelet",
 			() -> new GluttonyBracelet(new Item.Properties().tab(REFINEMENT).defaultDurability(2048)));
+	public static final RegistryObject<Item> ARMOR_UPGRADER = ITEMS.register("armor_upgrader",
+			() -> new Item(new Item.Properties().tab(REFINEMENT)));
 
 	// Food
 	public static final RegistryObject<Item> MINERS_STEW = ITEMS.register("miners_stew",

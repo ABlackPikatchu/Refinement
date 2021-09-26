@@ -1,5 +1,9 @@
 package com.ablackpikatchu.refinement.core.config;
 
+import java.util.List;
+
+import com.google.common.collect.Lists;
+
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public class CommonConfig {
@@ -36,6 +40,9 @@ public class CommonConfig {
 
 	// Crops
 	public static final ForgeConfigSpec.ConfigValue<Boolean> CROPS_ENABLED;
+
+	// Armour Upgrading
+	public static final ForgeConfigSpec.ConfigValue<List<String>> ARMOUR_UPGRADING_EFFECTS;
 
 	static {
 
@@ -107,6 +114,15 @@ public class CommonConfig {
 		CROPS_ENABLED = BUILDER.comment(
 				"If the ore crops should be enabled (if false, their recipe will not exist, and they will not show up in the creative tabs, nor in JEI) (Default value is false)")
 				.define("Crops Enabled", false);
+
+		BUILDER.pop();
+
+		BUILDER.push("Armour_Upgrading");
+
+		ARMOUR_UPGRADING_EFFECTS = BUILDER
+				.comment("The possible effects that an armour piece can recipe when upgraded.")
+				.define("Upgrading Effects",
+						Lists.newArrayList("minecraft:night_vision", "minecraft:haste", "minecraft:water_breathing"));
 
 		BUILDER.pop();
 
