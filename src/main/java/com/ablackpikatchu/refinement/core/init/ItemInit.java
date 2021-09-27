@@ -7,6 +7,7 @@ import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.R
 import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.REFINEMENT_TOOLS_WEAPONS;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.common.item.ArmorUpgrader;
 import com.ablackpikatchu.refinement.common.item.Cogwheel;
 import com.ablackpikatchu.refinement.common.item.GluttonyBracelet;
 import com.ablackpikatchu.refinement.common.item.GritPaper;
@@ -346,7 +347,7 @@ public class ItemInit {
 	public static final RegistryObject<Item> GLUTTONY_BRACELET = ITEMS.register("gluttony_bracelet",
 			() -> new GluttonyBracelet(new Item.Properties().tab(REFINEMENT).defaultDurability(2048)));
 	public static final RegistryObject<Item> ARMOR_UPGRADER = ITEMS.register("armor_upgrader",
-			() -> new Item(new Item.Properties().tab(REFINEMENT)));
+			() -> new ArmorUpgrader(new Item.Properties().tab(REFINEMENT).stacksTo(1)));
 
 	// Food
 	public static final RegistryObject<Item> MINERS_STEW = ITEMS.register("miners_stew",

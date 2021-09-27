@@ -2,12 +2,14 @@ package com.ablackpikatchu.refinement.common.events;
 
 import java.util.Random;
 
+import com.ablackpikatchu.refinement.common.item.ArmorUpgrader;
 import com.ablackpikatchu.refinement.common.item.ModUpgradableArmor;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.util.UpgradeArmor;
 import com.ablackpikatchu.refinement.core.util.helper.NBTHelper;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.entity.player.AnvilRepairEvent;
@@ -25,7 +27,8 @@ public class AnvilEvents {
 		ItemStack left = event.getLeft();
 
 		if (right.getItem() == ItemInit.ARMOR_UPGRADER.get()) {
-			UpgradeArmor.upgradeEffect(left, event);
+			if (NBTHelper.getString(right, ArmorUpgrader.type) == ArmorUpgrader.potionType)
+				UpgradeArmor.upgradeEffect(left, event);
 		}
 	}
 
@@ -33,6 +36,23 @@ public class AnvilEvents {
 	public static void armourUpgradingFinished(AnvilRepairEvent event) {
 		if (event.getItemResult().getItem() instanceof ModUpgradableArmor) {
 			NBTHelper.setBoolean(event.getItemResult(), ModUpgradableArmor.inAnvil, false);
+		}
+	}
+
+	@SubscribeEvent
+	public static void armourUpgraderCrafting(AnvilUpdateEvent event) {
+		ItemStack left = event.getLeft();
+		ItemStack right = event.getRight();
+
+		if (left.getItem() == ItemInit.ARMOR_UPGRADER.get() && !NBTHelper.getBoolean(left, ArmorUpgrader.rolled)) {
+			if (right.getItem() == Items.POTION) {
+				event.setMaterialCost(1);
+				event.setCost(22);
+				ItemStack output = left.copy();
+				NBTHelper.setBoolean(output, ArmorUpgrader.rolled, true);
+				NBTHelper.setString(output, ArmorUpgrader.type, ArmorUpgrader.potionType);
+				event.setOutput(output);
+			}
 		}
 	}
 
