@@ -1,6 +1,7 @@
 package com.ablackpikatchu.refinement.core.init;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.common.effects.Flight;
 import com.ablackpikatchu.refinement.common.effects.GhostlyShape;
 import com.ablackpikatchu.refinement.common.effects.NegateFall;
 
@@ -17,5 +18,6 @@ public class PotionInit {
 	public static final RegistryObject<NegateFall> NEGATE_FALL = EFFECTS.register("negate_fall", NegateFall::new);
 	public static final RegistryObject<GhostlyShape> GHOSTLY_SHAPE = EFFECTS.register("ghostly_shape",
 			GhostlyShape::new);
+	public static final RegistryObject<Flight> FLIGHT = EFFECTS.register("flight", Flight::new);
 
 }
