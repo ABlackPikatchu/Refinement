@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "ingredient": {
+    "item": "refinement:refined_leaves"
+  },
+  "result": "refinement:unfired_refined_carbon_ingot",
+  "experience": 0.35,
+  "cookingtime": 600
+}

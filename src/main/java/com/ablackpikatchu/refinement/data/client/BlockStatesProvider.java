@@ -8,12 +8,14 @@ import com.ablackpikatchu.refinement.data.maps.LootTableMaps;
 import com.ablackpikatchu.refinement.resourcecrops.common.ModCrop;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.client.model.generators.BlockModelProvider;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -37,6 +39,16 @@ public class BlockStatesProvider extends BlockStateProvider {
 		cropBlocks.forEach((block, resource) -> {
 			cropBlock(block);
 		});
+		
+		simpleBlock(BlockInit.REFINED_LEAVES.get());
+		logBlock(BlockInit.REFINED_LOG.get());
+		logBlock(BlockInit.REFINED_STRIPPED_LOG.get());
+		cross(BlockInit.REFINED_SAPLING.get());
+
+	}
+
+	private void cross(Block block) {
+		getVariantBuilder(block).partialState().setModels(new ConfiguredModel(crossModel(block, blockTexture(block))));
 	}
 
 	public void cropBlock(Block block) {
@@ -58,9 +70,26 @@ public class BlockStatesProvider extends BlockStateProvider {
 	public String name(Block block) {
 		return block.getRegistryName().getPath();
 	}
+	
+	public ModelFile crossModel(Block block, ResourceLocation name) {
+        return models().cross(name(block), name);
+    }
 
 	public ResourceLocation cropModel(Block block, int age) {
 		return new ResourceLocation(Refinement.MOD_ID, "blocks/crops/" + name(block) + "/stage_" + age);
 	}
+	
+	public void logBlock(Block block) {
+        axisBlock((RotatedPillarBlock) block, blockTexture(block), extend(blockTexture(block), "_top"));
+    }
+	
+	public ResourceLocation blockTexture(Block block) {
+        ResourceLocation name = block.getRegistryName();
+        return new ResourceLocation(name.getNamespace(), "blocks" + "/" + name.getPath());
+    }
+	
+	private ResourceLocation extend(ResourceLocation rl, String suffix) {
+        return new ResourceLocation(rl.getNamespace(), rl.getPath() + suffix);
+    }
 
 }

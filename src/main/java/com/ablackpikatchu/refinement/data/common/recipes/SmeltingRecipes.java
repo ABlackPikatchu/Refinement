@@ -2,6 +2,7 @@ package com.ablackpikatchu.refinement.data.common.recipes;
 
 import java.util.ArrayList;
 
+import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.vanilla.SmeltingRecipe.Blasting;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.vanilla.SmeltingRecipe.Cooking.CampfireCooking;
@@ -34,6 +35,10 @@ public class SmeltingRecipes {
 		smelting.add(new Smelting(Ingredient.of(ItemInit.UNFIRED_REFINED_GOLD_INGOT.get()), ItemInit.REFINED_GOLD_INGOT.get()));
 		smelting.add(new Smelting(Ingredient.of(ItemInit.UNFIRED_REFINED_IRON_INGOT.get()), ItemInit.REFINED_IRON_INGOT.get()));
 		smelting.add(new Smelting(Ingredient.of(ItemInit.UNFIRED_REFINED_NETHERITE_INGOT.get()), ItemInit.REFINED_NETHERITE_INGOT.get()));
+		
+		smelting.add(new Smelting(Ingredient.of(BlockInit.REFINED_LOG.get()), ItemInit.UNFIRED_REFINED_CARBON_INGOT.get()));
+		smelting.add(new Smelting(Ingredient.of(BlockInit.REFINED_STRIPPED_LOG.get()), ItemInit.UNFIRED_REFINED_CARBON_INGOT.get()));
+		smelting.add(new Smelting(Ingredient.of(BlockInit.REFINED_LEAVES.get()), ItemInit.UNFIRED_REFINED_CARBON_INGOT.get()));
 
 		return smelting;
 	}
@@ -68,7 +73,9 @@ public class SmeltingRecipes {
 		public static ArrayList<Smoking> smokingRecipes() {
 			ArrayList<Smoking> smoking = new ArrayList<>();
 
-			//smoking.add(new Smoking(Ingredient.of(ItemInit.INPUT.get()), ItemInit.OUTPUT.get()));
+			smoking.add(new Smoking(Ingredient.of(BlockInit.REFINED_LOG.get()), ItemInit.UNFIRED_REFINED_CARBON_INGOT.get()));
+			smoking.add(new Smoking(Ingredient.of(BlockInit.REFINED_STRIPPED_LOG.get()), ItemInit.UNFIRED_REFINED_CARBON_INGOT.get()));
+			smoking.add(new Smoking(Ingredient.of(BlockInit.REFINED_LEAVES.get()), ItemInit.UNFIRED_REFINED_CARBON_INGOT.get()));
 
 			return smoking;
 		}
@@ -76,7 +83,9 @@ public class SmeltingRecipes {
 		public static ArrayList<CampfireCooking> campfireCookingRecipes() {
 			ArrayList<CampfireCooking> campfireCooking = new ArrayList<>();
 			
-			//campfireCooking.add(new CampfireCooking(Ingredient.of(ItemInit.INPUT.get()), ItemInit.OUTPUT.get()));
+			campfireCooking.add(new CampfireCooking(Ingredient.of(BlockInit.REFINED_LOG.get()), ItemInit.UNFIRED_REFINED_CARBON_INGOT.get()));
+			campfireCooking.add(new CampfireCooking(Ingredient.of(BlockInit.REFINED_STRIPPED_LOG.get()), ItemInit.UNFIRED_REFINED_CARBON_INGOT.get()));
+			campfireCooking.add(new CampfireCooking(Ingredient.of(BlockInit.REFINED_LEAVES.get()), ItemInit.UNFIRED_REFINED_CARBON_INGOT.get()));
 
 			return campfireCooking;
 		}

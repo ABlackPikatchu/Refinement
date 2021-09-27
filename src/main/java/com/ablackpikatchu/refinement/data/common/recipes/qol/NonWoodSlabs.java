@@ -11,6 +11,7 @@ import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 
@@ -27,8 +28,9 @@ public class NonWoodSlabs {
 			for (Item slab : ItemLists.NON_WOOD_SLABS) {
 				Item unCrafting = ForgeRegistries.ITEMS.getValue(new ResourceLocation(
 						slab.getRegistryName().getNamespace(), slab.getRegistryName().getPath().replace("_slab", "")));
-				addSlab(slab, unCrafting);
-			};
+				if (unCrafting != Items.AIR)
+					addSlab(slab, unCrafting);
+			}
 
 			return recipes;
 		}

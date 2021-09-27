@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "L  ",
+    "LL ",
+    "LLL"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:smooth_quartz"
+    }
+  },
+  "result": {
+    "item": "minecraft:smooth_quartz_stairs",
+    "count": 8
+  }
+}

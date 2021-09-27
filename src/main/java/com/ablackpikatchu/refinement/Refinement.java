@@ -9,19 +9,25 @@ import com.ablackpikatchu.refinement.common.recipe.conditions.EnableableConditio
 import com.ablackpikatchu.refinement.core.config.ClientConfig;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
+import com.ablackpikatchu.refinement.core.init.BlockItemInit;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
 import com.ablackpikatchu.refinement.core.init.CropInit;
+import com.ablackpikatchu.refinement.core.init.FeatureInit;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.ParticleTypesInit;
 import com.ablackpikatchu.refinement.core.init.PotionInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
 import com.ablackpikatchu.refinement.core.init.VillagerInit;
+import com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup;
 import com.ablackpikatchu.refinement.core.network.RefinementNetwork;
 import com.ablackpikatchu.refinement.core.util.Conversions;
+import com.ablackpikatchu.refinement.core.util.StrippingMap;
 import com.ablackpikatchu.refinement.core.util.lists.TradeLists;
 
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
 
 import net.minecraftforge.common.MinecraftForge;
@@ -36,12 +42,14 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.config.ModConfig.Type;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 import software.bernie.geckolib3.GeckoLib;
 
 /**
  * The Refinement mod
+ * 
  * @author matyrobbrt
  * @author ABlackPikatchu
  */
@@ -72,10 +80,13 @@ public class Refinement {
 		PotionInit.EFFECTS.register(modBus);
 		VillagerInit.VillagerProfessions.VILLAGER_PROFESSIONS.register(modBus);
 		VillagerInit.PointOfInterests.POINT_OF_INTEREST_TYPES.register(modBus);
+		FeatureInit.FEATURES.register(modBus);
 
 		MinecraftForge.EVENT_BUS.register(this);
 
 		modBus.addListener(this::commonSetup);
+		modBus.addListener(this::onLoadComplete);
+
 		modBus.addGenericListener(IRecipeSerializer.class, this::recipeConditions);
 
 		// forge bus events
@@ -89,6 +100,14 @@ public class Refinement {
 				Conversions.convert(player);
 			}
 		}
+	}
+
+	@SubscribeEvent
+	public static void onRegisterItems(final RegistryEvent.Register<Item> event) {
+		BlockItemInit.BLOCKS_THAT_NEED_BLOCKITEMS.forEach(block -> {
+			event.getRegistry().register(new BlockItem(block, new Item.Properties().tab(RefinementItemGroup.REFINEMENT))
+					.setRegistryName(block.getRegistryName()));
+		});
 	}
 
 	public void recipeConditions(RegistryEvent.Register<IRecipeSerializer<?>> event) {
@@ -108,5 +127,9 @@ public class Refinement {
 			TradeLists.fillTradeData();
 		});
 
+	}
+
+	public void onLoadComplete(final FMLLoadCompleteEvent event) {
+		StrippingMap.registerStrippables();
 	}
 }

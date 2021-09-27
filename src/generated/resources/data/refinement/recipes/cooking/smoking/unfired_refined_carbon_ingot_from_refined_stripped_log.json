@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "refinement:refined_stripped_log"
+  },
+  "result": "refinement:unfired_refined_carbon_ingot",
+  "experience": 0.35,
+  "cookingtime": 100
+}
