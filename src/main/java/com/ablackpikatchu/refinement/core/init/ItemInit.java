@@ -13,7 +13,6 @@ import com.ablackpikatchu.refinement.common.item.GluttonyBracelet;
 import com.ablackpikatchu.refinement.common.item.GritPaper;
 import com.ablackpikatchu.refinement.common.item.Magnet;
 import com.ablackpikatchu.refinement.common.item.MixingBowl;
-import com.ablackpikatchu.refinement.common.item.ModUpgradableArmor;
 import com.ablackpikatchu.refinement.common.item.Mold;
 import com.ablackpikatchu.refinement.common.item.RefinedCoal;
 import com.ablackpikatchu.refinement.common.item.RefinedCoalBlockItem;
@@ -326,7 +325,6 @@ public class ItemInit {
 	public static final RegistryObject<Item> REFINED_NETHERITE_BOOTS = ITEMS.register("refined_netherite_boots",
 			() -> new ArmorItem(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.FEET,
 					new Item.Properties().tab(REFINEMENT_ARMOUR)));
-	public static final RegistryObject<Item> TEST_CHESTPLATE = ITEMS.register("test_chestplate", ModUpgradableArmor::new);
 
 	// Boxes
 	public static final RegistryObject<Item> FOOD_BOX = ITEMS.register("food_box",

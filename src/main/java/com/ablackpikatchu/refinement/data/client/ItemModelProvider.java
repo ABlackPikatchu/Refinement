@@ -31,7 +31,7 @@ public class ItemModelProvider extends net.minecraftforge.client.model.generator
     }
     
     public static String[] BLOCK_ITEMS = {
-    		"grinder"
+    		"grinder", "refined_log", "refined_stripped_log", "refined_leaves", "refined_sapling"
     };
     
     public static String[] ITEMS = {

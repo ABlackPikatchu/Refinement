@@ -45,6 +45,7 @@ public class LangProvider extends LanguageProvider {
 		// Effects
 		add(PotionInit.NEGATE_FALL.get(), "Negate Fall Damage");
 		add(PotionInit.GHOSTLY_SHAPE.get(), "Ghostly Shape");
+		add(PotionInit.FLIGHT.get(), "Flight");
 
 		// Containers
 		addContainer("mixer", "Mixer");
@@ -66,6 +67,7 @@ public class LangProvider extends LanguageProvider {
 		addItemGroup("refinement_machine", "Refinement Machines");
 		addItemGroup("refinement_armor", "Refinement Armor");
 		addItemGroup("refinement_food", "Refinement Food");
+		addItemGroup("refinement_resource_crops", "Refinement Resource Crops");
 
 		// Death Messages
 		add("death.attack.minersStewDamage", "%1$s choked on precious metals");

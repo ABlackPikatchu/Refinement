@@ -6,11 +6,14 @@ import com.ablackpikatchu.refinement.common.block.DNASequencerBlock;
 import com.ablackpikatchu.refinement.common.block.GrinderBlock;
 import com.ablackpikatchu.refinement.common.block.MixerBlock;
 import com.ablackpikatchu.refinement.common.block.MoldPressBlock;
+import com.ablackpikatchu.refinement.common.block.RefinedSaplingBlock;
 import com.ablackpikatchu.refinement.common.block.VaccumulatorBlock;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.LeavesBlock;
+import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -71,4 +74,21 @@ public class BlockInit {
 	// POIs
 	public static final RegistryObject<Block> MATERIALS_STATION = BLOCKS.register("materials_station",
 			() -> new Block(AbstractBlock.Properties.copy(Blocks.SMITHING_TABLE)));
+	
+	// Trees
+	public static final RegistryObject<Block> REFINED_LOG = BLOCKS.register("refined_log",
+			() -> new RotatedPillarBlock(AbstractBlock.Properties.of(Material.WOOD).sound(SoundType.WOOD)
+					.strength(2f, 10f).harvestLevel(0).harvestTool(ToolType.AXE)));
+
+	public static final RegistryObject<Block> REFINED_STRIPPED_LOG = BLOCKS.register("refined_stripped_log",
+			() -> new RotatedPillarBlock(AbstractBlock.Properties.of(Material.WOOD).sound(SoundType.WOOD)
+					.strength(2f, 3f).harvestLevel(0).harvestTool(ToolType.AXE)));
+
+	public static final RegistryObject<Block> REFINED_LEAVES = BLOCKS.register("refined_leaves",
+			() -> new LeavesBlock(AbstractBlock.Properties.of(Material.LEAVES).sound(SoundType.GRASS)
+					.strength(0.2f, 1f).randomTicks().noOcclusion()));
+	
+	public static final RegistryObject<Block> REFINED_SAPLING = BLOCKS.register("refined_sapling",
+			() -> new RefinedSaplingBlock(TreeInit.REFINED, AbstractBlock.Properties.of(Material.LEAVES).sound(SoundType.GRASS)
+					.strength(0f).randomTicks().noOcclusion()));
 }

@@ -23,7 +23,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 
+import net.minecraftforge.common.data.ExistingFileHelper;
+
+@SuppressWarnings("unused")
 public class RecipeProvider extends net.minecraft.data.RecipeProvider {
+
+	private ExistingFileHelper existingFileHelper;
 
 	public static HashMap<Block, Item> SHAPELESS_BLOCK_INGOT = new HashMap<>();
 	public static HashMap<Item, Item> SHAPELESS_INGOT_NUGGET = new HashMap<>();
@@ -51,8 +56,9 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 
 	public static HashMap<DNASequencerInput, Output> DNA_SEQUENCER_RECIPES = new HashMap<>();
 
-	public RecipeProvider(DataGenerator p_i48262_1_) {
+	public RecipeProvider(DataGenerator p_i48262_1_, ExistingFileHelper existingFileHelper) {
 		super(p_i48262_1_);
+		this.existingFileHelper = existingFileHelper;
 	}
 
 	@Override
@@ -62,7 +68,7 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 			recipe.save(consumer, name);
 		});
 
-		//addQOLRecipes(consumer);
+		// addQOLRecipes(consumer);
 
 		RecipeMaps.addShapelessBlockIngotEntries(SHAPELESS_BLOCK_INGOT);
 		SHAPELESS_BLOCK_INGOT.forEach((block, item) -> {
@@ -182,23 +188,27 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 		});
 
 		SmeltingRecipes.smeltingRecipes().forEach(recipe -> {
-			recipe.getRecipe().save(consumer,
-					cooking(smelting(recipe.getOutput().asItem().getRegistryName().getPath())));
+			ResourceLocation name = cooking(smelting(recipe.getOutput().asItem().getRegistryName().getPath() + "_from_"
+					+ recipe.getIngredient().getItems()[0].getItem().getRegistryName().getPath()));
+			recipe.getRecipe().save(consumer, name);
 		});
 
 		SmeltingRecipes.blastingRecipes().forEach(recipe -> {
-			recipe.getRecipe().save(consumer,
-					cooking(blasting(recipe.getOutput().asItem().getRegistryName().getPath())));
+			ResourceLocation name = cooking(blasting(recipe.getOutput().asItem().getRegistryName().getPath() + "_from_"
+					+ recipe.getIngredient().getItems()[0].getItem().getRegistryName().getPath()));
+			recipe.getRecipe().save(consumer, name);
 		});
 
 		SmeltingRecipes.Cooking.smokingRecipes().forEach(recipe -> {
-			recipe.getRecipe().save(consumer,
-					cooking(smoking(recipe.getOutput().asItem().getRegistryName().getPath())));
+			ResourceLocation name = cooking(smoking(recipe.getOutput().asItem().getRegistryName().getPath() + "_from_"
+					+ recipe.getIngredient().getItems()[0].getItem().getRegistryName().getPath()));
+			recipe.getRecipe().save(consumer, name);
 		});
 
 		SmeltingRecipes.Cooking.campfireCookingRecipes().forEach(recipe -> {
-			recipe.getRecipe().save(consumer,
-					cooking(campfireCooking(recipe.getOutput().asItem().getRegistryName().getPath())));
+			ResourceLocation name = cooking(campfireCooking(recipe.getOutput().asItem().getRegistryName().getPath()
+					+ "_from_" + recipe.getIngredient().getItems()[0].getItem().getRegistryName().getPath()));
+			recipe.getRecipe().save(consumer, name);
 		});
 
 	}

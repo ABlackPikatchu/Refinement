@@ -33,7 +33,7 @@ public class DataGenerators {
 		gen.addProvider(new ItemTagsProvider(gen, blockTags, existingFileHelper));
 
 		gen.addProvider(new LootTableProvider(gen));
-		gen.addProvider(new RecipeProvider(gen));
+		gen.addProvider(new RecipeProvider(gen, existingFileHelper));
 	}
 
 }

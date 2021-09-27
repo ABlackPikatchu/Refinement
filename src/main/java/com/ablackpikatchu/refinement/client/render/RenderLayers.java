@@ -16,6 +16,9 @@ public class RenderLayers {
 		RenderTypeLookup.setRenderLayer(BlockInit.VACCUMULATOR.get(), RenderType.cutout());
 		cutout(BlockInit.DNA_SEQUENCER.get());
 		
+		cutout(BlockInit.REFINED_LEAVES.get());
+		cutout(BlockInit.REFINED_SAPLING.get());
+		
 		CropInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
 			cutout(block);
 		});

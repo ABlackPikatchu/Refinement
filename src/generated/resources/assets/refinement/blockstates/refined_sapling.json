@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "refinement:block/refined_sapling"
+    }
+  }
+}

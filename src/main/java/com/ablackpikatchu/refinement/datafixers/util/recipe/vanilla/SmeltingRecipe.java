@@ -15,9 +15,14 @@ import net.minecraft.util.IItemProvider;
 public class SmeltingRecipe {
 	
 	protected IItemProvider output;
+	protected Ingredient ingredient;
 	
 	public IItemProvider getOutput() {
 		return output;
+	}
+	
+	public Ingredient getIngredient() {
+		return ingredient;
 	}
 
 	/**
@@ -27,7 +32,6 @@ public class SmeltingRecipe {
 	 */
 	public static class Smelting extends SmeltingRecipe {
 
-		private final Ingredient ingredient;
 		private final Float experience;
 		private final int cookingTime;
 
@@ -70,7 +74,6 @@ public class SmeltingRecipe {
 	 */
 	public static class Blasting extends SmeltingRecipe {
 
-		private final Ingredient ingredient;
 		private final Float experience;
 		private final int cookingTime;
 
@@ -121,7 +124,6 @@ public class SmeltingRecipe {
 		 */
 		public static class Smoking extends SmeltingRecipe {
 
-			private final Ingredient ingredient;
 			private final Float experience;
 			private final int cookingTime;
 
@@ -166,7 +168,6 @@ public class SmeltingRecipe {
 		 */
 		public static class CampfireCooking extends SmeltingRecipe {
 
-			private final Ingredient ingredient;
 			private final Float experience;
 			private final int cookingTime;
 

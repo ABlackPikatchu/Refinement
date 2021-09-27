@@ -13,6 +13,9 @@ public class LootTableMaps {
 
 	public static void addBlockLoot(ArrayList<Block> map) {
 		map.add(BlockInit.GRINDER.get());
+		map.add(BlockInit.REFINED_LOG.get());
+		map.add(BlockInit.REFINED_STRIPPED_LOG.get());
+		map.add(BlockInit.REFINED_SAPLING.get());
 	}
 
 	/**
@@ -27,6 +30,10 @@ public class LootTableMaps {
 		map.put(CropInit.COAL_CROP.get(), CropInit.COAL_ESSENCE.get());
 		map.put(CropInit.IRON_CROP.get(), CropInit.IRON_ESSENCE.get());
 		map.put(CropInit.GOLD_CROP.get(), CropInit.GOLD_ESSENCE.get());
+	}
+	
+	public static void addLeavesLoot(HashMap<Block, Block> map) {
+		map.put(BlockInit.REFINED_LEAVES.get(), BlockInit.REFINED_SAPLING.get());
 	}
 
 }
