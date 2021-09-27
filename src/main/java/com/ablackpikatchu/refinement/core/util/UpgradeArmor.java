@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.AnvilUpdateEvent;
 
 public class UpgradeArmor {
-	
+
 	static Random rand = new Random();
 
 	public static void upgradeEffect(ItemStack stack, AnvilUpdateEvent event) {
@@ -30,5 +30,19 @@ public class UpgradeArmor {
 			}
 		}
 	}
-	
+
+	public static void upgradeAbility(ItemStack stack, AnvilUpdateEvent event) {
+		if (stack.getItem() instanceof ModUpgradableArmor) {
+			if (!NBTHelper.getBoolean(stack, ModUpgradableArmor.abilityRolled)) {
+				ItemStack output = stack.copy();
+				NBTHelper.setBoolean(output, ModUpgradableArmor.abilityRolled, true);
+				NBTHelper.setString(output, ModUpgradableArmor.storedAbility, ModUpgradableArmor.flightAbilityType);
+				NBTHelper.setBoolean(output, ModUpgradableArmor.inAnvil, true);
+				event.setOutput(output);
+				event.setMaterialCost(1);
+				event.setCost(1);
+			}
+		}
+	}
+
 }

@@ -29,6 +29,8 @@ public class AnvilEvents {
 		if (right.getItem() == ItemInit.ARMOR_UPGRADER.get()) {
 			if (NBTHelper.getString(right, ArmorUpgrader.type) == ArmorUpgrader.potionType)
 				UpgradeArmor.upgradeEffect(left, event);
+			else if (NBTHelper.getString(right, ArmorUpgrader.type) == ArmorUpgrader.abilityType)
+				UpgradeArmor.upgradeAbility(left, event);
 		}
 	}
 
@@ -51,6 +53,13 @@ public class AnvilEvents {
 				ItemStack output = left.copy();
 				NBTHelper.setBoolean(output, ArmorUpgrader.rolled, true);
 				NBTHelper.setString(output, ArmorUpgrader.type, ArmorUpgrader.potionType);
+				event.setOutput(output);
+			} else if (right.getItem() == Items.DRAGON_EGG) {
+				event.setMaterialCost(1);
+				event.setCost(22);
+				ItemStack output = left.copy();
+				NBTHelper.setBoolean(output, ArmorUpgrader.rolled, true);
+				NBTHelper.setString(output, ArmorUpgrader.type, ArmorUpgrader.abilityType);
 				event.setOutput(output);
 			}
 		}

@@ -16,6 +16,7 @@ public class ArmorUpgrader extends Item {
 	public static String rolled = "rolled";
 	public static String type = "type";
 	public static String potionType = "potion";
+	public static String abilityType = "ability";
 
 	public ArmorUpgrader(Properties p_i48487_1_) {
 		super(p_i48487_1_);
