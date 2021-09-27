@@ -62,7 +62,7 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 			recipe.save(consumer, name);
 		});
 
-		addQOLRecipes(consumer);
+		//addQOLRecipes(consumer);
 
 		RecipeMaps.addShapelessBlockIngotEntries(SHAPELESS_BLOCK_INGOT);
 		SHAPELESS_BLOCK_INGOT.forEach((block, item) -> {
