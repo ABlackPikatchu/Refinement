@@ -46,7 +46,7 @@ public class MixerScreen extends ContainerScreen<MixerContainer> {
 		this.font.draw(matrixStack, this.menu.te.getDisplayName(), 7.0f, 4.0f, 0xA3703A);
 	}
 
-	@SuppressWarnings({ "resource" })
+	@SuppressWarnings({ "resource", "deprecation" })
 	@Override
 	protected void renderBg(MatrixStack matrixStack, float partialTicks, int mouseX,
 			int mouseY) {

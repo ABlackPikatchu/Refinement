@@ -45,7 +45,7 @@ public class MoldPressScreen extends ContainerScreen<MoldPressContainer> {
 		this.font.draw(matrixStack, this.menu.te.getDisplayName(), 5.0f, 7.0f, 0xA3703A);
 	}
 
-	@SuppressWarnings({ "resource" })
+	@SuppressWarnings({ "resource", "deprecation" })
 	@Override
 	protected void renderBg(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
 		ticks++;

@@ -59,7 +59,7 @@ public class DNASequencerScreen extends ContainerScreen<DNASequencerContainer> {
 		}
 	}
 
-	@SuppressWarnings({ "resource" })
+	@SuppressWarnings({ "resource", "deprecation" })
 	@Override
 	protected void renderBg(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
 		ticks++;
