@@ -2,7 +2,7 @@ package com.ablackpikatchu.refinement.core.init;
 
 import java.util.Random;
 
-import com.ablackpikatchu.refinement.core.world.TreeSpawner;
+import com.ablackpikatchu.refinement.common.world.TreeSpawner;
 
 import net.minecraft.world.gen.feature.Feature;
 
