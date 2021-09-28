@@ -1,21 +1,18 @@
 package com.ablackpikatchu.refinement.common.item;
 
-import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.REFINEMENT_ARMOUR;
-
 import java.util.List;
 
-import com.ablackpikatchu.refinement.common.material.ModArmorMaterial;
 import com.ablackpikatchu.refinement.core.init.PotionInit;
 import com.ablackpikatchu.refinement.core.util.helper.NBTHelper;
+import com.ablackpikatchu.refinement.core.util.helper.PlayerHelper;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
-import net.minecraft.item.Item;
+import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -30,13 +27,12 @@ public class ModUpgradableArmor extends ArmorItem {
 
 	public static String abilityRolled = "AbilityRolled";
 	public static String storedAbility = "ability";
-	public static String flightAbilityType = "flight";
+	public static String flightAbility = "flight";
 
 	public static String inAnvil = "inAnvil";
 
-	public ModUpgradableArmor() {
-		super(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.CHEST,
-				new Item.Properties().tab(REFINEMENT_ARMOUR));
+	public ModUpgradableArmor(IArmorMaterial p_i48534_1_, EquipmentSlotType p_i48534_2_, Properties p_i48534_3_) {
+		super(p_i48534_1_, p_i48534_2_, p_i48534_3_);
 	}
 
 	private Effect getEffect(ItemStack stack) {
@@ -53,10 +49,9 @@ public class ModUpgradableArmor extends ArmorItem {
 	@Override
 	public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
 		if (getEffect(stack) != null)
-			player.addEffect(new EffectInstance(getEffect(stack), 100));
+			PlayerHelper.applyTickEffect(player, getEffect(stack));
 		if (getAbility(stack) != "") {
-			if (getAbility(stack) == flightAbilityType)
-				player.addEffect(new EffectInstance(PotionInit.FLIGHT.get(), 100));
+			PlayerHelper.applyTickEffect(player, PotionInit.FLIGHT.get());
 		}
 	}
 

@@ -3,6 +3,8 @@ package com.ablackpikatchu.refinement.core.util.helper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
 
 public class PlayerHelper {
 
@@ -24,14 +26,24 @@ public class PlayerHelper {
 			return ItemStack.EMPTY;
 		return ItemStack.EMPTY;
 	}
-	
+
 	public static boolean canFitItem(PlayerEntity player, ItemStack item) {
-		
+
 		for (int i = 0; i <= player.inventory.getContainerSize(); i++) {
-			if (player.inventory.canPlaceItem(i, item)) return true;
+			if (player.inventory.canPlaceItem(i, item))
+				return true;
 		}
-		
+
 		return false;
+	}
+
+	public static void applyTickEffect(PlayerEntity player, Effect effect) {
+		if (!player.hasEffect(effect)) {
+			player.addEffect(new EffectInstance(effect, 320));
+		} else {
+			if (player.getEffect(effect).getDuration() <= 200)
+				player.addEffect(new EffectInstance(effect, 320));
+		}
 	}
 
 }

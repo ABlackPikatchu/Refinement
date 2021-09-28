@@ -1,0 +1,15 @@
+{
+    "name": "Applying Upgrades",
+    "icon": "minecraft:anvil",
+    "category": "refinement:armour",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "In order to apply an upgrade to a piece of armour you have to combine the armour pice with an Armour Upgrader in the anvil. (note: any piece of armour can only have ONE type of the same upgrade, but multiple upgrade types)"
+        },
+        {
+            "type": "patchouli:text",
+            "text": "Applying an ability upgrade will give you creative flight, and applying an effect upgrade will give you an effect (check config for possible effects)."
+        }
+    ]
+}

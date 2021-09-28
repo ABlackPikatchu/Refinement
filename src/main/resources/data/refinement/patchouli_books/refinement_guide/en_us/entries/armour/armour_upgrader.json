@@ -1,0 +1,17 @@
+{
+    "name": "Armour Upgrader",
+    "icon": "refinement:armor_upgrader",
+    "category": "refinement:armour",
+    "pages": [
+        {
+            "type": "patchouli:spotlight",
+            "item": "refinement:armor_upgrader",
+            "text": "The Armour Upgrader is the primary item in armour upgrading. Once crafted it needs to have applied another item in an avil in order to give a type to it!"
+        },
+        {
+            "type": "patchouli:text",
+            "title": "Types",
+            "text": "There are 2 types of Armour Upgraders. Ability (combine the Armour Upgrader with a Dragon Egg in an anvil) and Effect (combine the Armour Upgrader with any Potion in an anvil)."
+        }
+    ]
+}
