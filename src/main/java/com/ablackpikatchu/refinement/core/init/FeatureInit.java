@@ -1,7 +1,7 @@
 package com.ablackpikatchu.refinement.core.init;
 
 import com.ablackpikatchu.refinement.Refinement;
-import com.ablackpikatchu.refinement.core.world.feature.RefinedTreeFeature;
+import com.ablackpikatchu.refinement.common.world.feature.RefinedTreeFeature;
 
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;

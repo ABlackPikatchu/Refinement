@@ -2,7 +2,7 @@ package com.ablackpikatchu.refinement.common.block;
 
 import java.util.Random;
 
-import com.ablackpikatchu.refinement.core.world.TreeSpawner;
+import com.ablackpikatchu.refinement.common.world.TreeSpawner;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SaplingBlock;

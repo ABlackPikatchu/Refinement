@@ -1,4 +1,4 @@
-package com.ablackpikatchu.refinement.core.world.gen;
+package com.ablackpikatchu.refinement.common.world.gen;
 
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 

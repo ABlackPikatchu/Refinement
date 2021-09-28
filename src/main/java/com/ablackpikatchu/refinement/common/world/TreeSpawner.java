@@ -1,4 +1,4 @@
-package com.ablackpikatchu.refinement.core.world;
+package com.ablackpikatchu.refinement.common.world;
 
 import java.util.Random;
 

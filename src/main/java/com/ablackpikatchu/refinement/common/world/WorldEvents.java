@@ -1,7 +1,7 @@
-package com.ablackpikatchu.refinement.core.world;
+package com.ablackpikatchu.refinement.common.world;
 
 import com.ablackpikatchu.refinement.Refinement;
-import com.ablackpikatchu.refinement.core.world.gen.OreGen;
+import com.ablackpikatchu.refinement.common.world.gen.OreGen;
 
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

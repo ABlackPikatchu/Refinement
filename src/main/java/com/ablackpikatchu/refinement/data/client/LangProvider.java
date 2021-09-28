@@ -41,6 +41,11 @@ public class LangProvider extends LanguageProvider {
 		add(BlockInit.REFINED_NETHERITE_BLOCK.get(), "Refined Netherite Block");
 		add(BlockInit.VACCUMULATOR.get(), "Vacuumulator");
 		add(BlockInit.DNA_SEQUENCER.get(), "DNA Sequencer");
+		
+		add(BlockInit.REFINED_LOG.get(), "Refined Log");
+		add(BlockInit.REFINED_STRIPPED_LOG.get(), "Refined Stripped Log");
+		add(BlockInit.REFINED_LEAVES.get(), "Refined Leaves");
+		add(BlockInit.REFINED_SAPLING.get(), "Refined Sapling");
 
 		// Effects
 		add(PotionInit.NEGATE_FALL.get(), "Negate Fall Damage");
