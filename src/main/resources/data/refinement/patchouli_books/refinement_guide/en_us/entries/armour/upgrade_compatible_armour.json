@@ -1,0 +1,11 @@
+{
+    "name": "Compatible Armour",
+    "icon": "refinement:refined_diamond_chestplate",
+    "category": "refinement:armour",
+    "pages": [
+        {
+            "type": "patchouli:text",
+            "text": "The armour upgrade system is compatible with the $(item)$(br)$(li)Refined Netherite $(li)Refined Diamond Armour"
+        }
+    ]
+}

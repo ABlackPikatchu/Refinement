@@ -36,7 +36,7 @@ public class UpgradeArmor {
 			if (!NBTHelper.getBoolean(stack, ModUpgradableArmor.abilityRolled)) {
 				ItemStack output = stack.copy();
 				NBTHelper.setBoolean(output, ModUpgradableArmor.abilityRolled, true);
-				NBTHelper.setString(output, ModUpgradableArmor.storedAbility, ModUpgradableArmor.flightAbilityType);
+				NBTHelper.setString(output, ModUpgradableArmor.storedAbility, ModUpgradableArmor.flightAbility);
 				NBTHelper.setBoolean(output, ModUpgradableArmor.inAnvil, true);
 				event.setOutput(output);
 				event.setMaterialCost(1);

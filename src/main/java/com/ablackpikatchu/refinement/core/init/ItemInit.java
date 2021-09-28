@@ -13,6 +13,7 @@ import com.ablackpikatchu.refinement.common.item.GluttonyBracelet;
 import com.ablackpikatchu.refinement.common.item.GritPaper;
 import com.ablackpikatchu.refinement.common.item.Magnet;
 import com.ablackpikatchu.refinement.common.item.MixingBowl;
+import com.ablackpikatchu.refinement.common.item.ModUpgradableArmor;
 import com.ablackpikatchu.refinement.common.item.Mold;
 import com.ablackpikatchu.refinement.common.item.RefinedCoal;
 import com.ablackpikatchu.refinement.common.item.RefinedCoalBlockItem;
@@ -302,28 +303,28 @@ public class ItemInit {
 			() -> new ArmorItem(ModArmorMaterial.REFINEDGOLDARMOR, EquipmentSlotType.FEET,
 					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
 	public static final RegistryObject<Item> REFINED_DIAMOND_HELMET = ITEMS.register("refined_diamond_helmet",
-			() -> new ArmorItem(ModArmorMaterial.REFINEDDIAMONDARMOR, EquipmentSlotType.HEAD,
+			() -> new ModUpgradableArmor(ModArmorMaterial.REFINEDDIAMONDARMOR, EquipmentSlotType.HEAD,
 					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
 	public static final RegistryObject<Item> REFINED_DIAMOND_CHESTPLATE = ITEMS.register("refined_diamond_chestplate",
-			() -> new ArmorItem(ModArmorMaterial.REFINEDDIAMONDARMOR, EquipmentSlotType.CHEST,
+			() -> new ModUpgradableArmor(ModArmorMaterial.REFINEDDIAMONDARMOR, EquipmentSlotType.CHEST,
 					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
 	public static final RegistryObject<Item> REFINED_DIAMOND_LEGGINGS = ITEMS.register("refined_diamond_leggings",
-			() -> new ArmorItem(ModArmorMaterial.REFINEDDIAMONDARMOR, EquipmentSlotType.LEGS,
+			() -> new ModUpgradableArmor(ModArmorMaterial.REFINEDDIAMONDARMOR, EquipmentSlotType.LEGS,
 					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
 	public static final RegistryObject<Item> REFINED_DIAMOND_BOOTS = ITEMS.register("refined_diamond_boots",
-			() -> new ArmorItem(ModArmorMaterial.REFINEDDIAMONDARMOR, EquipmentSlotType.FEET,
+			() -> new ModUpgradableArmor(ModArmorMaterial.REFINEDDIAMONDARMOR, EquipmentSlotType.FEET,
 					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
 	public static final RegistryObject<Item> REFINED_NETHERITE_HELMET = ITEMS.register("refined_netherite_helmet",
-			() -> new ArmorItem(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.HEAD,
+			() -> new ModUpgradableArmor(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.HEAD,
 					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
 	public static final RegistryObject<Item> REFINED_NETHERITE_CHESTPLATE = ITEMS
-			.register("refined_netherite_chestplate", () -> new ArmorItem(ModArmorMaterial.REFINEDNETHERITEARMOR,
+			.register("refined_netherite_chestplate", () -> new ModUpgradableArmor(ModArmorMaterial.REFINEDNETHERITEARMOR,
 					EquipmentSlotType.CHEST, new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
 	public static final RegistryObject<Item> REFINED_NETHERITE_LEGGINGS = ITEMS.register("refined_netherite_leggings",
-			() -> new ArmorItem(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.LEGS,
+			() -> new ModUpgradableArmor(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.LEGS,
 					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
 	public static final RegistryObject<Item> REFINED_NETHERITE_BOOTS = ITEMS.register("refined_netherite_boots",
-			() -> new ArmorItem(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.FEET,
+			() -> new ModUpgradableArmor(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.FEET,
 					new Item.Properties().tab(REFINEMENT_ARMOUR)));
 
 	// Boxes

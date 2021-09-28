@@ -120,6 +120,7 @@ public class TagInit {
 		public static final ITag.INamedTag<Item> CONCRETE_POWDERS = forge("concrete_powders");
 		public static final ITag.INamedTag<Item> MC_GLASS = forge("minecraft_glass");
 		public static final ITag.INamedTag<Item> MC_GLASS_PANE = forge("minecraft_glass_pane");
+		public static final ITag.INamedTag<Item> SAPLINGS = minecraft("saplings");
 		
 		public static final ITag.INamedTag<Item> WOOL = minecraft("wool");
 

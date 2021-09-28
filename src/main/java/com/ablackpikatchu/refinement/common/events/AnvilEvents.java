@@ -29,7 +29,7 @@ public class AnvilEvents {
 		if (right.getItem() == ItemInit.ARMOR_UPGRADER.get()) {
 			if (NBTHelper.getString(right, ArmorUpgrader.type) == ArmorUpgrader.potionType)
 				UpgradeArmor.upgradeEffect(left, event);
-			else if (NBTHelper.getString(right, ArmorUpgrader.type) == ArmorUpgrader.abilityType)
+			else if (NBTHelper.getBoolean(right, ArmorUpgrader.rolled) && NBTHelper.getString(right, ArmorUpgrader.type) != ArmorUpgrader.potionType)
 				UpgradeArmor.upgradeAbility(left, event);
 		}
 	}

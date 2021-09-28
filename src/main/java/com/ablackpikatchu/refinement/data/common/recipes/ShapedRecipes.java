@@ -2,9 +2,11 @@ package com.ablackpikatchu.refinement.data.common.recipes;
 
 import java.util.HashMap;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.TagInit;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.Output;
@@ -161,6 +163,11 @@ public class ShapedRecipes {
 				unfired(itemName(ItemInit.UNFIRED_REFINED_DIAMOND)),
 				new KeyIngredient('/', ItemInit.REFINED_DIAMOND_DUST), new KeyIngredient('M', ItemInit.GEM_MOLD));
 
+		newShapedRecipe(new Output(BlockInit.REFINED_SAPLING.get().asItem(), 1), new Pattern("CCC", "CSC", "CCC"),
+				misc(itemName(BlockInit.REFINED_SAPLING.get().asItem())),
+				new KeyIngredient('C', BlockInit.REFINED_CARBON_BLOCK.get().asItem()),
+				new KeyIngredient('S', TagInit.Items.SAPLINGS));
+
 		shapedRecipes.forEach((recipe, name) -> {
 			recipe.unlockedBy("has_item", has(Items.AIR));
 		});
@@ -171,13 +178,14 @@ public class ShapedRecipes {
 
 	/**
 	 * Adds a new shaped recipe
-	 * @param output the output of the recipe
-	 * @param pattern the pattern of the recipe
-	 * @param name the name of the recipe
+	 * 
+	 * @param output      the output of the recipe
+	 * @param pattern     the pattern of the recipe
+	 * @param name        the name of the recipe
 	 * @param ingredients the ingredients of the recipe
 	 */
 	public static void newShapedRecipe(Output output, Pattern pattern, ResourceLocation name,
-			KeyIngredient... ingredients) {
+			@Nonnull KeyIngredient... ingredients) {
 		ShapedRecipeBuilder recipe = new ShapedRecipeBuilder(output.getItem(), output.getCount());
 		pattern.getShapedRecipePattern(recipe);
 		for (KeyIngredient ingredient : ingredients) {
@@ -213,6 +221,10 @@ public class ShapedRecipes {
 
 	public static ResourceLocation unfired(@Nullable String name) {
 		return new ResourceLocation(Refinement.MOD_ID, "unfired/" + name);
+	}
+
+	public static ResourceLocation misc(@Nullable String name) {
+		return new ResourceLocation(Refinement.MOD_ID, "misc/" + name);
 	}
 
 	public static String itemName(Item item) {
