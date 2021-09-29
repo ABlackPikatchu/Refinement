@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "refinement:blocks/crops/lapis_crop/stage_5"
+  }
+}

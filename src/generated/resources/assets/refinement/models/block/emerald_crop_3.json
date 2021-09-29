@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "refinement:blocks/crops/emerald_crop/stage_3"
+  }
+}

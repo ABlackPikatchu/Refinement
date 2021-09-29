@@ -30,6 +30,11 @@ public class LootTableMaps {
 		map.put(CropInit.COAL_CROP.get(), CropInit.COAL_ESSENCE.get());
 		map.put(CropInit.IRON_CROP.get(), CropInit.IRON_ESSENCE.get());
 		map.put(CropInit.GOLD_CROP.get(), CropInit.GOLD_ESSENCE.get());
+		map.put(CropInit.DIAMOND_CROP.get(), CropInit.DIAMOND_ESSENCE.get());
+		map.put(CropInit.EMERALD_CROP.get(), CropInit.EMERALD_ESSENCE.get());
+		map.put(CropInit.LAPIS_CROP.get(), CropInit.LAPIS_ESSENCE.get());
+		map.put(CropInit.NATURE_CROP.get(), CropInit.NATURE_ESSENCE.get());
+		map.put(CropInit.PURE_CRYSTAL_CROP.get(), CropInit.PURE_CRYSTAL_ESSENCE.get());
 	}
 	
 	public static void addLeavesLoot(HashMap<Block, Block> map) {

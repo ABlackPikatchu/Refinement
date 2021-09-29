@@ -90,6 +90,8 @@ public class CropInit {
 			() -> new ModEssence(new Item.Properties().tab(REFINEMENT_RESOURCE_CROPS)));
 	public static final RegistryObject<Item> NATURE_ESSENCE = ITEMS.register("nature_essence",
 			() -> new ModEssence(new Item.Properties().tab(REFINEMENT_RESOURCE_CROPS)));
+	public static final RegistryObject<Item> PURE_CRYSTAL_ESSENCE = ITEMS.register("pure_crystal_essence",
+			() -> new ModEssence(new Item.Properties().tab(REFINEMENT_RESOURCE_CROPS)));
 
 	private static ResourceLocation mod(String name) {
 		return new ResourceLocation(Refinement.MOD_ID, name);

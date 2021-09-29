@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "refinement:blocks/crops/diamond_crop/stage_0"
+  }
+}
