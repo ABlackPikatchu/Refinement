@@ -122,7 +122,7 @@ public class CommonConfig {
 		ARMOUR_UPGRADING_EFFECTS = BUILDER
 				.comment("The possible effects that an armour piece can recipe when upgraded.")
 				.define("Upgrading Effects",
-						Lists.newArrayList("minecraft:night_vision", "minecraft:haste", "minecraft:water_breathing"));
+						Lists.newArrayList("minecraft:night_vision", "minecraft:haste", "minecraft:water_breathing", "refinement:negate_fall"));
 
 		BUILDER.pop();
 
