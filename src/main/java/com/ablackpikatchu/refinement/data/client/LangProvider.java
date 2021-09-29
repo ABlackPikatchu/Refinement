@@ -64,6 +64,7 @@ public class LangProvider extends LanguageProvider {
 		addCategory("mold_press_recipe", "Mold Press");
 		addCategory("grinder_recipe", "Grinder");
 		addCategory("dna_sequencer", "DNA Sequencer");
+		addCategory("anvil", "Anvil");
 
 		// Item Group
 		addItemGroup(RefinementItemGroup.REFINEMENT.getName(), "Refinement");

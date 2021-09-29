@@ -1,10 +1,12 @@
 package com.ablackpikatchu.refinement.core.init;
 
+import com.ablackpikatchu.refinement.common.recipe.AnvilRecipe;
 import com.ablackpikatchu.refinement.common.recipe.DNASequencerRecipe;
 import com.ablackpikatchu.refinement.common.recipe.GrinderRecipe;
 import com.ablackpikatchu.refinement.common.recipe.MixerRecipe;
 import com.ablackpikatchu.refinement.common.recipe.MoldPressRecipe;
 import com.ablackpikatchu.refinement.common.recipe.OreUnifyRecipe;
+import com.ablackpikatchu.refinement.common.recipe.type.AnvilRecipeType;
 import com.ablackpikatchu.refinement.common.recipe.type.DNASequencerRecipeType;
 import com.ablackpikatchu.refinement.common.recipe.type.GrinderRecipeType;
 import com.ablackpikatchu.refinement.common.recipe.type.MixerRecipeType;
@@ -25,6 +27,7 @@ public class RecipeInit {
 	public static final IRecipeType<MoldPressRecipe> MOLD_PRESS_RECIPE = new MoldPressRecipeType();
 	public static final IRecipeType<OreUnifyRecipe> ORE_UNIFY_RECIPE = new OreUnifyRecipeType();
 	public static final IRecipeType<DNASequencerRecipe> DNA_SEQUENCER_RECIPE = new DNASequencerRecipeType();
+	public static final IRecipeType<AnvilRecipe> ANVIL_RECIPE = new AnvilRecipeType();
 
 	public static void registerRecipes(Register<IRecipeSerializer<?>> event) {
 		registerRecipe(event, GRINDER_RECIPE, GrinderRecipe.SERIALIZER);
@@ -32,6 +35,7 @@ public class RecipeInit {
 		registerRecipe(event, MOLD_PRESS_RECIPE, MoldPressRecipe.SERIALIZER);
 		registerRecipe(event, ORE_UNIFY_RECIPE, OreUnifyRecipe.SERIALIZER);
 		registerRecipe(event, DNA_SEQUENCER_RECIPE, DNASequencerRecipe.SERIALIZER);
+		registerRecipe(event, ANVIL_RECIPE, AnvilRecipe.SERIALIZER);
 	}
 
 	private static void registerRecipe(Register<IRecipeSerializer<?>> event, IRecipeType<?> type,
