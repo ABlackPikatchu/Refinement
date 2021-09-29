@@ -202,6 +202,19 @@ public class RecipeMaps {
 		map.put(new DNASequencerInput(new IngredientInput(CropInit.GOLD_ESSENCE.get(), 4),
 				new IngredientInput(Items.COBBLESTONE, 2), 60).setCropsEnabledCondition(true),
 				new Output(Items.GOLD_INGOT, 2));
+		map.put(new DNASequencerInput(new IngredientInput(CropInit.LAPIS_ESSENCE.get(), 4),
+				new IngredientInput(Items.COBBLESTONE, 2), 60).setCropsEnabledCondition(true),
+				new Output(Items.LAPIS_LAZULI, 2));
+		map.put(new DNASequencerInput(new IngredientInput(CropInit.EMERALD_ESSENCE.get(), 4),
+				new IngredientInput(Items.COBBLESTONE, 2), 60).setCropsEnabledCondition(true),
+				new Output(Items.EMERALD, 2));
+		map.put(new DNASequencerInput(new IngredientInput(CropInit.DIAMOND_ESSENCE.get(), 4),
+				new IngredientInput(Items.COBBLESTONE, 2), 60).setCropsEnabledCondition(true),
+				new Output(Items.DIAMOND, 2));
+		map.put(new DNASequencerInput(new IngredientInput(CropInit.PURE_CRYSTAL_ESSENCE.get(), 4),
+				new IngredientInput(Items.COBBLESTONE, 2), 60).setCropsEnabledCondition(true),
+				new Output(ItemInit.PURE_CRYSTAL.get(), 2));
+		
 	}
 
 }
