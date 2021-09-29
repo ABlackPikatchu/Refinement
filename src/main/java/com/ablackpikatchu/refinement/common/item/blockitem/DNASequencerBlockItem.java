@@ -1,5 +1,6 @@
 package com.ablackpikatchu.refinement.common.item.blockitem;
 
+import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.CropInit;
 import com.ablackpikatchu.refinement.core.util.helper.PlayerHelper;
 
@@ -28,7 +29,7 @@ public class DNASequencerBlockItem extends BlockItem {
 
 			if (ticks >= maxTicks) {
 				ItemStack natureEssence = new ItemStack(CropInit.NATURE_ESSENCE.get());
-				if (PlayerHelper.canFitItem(player, natureEssence)) {
+				if (PlayerHelper.canFitItem(player, natureEssence) && CommonConfig.CROPS_ENABLED.get()) {
 					player.inventory.add(natureEssence);
 					ticks = 0;
 				}
