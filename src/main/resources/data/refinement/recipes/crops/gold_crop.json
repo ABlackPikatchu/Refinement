@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "refinement:crops_enabled",
+      "value": true
+    }
+  ],
+  "pattern": [
+    "ISI",
+    "SIS",
+    "ISI"
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:storage_blocks/gold"
+    },
+    "S": {
+      "tag": "forge:seeds"
+    }
+  },
+  "result": {
+    "item": "refinement:gold_seeds"
+  }
+}

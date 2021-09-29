@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "conditions": [
+    {
+      "type": "refinement:crops_enabled",
+      "value": true
+    }
+  ],
+  "pattern": [
+    "ISI",
+    "SIS",
+    "ISI"
+  ],
+  "key": {
+    "I": {
+      "item": "refinement:pure_crystal"
+    },
+    "S": {
+      "tag": "forge:seeds"
+    }
+  },
+  "result": {
+    "item": "refinement:pure_crystal_seeds"
+  }
+}
