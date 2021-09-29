@@ -1,0 +1,23 @@
+﻿{
+    "type": "crafting_shaped",
+    "pattern": [
+        "#O#",
+        "OEO",
+        "#O#"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:dragon_breath"
+        },
+        "O": {
+            "item": "minecraft:obsidian"
+        },
+        "E": {
+            "item": "minecraft:ender_chest"
+        }
+    },
+    "result": {
+        "item": "minecraft:dragon_egg",
+        "count": 1
+    }
+}
