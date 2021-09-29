@@ -1,0 +1,16 @@
+{
+  "type": "refinement:anvil",
+  "left": {
+    "item": "minecraft:air",
+    "count": 4
+  },
+  "right": {
+    "item": "minecraft:air",
+    "count": 2
+  },
+  "output": {
+    "item": "minecraft:air",
+    "count": 2
+  },
+  "levels_required": 10
+}
