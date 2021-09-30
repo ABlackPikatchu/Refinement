@@ -1,0 +1,47 @@
+{
+	"parent": "item/generated",
+    "overrides": [
+   		{
+            "predicate": {
+                "refinement:auto_eject_upgrade_direction": 0
+            },
+            "model": "refinement:item/upgrades/auto_eject/none"
+        },
+        {
+            "predicate": {
+                "refinement:auto_eject_upgrade_direction": 1
+            },
+            "model": "refinement:item/upgrades/auto_eject/up"
+        },
+        {
+            "predicate": {
+                "refinement:auto_eject_upgrade_direction": 2
+            },
+            "model": "refinement:item/upgrades/auto_eject/down"
+        },
+        {
+            "predicate": {
+                "refinement:auto_eject_upgrade_direction": 3
+            },
+            "model": "refinement:item/upgrades/auto_eject/north"
+        },
+        {
+            "predicate": {
+                "refinement:auto_eject_upgrade_direction": 4
+            },
+            "model": "refinement:item/upgrades/auto_eject/east"
+        },
+        {
+            "predicate": {
+                "refinement:auto_eject_upgrade_direction": 5
+            },
+            "model": "refinement:item/upgrades/auto_eject/south"
+        },
+        {
+            "predicate": {
+                "refinement:auto_eject_upgrade_direction": 6
+            },
+            "model": "refinement:item/upgrades/auto_eject/west"
+        }
+    ]
+}

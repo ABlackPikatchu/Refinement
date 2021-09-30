@@ -20,7 +20,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -28,16 +27,15 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+
 import net.minecraftforge.common.util.Constants;
 
 public class MoldPressTileEntity extends LockableSidedInventoryTileEntity implements ITickableTileEntity {
+
 	List<ItemStack> allItems = null;
 	private ITextComponent customName;
-	public static int slots = 5;
+	public static int slots = 6;
 	protected NonNullList<ItemStack> items = NonNullList.withSize(slots, ItemStack.EMPTY);
-	public int currentWaitTime;
-	public int maxWaitTime;
-	public int usedCarbon;
 	private static final int[] SLOTS_FOR_UP = new int[] { 0 };
 	private static final int[] SLOTS_FOR_DOWN = new int[] { 1 };
 	private static final int[] SLOTS_FOR_SIDES = new int[] { 3 };
@@ -53,17 +51,11 @@ public class MoldPressTileEntity extends LockableSidedInventoryTileEntity implem
 	@Override
 	public void tick() {
 		if (!this.level.isClientSide()) {
-			if (this.getItem(4).getItem() == ItemInit.SPEED_UPGRADE.get()) {
-				this.maxWaitTime = CommonConfig.MOLD_PRESS_DEFAULT_PROCESS_TIME.get()
-						- (CommonConfig.MOLD_PRESS_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get()
-								* this.getItem(4).getCount());
-				this.usedCarbon = this.getItem(4).getCount() / 2 + 1;
-			} else {
-				this.maxWaitTime = CommonConfig.MOLD_PRESS_DEFAULT_PROCESS_TIME.get();
-				this.usedCarbon = 1;
-			}
+			handleSpeedUpgrades(4, CommonConfig.MOLD_PRESS_DEFAULT_PROCESS_TIME.get(),
+					CommonConfig.MOLD_PRESS_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get());
+			handleAutoEject(5, 1);
 			this.level.setBlockAndUpdate(this.getBlockPos(), this.getBlockState().setValue(MoldPressBlock.LIT, false));
-			for (final IRecipe<?> recipe : this.level.getRecipeManager().getAllRecipesFor(RecipeInit.MOLD_PRESS_RECIPE)) {
+			getRecipes(RecipeInit.MOLD_PRESS_RECIPE).forEach(recipe -> {
 				final MoldPressRecipe moldPressRecipe = (MoldPressRecipe) recipe;
 				if (moldPressRecipe.isValid(this.getItem(0), this.getItem(2))
 						&& this.getItem(3).getItem() == ItemInit.REFINED_CARBON_INGOT.get()
@@ -88,7 +80,7 @@ public class MoldPressTileEntity extends LockableSidedInventoryTileEntity implem
 								this.getBlockState().setValue(MoldPressBlock.LIT, true));
 					}
 				}
-			}
+			});
 		}
 	}
 
@@ -147,7 +139,6 @@ public class MoldPressTileEntity extends LockableSidedInventoryTileEntity implem
 		if (this.customName != null) {
 			compound.putString("CustomName", ITextComponent.Serializer.toJson(this.customName));
 		}
-		compound.putInt("CurrentWaitTime", this.currentWaitTime);
 		return compound;
 	}
 
@@ -157,7 +148,6 @@ public class MoldPressTileEntity extends LockableSidedInventoryTileEntity implem
 		if (nbt.contains("CustomName", Constants.NBT.TAG_STRING)) {
 			this.customName = ITextComponent.Serializer.fromJson(nbt.getString("CustomName"));
 		}
-		this.currentWaitTime = nbt.getInt("CurrentWaitTime");
 	}
 
 	@Override
@@ -183,7 +173,8 @@ public class MoldPressTileEntity extends LockableSidedInventoryTileEntity implem
 				return false;
 		} else if (index == 4)
 			return false;
-		else if (index == 2) return ItemLists.isMold(stack.getItem());
+		else if (index == 2)
+			return ItemLists.isMold(stack.getItem());
 		else
 			return true;
 	}

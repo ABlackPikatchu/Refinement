@@ -1,25 +1,37 @@
 package com.ablackpikatchu.refinement.common.te;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.ablackpikatchu.refinement.common.item.AutoEjectUpgrade;
+import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.util.MCMathUtils;
+import com.ablackpikatchu.refinement.core.util.helper.InventoryHelper;
+import com.ablackpikatchu.refinement.core.util.helper.NBTHelper;
 import com.ablackpikatchu.refinement.core.util.helper.TileEntityHelper;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
+import net.minecraft.tileentity.HopperTileEntity;
 import net.minecraft.tileentity.LockableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -29,6 +41,10 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
 public abstract class LockableSidedInventoryTileEntity extends LockableTileEntity implements ISidedInventory {
+
+	public int currentWaitTime;
+	public int maxWaitTime;
+	public int usedCarbon;
 	private final LazyOptional<IItemHandlerModifiable> inventory = LazyOptional.of(this::createInventory);
 	protected NonNullList<ItemStack> items;
 	private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.UP,
@@ -103,6 +119,7 @@ public abstract class LockableSidedInventoryTileEntity extends LockableTileEntit
 			if (items.get(i) != null)
 				this.setItem(i, items.get(i));
 		}
+		this.currentWaitTime = tags.getInt("CurrentWaitTime");
 	}
 
 	@Override
@@ -113,6 +130,7 @@ public abstract class LockableSidedInventoryTileEntity extends LockableTileEntit
 			saveItems.add(i, getItem(i));
 		}
 		ItemStackHelper.saveAllItems(tags, saveItems);
+		tags.putInt("CurrentWaitTime", this.currentWaitTime);
 		return tags;
 	}
 
@@ -219,13 +237,76 @@ public abstract class LockableSidedInventoryTileEntity extends LockableTileEntit
 			level.addFreshEntity(itemEntity);
 		});
 	}
-	
+
+	public int getCurrentProgress() {
+		return currentWaitTime;
+	}
+
+	public void handleSpeedUpgrades(int speedUpgradeSlot, int defaultSpeed, int decreasedSpeed) {
+		if (this.getItem(speedUpgradeSlot).getItem() == ItemInit.SPEED_UPGRADE.get()) {
+			this.maxWaitTime = defaultSpeed - (decreasedSpeed * this.getItem(speedUpgradeSlot).getCount());
+			this.usedCarbon = this.getItem(speedUpgradeSlot).getCount() / 2 + 1;
+		} else {
+			this.maxWaitTime = defaultSpeed;
+			this.usedCarbon = 1;
+		}
+	}
+
+	/**
+	 * Gets the all the recipes of type
+	 * 
+	 * @param <R>
+	 * @param recipeType the {@link IRecipeType} to check for
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public <R extends IRecipe<IInventory>> List<R> getRecipes(IRecipeType<?> recipeType) {
+		List<R> recipes = new ArrayList<>();
+		if (recipeType instanceof IRecipeType<?>)
+			recipes = this.level.getRecipeManager().getAllRecipesFor((IRecipeType<R>) recipeType);
+		return recipes;
+	}
+
 	public IItemHandlerModifiable getInventory() {
 		return inventory.orElseThrow(() -> new IllegalStateException("Inventory not initialized correctly"));
 	}
-	
+
 	@Nonnull
 	public IItemHandlerModifiable createInventory() {
 		return new ItemStackHandler(getContainerSize());
+	}
+
+	/**
+	 * Handles auto ejecting
+	 * @param autoEjectupgradeSlot auto-eject upgrade slot
+	 * @param outputSlots output slots (a.k.a slots that can be ejected)
+	 */
+	public void handleAutoEject(int autoEjectupgradeSlot, int... outputSlots) {
+		for (int outputSlot : outputSlots) {
+			Direction direction = Direction
+					.byName(NBTHelper.getString(getItem(autoEjectupgradeSlot), AutoEjectUpgrade.DIRECTION_PROPERTY));
+			if (direction == null)
+				return;
+
+			if (HopperTileEntity.getContainerAt(level, worldPosition.relative(direction, 1)) != null) {
+				if (this.getItem(autoEjectupgradeSlot).getItem() == ItemInit.AUTO_EJECT_UPGRADE.get()) {
+					if (!this.getItem(outputSlot).isEmpty()) {
+						IInventory autoEjectContainer = HopperTileEntity.getContainerAt(level,
+								worldPosition.relative(direction, 1));
+						ItemStack output = this.getItem(outputSlot);
+						for (int i = 0; i <= autoEjectContainer.getContainerSize() - 1; i++) {
+							if (TileEntityHelper.canPlaceItemInStack(autoEjectContainer.getItem(i), output)) {
+								InventoryHelper.tryMoveInItem((IInventory) this, autoEjectContainer, output, i,
+										direction.getOpposite());
+								TileEntityHelper.updateTE(this);
+								TileEntityHelper
+										.updateTE(this.level.getBlockEntity(worldPosition.relative(direction, 1)));
+								break;
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }

@@ -8,6 +8,7 @@ import com.ablackpikatchu.refinement.common.te.machine.MoldPressTileEntity;
 import com.ablackpikatchu.refinement.common.te.misc_tes.VaccumulatorTileEntity;
 
 import net.minecraft.tileentity.TileEntityType;
+
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;

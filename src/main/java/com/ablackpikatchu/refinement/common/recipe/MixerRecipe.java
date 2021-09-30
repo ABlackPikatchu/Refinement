@@ -7,7 +7,7 @@ import com.ablackpikatchu.refinement.core.init.RecipeInit;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -19,9 +19,10 @@ import net.minecraft.util.JSONUtils;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public class MixerRecipe implements IRecipe<Inventory> {
+public class MixerRecipe implements IRecipe<IInventory> {
 	public static final Serializer SERIALIZER = new Serializer();
 
 	private final Ingredient input;
@@ -40,16 +41,6 @@ public class MixerRecipe implements IRecipe<Inventory> {
 		this.inputCount = inputCount;
 		this.secondaryInputCount = secondaryInputCount;
 		this.output = output;
-	}
-
-	@Override
-	public boolean matches(Inventory p_77569_1_, World p_77569_2_) {
-		return this.input.test(p_77569_1_.getItem(0));
-	}
-
-	@Override
-	public ItemStack assemble(Inventory p_77572_1_) {
-		return null;
 	}
 
 	@Override
@@ -167,5 +158,15 @@ public class MixerRecipe implements IRecipe<Inventory> {
 			recipe.secondaryInput.toNetwork(buffer);
 			buffer.writeItem(recipe.output);
 		}
+	}
+
+	@Override
+	public boolean matches(IInventory inv, World p_77569_2_) {
+		return false;
+	}
+
+	@Override
+	public ItemStack assemble(IInventory p_77572_1_) {
+		return ItemStack.EMPTY;
 	}
 }
