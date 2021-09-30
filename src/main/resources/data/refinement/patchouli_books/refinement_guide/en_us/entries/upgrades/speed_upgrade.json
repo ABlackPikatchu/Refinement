@@ -1,0 +1,17 @@
+{
+	"name": "Speed Upgrade",
+	"icon": "refinement:speed_upgrade",
+	"category": "refinement:upgrades",
+	"pages": [
+		{
+			"type": "patchouli:spotlight",
+			"item": "refinement:speed_upgrade",
+			"text": "The Speed Upgrade makes a machine faster, (depending on its stack count) but also makes that machine consume $(#f00)one more$() $(item)Refined Carbon Ingot$() per process. And such, a machine with 8 upgrades will consume 5 (8/2 + 1) carbon ingots."
+		},
+		{
+			"type": "patchouli:crafting",
+			"recipe": "refinement:machine_stuff/speed_upgrade",
+			"title": "Crafting recipe"
+		}
+	]
+}
