@@ -8,6 +8,7 @@ import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.R
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.item.ArmorUpgrader;
+import com.ablackpikatchu.refinement.common.item.AutoEjectUpgrade;
 import com.ablackpikatchu.refinement.common.item.Cogwheel;
 import com.ablackpikatchu.refinement.common.item.GluttonyBracelet;
 import com.ablackpikatchu.refinement.common.item.GritPaper;
@@ -317,8 +318,8 @@ public class ItemInit {
 	public static final RegistryObject<Item> REFINED_NETHERITE_HELMET = ITEMS.register("refined_netherite_helmet",
 			() -> new ModUpgradableArmor(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.HEAD,
 					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
-	public static final RegistryObject<Item> REFINED_NETHERITE_CHESTPLATE = ITEMS
-			.register("refined_netherite_chestplate", () -> new ModUpgradableArmor(ModArmorMaterial.REFINEDNETHERITEARMOR,
+	public static final RegistryObject<Item> REFINED_NETHERITE_CHESTPLATE = ITEMS.register(
+			"refined_netherite_chestplate", () -> new ModUpgradableArmor(ModArmorMaterial.REFINEDNETHERITEARMOR,
 					EquipmentSlotType.CHEST, new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
 	public static final RegistryObject<Item> REFINED_NETHERITE_LEGGINGS = ITEMS.register("refined_netherite_leggings",
 			() -> new ModUpgradableArmor(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.LEGS,
@@ -347,6 +348,8 @@ public class ItemInit {
 			() -> new GluttonyBracelet(new Item.Properties().tab(REFINEMENT).defaultDurability(2048)));
 	public static final RegistryObject<Item> ARMOR_UPGRADER = ITEMS.register("armor_upgrader",
 			() -> new ArmorUpgrader(new Item.Properties().tab(REFINEMENT).stacksTo(1)));
+	public static final RegistryObject<Item> AUTO_EJECT_UPGRADE = ITEMS.register("auto_eject_upgrade",
+			() -> new AutoEjectUpgrade(new Item.Properties().tab(REFINEMENT).stacksTo(1)));
 
 	// Food
 	public static final RegistryObject<Item> MINERS_STEW = ITEMS.register("miners_stew",
@@ -357,6 +360,13 @@ public class ItemInit {
 							.addEffect(new EffectInstance(Effects.NIGHT_VISION, 9600, 0))
 							.hurtOnUse(DamageSourcesInit.MINERS_STEW_DAMAGE, 8.0F)
 							.leftoverItem(new ItemStack(Items.BOWL)));
+
+	public static final RegistryObject<Item> GOD_APPLE = ITEMS.register("god_apple",
+			() -> new ModEffectFood(new Item.Properties().stacksTo(1).fireResistant()
+					.food(new Food.Builder().nutrition(5).saturationMod(9.0f).build()).rarity(Rarity.EPIC)
+					.tab(RefinementItemGroup.REFINEMENT_FOOD).stacksTo(1))
+							.addEffect(new EffectInstance(ForgeRegistries.POTIONS
+									.getValue(new ResourceLocation(Refinement.MOD_ID, "ghostly_shape")), 600)));
 
 	public static final RegistryObject<Item> MINERS_CARROT = ITEMS.register("miners_carrot", MinersCarrot::new);
 	public static final RegistryObject<Item> MINERS_APPLE = ITEMS.register("miners_apple", MinersApple::new);

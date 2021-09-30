@@ -5,11 +5,12 @@ import java.util.Objects;
 import com.ablackpikatchu.refinement.common.slot.ItemsReservedSlot;
 import com.ablackpikatchu.refinement.common.slot.OutputSlot;
 import com.ablackpikatchu.refinement.common.slot.itemspecific.CarbonSlot;
-import com.ablackpikatchu.refinement.common.slot.itemspecific.SpeedUpgradeSlot;
+import com.ablackpikatchu.refinement.common.slot.itemspecific.UpgradeSlot;
 import com.ablackpikatchu.refinement.common.te.machine.MoldPressTileEntity;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
 import com.ablackpikatchu.refinement.core.util.FunctionalIntReferenceHolder;
+import com.ablackpikatchu.refinement.core.util.enums.Upgrades;
 import com.ablackpikatchu.refinement.core.util.lists.ItemLists;
 
 import net.minecraft.entity.player.PlayerEntity;
@@ -43,7 +44,8 @@ public class MoldPressContainer extends Container {
 		this.addSlot(new OutputSlot((IInventory) te, 1, 119, 6)); //Output
 		this.addSlot(new ItemsReservedSlot((IInventory) te, 2, 62, 53, ItemLists.MOLDS)); //Mold
 		this.addSlot(new CarbonSlot(te, 3, 8, 44)); //Coal
-		this.addSlot(new SpeedUpgradeSlot((IInventory) te, 4, 152, 58)); //Speed Upgarde
+		this.addSlot(new UpgradeSlot((IInventory) te, 4, 152, 58, Upgrades.SPEED)); //Speed Upgrade
+		this.addSlot(new UpgradeSlot(te, 5, 134, 58, Upgrades.AUTO_EJECT)); // Auto eject upgrade
 
 		// Main Player Inventory
 		for (int row = 0; row < 3; row++) {

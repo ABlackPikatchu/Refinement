@@ -19,7 +19,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -34,16 +33,15 @@ public class DNASequencerTileEntity extends LockableSidedInventoryTileEntity imp
 
 	List<ItemStack> allItems = null;
 	private ITextComponent customName;
-	public static int slots = 5;
+	public static int slots = 6;
 	protected NonNullList<ItemStack> items = NonNullList.withSize(slots, ItemStack.EMPTY);
-	public int currentWaitTime;
-	public int maxWaitTime;
-	public int usedCarbon;
 	public int successProbability;
 	public boolean isWorking;
 	private static final int[] SLOTS_FOR_UP = new int[] { 0 };
 	private static final int[] SLOTS_FOR_DOWN = new int[] { 2 };
 	private static final int[] SLOTS_FOR_SIDES = new int[] { 1, 3 };
+
+	private static int speedUpgradeSlot = 4;
 
 	public DNASequencerTileEntity(final TileEntityType<?> tileEntityTypeIn) {
 		super(tileEntityTypeIn, slots);
@@ -56,20 +54,13 @@ public class DNASequencerTileEntity extends LockableSidedInventoryTileEntity imp
 	@Override
 	public void tick() {
 		if (!this.level.isClientSide()) {
-			if (this.getItem(4).getItem() == ItemInit.SPEED_UPGRADE.get()) {
-				this.maxWaitTime = CommonConfig.DNA_SEQUENCER_DEFAULT_PROCESS_TIME.get()
-						- (CommonConfig.DNA_SEQUENCER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get()
-								* this.getItem(4).getCount());
-				this.usedCarbon = this.getItem(4).getCount() / 2 + 1;
-			} else {
-				this.maxWaitTime = CommonConfig.DNA_SEQUENCER_DEFAULT_PROCESS_TIME.get();
-				this.usedCarbon = 1;
-			}
+			handleSpeedUpgrades(speedUpgradeSlot, CommonConfig.DNA_SEQUENCER_DEFAULT_PROCESS_TIME.get(),
+					CommonConfig.DNA_SEQUENCER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get());
+			handleAutoEject(5, 2);
 			this.successProbability = -1;
 			this.isWorking = false;
 			TileEntityHelper.setStateProperty(this, DNASequencerBlock.LIT, false);
-			for (final IRecipe<?> recipe : this.level.getRecipeManager()
-					.getAllRecipesFor(RecipeInit.DNA_SEQUENCER_RECIPE)) {
+			getRecipes(RecipeInit.DNA_SEQUENCER_RECIPE).forEach(recipe -> {
 				final DNASequencerRecipe DNASequencerRecipe = (DNASequencerRecipe) recipe;
 				if (!DNASequencerRecipe.isFuelRequired())
 					this.usedCarbon = 0;
@@ -99,7 +90,7 @@ public class DNASequencerTileEntity extends LockableSidedInventoryTileEntity imp
 						}
 					}
 				}
-			}
+			});
 
 			if (this.isWorking)
 				TileEntityHelper.setStateProperty(this, DNASequencerBlock.LIT, true);
@@ -165,7 +156,6 @@ public class DNASequencerTileEntity extends LockableSidedInventoryTileEntity imp
 		if (this.customName != null) {
 			compound.putString("CustomName", ITextComponent.Serializer.toJson(this.customName));
 		}
-		compound.putInt("CurrentWaitTime", this.currentWaitTime);
 		return compound;
 	}
 
@@ -175,7 +165,6 @@ public class DNASequencerTileEntity extends LockableSidedInventoryTileEntity imp
 		if (nbt.contains("CustomName", Constants.NBT.TAG_STRING)) {
 			this.customName = ITextComponent.Serializer.fromJson(nbt.getString("CustomName"));
 		}
-		this.currentWaitTime = nbt.getInt("CurrentWaitTime");
 	}
 
 	@Override

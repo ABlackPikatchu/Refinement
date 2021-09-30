@@ -71,6 +71,13 @@ public class ShapedRecipes {
 				new KeyIngredient('F', ItemInit.MACHINE_FRAME.get()),
 				new KeyIngredient('#', ItemInit.REFINED_DIAMOND.get()));
 
+		newShapedRecipe(new Output(ItemInit.AUTO_EJECT_UPGRADE.get(), 1), new Pattern("DCD", "PNP", "DCD"),
+				machineStuff(itemName(ItemInit.AUTO_EJECT_UPGRADE.get())),
+				new KeyIngredient('D', ItemInit.REFINED_DIAMOND.get()),
+				new KeyIngredient('C', ItemInit.REFINED_CARBON_INGOT),
+				new KeyIngredient('P', ItemInit.MACHINE_PARTS.get()),
+				new KeyIngredient('N', ItemInit.REFINED_NETHERITE_INGOT));
+
 		newShapedRecipe(new Output(ItemInit.MIXING_BOWL.get(), 1), new Pattern(" / ", "_ _", " _ "),
 				tools(itemName(ItemInit.MIXING_BOWL.get())), new KeyIngredient('/', Items.STICK),
 				new KeyIngredient('_', Items.OAK_SLAB));

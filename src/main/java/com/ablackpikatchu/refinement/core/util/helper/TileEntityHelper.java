@@ -9,6 +9,10 @@ import net.minecraftforge.common.util.Constants;
 
 public class TileEntityHelper {
 
+	/**
+	 * Updates the tile entity
+	 * @param te the tile entity to update
+	 */
 	public static void updateTE(TileEntity te) {
 		te.setChanged();
 		te.getLevel().sendBlockUpdated(te.getBlockPos(), te.getBlockState(), te.getBlockState(),
@@ -21,7 +25,7 @@ public class TileEntityHelper {
 	}
 
 	public static boolean canPlaceItemInStack(ItemStack stack, ItemStack stackToPlace) {
-		if (stack == ItemStack.EMPTY)
+		if (stack.isEmpty())
 			return true;
 		else if (stack.getItem() == stackToPlace.getItem()
 				&& stack.getCount() <= (stack.getMaxStackSize() - stackToPlace.getCount()))

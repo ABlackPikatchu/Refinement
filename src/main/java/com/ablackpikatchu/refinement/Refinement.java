@@ -75,9 +75,9 @@ public class Refinement {
 		BlockInit.BLOCKS.register(modBus);
 		CropInit.BLOCKS.register(modBus);
 		ItemInit.ITEMS.register(modBus);
+		PotionInit.EFFECTS.register(modBus);
 		TileEntityTypesInit.TILE_ENTITY_TYPE.register(modBus);
 		ContainerTypesInit.CONTAINER_TYPES.register(modBus);
-		PotionInit.EFFECTS.register(modBus);
 		VillagerInit.VillagerProfessions.VILLAGER_PROFESSIONS.register(modBus);
 		VillagerInit.PointOfInterests.POINT_OF_INTEREST_TYPES.register(modBus);
 		FeatureInit.FEATURES.register(modBus);

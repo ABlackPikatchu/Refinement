@@ -19,7 +19,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -27,16 +26,15 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+
 import net.minecraftforge.common.util.Constants;
 
 public class MixerTileEntity extends LockableSidedInventoryTileEntity implements ITickableTileEntity {
+
 	List<ItemStack> allItems = null;
 	private ITextComponent customName;
-	public static int slots = 5;
+	public static int slots = 6;
 	protected NonNullList<ItemStack> items = NonNullList.withSize(slots, ItemStack.EMPTY);
-	public int currentWaitTime;
-	public int maxWaitTime;
-	public int usedCarbon;
 	private static final int[] SLOTS_FOR_UP = new int[] { 0 };
 	private static final int[] SLOTS_FOR_DOWN = new int[] { 2 };
 	private static final int[] SLOTS_FOR_SIDES = new int[] { 1, 3 };
@@ -52,16 +50,11 @@ public class MixerTileEntity extends LockableSidedInventoryTileEntity implements
 	@Override
 	public void tick() {
 		if (!this.level.isClientSide()) {
-			if (this.getItem(4).getItem() == ItemInit.SPEED_UPGRADE.get()) {
-				this.maxWaitTime = CommonConfig.MIXER_DEFAULT_PROCESS_TIME.get()
-						- (CommonConfig.MIXER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get() * this.getItem(4).getCount());
-				this.usedCarbon = this.getItem(4).getCount() / 2 + 1;
-			} else {
-				this.maxWaitTime = CommonConfig.MIXER_DEFAULT_PROCESS_TIME.get();
-				this.usedCarbon = 1;
-			}
+			handleSpeedUpgrades(4, CommonConfig.MIXER_DEFAULT_PROCESS_TIME.get(),
+					CommonConfig.MIXER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get());
+			handleAutoEject(5, 2);
 			this.level.setBlockAndUpdate(this.getBlockPos(), this.getBlockState().setValue(MixerBlock.LIT, false));
-			for (final IRecipe<?> recipe : this.level.getRecipeManager().getAllRecipesFor(RecipeInit.MIXER_RECIPE)) {
+			getRecipes(RecipeInit.MIXER_RECIPE).forEach(recipe -> {
 				final MixerRecipe mixerRecipe = (MixerRecipe) recipe;
 				if (mixerRecipe.isValid(this.getItem(0), this.getItem(1))
 						&& this.getItem(3).getItem() == ItemInit.REFINED_CARBON_INGOT.get()
@@ -87,7 +80,7 @@ public class MixerTileEntity extends LockableSidedInventoryTileEntity implements
 								this.getBlockState().setValue(MixerBlock.LIT, true));
 					}
 				}
-			}
+			});
 		}
 	}
 
@@ -146,7 +139,6 @@ public class MixerTileEntity extends LockableSidedInventoryTileEntity implements
 		if (this.customName != null) {
 			compound.putString("CustomName", ITextComponent.Serializer.toJson(this.customName));
 		}
-		compound.putInt("CurrentWaitTime", this.currentWaitTime);
 		return compound;
 	}
 
@@ -156,7 +148,6 @@ public class MixerTileEntity extends LockableSidedInventoryTileEntity implements
 		if (nbt.contains("CustomName", Constants.NBT.TAG_STRING)) {
 			this.customName = ITextComponent.Serializer.fromJson(nbt.getString("CustomName"));
 		}
-		this.currentWaitTime = nbt.getInt("CurrentWaitTime");
 	}
 
 	@Override
