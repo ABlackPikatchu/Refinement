@@ -6,7 +6,7 @@
 		{
 			"type": "patchouli:spotlight",
 			"item": "refinement:auto_eject_upgrade",
-			"text": "The Auto Eject Upgrade allows a machine to auto-eject to the direction the upgrade is configured. In order to configure an upgrade to a direction, right click it in order to cycle through the directions. You can see the direction the upgrade is set to in the tooltip, and the model will also change."
+			"text": "The Auto Eject Upgrade allows a machine to auto-eject to the conatiner in the direction the upgrade is configured. In order to configure an upgrade to a direction, right click it in order to cycle through the directions. You can see the direction the upgrade is set to in the tooltip, and the model will also change."
 		},
 		{
 			"type": "patchouli:crafting",

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DCD",
+    "PNP",
+    "DCD"
+  ],
+  "key": {
+    "D": {
+      "item": "refinement:refined_iron_ingot"
+    },
+    "C": {
+      "item": "refinement:refined_carbon_ingot"
+    },
+    "P": {
+      "item": "refinement:machine_parts"
+    },
+    "N": {
+      "item": "refinement:refined_netherite_ingot"
+    }
+  },
+  "result": {
+    "item": "refinement:auto_import_upgrade"
+  }
+}
