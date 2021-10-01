@@ -1,5 +1,8 @@
 package com.ablackpikatchu.refinement.core.init;
 
+import static com.ablackpikatchu.refinement.common.ModRarity.DARK_PURPLE_RARITY;
+import static com.ablackpikatchu.refinement.common.ModRarity.DARK_RED_RARITY;
+import static com.ablackpikatchu.refinement.common.ModRarity.GOLD_RARITY;
 import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.REFINEMENT;
 import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.REFINEMENT_ARMOUR;
 import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.REFINEMENT_MACHINE;
@@ -9,6 +12,7 @@ import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.R
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.item.ArmorUpgrader;
 import com.ablackpikatchu.refinement.common.item.AutoEjectUpgrade;
+import com.ablackpikatchu.refinement.common.item.AutoImportUpgrade;
 import com.ablackpikatchu.refinement.common.item.Cogwheel;
 import com.ablackpikatchu.refinement.common.item.GluttonyBracelet;
 import com.ablackpikatchu.refinement.common.item.GritPaper;
@@ -239,8 +243,6 @@ public class ItemInit {
 	// Machine
 	public static final RegistryObject<Item> MACHINE_PARTS = ITEMS.register("machine_parts",
 			() -> new Item(new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
-	public static final RegistryObject<Item> SPEED_UPGRADE = ITEMS.register("speed_upgrade",
-			() -> new Item(new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE).stacksTo(8)));
 	public static final RegistryObject<Item> WOODEN_COGWHEEL = ITEMS.register("wooden_cogwheel",
 			() -> new Item(new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
 	public static final RegistryObject<Item> UNFIRED_REFINED_IRON_COGWHEEL = ITEMS.register(
@@ -349,7 +351,11 @@ public class ItemInit {
 	public static final RegistryObject<Item> ARMOR_UPGRADER = ITEMS.register("armor_upgrader",
 			() -> new ArmorUpgrader(new Item.Properties().tab(REFINEMENT).stacksTo(1)));
 	public static final RegistryObject<Item> AUTO_EJECT_UPGRADE = ITEMS.register("auto_eject_upgrade",
-			() -> new AutoEjectUpgrade(new Item.Properties().tab(REFINEMENT).stacksTo(1)));
+			() -> new AutoEjectUpgrade(new Item.Properties().tab(REFINEMENT).stacksTo(1).rarity(DARK_PURPLE_RARITY)));
+	public static final RegistryObject<Item> AUTO_IMPORT_UPGRADE = ITEMS.register("auto_import_upgrade",
+			() -> new AutoImportUpgrade(new Item.Properties().tab(REFINEMENT).stacksTo(1).rarity(GOLD_RARITY)));
+	public static final RegistryObject<Item> SPEED_UPGRADE = ITEMS.register("speed_upgrade", () -> new Item(
+			new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE).stacksTo(8).rarity(DARK_RED_RARITY)));
 
 	// Food
 	public static final RegistryObject<Item> MINERS_STEW = ITEMS.register("miners_stew",
@@ -363,7 +369,7 @@ public class ItemInit {
 
 	public static final RegistryObject<Item> GOD_APPLE = ITEMS.register("god_apple",
 			() -> new ModEffectFood(new Item.Properties().stacksTo(1).fireResistant()
-					.food(new Food.Builder().nutrition(5).saturationMod(9.0f).build()).rarity(Rarity.EPIC)
+					.food(new Food.Builder().nutrition(5).saturationMod(9.0f).build())
 					.tab(RefinementItemGroup.REFINEMENT_FOOD).stacksTo(1))
 							.addEffect(new EffectInstance(ForgeRegistries.POTIONS
 									.getValue(new ResourceLocation(Refinement.MOD_ID, "ghostly_shape")), 600)));

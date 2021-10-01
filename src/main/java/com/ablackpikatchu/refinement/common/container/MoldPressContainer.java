@@ -44,8 +44,9 @@ public class MoldPressContainer extends Container {
 		this.addSlot(new OutputSlot((IInventory) te, 1, 119, 6)); //Output
 		this.addSlot(new ItemsReservedSlot((IInventory) te, 2, 62, 53, ItemLists.MOLDS)); //Mold
 		this.addSlot(new CarbonSlot(te, 3, 8, 44)); //Coal
-		this.addSlot(new UpgradeSlot((IInventory) te, 4, 152, 58, Upgrades.SPEED)); //Speed Upgrade
-		this.addSlot(new UpgradeSlot(te, 5, 134, 58, Upgrades.AUTO_EJECT)); // Auto eject upgrade
+		this.addSlot(new UpgradeSlot((IInventory) te, 4, 197, 113, Upgrades.SPEED)); //Speed Upgrade
+		this.addSlot(new UpgradeSlot(te, 5, 179, 113, Upgrades.AUTO_EJECT)); // Auto eject upgrade
+		this.addSlot(new UpgradeSlot(te, 6, 197, 95, Upgrades.AUTO_IMPORT)); // Auto Import Upgrade
 
 		// Main Player Inventory
 		for (int row = 0; row < 3; row++) {
@@ -111,7 +112,7 @@ public class MoldPressContainer extends Container {
 	@OnlyIn(Dist.CLIENT)
 	public int getProgressionScaled() {
 		return this.currentWaitTime.get() != 0 && this.maxWaitTime.get() != 0
-				? this.currentWaitTime.get() * 40 / this.maxWaitTime.get()
+				? this.currentWaitTime.get() * 17 / this.maxWaitTime.get()
 				: 0;
 	}
 }

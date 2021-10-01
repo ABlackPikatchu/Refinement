@@ -33,11 +33,17 @@ public class MixerTileEntity extends LockableSidedInventoryTileEntity implements
 
 	List<ItemStack> allItems = null;
 	private ITextComponent customName;
-	public static int slots = 6;
+	public static int slots = 7;
 	protected NonNullList<ItemStack> items = NonNullList.withSize(slots, ItemStack.EMPTY);
-	private static final int[] SLOTS_FOR_UP = new int[] { 0 };
-	private static final int[] SLOTS_FOR_DOWN = new int[] { 2 };
-	private static final int[] SLOTS_FOR_SIDES = new int[] { 1, 3 };
+	private static final int[] SLOTS_FOR_UP = new int[] {
+			0
+	};
+	private static final int[] SLOTS_FOR_DOWN = new int[] {
+			2
+	};
+	private static final int[] SLOTS_FOR_SIDES = new int[] {
+			1, 3
+	};
 
 	public MixerTileEntity(final TileEntityType<?> tileEntityTypeIn) {
 		super(tileEntityTypeIn, slots);
@@ -53,35 +59,56 @@ public class MixerTileEntity extends LockableSidedInventoryTileEntity implements
 			handleSpeedUpgrades(4, CommonConfig.MIXER_DEFAULT_PROCESS_TIME.get(),
 					CommonConfig.MIXER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get());
 			handleAutoEject(5, 2);
+			handleAutoImport(RecipeInit.MIXER_RECIPE, 6, 0, 1);
 			this.level.setBlockAndUpdate(this.getBlockPos(), this.getBlockState().setValue(MixerBlock.LIT, false));
 			getRecipes(RecipeInit.MIXER_RECIPE).forEach(recipe -> {
 				final MixerRecipe mixerRecipe = (MixerRecipe) recipe;
-				if (mixerRecipe.isValid(this.getItem(0), this.getItem(1))
-						&& this.getItem(3).getItem() == ItemInit.REFINED_CARBON_INGOT.get()
+				if (this.getItem(3).getItem() == ItemInit.REFINED_CARBON_INGOT.get()
 						&& this.getItem(3).getCount() >= this.usedCarbon) {
-					if (this.currentWaitTime >= this.maxWaitTime) {
-						TileEntityHelper.updateTE(this);
-						if (TileEntityHelper.canPlaceItemInStack(this.getItem(2), recipe.getResultItem())) {
-							this.getItem(0).shrink(mixerRecipe.getInputCount());
-							this.getItem(1).shrink(mixerRecipe.getSecondaryInputCount());
-							this.getItem(3).shrink(this.usedCarbon);
-							int oldCount = 0;
-							if (this.getItem(2) != ItemStack.EMPTY)
-								oldCount = this.getItem(2).getCount();
-							this.setItem(2, new ItemStack(recipe.getResultItem().getItem(),
-									recipe.getResultItem().getCount() + oldCount));
-							this.currentWaitTime = 0;
+					if (mixerRecipe.isValid(this.getItem(0), this.getItem(1))) {
+						if (this.currentWaitTime >= this.maxWaitTime) {
 							TileEntityHelper.updateTE(this);
-						}
-					} else {
-						this.currentWaitTime++;
-						this.setChanged();
-						this.level.setBlockAndUpdate(this.getBlockPos(),
-								this.getBlockState().setValue(MixerBlock.LIT, true));
+							if (TileEntityHelper.canPlaceItemInStack(this.getItem(2), recipe.getResultItem())) {
+								this.getItem(0).shrink(mixerRecipe.getInputCount());
+								this.getItem(1).shrink(mixerRecipe.getSecondaryInputCount());
+								this.getItem(3).shrink(this.usedCarbon);
+								int oldCount = 0;
+								if (this.getItem(2) != ItemStack.EMPTY)
+									oldCount = this.getItem(2).getCount();
+								this.setItem(2, new ItemStack(recipe.getResultItem().getItem(),
+										recipe.getResultItem().getCount() + oldCount));
+								this.currentWaitTime = 0;
+								TileEntityHelper.updateTE(this);
+							}
+						} else
+							increaseTime();
+					} else if (mixerRecipe.isValid(this.getItem(1), this.getItem(0))) {
+						if (this.currentWaitTime >= this.maxWaitTime) {
+							TileEntityHelper.updateTE(this);
+							if (TileEntityHelper.canPlaceItemInStack(this.getItem(2), recipe.getResultItem())) {
+								this.getItem(1).shrink(mixerRecipe.getInputCount());
+								this.getItem(0).shrink(mixerRecipe.getSecondaryInputCount());
+								this.getItem(3).shrink(this.usedCarbon);
+								int oldCount = 0;
+								if (this.getItem(2) != ItemStack.EMPTY)
+									oldCount = this.getItem(2).getCount();
+								this.setItem(2, new ItemStack(recipe.getResultItem().getItem(),
+										recipe.getResultItem().getCount() + oldCount));
+								this.currentWaitTime = 0;
+								TileEntityHelper.updateTE(this);
+							}
+						} else
+							increaseTime();
 					}
 				}
 			});
 		}
+	}
+
+	private void increaseTime() {
+		this.currentWaitTime++;
+		this.setChanged();
+		this.level.setBlockAndUpdate(this.getBlockPos(), this.getBlockState().setValue(MixerBlock.LIT, true));
 	}
 
 	@Override

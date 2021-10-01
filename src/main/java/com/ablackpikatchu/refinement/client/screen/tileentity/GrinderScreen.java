@@ -24,7 +24,7 @@ public class GrinderScreen extends MachineContainerScreen<GrinderContainer> {
 
 		this.leftPos = 0;
 		this.topPos = 0;
-		this.imageWidth = 176;
+		this.imageWidth = 220;
 		this.imageHeight = 170;
 	}
 
@@ -39,6 +39,6 @@ public class GrinderScreen extends MachineContainerScreen<GrinderContainer> {
 		super.renderBg(matrixStack, partialTicks, mouseX, mouseY);
 		renderSussyGui(matrixStack, partialTicks, this.topPos + 77);
 		this.minecraft.textureManager.bind(GRINDER_GUI);
-		this.blit(matrixStack, this.leftPos + 68, this.topPos + 9, 176, 0, this.menu.getProgressionScaled(), 47);
+		this.blit(matrixStack, this.leftPos + 68, this.topPos + 9, 2, 207, this.menu.getProgressionScaled(), 47);
 	}
 }

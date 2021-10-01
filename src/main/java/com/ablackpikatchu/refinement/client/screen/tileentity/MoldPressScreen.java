@@ -20,7 +20,7 @@ public class MoldPressScreen extends MachineContainerScreen<MoldPressContainer> 
 
 		this.leftPos = 0;
 		this.topPos = 0;
-		this.imageWidth = 176;
+		this.imageWidth = 220;
 		this.imageHeight = 170;
 	}
 
@@ -36,9 +36,9 @@ public class MoldPressScreen extends MachineContainerScreen<MoldPressContainer> 
 		renderSussyGui(matrixStack, partialTicks, this.topPos + 77);
 		this.minecraft.textureManager.bind(MOLD_PRESS_GUI);
 
-		for (int i = 0; i <= 39; ++i) {
+		for (int i = 0; i <= 17; ++i) {
 			if (this.menu.getProgressionScaled() >= i) {
-				this.blit(matrixStack, this.leftPos + 50, this.topPos + 29 + 39 - i, 176, 0 + 39 - i, 40, 1);
+				this.blit(matrixStack, this.leftPos + 50, this.topPos + 29 + 17 - i, 5, 236 + 17 - i, 40, 1);
 			}
 		}
 	}

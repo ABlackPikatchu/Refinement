@@ -6,7 +6,9 @@ import net.minecraft.item.Item;
 
 public enum Upgrades {
 
-	SPEED(ItemInit.SPEED_UPGRADE.get()), AUTO_EJECT(ItemInit.AUTO_EJECT_UPGRADE.get());
+	SPEED(ItemInit.SPEED_UPGRADE.get()), 
+	AUTO_EJECT(ItemInit.AUTO_EJECT_UPGRADE.get()),
+	AUTO_IMPORT(ItemInit.AUTO_IMPORT_UPGRADE.get());
 
 	Item upgrade;
 

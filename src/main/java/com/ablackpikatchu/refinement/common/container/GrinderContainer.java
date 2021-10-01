@@ -40,8 +40,9 @@ public class GrinderContainer extends Container {
 		this.addSlot(new Slot((IInventory) te, 0, 44, 23)); //Input
 		this.addSlot(new OutputSlot((IInventory) te, 1, 135, 23)); //Output
 		this.addSlot(new CarbonSlot(te, 2, 8, 44)); //Coal
-		this.addSlot(new UpgradeSlot((IInventory) te, 3, 152, 58, Upgrades.SPEED)); //Speed Upgrade
-		this.addSlot(new UpgradeSlot((IInventory) te, 4, 134, 58, Upgrades.AUTO_EJECT)); // Auto eject upgrade
+		this.addSlot(new UpgradeSlot((IInventory) te, 3, 197, 113, Upgrades.SPEED)); //Speed Upgrade
+		this.addSlot(new UpgradeSlot((IInventory) te, 4, 179, 113, Upgrades.AUTO_EJECT)); // Auto eject upgrade
+		this.addSlot(new UpgradeSlot(te, 5, 197, 95, Upgrades.AUTO_IMPORT)); // Auto import upgrade
 
 		// Main Player Inventory
 		for (int row = 0; row < 3; row++) {

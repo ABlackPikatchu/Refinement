@@ -10,7 +10,7 @@ import net.minecraft.util.Direction;
 public class InventoryHelper {
 
 	public static ItemStack tryMoveInItem(@Nullable IInventory pSource, IInventory pDestination, ItemStack pStack,
-			int pSlot, @Nullable Direction pDirection) { 
+			int pSlot, @Nullable Direction pDirection) {
 		ItemStack itemstack = pDestination.getItem(pSlot);
 		if (canPlaceItemInContainer(pDestination, pStack, pSlot, pDirection)) {
 			if (itemstack.isEmpty()) {
@@ -23,7 +23,8 @@ public class InventoryHelper {
 				int j = Math.min(pStack.getCount(), i);
 				pStack.shrink(j);
 				itemstack.grow(j);
-			}
+			} else
+				mergeOneByOne(itemstack, pStack);
 			pDestination.setChanged();
 			pSource.setChanged();
 		}
@@ -31,15 +32,26 @@ public class InventoryHelper {
 		return pStack;
 	}
 
-	private static boolean canMergeItems(ItemStack p_145894_0_, ItemStack p_145894_1_) {
-		if (p_145894_0_.getItem() != p_145894_1_.getItem()) {
+	public static boolean canMergeItems(ItemStack destination, ItemStack source) {
+		if (destination.getItem() != source.getItem()) {
 			return false;
-		} else if (p_145894_0_.getDamageValue() != p_145894_1_.getDamageValue()) {
+		} else if (destination.getDamageValue() != source.getDamageValue()) {
 			return false;
-		} else if (p_145894_0_.getCount() > p_145894_0_.getMaxStackSize()) {
+		} else if (destination.getCount() > destination.getMaxStackSize()) {
 			return false;
 		} else {
-			return ItemStack.tagMatches(p_145894_0_, p_145894_1_);
+			return ItemStack.tagMatches(destination, source);
+		}
+	}
+
+	public static void mergeOneByOne(ItemStack destination, ItemStack source) {
+		if (destination.getItem() != source.getItem())
+			return;
+		for (int i = destination.getCount(); i <= destination.getMaxStackSize(); ++i) {
+			if (destination.getCount() + 1 <= destination.getMaxStackSize()) {
+				source.shrink(1);
+				destination.grow(1);
+			}
 		}
 	}
 
