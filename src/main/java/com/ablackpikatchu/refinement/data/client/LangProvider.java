@@ -41,6 +41,7 @@ public class LangProvider extends LanguageProvider {
 		add(BlockInit.REFINED_NETHERITE_BLOCK.get(), "Refined Netherite Block");
 		add(BlockInit.VACCUMULATOR.get(), "Vacuumulator");
 		add(BlockInit.DNA_SEQUENCER.get(), "DNA Sequencer");
+		add(BlockInit.MATERIALS_STATION.get(), "Materials Station");
 		
 		add(BlockInit.REFINED_LOG.get(), "Refined Log");
 		add(BlockInit.REFINED_STRIPPED_LOG.get(), "Refined Stripped Log");
