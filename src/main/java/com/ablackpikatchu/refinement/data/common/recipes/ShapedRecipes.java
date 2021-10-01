@@ -73,7 +73,7 @@ public class ShapedRecipes {
 
 		newShapedRecipe(new Output(ItemInit.AUTO_EJECT_UPGRADE.get(), 1), new Pattern("DCD", "PNP", "DCD"),
 				machineStuff(itemName(ItemInit.AUTO_EJECT_UPGRADE.get())),
-				new KeyIngredient('D', ItemInit.REFINED_DIAMOND.get()),
+				new KeyIngredient('D', ItemInit.REFINED_GOLD_INGOT.get()),
 				new KeyIngredient('C', ItemInit.REFINED_CARBON_INGOT),
 				new KeyIngredient('P', ItemInit.MACHINE_PARTS.get()),
 				new KeyIngredient('N', ItemInit.REFINED_NETHERITE_INGOT));
