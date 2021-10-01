@@ -1,0 +1,47 @@
+{
+	"parent": "item/generated",
+    "overrides": [
+   		{
+            "predicate": {
+                "refinement:auto_import_upgrade_direction": 0
+            },
+            "model": "refinement:item/upgrades/auto_import/none"
+        },
+        {
+            "predicate": {
+                "refinement:auto_import_upgrade_direction": 1
+            },
+            "model": "refinement:item/upgrades/auto_import/up"
+        },
+        {
+            "predicate": {
+                "refinement:auto_import_upgrade_direction": 2
+            },
+            "model": "refinement:item/upgrades/auto_import/down"
+        },
+        {
+            "predicate": {
+                "refinement:auto_import_upgrade_direction": 3
+            },
+            "model": "refinement:item/upgrades/auto_import/north"
+        },
+        {
+            "predicate": {
+                "refinement:auto_import_upgrade_direction": 4
+            },
+            "model": "refinement:item/upgrades/auto_import/east"
+        },
+        {
+            "predicate": {
+                "refinement:auto_import_upgrade_direction": 5
+            },
+            "model": "refinement:item/upgrades/auto_import/south"
+        },
+        {
+            "predicate": {
+                "refinement:auto_import_upgrade_direction": 6
+            },
+            "model": "refinement:item/upgrades/auto_import/west"
+        }
+    ]
+}

@@ -25,7 +25,7 @@ public class DNASequencerScreen extends MachineContainerScreen<DNASequencerConta
 
 		this.leftPos = 0;
 		this.topPos = 0;
-		this.imageWidth = 176;
+		this.imageWidth = 220;
 		this.imageHeight = 201;
 	}
 
@@ -48,7 +48,7 @@ public class DNASequencerScreen extends MachineContainerScreen<DNASequencerConta
 		super.renderBg(matrixStack, partialTicks, mouseX, mouseY);
 		renderSussyGui(matrixStack, partialTicks, this.topPos + 82);
 		this.minecraft.textureManager.bind(DNA_SEQUENCER_GUI);
-		this.blit(matrixStack, this.leftPos + 62, this.topPos + 26, 179, 8, this.menu.getProgressionScaled(), 22);
+		this.blit(matrixStack, this.leftPos + 62, this.topPos + 26, 3, 231, this.menu.getProgressionScaled(), 22);
 	}
 
 }

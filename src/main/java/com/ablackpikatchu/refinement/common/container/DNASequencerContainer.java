@@ -42,8 +42,9 @@ public class DNASequencerContainer extends Container {
 		this.addSlot(new Slot((IInventory) te, 1, 44, 43)); // Input 2
 		this.addSlot(new OutputSlot((IInventory) te, 2, 135, 28)); // Output
 		this.addSlot(new CarbonSlot(te, 3, 8, 49)); // Coal
-		this.addSlot(new UpgradeSlot((IInventory) te, 4, 152, 63, Upgrades.SPEED)); //Speed Upgrade
-		this.addSlot(new UpgradeSlot(te, 5, 134, 63, Upgrades.AUTO_EJECT)); // Auto eject upgrade
+		this.addSlot(new UpgradeSlot((IInventory) te, 4, 197, 118, Upgrades.SPEED)); //Speed Upgrade
+		this.addSlot(new UpgradeSlot(te, 5, 179, 118, Upgrades.AUTO_EJECT)); // Auto eject upgrade
+		this.addSlot(new UpgradeSlot(te, 6, 197, 100, Upgrades.AUTO_IMPORT)); // Auto Import Upgrade
 
 		// Main Player Inventory
 		for (int row = 0; row < 3; row++) {

@@ -33,13 +33,19 @@ public class DNASequencerTileEntity extends LockableSidedInventoryTileEntity imp
 
 	List<ItemStack> allItems = null;
 	private ITextComponent customName;
-	public static int slots = 6;
+	public static int slots = 7;
 	protected NonNullList<ItemStack> items = NonNullList.withSize(slots, ItemStack.EMPTY);
 	public int successProbability;
 	public boolean isWorking;
-	private static final int[] SLOTS_FOR_UP = new int[] { 0 };
-	private static final int[] SLOTS_FOR_DOWN = new int[] { 2 };
-	private static final int[] SLOTS_FOR_SIDES = new int[] { 1, 3 };
+	private static final int[] SLOTS_FOR_UP = new int[] {
+			0
+	};
+	private static final int[] SLOTS_FOR_DOWN = new int[] {
+			2
+	};
+	private static final int[] SLOTS_FOR_SIDES = new int[] {
+			1, 3
+	};
 
 	private static int speedUpgradeSlot = 4;
 
@@ -57,6 +63,7 @@ public class DNASequencerTileEntity extends LockableSidedInventoryTileEntity imp
 			handleSpeedUpgrades(speedUpgradeSlot, CommonConfig.DNA_SEQUENCER_DEFAULT_PROCESS_TIME.get(),
 					CommonConfig.DNA_SEQUENCER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get());
 			handleAutoEject(5, 2);
+			handleAutoImport(RecipeInit.DNA_SEQUENCER_RECIPE, 6, 0, 1);
 			this.successProbability = -1;
 			this.isWorking = false;
 			TileEntityHelper.setStateProperty(this, DNASequencerBlock.LIT, false);
@@ -83,11 +90,30 @@ public class DNASequencerTileEntity extends LockableSidedInventoryTileEntity imp
 								this.currentWaitTime = 0;
 								TileEntityHelper.updateTE(this);
 							}
-						} else {
-							this.currentWaitTime++;
-							this.setChanged();
-							this.isWorking = true;
-						}
+						} else
+							increaseTime();
+					}
+				} else if (DNASequencerRecipe.isValid(this.getItem(1), this.getItem(0))) {
+					if (this.usedCarbon != 0 && this.getItem(3).getItem() == ItemInit.REFINED_CARBON_INGOT.get()
+							&& this.getItem(3).getCount() >= this.usedCarbon || this.usedCarbon == 0) {
+						this.successProbability = DNASequencerRecipe.getSuccessProbability();
+						if (this.currentWaitTime >= this.maxWaitTime) {
+							TileEntityHelper.updateTE(this);
+							if (TileEntityHelper.canPlaceItemInStack(this.getItem(2), recipe.getResultItem())) {
+								this.getItem(1).shrink(DNASequencerRecipe.getInputCount());
+								this.getItem(0).shrink(DNASequencerRecipe.getSecondaryInputCount());
+								this.getItem(3).shrink(this.usedCarbon);
+								int oldCount = 0;
+								if (this.getItem(2) != ItemStack.EMPTY)
+									oldCount = this.getItem(2).getCount();
+								if (DNASequencerRecipe.isOutputSuccess())
+									this.setItem(2, new ItemStack(recipe.getResultItem().getItem(),
+											recipe.getResultItem().getCount() + oldCount));
+								this.currentWaitTime = 0;
+								TileEntityHelper.updateTE(this);
+							}
+						} else
+							increaseTime();
 					}
 				}
 			});
@@ -99,6 +125,12 @@ public class DNASequencerTileEntity extends LockableSidedInventoryTileEntity imp
 			TileEntityHelper.updateTE(this);
 		}
 
+	}
+
+	private void increaseTime() {
+		this.currentWaitTime++;
+		this.setChanged();
+		this.isWorking = true;
 	}
 
 	@Override

@@ -34,7 +34,7 @@ public class MoldPressTileEntity extends LockableSidedInventoryTileEntity implem
 
 	List<ItemStack> allItems = null;
 	private ITextComponent customName;
-	public static int slots = 6;
+	public static int slots = 7;
 	protected NonNullList<ItemStack> items = NonNullList.withSize(slots, ItemStack.EMPTY);
 	private static final int[] SLOTS_FOR_UP = new int[] { 0 };
 	private static final int[] SLOTS_FOR_DOWN = new int[] { 1 };
@@ -54,6 +54,7 @@ public class MoldPressTileEntity extends LockableSidedInventoryTileEntity implem
 			handleSpeedUpgrades(4, CommonConfig.MOLD_PRESS_DEFAULT_PROCESS_TIME.get(),
 					CommonConfig.MOLD_PRESS_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get());
 			handleAutoEject(5, 1);
+			handleAutoImport(RecipeInit.MOLD_PRESS_RECIPE, 6, 0);
 			this.level.setBlockAndUpdate(this.getBlockPos(), this.getBlockState().setValue(MoldPressBlock.LIT, false));
 			getRecipes(RecipeInit.MOLD_PRESS_RECIPE).forEach(recipe -> {
 				final MoldPressRecipe moldPressRecipe = (MoldPressRecipe) recipe;

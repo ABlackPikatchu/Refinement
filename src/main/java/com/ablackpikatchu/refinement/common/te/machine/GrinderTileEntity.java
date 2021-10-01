@@ -33,7 +33,7 @@ public class GrinderTileEntity extends LockableSidedInventoryTileEntity implemen
 
 	List<ItemStack> allItems = null;
 	private ITextComponent customName;
-	public static int slots = 5;
+	public static int slots = 6;
 	protected NonNullList<ItemStack> items = NonNullList.withSize(slots, ItemStack.EMPTY);
 	private static final int[] SLOTS_FOR_UP = new int[] { 0 };
 	private static final int[] SLOTS_FOR_DOWN = new int[] { 1 };
@@ -53,6 +53,7 @@ public class GrinderTileEntity extends LockableSidedInventoryTileEntity implemen
 			handleSpeedUpgrades(3, CommonConfig.GRINDER_DEFAULT_PROCESS_TIME.get(),
 					CommonConfig.GRINDER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get());
 			handleAutoEject(4, 1);
+			handleAutoImport(RecipeInit.GRINDER_RECIPE, 5, 0);
 			this.level.setBlockAndUpdate(this.getBlockPos(), this.getBlockState().setValue(GrinderBlock.LIT, false));
 			getRecipes(RecipeInit.GRINDER_RECIPE).forEach(recipe -> {
 				final GrinderRecipe grinderRecipe = (GrinderRecipe) recipe;

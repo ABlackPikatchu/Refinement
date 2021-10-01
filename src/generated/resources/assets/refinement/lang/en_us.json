@@ -42,6 +42,7 @@
   "entity.minecraft.villager.refinement.materials": "Materialist",
   "item.refinement.armor_upgrader": "Armor Upgrader",
   "item.refinement.auto_eject_upgrade": "Auto Eject Upgrade",
+  "item.refinement.auto_import_upgrade": "Auto Import Upgrade",
   "item.refinement.charcoal_dust": "Charcoal Dust",
   "item.refinement.coal_dust": "Coal Dust",
   "item.refinement.coal_essence": "Coal Essence",

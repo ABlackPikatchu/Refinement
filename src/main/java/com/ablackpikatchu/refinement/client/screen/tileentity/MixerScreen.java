@@ -19,7 +19,7 @@ public class MixerScreen extends MachineContainerScreen<MixerContainer> {
 
 		this.leftPos = 0;
 		this.topPos = 0;
-		this.imageWidth = 176;
+		this.imageWidth = 220;
 		this.imageHeight = 201;
 	}
 

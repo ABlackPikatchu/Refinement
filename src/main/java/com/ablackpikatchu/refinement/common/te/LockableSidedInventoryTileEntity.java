@@ -7,6 +7,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.ablackpikatchu.refinement.common.item.AutoEjectUpgrade;
+import com.ablackpikatchu.refinement.common.item.AutoImportUpgrade;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.util.MCMathUtils;
 import com.ablackpikatchu.refinement.core.util.helper.InventoryHelper;
@@ -19,6 +20,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
@@ -278,8 +280,9 @@ public abstract class LockableSidedInventoryTileEntity extends LockableTileEntit
 
 	/**
 	 * Handles auto ejecting
+	 * 
 	 * @param autoEjectupgradeSlot auto-eject upgrade slot
-	 * @param outputSlots output slots (a.k.a slots that can be ejected)
+	 * @param outputSlots          output slots (a.k.a slots that can be ejected)
 	 */
 	public void handleAutoEject(int autoEjectupgradeSlot, int... outputSlots) {
 		for (int outputSlot : outputSlots) {
@@ -308,5 +311,55 @@ public abstract class LockableSidedInventoryTileEntity extends LockableTileEntit
 				}
 			}
 		}
+	}
+
+	/**
+	 * Handles auto importing
+	 * 
+	 * @param recipeType            the recipe the machine accepts
+	 * @param autoImportUpgradeSlot auto-import upgrade slot
+	 * @param inputSlots            input slots (a.k.a slots that can be imported
+	 *                              into)
+	 */
+	public void handleAutoImport(@Nonnull IRecipeType<?> recipeType, int autoImportUpgradeSlot, int... inputSlots) {
+		for (int inputSlot : inputSlots) {
+			Direction direction = Direction
+					.byName(NBTHelper.getString(getItem(autoImportUpgradeSlot), AutoImportUpgrade.DIRECTION_PROPERTY));
+			if (direction == null)
+				return;
+
+			if (HopperTileEntity.getContainerAt(level, worldPosition.relative(direction, 1)) != null) {
+				if (this.getItem(autoImportUpgradeSlot).getItem() == ItemInit.AUTO_IMPORT_UPGRADE.get()) {
+					IInventory autoImportContainer = HopperTileEntity.getContainerAt(level,
+							worldPosition.relative(direction, 1));
+					if (!autoImportContainer.isEmpty()) {
+						for (int i = 0; i <= autoImportContainer.getContainerSize() - 1; i++) {
+							if (this.getValidInputs(recipeType).contains(autoImportContainer.getItem(i).getItem())) {
+								InventoryHelper.tryMoveInItem(autoImportContainer, (IInventory) this,
+										autoImportContainer.getItem(i), inputSlot, null);
+								InventoryHelper.tryMoveInItem(autoImportContainer, (IInventory) this,
+										autoImportContainer.getItem(i), inputSlot, null);
+								TileEntityHelper.updateTE(this);
+								TileEntityHelper
+										.updateTE(this.level.getBlockEntity(worldPosition.relative(direction, 1)));
+								break;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	public ArrayList<Item> getValidInputs(IRecipeType<?> recipeType) {
+		ArrayList<Item> validInputs = new ArrayList<>();
+		this.getRecipes(recipeType).forEach(recipe -> {
+			recipe.getIngredients().forEach(ingredient -> {
+				if (!validInputs.contains(ingredient.getItems()[0].getItem())
+						&& ingredient.getItems()[0].getItem() != ItemInit.REFINED_CARBON_INGOT.get())
+					validInputs.add(ingredient.getItems()[0].getItem());
+			});
+		});
+		return validInputs;
 	}
 }

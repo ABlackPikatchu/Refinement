@@ -1,7 +1,8 @@
-package com.ablackpikatchu.refinement.common.events;
+package com.ablackpikatchu.refinement.client;
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.item.AutoEjectUpgrade;
+import com.ablackpikatchu.refinement.common.item.AutoImportUpgrade;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.util.helper.NBTHelper;
 
@@ -14,6 +15,9 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+
+import static com.ablackpikatchu.refinement.core.init.ItemInit.*;
+import static com.ablackpikatchu.refinement.Refinement.MOD_ID;
 
 @Mod.EventBusSubscriber(modid = Refinement.MOD_ID, bus = Bus.MOD)
 public class ClientEvents {
@@ -50,11 +54,31 @@ public class ClientEvents {
 						return 1F;
 				});
 
-		ItemModelsProperties.register(ItemInit.AUTO_EJECT_UPGRADE.get(),
-				new ResourceLocation(Refinement.MOD_ID, "auto_eject_upgrade_direction"), (stack, world, entity) -> {
+		ItemModelsProperties.register(AUTO_EJECT_UPGRADE.get(),
+				new ResourceLocation(MOD_ID, "auto_eject_upgrade_direction"), (stack, world, entity) -> {
 					Direction direction = Direction
 							.byName(NBTHelper.getString(stack, AutoEjectUpgrade.DIRECTION_PROPERTY));
 					if (NBTHelper.getString(stack, AutoEjectUpgrade.DIRECTION_PROPERTY) == "")
+						return 0.0f;
+					
+					switch (direction) {
+					case UP: return 1.0f;
+					case DOWN: return 2.0f;
+					case NORTH: return 3.0f;
+					case EAST: return 4.0f;
+					case SOUTH: return 5.0f;
+					case WEST: return 6.0f;
+					default:
+						return 0.0f;
+					}
+
+				});
+		
+		ItemModelsProperties.register(ItemInit.AUTO_IMPORT_UPGRADE.get(),
+				new ResourceLocation(MOD_ID, "auto_import_upgrade_direction"), (stack, world, entity) -> {
+					Direction direction = Direction
+							.byName(NBTHelper.getString(stack, AutoImportUpgrade.DIRECTION_PROPERTY));
+					if (NBTHelper.getString(stack, AutoImportUpgrade.DIRECTION_PROPERTY) == "")
 						return 0.0f;
 					
 					switch (direction) {
