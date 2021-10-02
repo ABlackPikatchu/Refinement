@@ -5,6 +5,7 @@ import com.ablackpikatchu.refinement.common.container.DNASequencerContainer;
 import com.ablackpikatchu.refinement.common.container.GrinderContainer;
 import com.ablackpikatchu.refinement.common.container.MixerContainer;
 import com.ablackpikatchu.refinement.common.container.MoldPressContainer;
+import com.ablackpikatchu.refinement.common.container.CarbonGeneratorContainer;
 import com.ablackpikatchu.refinement.common.container.VaccumulatorContainer;
 
 import net.minecraft.inventory.container.ContainerType;
@@ -32,4 +33,7 @@ public class ContainerTypesInit {
 	
 	public static final RegistryObject<ContainerType<VaccumulatorContainer>> VACCUMULATOR_CONTAINER_TYPE = CONTAINER_TYPES
 			.register("vaccumulator", () -> IForgeContainerType.create(VaccumulatorContainer::new));
+	
+	public static final RegistryObject<ContainerType<CarbonGeneratorContainer>> CARBON_GENERATOR_CONTAINER_TYPE = CONTAINER_TYPES
+			.register("carbon_generator", () -> IForgeContainerType.create(CarbonGeneratorContainer::new));
 }

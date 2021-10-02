@@ -7,6 +7,7 @@ import com.ablackpikatchu.refinement.common.block.GrinderBlock;
 import com.ablackpikatchu.refinement.common.block.MixerBlock;
 import com.ablackpikatchu.refinement.common.block.MoldPressBlock;
 import com.ablackpikatchu.refinement.common.block.RefinedSaplingBlock;
+import com.ablackpikatchu.refinement.common.block.CarbonGeneratorBlock;
 import com.ablackpikatchu.refinement.common.block.VaccumulatorBlock;
 
 import net.minecraft.block.AbstractBlock;
@@ -71,10 +72,13 @@ public class BlockInit {
 	public static final RegistryObject<Block> VACCUMULATOR = BLOCKS.register("vaccumulator",
 			() -> new VaccumulatorBlock());
 
+	public static final RegistryObject<Block> CARBON_GENERATOR_BLOCK = BLOCKS.register("carbon_generator",
+			() -> new CarbonGeneratorBlock());
+
 	// POIs
 	public static final RegistryObject<Block> MATERIALS_STATION = BLOCKS.register("materials_station",
 			() -> new Block(AbstractBlock.Properties.copy(Blocks.SMITHING_TABLE)));
-	
+
 	// Trees
 	public static final RegistryObject<Block> REFINED_LOG = BLOCKS.register("refined_log",
 			() -> new RotatedPillarBlock(AbstractBlock.Properties.of(Material.WOOD).sound(SoundType.WOOD)
@@ -85,10 +89,10 @@ public class BlockInit {
 					.strength(2f, 3f).harvestLevel(0).harvestTool(ToolType.AXE)));
 
 	public static final RegistryObject<Block> REFINED_LEAVES = BLOCKS.register("refined_leaves",
-			() -> new LeavesBlock(AbstractBlock.Properties.of(Material.LEAVES).sound(SoundType.GRASS)
-					.strength(0.2f, 1f).randomTicks().noOcclusion()));
-	
+			() -> new LeavesBlock(AbstractBlock.Properties.of(Material.LEAVES).sound(SoundType.GRASS).strength(0.2f, 1f)
+					.randomTicks().noOcclusion()));
+
 	public static final RegistryObject<Block> REFINED_SAPLING = BLOCKS.register("refined_sapling",
-			() -> new RefinedSaplingBlock(TreeInit.REFINED, AbstractBlock.Properties.of(Material.LEAVES).sound(SoundType.GRASS)
-					.strength(0f).randomTicks().noOcclusion()));
+			() -> new RefinedSaplingBlock(TreeInit.REFINED, AbstractBlock.Properties.of(Material.LEAVES)
+					.sound(SoundType.GRASS).strength(0f).randomTicks().noOcclusion()));
 }

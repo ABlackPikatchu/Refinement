@@ -10,6 +10,7 @@ import com.ablackpikatchu.refinement.common.item.AutoEjectUpgrade;
 import com.ablackpikatchu.refinement.common.item.AutoImportUpgrade;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.util.MCMathUtils;
+import com.ablackpikatchu.refinement.core.util.energy.ModEnergyStorage;
 import com.ablackpikatchu.refinement.core.util.helper.InventoryHelper;
 import com.ablackpikatchu.refinement.core.util.helper.NBTHelper;
 import com.ablackpikatchu.refinement.core.util.helper.TileEntityHelper;
@@ -254,6 +255,18 @@ public abstract class LockableSidedInventoryTileEntity extends LockableTileEntit
 		}
 	}
 
+	public void handleEnergySpeedUpgrades(int speedUpgradeSlot, int defaultSpeed, int decreasedSpeed,
+			ModEnergyStorage energyStorage, int defaultEnergy, int extraConsumedEnergyPerUpgrade) {
+		if (this.getItem(speedUpgradeSlot).getItem() == ItemInit.SPEED_UPGRADE.get()) {
+			this.maxWaitTime = defaultSpeed - (decreasedSpeed * this.getItem(speedUpgradeSlot).getCount());
+			energyStorage.energyUsed = this.getItem(speedUpgradeSlot).getCount() * extraConsumedEnergyPerUpgrade
+					+ defaultEnergy;
+		} else {
+			energyStorage.energyUsed = defaultEnergy;
+			this.maxWaitTime = defaultSpeed;
+		}
+	}
+
 	/**
 	 * Gets the all the recipes of type
 	 * 
@@ -344,6 +357,51 @@ public abstract class LockableSidedInventoryTileEntity extends LockableTileEntit
 										.updateTE(this.level.getBlockEntity(worldPosition.relative(direction, 1)));
 								break;
 							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Handles Fuel Auto Importing
+	 * @param autoImportUpgradeSlot the auto-import upgrade slot
+	 * @param fuelSlot the fuel slot
+	 */
+	public void handleFuelAutoImport(int autoImportUpgradeSlot, int fuelSlot) {
+		Direction direction = Direction
+				.byName(NBTHelper.getString(getItem(autoImportUpgradeSlot), AutoImportUpgrade.DIRECTION_PROPERTY));
+		if (direction == null)
+			return;
+		if (HopperTileEntity.getContainerAt(level, worldPosition.relative(direction, 1)) != null) {
+			if (this.getItem(autoImportUpgradeSlot).getItem() == ItemInit.AUTO_IMPORT_UPGRADE.get()) {
+				IInventory autoImportContainer = HopperTileEntity.getContainerAt(level,
+						worldPosition.relative(direction, 1));
+				if (!autoImportContainer.isEmpty()) {
+					for (int i = 0; i <= autoImportContainer.getContainerSize() - 1; i++) {
+						if (autoImportContainer.getItem(i).getItem() == ItemInit.REFINED_CARBON_INGOT.get()) {
+							ItemStack pStack = autoImportContainer.getItem(i);
+							ItemStack itemstack = this.getItem(fuelSlot);
+							if (itemstack.isEmpty()) {
+								ItemStack copy = pStack.copy();
+								copy.setCount(1);
+								this.setItem(fuelSlot, copy);
+								pStack.shrink(1);
+							} else if (InventoryHelper.canMergeItems(itemstack, pStack)) {
+								int x = pStack.getMaxStackSize() - itemstack.getCount();
+								int j = Math.min(pStack.getCount(), x);
+								pStack.shrink(j);
+								itemstack.grow(j);
+							} else
+								InventoryHelper.mergeOneByOne(itemstack, pStack);
+							this.setChanged();
+							autoImportContainer.setChanged();
+							TileEntityHelper.updateTE(this);
+							if (this.level.getBlockEntity(worldPosition.relative(direction, 1)) != null)
+								TileEntityHelper
+										.updateTE(this.level.getBlockEntity(worldPosition.relative(direction, 1)));
+							break;
 						}
 					}
 				}

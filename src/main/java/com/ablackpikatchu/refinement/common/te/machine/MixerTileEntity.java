@@ -59,6 +59,7 @@ public class MixerTileEntity extends LockableSidedInventoryTileEntity implements
 			handleSpeedUpgrades(4, CommonConfig.MIXER_DEFAULT_PROCESS_TIME.get(),
 					CommonConfig.MIXER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get());
 			handleAutoEject(5, 2);
+			handleFuelAutoImport(6, 3);
 			handleAutoImport(RecipeInit.MIXER_RECIPE, 6, 0, 1);
 			this.level.setBlockAndUpdate(this.getBlockPos(), this.getBlockState().setValue(MixerBlock.LIT, false));
 			getRecipes(RecipeInit.MIXER_RECIPE).forEach(recipe -> {
