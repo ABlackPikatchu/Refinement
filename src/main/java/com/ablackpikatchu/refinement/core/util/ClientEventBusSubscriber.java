@@ -5,6 +5,7 @@ import com.ablackpikatchu.refinement.client.screen.tileentity.DNASequencerScreen
 import com.ablackpikatchu.refinement.client.screen.tileentity.GrinderScreen;
 import com.ablackpikatchu.refinement.client.screen.tileentity.MixerScreen;
 import com.ablackpikatchu.refinement.client.screen.tileentity.MoldPressScreen;
+import com.ablackpikatchu.refinement.client.screen.tileentity.CarbonGeneratorScreen;
 import com.ablackpikatchu.refinement.client.screen.tileentity.VaccumulatorScreen;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
 import com.ablackpikatchu.refinement.core.init.KeybindsInit;
@@ -31,6 +32,8 @@ public class ClientEventBusSubscriber {
 		ScreenManager.register(ContainerTypesInit.DNA_SEQUENCER_CONTAINER_TYPE.get(), DNASequencerScreen::new);
 
 		ScreenManager.register(ContainerTypesInit.VACCUMULATOR_CONTAINER_TYPE.get(), VaccumulatorScreen::new);
+		
+		ScreenManager.register(ContainerTypesInit.CARBON_GENERATOR_CONTAINER_TYPE.get(), CarbonGeneratorScreen::new);
 	}
 
 }

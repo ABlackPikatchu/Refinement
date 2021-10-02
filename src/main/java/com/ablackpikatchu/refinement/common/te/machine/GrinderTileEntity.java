@@ -53,6 +53,7 @@ public class GrinderTileEntity extends LockableSidedInventoryTileEntity implemen
 			handleSpeedUpgrades(3, CommonConfig.GRINDER_DEFAULT_PROCESS_TIME.get(),
 					CommonConfig.GRINDER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get());
 			handleAutoEject(4, 1);
+			handleFuelAutoImport(5, 2);
 			handleAutoImport(RecipeInit.GRINDER_RECIPE, 5, 0);
 			this.level.setBlockAndUpdate(this.getBlockPos(), this.getBlockState().setValue(GrinderBlock.LIT, false));
 			getRecipes(RecipeInit.GRINDER_RECIPE).forEach(recipe -> {

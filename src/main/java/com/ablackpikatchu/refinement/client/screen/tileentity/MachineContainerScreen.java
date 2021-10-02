@@ -24,11 +24,16 @@ public class MachineContainerScreen<T extends Container> extends ContainerScreen
 	private int sus3 = random.nextInt(8);
 	private int sus4 = random.nextInt(8);
 	protected SussyElement sussyElement = new SussyElement();
-	
+
 	public MachineContainerScreen(T screenContainer, PlayerInventory inv, ITextComponent titleIn,
 			ResourceLocation guiTexture) {
 		super(screenContainer, inv, titleIn);
 		this.guiTexture = guiTexture;
+	}
+	
+	@Override
+	protected void renderLabels(MatrixStack matrixStack, int mouseX, int mouseY) {
+		super.renderLabels(matrixStack, mouseX, mouseY);
 	}
 
 	@Override
@@ -38,6 +43,7 @@ public class MachineContainerScreen<T extends Container> extends ContainerScreen
 		this.renderTooltip(matrixStack, mouseX, mouseY);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void renderBg(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
 		RenderSystem.color4f(1f, 1f, 1f, 1f);
@@ -63,6 +69,14 @@ public class MachineContainerScreen<T extends Container> extends ContainerScreen
 			sussyElement.render(matrixStack, this.leftPos + (8 + (18 * sus3)), topInventoryStart + 36, partialTicks);
 			sussyElement.render(matrixStack, this.leftPos + (8 + (18 * sus4)), topInventoryStart + 58, partialTicks);
 		}
+	}
+
+	protected boolean isHoveringBetween(int mouseX, int mouseY, int startX, int startY, int width, int height) {
+		return numberIsBetween(mouseX, startX, startX + width) && numberIsBetween(mouseY, startY, startY + height);
+	}
+
+	private boolean numberIsBetween(int number, int c1, int c2) {
+		return number <= c2 && number >= c1;
 	}
 
 }

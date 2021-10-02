@@ -54,6 +54,7 @@ public class MoldPressTileEntity extends LockableSidedInventoryTileEntity implem
 			handleSpeedUpgrades(4, CommonConfig.MOLD_PRESS_DEFAULT_PROCESS_TIME.get(),
 					CommonConfig.MOLD_PRESS_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get());
 			handleAutoEject(5, 1);
+			handleFuelAutoImport(6, 3);
 			handleAutoImport(RecipeInit.MOLD_PRESS_RECIPE, 6, 0);
 			this.level.setBlockAndUpdate(this.getBlockPos(), this.getBlockState().setValue(MoldPressBlock.LIT, false));
 			getRecipes(RecipeInit.MOLD_PRESS_RECIPE).forEach(recipe -> {

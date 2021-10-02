@@ -26,7 +26,13 @@ public class CommonConfig {
 	// DNA Sequencer
 	public static final ForgeConfigSpec.ConfigValue<Integer> DNA_SEQUENCER_DEFAULT_PROCESS_TIME;
 	public static final ForgeConfigSpec.ConfigValue<Integer> DNA_SEQUENCER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE;
-
+	
+	// Carbon Generator
+	public static final ForgeConfigSpec.ConfigValue<Integer> CARBON_GENERATOR_DEFAULT_PROCESS_TIME;
+	public static final ForgeConfigSpec.ConfigValue<Integer> CARBON_GENERATOR_TIME_DECREASED_BY_EACH_SPEED_UPGRADE;
+	public static final ForgeConfigSpec.ConfigValue<Integer> CARBON_GENERATOR_DEFAULT_ENERGY_USAGE;
+	public static final ForgeConfigSpec.ConfigValue<Integer> CARBON_GENERATOR_ENERGY_USAGE_PER_SPEED_UPGRADE;
+	
 	// Magnet
 	public static final ForgeConfigSpec.ConfigValue<Boolean> MAGNET_ENABLED;
 	public static final ForgeConfigSpec.ConfigValue<Double> MAGNET_RANGE;
@@ -53,7 +59,7 @@ public class CommonConfig {
 				"The default process time for the Grinder, in ticks. (with no speed upgrades) (Default value is 200)")
 				.define("Default Process Time", 200);
 		GRINDER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE = BUILDER.comment(
-				"The ticks amount each speed upgrades decreses the process time of the Grinder. (Default value is 15)")
+				"The ticks amount each speed upgrades decreses from the process time of the Grinder. (Default value is 15)")
 				.define("Speed Upgrade Time Decreased", 15);
 		BUILDER.pop();
 
@@ -62,7 +68,7 @@ public class CommonConfig {
 				"The default process time for the Mixer, in ticks. (with no speed upgrades) (Default value is 300)")
 				.define("Default Process Time", 300);
 		MIXER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE = BUILDER.comment(
-				"The ticks amount each speed upgrades decreses the process time of the Mixer. (Default value is 10)")
+				"The ticks amount each speed upgrades decreses from the process time of the Mixer. (Default value is 10)")
 				.define("Speed Upgrade Time Decreased", 10);
 		BUILDER.pop();
 
@@ -71,7 +77,7 @@ public class CommonConfig {
 				"The default process time for the Mold Press, in ticks. (with no speed upgrades) (Default value is 200)")
 				.define("Default Process Time", 200);
 		MOLD_PRESS_TIME_DECREASED_BY_EACH_SPEED_UPGRADE = BUILDER.comment(
-				"The ticks amount each speed upgrades decreses the process time of the Mixer. (Default value is 15)")
+				"The ticks amount each speed upgrades decreses from the process time of the Mold Press. (Default value is 15)")
 				.define("Speed Upgrade Time Decreased", 15);
 		BUILDER.pop();
 
@@ -80,10 +86,27 @@ public class CommonConfig {
 				"The default process time for the DNA Sequencer, in ticks. (with no speed upgrades) (Default value is 400)")
 				.define("Default Process Time", 400);
 		DNA_SEQUENCER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE = BUILDER.comment(
-				"The ticks amount each speed upgrades decreses the process time of the DNA Sequencer. (Default value is 10)")
+				"The ticks amount each speed upgrades decreses from the process time of the DNA Sequencer. (Default value is 10)")
 				.define("Speed Upgrade Time Decreased", 10);
 		BUILDER.pop();
-
+		
+		BUILDER.push("Carbon_Generator");
+		
+		CARBON_GENERATOR_DEFAULT_PROCESS_TIME = BUILDER.comment(
+				"The default process time for the Carbon Generator, in ticks. (with no speed upgrades) (Default value is 250)")
+				.define("Default Process Time", 250);
+		CARBON_GENERATOR_TIME_DECREASED_BY_EACH_SPEED_UPGRADE = BUILDER.comment(
+				"The ticks amount each speed upgrades decreses from the process time of the Carbon Generator. (Default value is 12)")
+				.define("Speed Upgrade Time Decreased", 12);
+		CARBON_GENERATOR_DEFAULT_ENERGY_USAGE = BUILDER.comment(
+				"The default energy usage (FE/tick) for the Carbon Generator, per tick. (with no speed upgrades) (Default value is 50)")
+				.define("Default Energy Usage", 50);
+		CARBON_GENERATOR_ENERGY_USAGE_PER_SPEED_UPGRADE = BUILDER.comment(
+				"The amount of FE/tick the Carbon Generator furthermore consumes for each speed upgrade. (Default value is 10)")
+				.define("Speed Upgrade Energy Usage", 10);
+		
+		BUILDER.pop();
+		
 		BUILDER.pop();
 
 		BUILDER.push("Conversions");

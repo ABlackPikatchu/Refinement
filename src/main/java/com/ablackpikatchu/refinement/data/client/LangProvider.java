@@ -59,6 +59,7 @@ public class LangProvider extends LanguageProvider {
 		addContainer("mold_press", "Mold Press");
 		addContainer("vaccumulator", "Vacuumulator");
 		addContainer("dna_sequencer", "DNA Sequencer");
+		addContainer("carbon_generator", "Carbon Generator");
 
 		// Category
 		addCategory("mixer_recipe", "Mixer");
