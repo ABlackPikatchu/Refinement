@@ -19,7 +19,6 @@ import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.category.IRecipeCategory;
-import mezz.jei.config.Constants;
 
 public class AnvilRecipeCategory implements IRecipeCategory<AnvilRecipe> {
 
@@ -33,7 +32,7 @@ public class AnvilRecipeCategory implements IRecipeCategory<AnvilRecipe> {
 	}
 
 	public AnvilRecipeCategory(IGuiHelper helper) {
-		back = helper.drawableBuilder(Constants.RECIPE_GUI_VANILLA, 0, 168, 125, 18).addPadding(0, 20, 0, 0)
+		back = helper.drawableBuilder(new ResourceLocation("jei", "textures/gui/gui_vanilla.png"), 0, 168, 125, 18).addPadding(0, 20, 0, 0)
 				.build();
 		icon = helper.createDrawableIngredient(new ItemStack(Blocks.ANVIL));
 	}
