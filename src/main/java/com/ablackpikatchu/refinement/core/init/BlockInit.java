@@ -1,14 +1,7 @@
 package com.ablackpikatchu.refinement.core.init;
 
 import com.ablackpikatchu.refinement.Refinement;
-import com.ablackpikatchu.refinement.common.block.BlankOreBlock;
-import com.ablackpikatchu.refinement.common.block.DNASequencerBlock;
-import com.ablackpikatchu.refinement.common.block.GrinderBlock;
-import com.ablackpikatchu.refinement.common.block.MixerBlock;
-import com.ablackpikatchu.refinement.common.block.MoldPressBlock;
-import com.ablackpikatchu.refinement.common.block.RefinedSaplingBlock;
-import com.ablackpikatchu.refinement.common.block.CarbonGeneratorBlock;
-import com.ablackpikatchu.refinement.common.block.VaccumulatorBlock;
+import com.ablackpikatchu.refinement.common.block.*;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -74,6 +67,9 @@ public class BlockInit {
 
 	public static final RegistryObject<Block> CARBON_GENERATOR_BLOCK = BLOCKS.register("carbon_generator",
 			() -> new CarbonGeneratorBlock());
+
+	public static final RegistryObject<Block> ENERGY_GENERATOR_BLOCK = BLOCKS.register("energy_generator",
+			() -> new EnergyGeneratorBlock());
 
 	// POIs
 	public static final RegistryObject<Block> MATERIALS_STATION = BLOCKS.register("materials_station",

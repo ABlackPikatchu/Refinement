@@ -1,12 +1,7 @@
 package com.ablackpikatchu.refinement.core.init;
 
 import com.ablackpikatchu.refinement.Refinement;
-import com.ablackpikatchu.refinement.common.container.DNASequencerContainer;
-import com.ablackpikatchu.refinement.common.container.GrinderContainer;
-import com.ablackpikatchu.refinement.common.container.MixerContainer;
-import com.ablackpikatchu.refinement.common.container.MoldPressContainer;
-import com.ablackpikatchu.refinement.common.container.CarbonGeneratorContainer;
-import com.ablackpikatchu.refinement.common.container.VaccumulatorContainer;
+import com.ablackpikatchu.refinement.common.container.*;
 
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
@@ -36,4 +31,8 @@ public class ContainerTypesInit {
 	
 	public static final RegistryObject<ContainerType<CarbonGeneratorContainer>> CARBON_GENERATOR_CONTAINER_TYPE = CONTAINER_TYPES
 			.register("carbon_generator", () -> IForgeContainerType.create(CarbonGeneratorContainer::new));
+
+	public static final RegistryObject<ContainerType<EnergyGeneratorContainer>> ENERGY_GENERATOR_CONTAINER_TYPE = CONTAINER_TYPES
+			.register("energy_generator", () -> IForgeContainerType.create(EnergyGeneratorContainer::new));
+
 }

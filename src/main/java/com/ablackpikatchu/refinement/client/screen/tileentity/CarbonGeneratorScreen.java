@@ -46,7 +46,7 @@ public class CarbonGeneratorScreen extends MachineContainerScreen<CarbonGenerato
 					xPos + 3, yPos + dropDownNumber + 4 + 10, 0xffffff);
 			this.font.draw(matrixStack,
 					new StringTextComponent(
-							"Max Transfer: \u00A7b" + this.menu.te.energyStorage.getMaxRecive() + "\u00A7f FE/tick"),
+							"Max Transfer: \u00A7b" + this.menu.te.energyStorage.getMaxReceive() + "\u00A7f FE/tick"),
 					xPos + 3, yPos + dropDownNumber + 4 + 20, 0xffffff);
 		}
 	}
