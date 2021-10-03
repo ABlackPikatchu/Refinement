@@ -1,11 +1,7 @@
 package com.ablackpikatchu.refinement.core.init;
 
 import com.ablackpikatchu.refinement.Refinement;
-import com.ablackpikatchu.refinement.common.te.machine.DNASequencerTileEntity;
-import com.ablackpikatchu.refinement.common.te.machine.GrinderTileEntity;
-import com.ablackpikatchu.refinement.common.te.machine.MixerTileEntity;
-import com.ablackpikatchu.refinement.common.te.machine.MoldPressTileEntity;
-import com.ablackpikatchu.refinement.common.te.machine.CarbonGeneratorTileEntity;
+import com.ablackpikatchu.refinement.common.te.machine.*;
 import com.ablackpikatchu.refinement.common.te.misc_tes.VaccumulatorTileEntity;
 
 import net.minecraft.tileentity.TileEntityType;
@@ -39,5 +35,9 @@ public class TileEntityTypesInit {
 	public static final RegistryObject<TileEntityType<CarbonGeneratorTileEntity>> CARBON_GENERATOR_TILE_ENTITY_TYPE = TILE_ENTITY_TYPE
 			.register("carbon_generator", () -> TileEntityType.Builder
 					.of(CarbonGeneratorTileEntity::new, BlockInit.CARBON_GENERATOR_BLOCK.get()).build(null));
+
+	public static final RegistryObject<TileEntityType<EnergyGeneratorTileEntity>> ENERGY_GENERATOR_TILE_ENTITY_TYPE = TILE_ENTITY_TYPE
+			.register("energy_generator", () -> TileEntityType.Builder
+					.of(EnergyGeneratorTileEntity::new, BlockInit.ENERGY_GENERATOR_BLOCK.get()).build(null));
 
 }
