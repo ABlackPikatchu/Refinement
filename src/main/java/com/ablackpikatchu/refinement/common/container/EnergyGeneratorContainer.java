@@ -1,12 +1,14 @@
 package com.ablackpikatchu.refinement.common.container;
 
-import com.ablackpikatchu.refinement.common.slot.OutputSlot;
+import java.util.Objects;
+
 import com.ablackpikatchu.refinement.common.slot.itemspecific.UpgradeSlot;
 import com.ablackpikatchu.refinement.common.te.machine.EnergyGeneratorTileEntity;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
 import com.ablackpikatchu.refinement.core.util.FunctionalIntReferenceHolder;
 import com.ablackpikatchu.refinement.core.util.enums.Upgrades;
+
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -16,10 +18,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IWorldPosCallable;
+
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.Objects;
 
 public class EnergyGeneratorContainer extends Container {
 

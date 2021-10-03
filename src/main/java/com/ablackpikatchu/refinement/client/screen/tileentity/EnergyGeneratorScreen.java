@@ -3,10 +3,10 @@ package com.ablackpikatchu.refinement.client.screen.tileentity;
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.client.screen.element.EnergyInfoTextBoxElement;
 import com.ablackpikatchu.refinement.client.screen.element.PowerIndicatorElement;
-import com.ablackpikatchu.refinement.common.container.CarbonGeneratorContainer;
 import com.ablackpikatchu.refinement.common.container.EnergyGeneratorContainer;
 import com.ablackpikatchu.refinement.core.util.text.NumberFormatting;
 import com.mojang.blaze3d.matrix.MatrixStack;
+
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
