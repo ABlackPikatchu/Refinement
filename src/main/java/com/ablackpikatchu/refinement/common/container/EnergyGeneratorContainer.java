@@ -2,10 +2,12 @@ package com.ablackpikatchu.refinement.common.container;
 
 import java.util.Objects;
 
+import com.ablackpikatchu.refinement.common.slot.ItemReservedSlot;
 import com.ablackpikatchu.refinement.common.slot.itemspecific.UpgradeSlot;
 import com.ablackpikatchu.refinement.common.te.machine.EnergyGeneratorTileEntity;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
+import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.util.FunctionalIntReferenceHolder;
 import com.ablackpikatchu.refinement.core.util.enums.Upgrades;
 
@@ -38,7 +40,7 @@ public class EnergyGeneratorContainer extends Container {
         this.canInteractWithCallable = IWorldPosCallable.create(te.getLevel(), te.getBlockPos());
 
         // Tile Entity
-        this.addSlot(new Slot((IInventory) te, 0, 26, 35));
+        this.addSlot(new ItemReservedSlot((IInventory) te, 0, 26, 35, ItemInit.REFINED_CARBON_INGOT.get()));
         this.addSlot(new UpgradeSlot(te, 1, 197, 102, Upgrades.AUTO_IMPORT)); // Auto Eject Upgrade
 
         // Main Player Inventory
