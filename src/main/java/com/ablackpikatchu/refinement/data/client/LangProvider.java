@@ -41,6 +41,7 @@ public class LangProvider extends LanguageProvider {
 		add(BlockInit.REFINED_NETHERITE_BLOCK.get(), "Refined Netherite Block");
 		add(BlockInit.VACCUMULATOR.get(), "Vacuumulator");
 		add(BlockInit.DNA_SEQUENCER.get(), "DNA Sequencer");
+		add(BlockInit.SMELTER_BLOCK.get(), "Smelter");
 		add(BlockInit.MATERIALS_STATION.get(), "Materials Station");
 		
 		add(BlockInit.REFINED_LOG.get(), "Refined Log");
@@ -61,7 +62,8 @@ public class LangProvider extends LanguageProvider {
 		addContainer("dna_sequencer", "DNA Sequencer");
 		addContainer("carbon_generator", "Carbon Generator");
 		addContainer("energy_generator", "Energy Generator");
-
+		addCategory("smelter", "Smelter");
+		
 		// Category
 		addCategory("mixer_recipe", "Mixer");
 		addCategory("mold_press_recipe", "Mold Press");
