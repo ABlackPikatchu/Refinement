@@ -1,9 +1,6 @@
-package com.ablackpikatchu.refinement.common.block;
+package com.ablackpikatchu.refinement.common.block.machine;
 
-import java.util.Random;
-
-import com.ablackpikatchu.refinement.common.te.machine.DNASequencerTileEntity;
-import com.ablackpikatchu.refinement.core.init.ParticleTypesInit;
+import com.ablackpikatchu.refinement.common.te.machine.GrinderTileEntity;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
 
 import net.minecraft.block.AbstractBlock;
@@ -32,28 +29,25 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class DNASequencerBlock extends Block {
-
+public class GrinderBlock extends Block {
+	
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 	public static final BooleanProperty LIT = BooleanProperty.create("lit");
 	
-	public DNASequencerBlock() {
-		super(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(10f).sound(SoundType.METAL)
-				.harvestLevel(4).noOcclusion());
+	public GrinderBlock() {
+		super(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(10f)
+				.sound(SoundType.METAL).harvestLevel(4));
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, false));
 	}
-
+	
 	@Override
 	protected void createBlockStateDefinition(Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
 		builder.add(FACING, LIT);
 	}
-
+	
 	@SuppressWarnings("deprecation")
 	@Override
 	public BlockState mirror(BlockState state, Mirror mirrorIn) {
@@ -64,41 +58,39 @@ public class DNASequencerBlock extends Block {
 	public BlockState rotate(BlockState state, Rotation rot) {
 		return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
 	}
-
+	
 	@Override
 	public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
-		if (state.getValue(LIT) == true)
-			return 7;
-		else
-			return 0;
+		if (state.getValue(LIT) == true) return 7;
+		else return 0;
 	}
-
+	
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
 	}
-
+	
 	@Override
 	public boolean hasAnalogOutputSignal(BlockState state) {
 		return true;
 	}
-
+	
 	@Override
 	public boolean hasTileEntity(BlockState state) {
 		return true;
 	}
-
+	
 	@Override
 	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-		return TileEntityTypesInit.DNA_SEQUENCER_TILE_ENTITY_TYPE.get().create();
+		return TileEntityTypesInit.GRINDER_TILE_ENTITY_TYPE.get().create();
 	}
-
+	
 	@Override
-	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn,
-			BlockRayTraceResult hit) {
+	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player,
+			Hand handIn, BlockRayTraceResult hit) {
 		if (!worldIn.isClientSide()) {
 			TileEntity te = worldIn.getBlockEntity(pos);
-			if (te instanceof DNASequencerTileEntity) {
-				NetworkHooks.openGui((ServerPlayerEntity) player, (DNASequencerTileEntity) te, pos);
+			if (te instanceof GrinderTileEntity) {
+				NetworkHooks.openGui((ServerPlayerEntity) player, (GrinderTileEntity) te, pos);
 			}
 		}
 		return ActionResultType.SUCCESS;
@@ -108,18 +100,18 @@ public class DNASequencerBlock extends Block {
 	public int getAnalogOutputSignal(BlockState blockState, World worldIn, BlockPos pos) {
 		return Container.getRedstoneSignalFromBlockEntity(worldIn.getBlockEntity(pos));
 	}
-
+	
 	@Override
 	public void setPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
 		super.setPlacedBy(worldIn, pos, state, placer, stack);
 		if (stack.hasCustomHoverName()) {
 			TileEntity tile = worldIn.getBlockEntity(pos);
-			if (tile instanceof DNASequencerTileEntity) {
-				((DNASequencerTileEntity) tile).setCustomName(stack.getDisplayName());
+			if (tile instanceof GrinderTileEntity) {
+				((GrinderTileEntity) tile).setCustomName(stack.getDisplayName());
 			}
 		}
 	}
-
+	
 	@Override
 	public void onRemove(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
 		if (state.hasTileEntity() && state.getBlock() != newState.getBlock()) {
@@ -127,18 +119,4 @@ public class DNASequencerBlock extends Block {
 		}
 	}
 
-	@OnlyIn(Dist.CLIENT)
-	@Override
-	public void animateTick(BlockState state, World level, BlockPos pos, Random rand) {
-		if (state.getValue(DNASequencerBlock.LIT) == true && (rand.nextInt(40) + 1) <= 20) {
-			double d0 = (double) pos.getX() + 0.5D;
-			double d1 = (double) pos.getY() + 0.7D;
-			double d2 = (double) pos.getZ() + 0.5D;
-			if (rand.nextInt(8) <= 4)
-				d2 = pos.getZ() + 0.8D;
-			if (rand.nextInt(10) <= 5)
-				d2 = pos.getZ() + 0.8D;
-			level.addParticle(ParticleTypesInit.DNA_PARTICLES.get(), d0, d1, d2, 0.0D, 0.0D, 0.0D);
-		}
-	}
 }

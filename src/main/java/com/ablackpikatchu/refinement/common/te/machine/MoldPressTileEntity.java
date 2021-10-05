@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.ablackpikatchu.refinement.Refinement;
-import com.ablackpikatchu.refinement.common.block.MoldPressBlock;
+import com.ablackpikatchu.refinement.common.block.machine.MoldPressBlock;
 import com.ablackpikatchu.refinement.common.container.MoldPressContainer;
 import com.ablackpikatchu.refinement.common.recipe.MoldPressRecipe;
 import com.ablackpikatchu.refinement.common.te.LockableSidedInventoryTileEntity;

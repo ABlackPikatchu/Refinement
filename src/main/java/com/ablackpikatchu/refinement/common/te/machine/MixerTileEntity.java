@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.ablackpikatchu.refinement.Refinement;
-import com.ablackpikatchu.refinement.common.block.MixerBlock;
+import com.ablackpikatchu.refinement.common.block.machine.MixerBlock;
 import com.ablackpikatchu.refinement.common.container.MixerContainer;
 import com.ablackpikatchu.refinement.common.recipe.MixerRecipe;
 import com.ablackpikatchu.refinement.common.te.LockableSidedInventoryTileEntity;

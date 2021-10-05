@@ -1,6 +1,6 @@
-package com.ablackpikatchu.refinement.common.block;
+package com.ablackpikatchu.refinement.common.block.machine;
 
-import com.ablackpikatchu.refinement.common.te.misc_tes.VaccumulatorTileEntity;
+import com.ablackpikatchu.refinement.common.te.machine.MoldPressTileEntity;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
 
 import net.minecraft.block.AbstractBlock;
@@ -13,27 +13,59 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.Container;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer.Builder;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class VaccumulatorBlock extends Block {
+public class MoldPressBlock extends Block {
+	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+	public static final BooleanProperty LIT = BooleanProperty.create("lit");
 	
-	public VaccumulatorBlock() {
-		super(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(6f)
-				.sound(SoundType.METAL).harvestLevel(4).noOcclusion());
+	public MoldPressBlock() {
+		super(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(10f)
+				.sound(SoundType.METAL).harvestLevel(4));
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, false));
 	}
 	
 	@Override
 	protected void createBlockStateDefinition(Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
+		builder.add(FACING, LIT);
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Override
+	public BlockState mirror(BlockState state, Mirror mirrorIn) {
+		return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
+	}
+
+	@Override
+	public BlockState rotate(BlockState state, Rotation rot) {
+		return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+	}
+	
+	@Override
+	public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
+		if (state.getValue(LIT) == true) return 7;
+		else return 0;
+	}
+	
+	public BlockState getStateForPlacement(BlockItemUseContext context) {
+		return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
 	}
 	
 	@Override
@@ -48,7 +80,7 @@ public class VaccumulatorBlock extends Block {
 	
 	@Override
 	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-		return TileEntityTypesInit.VACCUMULATOR_TILE_ENTITY_TYPE.get().create();
+		return TileEntityTypesInit.MOLD_PRESS_TILE_ENTITY_TYPE.get().create();
 	}
 	
 	@Override
@@ -56,8 +88,8 @@ public class VaccumulatorBlock extends Block {
 			Hand handIn, BlockRayTraceResult hit) {
 		if (!worldIn.isClientSide()) {
 			TileEntity te = worldIn.getBlockEntity(pos);
-			if (te instanceof VaccumulatorTileEntity) {
-				NetworkHooks.openGui((ServerPlayerEntity) player, (VaccumulatorTileEntity) te, pos);
+			if (te instanceof MoldPressTileEntity) {
+				NetworkHooks.openGui((ServerPlayerEntity) player, (MoldPressTileEntity) te, pos);
 			}
 		}
 		return ActionResultType.SUCCESS;
@@ -73,8 +105,8 @@ public class VaccumulatorBlock extends Block {
 		super.setPlacedBy(worldIn, pos, state, placer, stack);
 		if (stack.hasCustomHoverName()) {
 			TileEntity tile = worldIn.getBlockEntity(pos);
-			if (tile instanceof VaccumulatorTileEntity) {
-				((VaccumulatorTileEntity) tile).setCustomName(stack.getDisplayName());
+			if (tile instanceof MoldPressTileEntity) {
+				((MoldPressTileEntity) tile).setCustomName(stack.getDisplayName());
 			}
 		}
 	}

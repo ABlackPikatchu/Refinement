@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.ablackpikatchu.refinement.Refinement;
-import com.ablackpikatchu.refinement.common.block.GrinderBlock;
+import com.ablackpikatchu.refinement.common.block.machine.GrinderBlock;
 import com.ablackpikatchu.refinement.common.container.GrinderContainer;
 import com.ablackpikatchu.refinement.common.recipe.GrinderRecipe;
 import com.ablackpikatchu.refinement.common.te.LockableSidedInventoryTileEntity;

@@ -2,7 +2,7 @@ package com.ablackpikatchu.refinement.core.util;
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.client.screen.tileentity.*;
-import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
+import static com.ablackpikatchu.refinement.core.init.ContainerTypesInit.*;
 import com.ablackpikatchu.refinement.core.init.KeybindsInit;
 
 import net.minecraft.client.gui.ScreenManager;
@@ -21,15 +21,17 @@ public class ClientEventBusSubscriber {
 
 		KeybindsInit.register(event);
 
-		ScreenManager.register(ContainerTypesInit.GRINDER_CONTAINER_TYPE.get(), GrinderScreen::new);
-		ScreenManager.register(ContainerTypesInit.MIXER_CONTAINER_TYPE.get(), MixerScreen::new);
-		ScreenManager.register(ContainerTypesInit.MOLD_PRESS_CONTAINER_TYPE.get(), MoldPressScreen::new);
-		ScreenManager.register(ContainerTypesInit.DNA_SEQUENCER_CONTAINER_TYPE.get(), DNASequencerScreen::new);
+		ScreenManager.register(GRINDER_CONTAINER_TYPE.get(), GrinderScreen::new);
+		ScreenManager.register(MIXER_CONTAINER_TYPE.get(), MixerScreen::new);
+		ScreenManager.register(MOLD_PRESS_CONTAINER_TYPE.get(), MoldPressScreen::new);
+		ScreenManager.register(DNA_SEQUENCER_CONTAINER_TYPE.get(), DNASequencerScreen::new);
 
-		ScreenManager.register(ContainerTypesInit.VACCUMULATOR_CONTAINER_TYPE.get(), VaccumulatorScreen::new);
-		
-		ScreenManager.register(ContainerTypesInit.CARBON_GENERATOR_CONTAINER_TYPE.get(), CarbonGeneratorScreen::new);
-		ScreenManager.register(ContainerTypesInit.ENERGY_GENERATOR_CONTAINER_TYPE.get(), EnergyGeneratorScreen::new);
+		ScreenManager.register(VACCUMULATOR_CONTAINER_TYPE.get(), VaccumulatorScreen::new);
+
+		ScreenManager.register(CARBON_GENERATOR_CONTAINER_TYPE.get(), CarbonGeneratorScreen::new);
+		ScreenManager.register(ENERGY_GENERATOR_CONTAINER_TYPE.get(), EnergyGeneratorScreen::new);
+
+		ScreenManager.register(SMELTER_CONTAINER_TYPE.get(), SmelterScreen::new);
 	}
 
 }

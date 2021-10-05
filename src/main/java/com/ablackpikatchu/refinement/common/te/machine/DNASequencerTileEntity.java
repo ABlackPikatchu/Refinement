@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.ablackpikatchu.refinement.Refinement;
-import com.ablackpikatchu.refinement.common.block.DNASequencerBlock;
+import com.ablackpikatchu.refinement.common.block.machine.DNASequencerBlock;
 import com.ablackpikatchu.refinement.common.container.DNASequencerContainer;
 import com.ablackpikatchu.refinement.common.recipe.DNASequencerRecipe;
 import com.ablackpikatchu.refinement.common.te.LockableSidedInventoryTileEntity;
