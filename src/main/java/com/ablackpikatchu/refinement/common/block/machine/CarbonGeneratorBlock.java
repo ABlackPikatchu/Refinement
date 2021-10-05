@@ -1,4 +1,4 @@
-package com.ablackpikatchu.refinement.common.block;
+package com.ablackpikatchu.refinement.common.block.machine;
 
 import com.ablackpikatchu.refinement.common.te.machine.CarbonGeneratorTileEntity;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;

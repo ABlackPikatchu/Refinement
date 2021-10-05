@@ -4,6 +4,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.common.block.machine.CarbonGeneratorBlock;
+import com.ablackpikatchu.refinement.common.block.machine.SmelterBlock;
 import com.ablackpikatchu.refinement.common.container.CarbonGeneratorContainer;
 import com.ablackpikatchu.refinement.common.te.LockableSidedInventoryTileEntity;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
@@ -70,6 +72,7 @@ public class CarbonGeneratorTileEntity extends LockableSidedInventoryTileEntity 
     @Override
     public void tick() {
         if (!this.level.isClientSide()) {
+        	TileEntityHelper.setStateProperty(this, SmelterBlock.LIT, false);
             handleAutoEject(2, 0);
             handleEnergySpeedUpgrades(1, CommonConfig.CARBON_GENERATOR_DEFAULT_PROCESS_TIME.get(),
                     CommonConfig.CARBON_GENERATOR_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get(), energyStorage,
@@ -89,6 +92,7 @@ public class CarbonGeneratorTileEntity extends LockableSidedInventoryTileEntity 
                 } else {
                     currentWaitTime++;
                     this.energyStorage.useEnergy();
+                    TileEntityHelper.setStateProperty(this, CarbonGeneratorBlock.LIT, true);
                 }
             } else regressProgress();
         }

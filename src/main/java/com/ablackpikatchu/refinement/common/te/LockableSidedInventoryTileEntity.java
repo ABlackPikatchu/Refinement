@@ -45,6 +45,7 @@ public abstract class LockableSidedInventoryTileEntity extends LockableTileEntit
     public int currentWaitTime;
     public int maxWaitTime;
     public int usedCarbon;
+    public IInventory iInventory = (IInventory) this;
     private final LazyOptional<IItemHandlerModifiable> inventory = LazyOptional.of(this::createInventory);
     protected NonNullList<ItemStack> items;
     private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.UP,
@@ -478,5 +479,9 @@ public abstract class LockableSidedInventoryTileEntity extends LockableTileEntit
         this.currentWaitTime--;
         if (this.currentWaitTime < 0)
             currentWaitTime = 0;
+    }
+    
+    public boolean progressComplete() {
+    	return this.currentWaitTime >= this.maxWaitTime;
     }
 }

@@ -1,12 +1,15 @@
 package com.ablackpikatchu.refinement.common.te.machine;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.common.block.machine.EnergyGeneratorBlock;
 import com.ablackpikatchu.refinement.common.container.EnergyGeneratorContainer;
 import com.ablackpikatchu.refinement.common.te.LockableSidedInventoryTileEntity;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
 import com.ablackpikatchu.refinement.core.util.energy.ModEnergyStorage;
+import com.ablackpikatchu.refinement.core.util.helper.TileEntityHelper;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -65,6 +68,7 @@ public class EnergyGeneratorTileEntity extends LockableSidedInventoryTileEntity 
 
     @Override
     public void serverTick() {
+    	TileEntityHelper.setStateProperty(this, EnergyGeneratorBlock.LIT, false);
         handleAutoImport(null, 1, 0);
         energyStorage.energyMade = CommonConfig.ENERGY_GENERATOR_ENERGY_MADE.get();
         this.maxWaitTime = CommonConfig.ENERGY_GENERATOR_FUEL_LASTING.get();
@@ -73,6 +77,7 @@ public class EnergyGeneratorTileEntity extends LockableSidedInventoryTileEntity 
                 this.getItem(0).shrink(1);
                 this.currentWaitTime = 0;
             } else {
+            	TileEntityHelper.setStateProperty(this, EnergyGeneratorBlock.LIT, true);
                 advanceProgress();
                 energyStorage.makeEnergy();
             }
