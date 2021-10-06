@@ -153,6 +153,10 @@ public class MathUtils {
 				max = i;
 		return max;
 	}
+	
+	public static int getRandomNumber(int min, int max) {
+	    return (int) ((Math.random() * (max - min)) + min);
+	}
 
 	public static double nextGaussian(double mean, double deviation) {
 		return deviation * RANDOM.nextGaussian() + mean;

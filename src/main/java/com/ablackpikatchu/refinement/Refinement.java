@@ -8,8 +8,10 @@ import com.ablackpikatchu.refinement.common.recipe.conditions.CropsEnabledCondit
 import com.ablackpikatchu.refinement.common.recipe.conditions.EnableableCondition;
 import com.ablackpikatchu.refinement.core.config.ClientConfig;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
+import com.ablackpikatchu.refinement.core.config.ModJsonConfigs;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.BlockItemInit;
+import com.ablackpikatchu.refinement.core.init.CommandInit;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
 import com.ablackpikatchu.refinement.core.init.CropInit;
 import com.ablackpikatchu.refinement.core.init.FeatureInit;
@@ -32,8 +34,10 @@ import net.minecraft.item.crafting.IRecipeSerializer;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -66,8 +70,8 @@ public class Refinement {
 		// mod bus events
 		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-		ModLoadingContext.get().registerConfig(Type.COMMON, CommonConfig.SPEC, "refinement-common.toml");
-		ModLoadingContext.get().registerConfig(Type.CLIENT, ClientConfig.SPEC, "refinement-client.toml");
+		ModLoadingContext.get().registerConfig(Type.COMMON, CommonConfig.SPEC, MOD_ID + "/common.toml");
+		ModLoadingContext.get().registerConfig(Type.CLIENT, ClientConfig.SPEC, MOD_ID + "/client.toml");
 
 		modBus.addGenericListener(IRecipeSerializer.class, RecipeInit::registerRecipes);
 
@@ -91,7 +95,13 @@ public class Refinement {
 
 		// forge bus events
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
+		
 		forgeBus.addListener(this::oreConversion);
+		forgeBus.addListener(EventPriority.NORMAL, this::onRegisterCommands);
+	}
+	
+	public void onRegisterCommands(final RegisterCommandsEvent event) {
+		CommandInit.registerCommands(event);
 	}
 
 	public void oreConversion(TickEvent.ServerTickEvent event) {
@@ -126,6 +136,7 @@ public class Refinement {
 			VillagerInit.registerPOIS();
 			TradeLists.fillTradeData();
 		});
+		ModJsonConfigs.register();
 
 	}
 

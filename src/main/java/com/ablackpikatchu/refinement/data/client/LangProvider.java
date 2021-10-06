@@ -43,6 +43,7 @@ public class LangProvider extends LanguageProvider {
 		add(BlockInit.DNA_SEQUENCER.get(), "DNA Sequencer");
 		add(BlockInit.SMELTER_BLOCK.get(), "Smelter");
 		add(BlockInit.MATERIALS_STATION.get(), "Materials Station");
+		add(BlockInit.RESOURCE_STATUE_BLOCK.get(), "Resource Statue");
 		
 		add(BlockInit.REFINED_LOG.get(), "Refined Log");
 		add(BlockInit.REFINED_STRIPPED_LOG.get(), "Refined Stripped Log");

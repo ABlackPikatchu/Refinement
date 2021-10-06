@@ -81,6 +81,8 @@ public class BlockInit {
 	
 	public static final RegistryObject<Block> SMELTER_BLOCK = BLOCKS.register("smelter",
 			() -> new SmelterBlock());
+	
+	public static final RegistryObject<Block> RESOURCE_STATUE_BLOCK = BLOCKS.register("resource_statue", () -> new ResourceStatueBlock());
 
 	// POIs
 	public static final RegistryObject<Block> MATERIALS_STATION = BLOCKS.register("materials_station",
