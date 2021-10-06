@@ -22,6 +22,7 @@ import com.ablackpikatchu.refinement.common.item.ModUpgradableArmor;
 import com.ablackpikatchu.refinement.common.item.Mold;
 import com.ablackpikatchu.refinement.common.item.RefinedCoal;
 import com.ablackpikatchu.refinement.common.item.RefinedCoalBlockItem;
+import com.ablackpikatchu.refinement.common.item.ResourceStatueItem;
 import com.ablackpikatchu.refinement.common.item.blockitem.DNASequencerBlockItem;
 import com.ablackpikatchu.refinement.common.item.box.ModLootBox;
 import com.ablackpikatchu.refinement.common.item.food.CuringApple;
@@ -342,6 +343,7 @@ public class ItemInit {
 	public static final RegistryObject<BlockItem> MATERIALS_STATION_ITEM = ITEMS.register("materials_station",
 			() -> new BlockItem(BlockInit.MATERIALS_STATION.get(),
 					new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
+	public static final RegistryObject<ResourceStatueItem> RESOURCE_STATUE_ITEM = ITEMS.register("resource_statue", ResourceStatueItem::new);
 
 	// Misc Items
 	public static final RegistryObject<Item> REFINED_BONEMEAL = ITEMS.register("refined_bonemeal",

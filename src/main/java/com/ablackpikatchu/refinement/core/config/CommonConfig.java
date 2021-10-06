@@ -59,6 +59,9 @@ public class CommonConfig {
 
 	// Armour Upgrading
 	public static final ForgeConfigSpec.ConfigValue<List<String>> ARMOUR_UPGRADING_EFFECTS;
+	
+	// Resource Statues
+	public static final ForgeConfigSpec.ConfigValue<Integer> RESOURCE_STATUES_PRODUCE_TIME;
 
 	static {
 
@@ -112,6 +115,12 @@ public class CommonConfig {
 				.define("Upgrading Effects", Lists.newArrayList("minecraft:night_vision", "minecraft:haste",
 						"minecraft:water_breathing", "refinement:negate_fall"));
 
+		BUILDER.pop();
+		
+		BUILDER.push("Resource_Statues");
+		
+		RESOURCE_STATUES_PRODUCE_TIME = BUILDER.comment("The time a Resource Statue needs in order to produce one item, in tick. (Default value is 350)").define("Producing Time", 350);
+		
 		BUILDER.pop();
 
 		SPEC = BUILDER.build();
