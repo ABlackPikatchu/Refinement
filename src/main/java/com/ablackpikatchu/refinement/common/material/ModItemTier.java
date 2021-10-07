@@ -8,19 +8,32 @@ import net.minecraft.item.IItemTier;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyValue;
 
+import static com.ablackpikatchu.refinement.core.config.ModJsonConfigs.TOOLS;
+
 public enum ModItemTier implements IItemTier {
 
-	REFINEDIRON(2, 250, 6.0F, 2.0F, 14, () -> {
-		return Ingredient.of(ItemInit.REFINED_IRON_INGOT.get());
-	}),
+	REFINEDIRON(TOOLS.getRefinedIronValues().level, TOOLS.getRefinedIronValues().durability,
+			TOOLS.getRefinedIronValues().speed, TOOLS.getRefinedIronValues().damage,
+			TOOLS.getRefinedIronValues().enchantmentValue, () -> {
+				return Ingredient.of(ItemInit.REFINED_IRON_INGOT.get());
+			}),
 
-	REFINEDGOLD(0, 48, 12.0F, 0.0F, 22, () -> {
-		return Ingredient.of(ItemInit.REFINED_GOLD_INGOT.get());
-	}), REFINEDDIAMOND(3, 1832, 8.0F, 3.0F, 10, () -> {
-		return Ingredient.of(ItemInit.REFINED_DIAMOND.get());
-	}), REFINEDNETHERITE(4, 2532, 9.0F, 4.0F, 15, () -> {
-		return Ingredient.of(ItemInit.REFINED_NETHERITE_INGOT.get());
-	});
+	REFINEDGOLD(TOOLS.getRefinedGoldValues().level, TOOLS.getRefinedGoldValues().durability,
+			TOOLS.getRefinedGoldValues().speed, TOOLS.getRefinedGoldValues().damage,
+			TOOLS.getRefinedGoldValues().enchantmentValue, () -> {
+				return Ingredient.of(ItemInit.REFINED_GOLD_INGOT.get());
+			}),
+	REFINEDDIAMOND(TOOLS.getRefinedDiamondValues().level, TOOLS.getRefinedDiamondValues().durability,
+			TOOLS.getRefinedDiamondValues().speed, TOOLS.getRefinedDiamondValues().damage,
+			TOOLS.getRefinedDiamondValues().enchantmentValue, () -> {
+				return Ingredient.of(ItemInit.REFINED_DIAMOND.get());
+			}),
+
+	REFINEDNETHERITE(TOOLS.getRefinedNetheriteValues().level, TOOLS.getRefinedNetheriteValues().durability,
+			TOOLS.getRefinedNetheriteValues().speed, TOOLS.getRefinedNetheriteValues().damage,
+			TOOLS.getRefinedNetheriteValues().enchantmentValue, () -> {
+				return Ingredient.of(ItemInit.REFINED_NETHERITE_INGOT.get());
+			});
 	;
 
 	private final int level;
@@ -30,10 +43,10 @@ public enum ModItemTier implements IItemTier {
 	private final int enchantmentValue;
 	private final LazyValue<Ingredient> repairIngredient;
 
-	private ModItemTier(int level, int uses, float speed, float damage, int enchantmentValue,
+	private ModItemTier(int level, int durability, float speed, float damage, int enchantmentValue,
 			Supplier<Ingredient> repairIngredient) {
 		this.level = level;
-		this.uses = uses;
+		this.uses = durability;
 		this.speed = speed;
 		this.damage = damage;
 		this.enchantmentValue = enchantmentValue;

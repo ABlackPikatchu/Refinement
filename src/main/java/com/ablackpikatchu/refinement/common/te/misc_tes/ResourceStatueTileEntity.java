@@ -70,7 +70,7 @@ public class ResourceStatueTileEntity extends LockableSidedInventoryTileEntity {
 		handleAutoEject();
 		if (this.producedItem == Items.AIR)
 			return;
-		if (this.producedNumber > this.maxProduce)
+		if (this.producedNumber >= this.maxProduce)
 			return;
 		if (progressComplete()) {
 			this.storeResultItem(new ItemStack(this.producedItem));

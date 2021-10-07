@@ -1,5 +1,7 @@
 package com.ablackpikatchu.refinement.common.material;
 
+import static com.ablackpikatchu.refinement.core.config.ModJsonConfigs.ARMOUR;
+
 import java.util.function.Supplier;
 
 import com.ablackpikatchu.refinement.core.init.ItemInit;
@@ -11,16 +13,30 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 
 public enum ModArmorMaterial implements IArmorMaterial {
-	REFINEDIRONARMOR("refined_iron_armor", 16, new int[] { 3, 6, 7, 3 }, 9, SoundEvents.ARMOR_EQUIP_IRON, 1.0F, 0.1f,
-			() -> Ingredient.of(ItemInit.REFINED_IRON_INGOT.get())),
-	REFINEDGOLDARMOR("refined_gold_armor", 8, new int[] { 1, 3, 5, 2 }, 26, SoundEvents.ARMOR_EQUIP_GOLD, 1.0F, 0.1f,
-			() -> Ingredient.of(ItemInit.REFINED_GOLD_INGOT.get())),
-	REFINEDDIAMONDARMOR("refined_diamond_armor", 34, new int[] { 4, 7, 9, 4 }, 11, SoundEvents.ARMOR_EQUIP_DIAMOND, 3.0F,
-			0.1F, () -> Ingredient.of(ItemInit.REFINED_DIAMOND.get())),
-	REFINEDNETHERITEARMOR("refined_netherite_armor", 38, new int[] { 4, 7, 9, 4 }, 16, SoundEvents.ARMOR_EQUIP_NETHERITE,
-			4.0f, 0.2f, () -> Ingredient.of(ItemInit.REFINED_NETHERITE_INGOT.get()));
 
-	public static final int[] baseDurability = new int[] { 128, 144, 160, 112 };
+	REFINEDIRONARMOR("refined_iron_armor", ARMOUR.getRefinedIronValues().durabilityMultiplier,
+			ARMOUR.getRefinedIronValues().armourValues, ARMOUR.getRefinedIronValues().enchantability,
+			SoundEvents.ARMOR_EQUIP_IRON, ARMOUR.getRefinedIronValues().toughness,
+			ARMOUR.getRefinedIronValues().knockbackResistance, () -> Ingredient.of(ItemInit.REFINED_IRON_INGOT.get())),
+
+	REFINEDGOLDARMOR("refined_gold_armor", ARMOUR.getRefinedGoldValues().durabilityMultiplier,
+			ARMOUR.getRefinedGoldValues().armourValues, ARMOUR.getRefinedGoldValues().enchantability,
+			SoundEvents.ARMOR_EQUIP_GOLD, ARMOUR.getRefinedGoldValues().toughness,
+			ARMOUR.getRefinedGoldValues().knockbackResistance, () -> Ingredient.of(ItemInit.REFINED_GOLD_INGOT.get())),
+
+	REFINEDDIAMONDARMOR("refined_diamond_armor", ARMOUR.getRefinedDiamondValues().durabilityMultiplier,
+			ARMOUR.getRefinedDiamondValues().armourValues, ARMOUR.getRefinedDiamondValues().enchantability,
+			SoundEvents.ARMOR_EQUIP_DIAMOND, ARMOUR.getRefinedDiamondValues().toughness,
+			ARMOUR.getRefinedDiamondValues().knockbackResistance, () -> Ingredient.of(ItemInit.REFINED_DIAMOND.get())),
+
+	REFINEDNETHERITEARMOR("refined_netherite_armor", ARMOUR.getRefinedNetheriteValues().durabilityMultiplier,
+			ARMOUR.getRefinedNetheriteValues().armourValues, ARMOUR.getRefinedNetheriteValues().enchantability,
+			SoundEvents.ARMOR_EQUIP_NETHERITE, ARMOUR.getRefinedNetheriteValues().toughness,
+			ARMOUR.getRefinedNetheriteValues().knockbackResistance,
+			() -> Ingredient.of(ItemInit.REFINED_NETHERITE_INGOT.get()));
+
+	public static final int[] baseDurability = ARMOUR.getBaseDurability();
+	
 	private final String name;
 	private final int durabilityMultiplier;
 	private int[] armorVal;
@@ -81,7 +97,7 @@ public enum ModArmorMaterial implements IArmorMaterial {
 	public float getKnockbackResistance() {
 		return this.knockbackResistance;
 	}
-	
+
 	public void setDefenseForSlot(EquipmentSlotType slot, int defense) {
 		this.armorVal[slot.getIndex()] = defense;
 	}

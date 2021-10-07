@@ -53,6 +53,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.config.ModConfig.Type;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
@@ -83,7 +84,7 @@ public class Refinement {
 			CONFIF_DIR.mkdirs();
 			LOGGER.info("Created Refinement Config folder!");
 		}
-
+		
 		ModLoadingContext.get().registerConfig(Type.COMMON, CommonConfig.SPEC, MOD_ID + "/common.toml");
 		ModLoadingContext.get().registerConfig(Type.CLIENT, ClientConfig.SPEC, MOD_ID + "/client.toml");
 
@@ -104,6 +105,7 @@ public class Refinement {
 
 		MinecraftForge.EVENT_BUS.register(this);
 
+		modBus.addListener(this::constructMod);
 		modBus.addListener(this::commonSetup);
 		modBus.addListener(this::onLoadComplete);
 
@@ -162,6 +164,10 @@ public class Refinement {
 			TradeLists.fillTradeData();
 		});
 		ModJsonConfigs.register();
+	}
+	
+	public void constructMod(FMLConstructModEvent event) {
+		ModJsonConfigs.registerBeforeRegistries();
 	}
 
 	public void onLoadComplete(final FMLLoadCompleteEvent event) {

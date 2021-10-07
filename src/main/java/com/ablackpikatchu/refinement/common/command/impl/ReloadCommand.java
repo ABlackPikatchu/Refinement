@@ -27,6 +27,7 @@ public class ReloadCommand extends BaseCommand {
 
 	private int reloadConfigs(CommandContext<CommandSource> context) {
 		try {
+			ModJsonConfigs.registerBeforeRegistries();
 			ModJsonConfigs.register();
 			context.getSource().sendSuccess(new StringTextComponent("Reloaded Refinement Configs"), true);
 		} catch (Exception e) {

@@ -1,9 +1,0 @@
-{
-    "type": "refinement:ore_unify",
-    "input": {
-        "item": "minecraft:nether_gold_ore"
-    },
-    "output": {
-        "item": "minecraft:gold_ore"
-    }
-}
