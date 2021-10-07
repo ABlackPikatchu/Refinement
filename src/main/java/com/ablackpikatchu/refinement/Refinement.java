@@ -69,6 +69,7 @@ public class Refinement {
 
 	public static final Logger LOGGER = LogManager.getLogger();
 	public static final String MOD_ID = "refinement";
+	
 	public static final String CONFIG_DIR_PATH = "config/" + MOD_ID + "/";
 	public static final File CONFIF_DIR = new File(CONFIG_DIR_PATH);
 
@@ -78,8 +79,10 @@ public class Refinement {
 		// mod bus events
 		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-		if (!CONFIF_DIR.exists())
+		if (!CONFIF_DIR.exists()) {
 			CONFIF_DIR.mkdirs();
+			LOGGER.info("Created Refinement Config folder!");
+		}
 
 		ModLoadingContext.get().registerConfig(Type.COMMON, CommonConfig.SPEC, MOD_ID + "/common.toml");
 		ModLoadingContext.get().registerConfig(Type.CLIENT, ClientConfig.SPEC, MOD_ID + "/client.toml");
@@ -96,6 +99,8 @@ public class Refinement {
 		VillagerInit.VillagerProfessions.VILLAGER_PROFESSIONS.register(modBus);
 		VillagerInit.PointOfInterests.POINT_OF_INTEREST_TYPES.register(modBus);
 		FeatureInit.FEATURES.register(modBus);
+		
+		LOGGER.info("Registry Entries Registered!");
 
 		MinecraftForge.EVENT_BUS.register(this);
 
