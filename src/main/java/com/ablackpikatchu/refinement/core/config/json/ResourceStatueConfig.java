@@ -26,7 +26,7 @@ public class ResourceStatueConfig extends JsonConfig {
 	}
 
 	@Override
-	protected void reset() {
+	public void reset() {
 		this.POOLS = new LinkedList<>();
 		
 		this.POOLS.add(new ResourceStatueEntry("minecraft:iron_ingot", 5, 120, 180));
