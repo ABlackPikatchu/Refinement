@@ -148,13 +148,6 @@ public class ItemTagsProvider extends net.minecraft.data.ItemTagsProvider {
     	tag(TagInit.Items.NETHERITE_STORAGE).add(ItemInit.REFINED_NETHERITE_BLOCK.get());
     	tag(TagInit.Items.STORAGE_BLOCKS).add(ItemInit.REFINED_CARBON_BLOCK.get());
     	tag(TagInit.Items.CARBON_STORAGE).add(ItemInit.REFINED_CARBON_BLOCK.get());
-		
-		//Boxes
-    	tag(TagInit.Items.FOOD_BOX).add(ItemInit.MINERS_APPLE.get());
-    	tag(TagInit.Items.FOOD_BOX).add(ItemInit.MINERS_BREAD.get());
-    	tag(TagInit.Items.FOOD_BOX).add(ItemInit.MINERS_CARROT.get());
-    	tag(TagInit.Items.FOOD_BOX).add(ItemInit.MINERS_JERKY.get());
-    	tag(TagInit.Items.FOOD_BOX).add(ItemInit.MINERS_STEW.get());
     	
     	//MC Dyes
     	for (Item dye : ItemLists.DYES) {

@@ -1,5 +1,7 @@
 package com.ablackpikatchu.refinement;
 
+import java.io.File;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -49,7 +51,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
-import software.bernie.geckolib3.GeckoLib;
 
 /**
  * The Refinement mod
@@ -63,13 +64,18 @@ public class Refinement {
 
 	public static final Logger LOGGER = LogManager.getLogger();
 	public static final String MOD_ID = "refinement";
+	public static final String CONFIG_DIR_PATH = "config/" + MOD_ID + "/";
+	public static final File CONFIF_DIR = new File(CONFIG_DIR_PATH);
 
 	public Refinement() {
-		GeckoLib.initialize();
+		// GeckoLib.initialize();
 
 		// mod bus events
 		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+		if (!CONFIF_DIR.exists())
+			CONFIF_DIR.mkdirs();
+		
 		ModLoadingContext.get().registerConfig(Type.COMMON, CommonConfig.SPEC, MOD_ID + "/common.toml");
 		ModLoadingContext.get().registerConfig(Type.CLIENT, ClientConfig.SPEC, MOD_ID + "/client.toml");
 
@@ -95,11 +101,11 @@ public class Refinement {
 
 		// forge bus events
 		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
-		
+
 		forgeBus.addListener(this::oreConversion);
 		forgeBus.addListener(EventPriority.NORMAL, this::onRegisterCommands);
 	}
-	
+
 	public void onRegisterCommands(final RegisterCommandsEvent event) {
 		CommandInit.registerCommands(event);
 	}
@@ -137,7 +143,6 @@ public class Refinement {
 			TradeLists.fillTradeData();
 		});
 		ModJsonConfigs.register();
-
 	}
 
 	public void onLoadComplete(final FMLLoadCompleteEvent event) {

@@ -13,7 +13,7 @@ public class ClientConfig {
 		
 		BUILDER.push("GUI_Config");
 		
-		SUSSY_GUI = BUILDER.comment("If true, the Refinement GUIs will become sussy!").define("Sussy GUIs", false);
+		SUSSY_GUI = BUILDER.comment("If true, the Refinement GUIs will become sussy!").define("sussyGUIs", false);
 		
 		BUILDER.pop();
 		SPEC = BUILDER.build();

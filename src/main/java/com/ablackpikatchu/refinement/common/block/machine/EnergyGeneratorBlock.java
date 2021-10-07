@@ -62,7 +62,8 @@ public class EnergyGeneratorBlock extends Block {
         else
             return 0;
     }
-
+    
+    @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
