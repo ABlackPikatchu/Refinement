@@ -10,6 +10,7 @@ import com.google.gson.annotations.Expose;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.util.ResourceLocation;
@@ -31,6 +32,25 @@ public class LootBoxConfig extends JsonConfig {
 		this.FOOD_POOLS = new LinkedList<>();
 
 		this.FOOD_POOLS.add(new WeightBasedItemEntry(ItemInit.MINERS_APPLE.get(), 2, 4, 6));
+		FOOD_POOLS.add(new WeightBasedItemEntry(Items.GOLDEN_CARROT, 2, 16, 32));
+		
+		FOOD_POOLS.add(new WeightBasedItemEntry(Items.CARROT, 4, 20, 45));
+		FOOD_POOLS.add(new WeightBasedItemEntry(Items.APPLE, 4, 20, 45));
+		FOOD_POOLS.add(new WeightBasedItemEntry(Items.COOKIE, 4, 20, 45));
+		FOOD_POOLS.add(new WeightBasedItemEntry(Items.BREAD, 4, 20, 45));
+		FOOD_POOLS.add(new WeightBasedItemEntry(Items.POTATO, 4, 20, 45));
+		FOOD_POOLS.add(new WeightBasedItemEntry(Items.SWEET_BERRIES, 4, 20, 45));
+		
+		FOOD_POOLS.add(new WeightBasedItemEntry(Items.MELON_SLICE, 3, 20, 45));
+		FOOD_POOLS.add(new WeightBasedItemEntry(Items.PUMPKIN_PIE, 3, 20, 45));
+		
+		FOOD_POOLS.add(new WeightBasedItemEntry(Items.COOKED_BEEF, 3, 18, 40));
+		FOOD_POOLS.add(new WeightBasedItemEntry(Items.COOKED_CHICKEN, 3, 18, 40));
+		FOOD_POOLS.add(new WeightBasedItemEntry(Items.COOKED_COD, 3, 18, 40));
+		FOOD_POOLS.add(new WeightBasedItemEntry(Items.COOKED_MUTTON, 3, 18, 40));
+		FOOD_POOLS.add(new WeightBasedItemEntry(Items.COOKED_PORKCHOP, 3, 18, 40));
+		FOOD_POOLS.add(new WeightBasedItemEntry(Items.COOKED_RABBIT, 3, 18, 40));
+		FOOD_POOLS.add(new WeightBasedItemEntry(Items.COOKED_SALMON, 3, 18, 40));
 	}
 
 	public ItemStack getRandomLoot(List<WeightBasedItemEntry> loottable) {

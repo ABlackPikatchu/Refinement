@@ -18,24 +18,27 @@ public class ResourceStatueEntry {
 	public int minAmount;
 	@Expose
 	public int maxAmount;
-	
 
-	public ResourceStatueEntry(@Nonnull String item, @Nonnull int weight,
-			@Nonnull int minAmount, @Nonnull int maxAmount) {
+	public ResourceStatueEntry(@Nonnull String item, @Nonnull int weight, @Nonnull int minAmount,
+			@Nonnull int maxAmount) {
 		this.item = item;
 		this.nbt = null;
 		this.weight = weight;
 		this.minAmount = minAmount;
 		this.maxAmount = maxAmount;
+		if (this.maxAmount < this.minAmount)
+			this.maxAmount = this.minAmount;
 	}
-	
-	public ResourceStatueEntry(@Nonnull Item item, @Nonnull int weight,
-			@Nonnull int minAmount, @Nonnull int maxAmount) {
+
+	public ResourceStatueEntry(@Nonnull Item item, @Nonnull int weight, @Nonnull int minAmount,
+			@Nonnull int maxAmount) {
 		this.item = item.getRegistryName().toString();
 		this.nbt = null;
 		this.weight = weight;
 		this.minAmount = minAmount;
 		this.maxAmount = maxAmount;
+		if (this.maxAmount < this.minAmount)
+			this.maxAmount = this.minAmount;
 	}
 
 }
