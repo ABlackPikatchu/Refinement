@@ -158,12 +158,12 @@ public class Refinement {
 	}
 
 	public void commonSetup(final FMLCommonSetupEvent event) {
+		ModJsonConfigs.register();
 		RefinementNetwork.init();
 		event.enqueueWork(() -> {
 			VillagerInit.registerPOIS();
 			TradeLists.fillTradeData();
 		});
-		ModJsonConfigs.register();
 	}
 	
 	public void constructMod(FMLConstructModEvent event) {
