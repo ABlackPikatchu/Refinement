@@ -8,19 +8,51 @@ import com.ablackpikatchu.refinement.core.util.helper.TileEntityHelper;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.state.DirectionProperty;
+import net.minecraft.state.StateContainer.Builder;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
 public class ResourceStatueBlock extends Block {
+	
+	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
 	public ResourceStatueBlock() {
-		super(AbstractBlock.Properties.copy(Blocks.IRON_DOOR));
+		super(AbstractBlock.Properties.of(Material.HEAVY_METAL).noOcclusion().noCollission().strength(4.0f));
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+	}
+	
+	@Override
+	protected void createBlockStateDefinition(Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder);
+		builder.add(FACING);
+	}
+	
+	@Override
+	public BlockState getStateForPlacement(BlockItemUseContext context) {
+		return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public BlockState mirror(BlockState state, Mirror mirrorIn) {
+		return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
+	}
+
+	@Override
+	public BlockState rotate(BlockState state, Rotation rot) {
+		return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
 	}
 
 	@Override
@@ -39,20 +71,21 @@ public class ResourceStatueBlock extends Block {
 		if (tile instanceof ResourceStatueTileEntity) {
 			ResourceStatueTileEntity statue = (ResourceStatueTileEntity) tile;
 			ItemStack stack = new ItemStack(getBlock());
-			
+
 			ResourceStatueItem.setResourceProduced(stack, statue.producedItem.getRegistryName().toString());
 			ResourceStatueItem.setMaxProduce(stack, statue.maxProduce);
 			ResourceStatueItem.setProduced(stack, statue.producedNumber);
-			
-			ItemEntity itemEntity = new ItemEntity(worldIn, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, stack);
-            itemEntity.setDefaultPickUpDelay();
-            worldIn.addFreshEntity(itemEntity);
+
+			ItemEntity itemEntity = new ItemEntity(worldIn, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+					stack);
+			itemEntity.setDefaultPickUpDelay();
+			worldIn.addFreshEntity(itemEntity);
 		}
 		if (state.hasTileEntity() && state.getBlock() != newState.getBlock()) {
 			worldIn.removeBlockEntity(pos);
 		}
 	}
-	
+
 	@Override
 	public void setPlacedBy(World pLevel, BlockPos pPos, BlockState pState, LivingEntity pPlacer, ItemStack pStack) {
 		super.setPlacedBy(pLevel, pPos, pState, pPlacer, pStack);

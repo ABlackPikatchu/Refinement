@@ -2,13 +2,17 @@ package com.ablackpikatchu.refinement.core.util;
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.client.screen.tileentity.*;
+import com.ablackpikatchu.refinement.client.ter.ResourceStatueTER;
+
 import static com.ablackpikatchu.refinement.core.init.ContainerTypesInit.*;
 import com.ablackpikatchu.refinement.core.init.KeybindsInit;
+import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
 
 import net.minecraft.client.gui.ScreenManager;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -32,6 +36,8 @@ public class ClientEventBusSubscriber {
 		ScreenManager.register(ENERGY_GENERATOR_CONTAINER_TYPE.get(), EnergyGeneratorScreen::new);
 
 		ScreenManager.register(SMELTER_CONTAINER_TYPE.get(), SmelterScreen::new);
+		
+		ClientRegistry.bindTileEntityRenderer(TileEntityTypesInit.RESOURCE_STATUE_TILE_ENTITY_TYPE.get(), ResourceStatueTER::new);
 	}
 
 }

@@ -73,7 +73,7 @@ public class ResourceStatueTileEntity extends LockableSidedInventoryTileEntity {
 		if (this.producedNumber > this.maxProduce)
 			return;
 		if (progressComplete()) {
-			this.setItem(0, new ItemStack(producedItem));
+			this.storeResultItem(new ItemStack(this.producedItem));
 			this.producedNumber++;
 			this.currentWaitTime = 0;
 		} else

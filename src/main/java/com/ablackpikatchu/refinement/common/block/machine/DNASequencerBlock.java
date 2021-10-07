@@ -73,6 +73,7 @@ public class DNASequencerBlock extends Block {
 			return 0;
 	}
 
+	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
 	}

@@ -33,6 +33,7 @@ import com.ablackpikatchu.refinement.common.item.food.MinersJerky;
 import com.ablackpikatchu.refinement.common.item.food.ModEffectFood;
 import com.ablackpikatchu.refinement.common.material.ModArmorMaterial;
 import com.ablackpikatchu.refinement.common.material.ModItemTier;
+import com.ablackpikatchu.refinement.core.config.json.LootBoxConfig.BoxType;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementArmorGroup;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementFoodGroup;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup;
@@ -335,7 +336,7 @@ public class ItemInit {
 	public static final RegistryObject<Item> FOOD_BOX = ITEMS.register("food_box",
 			() -> new ModLootBox(
 					new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).tab(RefinementItemGroup.REFINEMENT),
-					new ResourceLocation(Refinement.MOD_ID, "boxes/food")));
+					BoxType.FOOD));
 
 	// Misc Item Blocks
 	public static final RegistryObject<BlockItem> BLANK_ORE_ITEM = ITEMS.register("blank_ore",
@@ -343,7 +344,8 @@ public class ItemInit {
 	public static final RegistryObject<BlockItem> MATERIALS_STATION_ITEM = ITEMS.register("materials_station",
 			() -> new BlockItem(BlockInit.MATERIALS_STATION.get(),
 					new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
-	public static final RegistryObject<ResourceStatueItem> RESOURCE_STATUE_ITEM = ITEMS.register("resource_statue", ResourceStatueItem::new);
+	public static final RegistryObject<ResourceStatueItem> RESOURCE_STATUE_ITEM = ITEMS.register("resource_statue",
+			ResourceStatueItem::new);
 
 	// Misc Items
 	public static final RegistryObject<Item> REFINED_BONEMEAL = ITEMS.register("refined_bonemeal",
