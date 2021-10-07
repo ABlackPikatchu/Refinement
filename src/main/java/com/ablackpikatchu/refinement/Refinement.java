@@ -33,9 +33,14 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.loot.ItemLootEntry;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.RandomValueRange;
+import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.TickEvent;
@@ -75,7 +80,7 @@ public class Refinement {
 
 		if (!CONFIF_DIR.exists())
 			CONFIF_DIR.mkdirs();
-		
+
 		ModLoadingContext.get().registerConfig(Type.COMMON, CommonConfig.SPEC, MOD_ID + "/common.toml");
 		ModLoadingContext.get().registerConfig(Type.CLIENT, ClientConfig.SPEC, MOD_ID + "/client.toml");
 
@@ -104,6 +109,15 @@ public class Refinement {
 
 		forgeBus.addListener(this::oreConversion);
 		forgeBus.addListener(EventPriority.NORMAL, this::onRegisterCommands);
+	}
+
+	@SubscribeEvent(priority = EventPriority.HIGH)
+	public void onRegisterLootTables(LootTableLoadEvent event) {
+		if (event.getName().equals(new ResourceLocation("minecraft:chests/end_city_treasure"))) {
+			event.getTable().addPool(LootPool.lootPool().setRolls(RandomValueRange.between(0, 1))
+					.add(ItemLootEntry.lootTableItem(ItemInit.RESOURCE_STATUE_ITEM.get())).build());
+			LOGGER.info("Changed Minecraft loot tables!");
+		}
 	}
 
 	public void onRegisterCommands(final RegisterCommandsEvent event) {
