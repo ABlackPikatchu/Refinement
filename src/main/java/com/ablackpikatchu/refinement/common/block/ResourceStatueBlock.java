@@ -21,15 +21,19 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
 public class ResourceStatueBlock extends Block {
 	
+	
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+	protected static final VoxelShape LOWER_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 32.0D, 16.0D);
 
 	public ResourceStatueBlock() {
-		super(AbstractBlock.Properties.of(Material.HEAVY_METAL).noOcclusion().noCollission().strength(4.0f));
+		super(AbstractBlock.Properties.of(Material.HEAVY_METAL).noOcclusion().strength(4.0f));
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}
 	
@@ -42,6 +46,38 @@ public class ResourceStatueBlock extends Block {
 	@Override
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+	}
+	
+	@Override
+	public VoxelShape getShape(BlockState pState, IBlockReader pLevel, BlockPos pPos, ISelectionContext pContext) {
+		return LOWER_SHAPE;
+	}
+	
+	@Override
+	public VoxelShape getCollisionShape(BlockState pState, IBlockReader pLevel, BlockPos pPos,
+			ISelectionContext pContext) {
+		return LOWER_SHAPE;
+	}
+	
+	@Override
+	public VoxelShape getOcclusionShape(BlockState pState, IBlockReader pLevel, BlockPos pPos) {
+		return LOWER_SHAPE;
+	}
+	
+	@Override
+	public VoxelShape getBlockSupportShape(BlockState pState, IBlockReader pReader, BlockPos pPos) {
+		return LOWER_SHAPE;
+	}
+	
+	@Override
+	public VoxelShape getInteractionShape(BlockState pState, IBlockReader pLevel, BlockPos pPos) {
+		return LOWER_SHAPE;
+	}
+	
+	@Override
+	public VoxelShape getVisualShape(BlockState pState, IBlockReader pReader, BlockPos pPos,
+			ISelectionContext pContext) {
+		return LOWER_SHAPE;
 	}
 
 	@SuppressWarnings("deprecation")
@@ -85,7 +121,7 @@ public class ResourceStatueBlock extends Block {
 			worldIn.removeBlockEntity(pos);
 		}
 	}
-
+	
 	@Override
 	public void setPlacedBy(World pLevel, BlockPos pPos, BlockState pState, LivingEntity pPlacer, ItemStack pStack) {
 		super.setPlacedBy(pLevel, pPos, pState, pPlacer, pStack);

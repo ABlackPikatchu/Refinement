@@ -40,13 +40,16 @@ public class ResourceStatueTER extends TileEntityRenderer<ResourceStatueTileEnti
 			int lightLevel = getLightLevel(statue.getLevel(), statue.getBlockPos());
 
 			renderItem(statue.producedItem.getDefaultInstance(), new double[] {
-					0.5d, 0.3d, 0.5d
+					0.5d, 1.3d, 0.5d
 			}, Vector3f.YP.rotationDegrees(180f - player.yRot), pMatrixStack, pBuffer, pPartialTicks, pCombinedOverlay,
 					lightLevel, 0.8f);
-			
-			ITextComponent label = new TranslationTextComponent(statue.producedItem.getDefaultInstance().getDescriptionId());
 
-			renderLabel(pMatrixStack, pBuffer, lightLevel, new double[] { .5d, 0.5d, .5d }, label, 0xffffff);
+			ITextComponent label = new TranslationTextComponent(
+					statue.producedItem.getDefaultInstance().getDescriptionId());
+
+			renderLabel(pMatrixStack, pBuffer, lightLevel, new double[] {
+					.5d, 1.5d, .5d
+			}, label, 0xffffff);
 		}
 	}
 
@@ -62,7 +65,7 @@ public class ResourceStatueTER extends TileEntityRenderer<ResourceStatueTileEnti
 				lightLevel, combinedOverlay, model);
 		matrixStack.popPose();
 	}
-	
+
 	private void renderLabel(MatrixStack stack, IRenderTypeBuffer buffer, int lightLevel, double[] corner,
 			ITextComponent text, int color) {
 
