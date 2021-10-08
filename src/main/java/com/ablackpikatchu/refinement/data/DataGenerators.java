@@ -8,8 +8,10 @@ import com.ablackpikatchu.refinement.data.common.BlockTagsProvider;
 import com.ablackpikatchu.refinement.data.common.ItemTagsProvider;
 import com.ablackpikatchu.refinement.data.common.loot.LootTableProvider;
 import com.ablackpikatchu.refinement.data.common.recipes.RecipeProvider;
+import com.ablackpikatchu.refinement.data.patchouli.PatchouliProvider;
 
 import net.minecraft.data.DataGenerator;
+
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -31,7 +33,9 @@ public class DataGenerators {
 		BlockTagsProvider blockTags = new BlockTagsProvider(gen, existingFileHelper);
 		gen.addProvider(blockTags);
 		gen.addProvider(new ItemTagsProvider(gen, blockTags, existingFileHelper));
-
+		
+		gen.addProvider(new PatchouliProvider(gen));
+		
 		gen.addProvider(new LootTableProvider(gen));
 		gen.addProvider(new RecipeProvider(gen, existingFileHelper));
 	}

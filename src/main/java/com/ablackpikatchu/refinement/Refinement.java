@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.ablackpikatchu.refinement.client.render.RenderLayers;
+import com.ablackpikatchu.refinement.common.capability.playerpower.CapabilityPlayerPower;
 import com.ablackpikatchu.refinement.common.recipe.conditions.CropsEnabledCondition;
 import com.ablackpikatchu.refinement.common.recipe.conditions.EnableableCondition;
 import com.ablackpikatchu.refinement.core.config.ClientConfig;
@@ -87,7 +88,7 @@ public class Refinement {
 		
 		ModLoadingContext.get().registerConfig(Type.COMMON, CommonConfig.SPEC, MOD_ID + "/common.toml");
 		ModLoadingContext.get().registerConfig(Type.CLIENT, ClientConfig.SPEC, MOD_ID + "/client.toml");
-
+		
 		modBus.addGenericListener(IRecipeSerializer.class, RecipeInit::registerRecipes);
 
 		ParticleTypesInit.PARTICLE_TYPES.register(modBus);
@@ -159,6 +160,7 @@ public class Refinement {
 
 	public void commonSetup(final FMLCommonSetupEvent event) {
 		ModJsonConfigs.register();
+		CapabilityPlayerPower.register();
 		RefinementNetwork.init();
 		event.enqueueWork(() -> {
 			VillagerInit.registerPOIS();

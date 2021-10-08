@@ -1,5 +1,12 @@
 package com.ablackpikatchu.refinement.common.te;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import com.ablackpikatchu.refinement.common.item.AutoEjectUpgrade;
 import com.ablackpikatchu.refinement.common.item.AutoImportUpgrade;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
@@ -8,6 +15,7 @@ import com.ablackpikatchu.refinement.core.util.energy.ModEnergyStorage;
 import com.ablackpikatchu.refinement.core.util.helper.InventoryHelper;
 import com.ablackpikatchu.refinement.core.util.helper.NBTHelper;
 import com.ablackpikatchu.refinement.core.util.helper.TileEntityHelper;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,10 +29,15 @@ import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.*;
+import net.minecraft.tileentity.HopperTileEntity;
+import net.minecraft.tileentity.ITickableTileEntity;
+import net.minecraft.tileentity.LockableTileEntity;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -33,12 +46,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class LockableSidedInventoryTileEntity extends LockableTileEntity implements ISidedInventory, ITickableTileEntity {
 
@@ -148,22 +155,24 @@ public abstract class LockableSidedInventoryTileEntity extends LockableTileEntit
         tags.putInt("CurrentWaitTime", this.currentWaitTime);
         return tags;
     }
-
-    public NonNullList<ItemStack> getAllItems() {
-        return this.items;
+    
+    public void loadItems() {
+    	NonNullList<ItemStack> newItems = NonNullList.create();
+        for (int i = 0; i <= getContainerSize() - 1; ++i) {
+            newItems.add(i, getItem(i));
+        }
+        this.items = newItems;
     }
-
-    @Override
-    public SUpdateTileEntityPacket getUpdatePacket() {
-        CompoundNBT tags = getUpdateTag();
-        ItemStackHelper.saveAllItems(tags, items);
-        return new SUpdateTileEntityPacket(worldPosition, 1, tags);
-    }
-
+    
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket packet) {
         super.onDataPacket(net, packet);
+        loadItems();
         ItemStackHelper.loadAllItems(packet.getTag(), items);
+    }
+
+    public NonNullList<ItemStack> getAllItems() {
+        return this.items;
     }
 
     @Nullable
