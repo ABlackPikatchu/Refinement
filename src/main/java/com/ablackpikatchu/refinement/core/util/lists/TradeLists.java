@@ -23,20 +23,35 @@ public class TradeLists {
 
 	public static void fillTradeData() {
 		VillagerTrades.ITrade[] materialistTradesArray = new ITrade[] {};
-		
+
 		ArrayList<VillagerTrades.ITrade> materialistLevel1 = new ArrayList<>();
-		
+		ArrayList<VillagerTrades.ITrade> materialistLevel2 = new ArrayList<>();
+		ArrayList<VillagerTrades.ITrade> materialistLevel3 = new ArrayList<>();
+		ArrayList<VillagerTrades.ITrade> materialistLevel4 = new ArrayList<>();
+		ArrayList<VillagerTrades.ITrade> materialistLevel5 = new ArrayList<>();
+
 		ModJsonConfigs.MATERIALIST_TRADES.getLevel1().forEach(trade -> {
 			materialistLevel1.add(trade.createTrade());
 		});
-		
-		VillagerTrades.ITrade[] materialsLevel2 = new VillagerTrades.ITrade[] {};
-		VillagerTrades.ITrade[] materialsLevel3 = new VillagerTrades.ITrade[] {};
-		VillagerTrades.ITrade[] materialsLevel4 = new VillagerTrades.ITrade[] {};
-		VillagerTrades.ITrade[] materialsLevel5 = new VillagerTrades.ITrade[] {};
+		ModJsonConfigs.MATERIALIST_TRADES.getLevel2().forEach(trade -> {
+			materialistLevel2.add(trade.createTrade());
+		});
+		ModJsonConfigs.MATERIALIST_TRADES.getLevel3().forEach(trade -> {
+			materialistLevel3.add(trade.createTrade());
+		});
+		ModJsonConfigs.MATERIALIST_TRADES.getLevel4().forEach(trade -> {
+			materialistLevel4.add(trade.createTrade());
+		});
+		ModJsonConfigs.MATERIALIST_TRADES.getLevel5().forEach(trade -> {
+			materialistLevel5.add(trade.createTrade());
+		});
 
-		VillagerTrades.TRADES.put(VillagerProfessions.MATERIALS_VILLAGER.get(), toIntMap(ImmutableMap.of(1,
-				materialistLevel1.toArray(materialistTradesArray), 2, materialsLevel2, 3, materialsLevel3, 4, materialsLevel4, 5, materialsLevel5)));
+		VillagerTrades.TRADES.put(VillagerProfessions.MATERIALS_VILLAGER.get(),
+				toIntMap(ImmutableMap.of(1, materialistLevel1.toArray(materialistTradesArray), 2,
+						materialistLevel2.toArray(materialistTradesArray), 3,
+						materialistLevel3.toArray(materialistTradesArray), 4,
+						materialistLevel4.toArray(materialistTradesArray), 5,
+						materialistLevel5.toArray(materialistTradesArray))));
 	}
 
 	private static Int2ObjectMap<VillagerTrades.ITrade[]> toIntMap(
@@ -67,43 +82,47 @@ public class TradeLists {
 		}
 
 	}
-	
+
 	public static class ItemsToEmeralds implements VillagerTrades.ITrade {
-	      private final ItemStack itemStack;
-	      private final int emeraldCost;
-	      private final int numberOfItems;
-	      private final int maxUses;
-	      private final int villagerXp;
-	      private final float priceMultiplier;
+		private final ItemStack itemStack;
+		private final int emeraldCost;
+		private final int numberOfItems;
+		private final int maxUses;
+		private final int villagerXp;
+		private final float priceMultiplier;
 
-	      public ItemsToEmeralds(Block pBlock, int pEmeraldCost, int pNumberOfItems, int pMaxUses, int pVillagerXp) {
-	         this(new ItemStack(pBlock), pEmeraldCost, pNumberOfItems, pMaxUses, pVillagerXp);
-	      }
+		public ItemsToEmeralds(Block pBlock, int pEmeraldCost, int pNumberOfItems, int pMaxUses, int pVillagerXp) {
+			this(new ItemStack(pBlock), pEmeraldCost, pNumberOfItems, pMaxUses, pVillagerXp);
+		}
 
-	      public ItemsToEmeralds(Item pItem, int pEmeraldCost, int pNumberOfItems, int pVillagerXp) {
-	         this(new ItemStack(pItem), pEmeraldCost, pNumberOfItems, 12, pVillagerXp);
-	      }
+		public ItemsToEmeralds(Item pItem, int pEmeraldCost, int pNumberOfItems, int pVillagerXp) {
+			this(new ItemStack(pItem), pEmeraldCost, pNumberOfItems, 12, pVillagerXp);
+		}
 
-	      public ItemsToEmeralds(Item pItem, int pEmeraldCost, int pNumberOfItems, int pMaxUses, int pVillagerXp) {
-	         this(new ItemStack(pItem), pEmeraldCost, pNumberOfItems, pMaxUses, pVillagerXp);
-	      }
+		public ItemsToEmeralds(Item pItem, int pEmeraldCost, int pNumberOfItems, int pMaxUses, int pVillagerXp) {
+			this(new ItemStack(pItem), pEmeraldCost, pNumberOfItems, pMaxUses, pVillagerXp);
+		}
 
-	      public ItemsToEmeralds(ItemStack pItemStack, int pEmeraldCost, int pNumberOfItems, int pMaxUses, int pVillagerXp) {
-	         this(pItemStack, pEmeraldCost, pNumberOfItems, pMaxUses, pVillagerXp, 0.05F);
-	      }
+		public ItemsToEmeralds(ItemStack pItemStack, int pEmeraldCost, int pNumberOfItems, int pMaxUses,
+				int pVillagerXp) {
+			this(pItemStack, pEmeraldCost, pNumberOfItems, pMaxUses, pVillagerXp, 0.05F);
+		}
 
-	      public ItemsToEmeralds(ItemStack pItemStack, int pEmeralCost, int pNumberOfItems, int pMaxUses, int pVillagerXp, float pPriceMultiplier) {
-	         this.itemStack = pItemStack;
-	         this.emeraldCost = pEmeralCost;
-	         this.numberOfItems = pNumberOfItems;
-	         this.maxUses = pMaxUses;
-	         this.villagerXp = pVillagerXp;
-	         this.priceMultiplier = pPriceMultiplier;
-	      }
+		public ItemsToEmeralds(ItemStack pItemStack, int pEmeralCost, int pNumberOfItems, int pMaxUses, int pVillagerXp,
+				float pPriceMultiplier) {
+			this.itemStack = pItemStack;
+			this.emeraldCost = pEmeralCost;
+			this.numberOfItems = pNumberOfItems;
+			this.maxUses = pMaxUses;
+			this.villagerXp = pVillagerXp;
+			this.priceMultiplier = pPriceMultiplier;
+		}
 
-	      public MerchantOffer getOffer(Entity pTrader, Random pRand) {
-	         return new MerchantOffer(new ItemStack(this.itemStack.getItem(), this.numberOfItems), new ItemStack(Items.EMERALD, this.emeraldCost), this.maxUses, this.villagerXp, this.priceMultiplier);
-	      }
-	   }
+		public MerchantOffer getOffer(Entity pTrader, Random pRand) {
+			return new MerchantOffer(new ItemStack(this.itemStack.getItem(), this.numberOfItems),
+					new ItemStack(Items.EMERALD, this.emeraldCost), this.maxUses, this.villagerXp,
+					this.priceMultiplier);
+		}
+	}
 
 }
