@@ -30,7 +30,7 @@ public class ResourceStatueBlock extends Block {
 	
 	
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-	protected static final VoxelShape LOWER_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 32.0D, 16.0D);
+	protected static final VoxelShape LOWER_SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 24.0D, 16.0D);
 
 	public ResourceStatueBlock() {
 		super(AbstractBlock.Properties.of(Material.HEAVY_METAL).noOcclusion().strength(4.0f));

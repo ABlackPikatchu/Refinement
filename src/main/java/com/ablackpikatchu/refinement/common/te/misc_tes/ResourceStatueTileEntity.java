@@ -19,6 +19,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.HopperTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
@@ -79,7 +81,26 @@ public class ResourceStatueTileEntity extends LockableSidedInventoryTileEntity {
 		} else
 			advanceProgress();
 	}
-
+	
+	@Override
+	public CompoundNBT getUpdateTag() {
+		CompoundNBT nbt = super.getUpdateTag();
+		nbt.putString("producedItem", this.producedItem.getRegistryName().toString());
+		return nbt;
+	}
+	
+	@Override
+	public void handleUpdateTag(BlockState state, CompoundNBT tag) {
+		load(state, tag);
+	}
+	
+	@Override
+	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket packet) {
+		super.onDataPacket(net, packet);
+		CompoundNBT tag = packet.getTag();
+		handleUpdateTag(getBlockState(), tag);
+	}
+	
 	@Override
 	public int getContainerSize() {
 		return slots;

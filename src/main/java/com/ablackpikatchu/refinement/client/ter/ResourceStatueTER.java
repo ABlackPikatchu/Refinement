@@ -35,21 +35,24 @@ public class ResourceStatueTER extends TileEntityRenderer<ResourceStatueTileEnti
 	public void render(ResourceStatueTileEntity statue, float pPartialTicks, MatrixStack pMatrixStack,
 			IRenderTypeBuffer pBuffer, int pCombinedLight, int pCombinedOverlay) {
 		if (statue.producedItem != Items.AIR) {
+			try {
+				ClientPlayerEntity player = mc.player;
+				int lightLevel = getLightLevel(statue.getLevel(), statue.getBlockPos());
 
-			ClientPlayerEntity player = mc.player;
-			int lightLevel = getLightLevel(statue.getLevel(), statue.getBlockPos());
+				renderItem(statue.producedItem.getDefaultInstance(), new double[] {
+						0.5d, 1.3d, 0.5d
+				}, Vector3f.YP.rotationDegrees(180f - player.yRot), pMatrixStack, pBuffer, pPartialTicks,
+						pCombinedOverlay, lightLevel, 0.8f);
 
-			renderItem(statue.producedItem.getDefaultInstance(), new double[] {
-					0.5d, 1.3d, 0.5d
-			}, Vector3f.YP.rotationDegrees(180f - player.yRot), pMatrixStack, pBuffer, pPartialTicks, pCombinedOverlay,
-					lightLevel, 0.8f);
+				ITextComponent label = new TranslationTextComponent(
+						statue.producedItem.getDefaultInstance().getDescriptionId());
 
-			ITextComponent label = new TranslationTextComponent(
-					statue.producedItem.getDefaultInstance().getDescriptionId());
+				renderLabel(pMatrixStack, pBuffer, lightLevel, new double[] {
+						.5d, 1.5d, .5d
+				}, label, 0xffffff);
+			} catch (NullPointerException e) {
 
-			renderLabel(pMatrixStack, pBuffer, lightLevel, new double[] {
-					.5d, 1.5d, .5d
-			}, label, 0xffffff);
+			}
 		}
 	}
 
