@@ -2,6 +2,7 @@ package com.ablackpikatchu.refinement.client.screen.tileentity;
 
 import java.util.Random;
 
+import com.ablackpikatchu.refinement.client.screen.element.PowerIndicatorElement;
 import com.ablackpikatchu.refinement.client.screen.element.SussyElement;
 import com.ablackpikatchu.refinement.core.config.ClientConfig;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -24,6 +25,8 @@ public class MachineContainerScreen<T extends Container> extends ContainerScreen
 	private int sus3 = random.nextInt(8);
 	private int sus4 = random.nextInt(8);
 	protected SussyElement sussyElement = new SussyElement();
+	
+	protected PowerIndicatorElement powerIndicatorElement = new PowerIndicatorElement();
 
 	public MachineContainerScreen(T screenContainer, PlayerInventory inv, ITextComponent titleIn,
 			ResourceLocation guiTexture) {

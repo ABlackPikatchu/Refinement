@@ -120,7 +120,7 @@ public class SmelterContainer extends Container {
 	@OnlyIn(Dist.CLIENT)
 	public int getProgressionScaled() {
 		return this.currentWaitTime.get() != 0 && this.maxWaitTime.get() != 0
-				? this.currentWaitTime.get() * 77 / this.maxWaitTime.get()
+				? this.currentWaitTime.get() * 72 / this.maxWaitTime.get()
 				: 0;
 	}
 

@@ -93,11 +93,11 @@ public class SmelterTileEntity extends LockableSidedInventoryTileEntity {
 							TileEntityHelper.updateTE(this);
 						}
 					} else {
-						advanceProgress();
+						this.currentWaitTime++;
 						energyStorage.useEnergy();
 						TileEntityHelper.setStateProperty(this, SmelterBlock.LIT, true);
 					}
-				} else regressProgress();
+				}
 			} else
 				regressProgress();
 		});

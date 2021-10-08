@@ -63,7 +63,7 @@ public class LangProvider extends LanguageProvider {
 		addContainer("dna_sequencer", "DNA Sequencer");
 		addContainer("carbon_generator", "Carbon Generator");
 		addContainer("energy_generator", "Energy Generator");
-		addCategory("smelter", "Smelter");
+		addContainer("smelter", "Smelter");
 		
 		// Category
 		addCategory("mixer_recipe", "Mixer");

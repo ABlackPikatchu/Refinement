@@ -2,7 +2,6 @@ package com.ablackpikatchu.refinement.client.screen.tileentity;
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.client.screen.element.EnergyInfoTextBoxElement;
-import com.ablackpikatchu.refinement.client.screen.element.PowerIndicatorElement;
 import com.ablackpikatchu.refinement.common.container.SmelterContainer;
 import com.ablackpikatchu.refinement.core.util.text.NumberFormatting;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -56,7 +55,6 @@ public class SmelterScreen extends MachineContainerScreen<SmelterContainer> {
         super.renderBg(matrixStack, partialTicks, mouseX, mouseY);
         renderSussyGui(matrixStack, partialTicks, this.topPos + 84);
 
-        PowerIndicatorElement powerIndicatorElement = new PowerIndicatorElement();
         powerIndicatorElement.render(matrixStack, this.leftPos + 176, this.topPos + 0, partialTicks);
 
         this.minecraft.textureManager.bind(SMELTER_GUI);
@@ -67,7 +65,7 @@ public class SmelterScreen extends MachineContainerScreen<SmelterContainer> {
                 this.blit(matrixStack, this.leftPos + 161, this.topPos + 4 + 76 - i, 249, 0 + 76 - i, 7, 1);
             }
         }
-        this.blit(matrixStack, this.leftPos + 45, this.topPos + 32, 2, 231, this.menu.getProgressionScaled(), 22);
+        this.blit(matrixStack, this.leftPos + 48, this.topPos + 29, 3, 216, this.menu.getProgressionScaled(), 31);
 
     }
 
