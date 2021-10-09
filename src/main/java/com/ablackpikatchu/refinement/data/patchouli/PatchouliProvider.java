@@ -34,9 +34,22 @@ public class PatchouliProvider extends PatchouliGenProvider {
 	@PatchouliCategoryGen
 	public static PatchouliCategory MACHINES_CATEGORY = new PatchouliCategory("Machines", "machines",
 			"Information about the Refinement machines!", ItemInit.MACHINE_FRAME.get());
+	
+	@PatchouliCategoryGen
+	public static PatchouliCategory MATERIALS_CATEGORY = new PatchouliCategory("Material's Index", "materials",
+			"Here is a list of the different materials added into the game from refinement", Items.CRAFTING_TABLE);
+	
+	@PatchouliCategoryGen
+	public static PatchouliCategory GENERAL_INFO_CATEGORY = new PatchouliCategory("General Info", "general_info",
+			"Some general info about the mod. Learn about the Dev team with a link to their discord and information for modpack creators.", Items.BOOK);
 
 	@PatchouliCategoryGen
-	public static PatchouliCategory UPGRADES = new PatchouliCategory("Upgrades", "upgrades",
+	public static PatchouliCategory ARMOUR_CATEGORY = new PatchouliCategory("Armour Info", "armour",
+			"Some info about the Refinement armour as is not your usual armour. Some of it can be upgraded!",
+			ItemInit.REFINED_NETHERITE_CHESTPLATE.get());
+
+	@PatchouliCategoryGen
+	public static PatchouliCategory UPGRADES_CATEGORY = new PatchouliCategory("Upgrades", "upgrades",
 			"Some info about the Refinement machine upgrades!", null)
 					.setIcon(new StringItemStack(new ItemStack(ItemInit.SPEED_UPGRADE.get(), 8)));
 
