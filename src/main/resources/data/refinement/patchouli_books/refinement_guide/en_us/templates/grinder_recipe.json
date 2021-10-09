@@ -1,0 +1,39 @@
+{
+    "processor": "com.ablackpikatchu.refinement.common.patchouli.GrinderRecipeProcessor",
+	"components": [
+		{
+			"type": "item", "item": "#item1", "x": 4, "y": 25, "framed": true
+		},
+		{
+			"type": "item", "item": "#item3", "x": 90, "y": 25, "framed": true
+		},
+		{
+			"type": "text", "text": "", "x": 4, "y": 15
+		},
+		{
+			"type": "image",
+			"image": "refinement:textures/gui/patchouli/elements.png",
+			"x": 30,
+			"y": 23,
+			"u": 12,
+			"v": 2,
+			"width": 53,
+			"height": 22
+		},
+		{
+			"type": "text",
+			"text": "#text",
+			"y": 50,
+			"x": 0
+		},
+		{
+			"type": "header",
+			"text": "#header",
+			"x": 58
+		},
+		{
+			"type": "separator",
+			"y": 12
+		}
+	]
+}

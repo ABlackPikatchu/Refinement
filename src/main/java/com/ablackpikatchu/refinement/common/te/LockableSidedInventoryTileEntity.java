@@ -1,8 +1,11 @@
 package com.ablackpikatchu.refinement.common.te;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -37,6 +40,7 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
@@ -302,6 +306,11 @@ public abstract class LockableSidedInventoryTileEntity extends LockableTileEntit
             recipes = this.level.getRecipeManager().getAllRecipesFor((IRecipeType<R>) recipeType);
         return recipes;
     }
+    
+    public static Set<IRecipe<?>> findRecipesByType(IRecipeType<?> typeIn, World world) {
+		return world != null ? world.getRecipeManager().getRecipes().stream()
+				.filter(recipe -> recipe.getType() == typeIn).collect(Collectors.toSet()) : Collections.emptySet();
+	}
 
     public IItemHandlerModifiable getInventory() {
         return inventory.orElseThrow(() -> new IllegalStateException("Inventory not initialized correctly"));

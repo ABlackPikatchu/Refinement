@@ -1,7 +1,8 @@
 package com.ablackpikatchu.refinement.data.patchouli.builder.type;
 
-import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
+import com.ablackpikatchu.refinement.data.patchouli.builder.vars.StringItemStack;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
@@ -16,8 +17,10 @@ public class PatchouliCategory {
 	public IItemProvider icon;
 	
 	public ResourceLocation textureIcon;
+	
+	public StringItemStack itemstackIcon;
 
-	public PatchouliCategory(String name, String fileName, String description, @Nonnull IItemProvider icon) {
+	public PatchouliCategory(String name, String fileName, String description, @Nullable IItemProvider icon) {
 		this.name = name;
 		this.fileName = fileName;
 		this.description = description;
@@ -27,6 +30,14 @@ public class PatchouliCategory {
 	public PatchouliCategory setIcon(ResourceLocation textureIcon) {
 		this.icon = null;
 		this.textureIcon = textureIcon;
+		this.itemstackIcon = null;
+		return this;
+	}
+	
+	public PatchouliCategory setIcon(StringItemStack itemstackIcon) {
+		this.icon = null;
+		this.textureIcon = null;
+		this.itemstackIcon = itemstackIcon;
 		return this;
 	}
 
@@ -41,6 +52,9 @@ public class PatchouliCategory {
 		
 		if (this.textureIcon != null)
 			object.addProperty("icon", this.textureIcon.toString());
+		
+		if (this.itemstackIcon != null)
+			object.addProperty("icon", this.itemstackIcon.toString());
 
 		return object;
 	}

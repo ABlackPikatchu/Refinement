@@ -3,7 +3,6 @@ package com.ablackpikatchu.refinement.data.maps;
 import java.util.HashMap;
 
 import com.ablackpikatchu.refinement.core.init.BlockInit;
-import com.ablackpikatchu.refinement.core.init.CropInit;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.TagInit;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.IngredientInput;
@@ -12,6 +11,7 @@ import com.ablackpikatchu.refinement.datafixers.util.recipe.TagInput;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.dna_sequencer.DNASequencerInput;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.mixer.MixerInput;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.mold_press.MoldPressInput;
+import com.ablackpikatchu.refinement.resourcecrops.core.CropInit;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;

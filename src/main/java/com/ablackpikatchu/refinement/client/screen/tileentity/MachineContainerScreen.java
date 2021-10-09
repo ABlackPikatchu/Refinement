@@ -46,6 +46,7 @@ public class MachineContainerScreen<T extends Container> extends ContainerScreen
 		this.renderTooltip(matrixStack, mouseX, mouseY);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void renderBg(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
 		RenderSystem.color4f(1f, 1f, 1f, 1f);

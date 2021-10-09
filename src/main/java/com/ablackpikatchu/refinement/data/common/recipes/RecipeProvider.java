@@ -6,6 +6,10 @@ import java.util.function.Consumer;
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.TagInit;
+import com.ablackpikatchu.refinement.data.common.recipes.builder.DNASequencerRecipeBuilder;
+import com.ablackpikatchu.refinement.data.common.recipes.builder.GrinderRecipeBuilder;
+import com.ablackpikatchu.refinement.data.common.recipes.builder.MixerRecipeBuilder;
+import com.ablackpikatchu.refinement.data.common.recipes.builder.MoldPressRecipeBuilder;
 import com.ablackpikatchu.refinement.data.maps.RecipeMaps;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.IngredientInput;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.Output;
@@ -210,6 +214,8 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 					+ "_from_" + recipe.getIngredient().getItems()[0].getItem().getRegistryName().getPath()));
 			recipe.getRecipe().save(consumer, name);
 		});
+		
+		ShapedNoMirrorRecipes.addRecipes(consumer);
 
 	}
 

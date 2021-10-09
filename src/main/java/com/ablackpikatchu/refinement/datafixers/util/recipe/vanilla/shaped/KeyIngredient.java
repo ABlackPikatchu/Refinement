@@ -1,5 +1,7 @@
 package com.ablackpikatchu.refinement.datafixers.util.recipe.vanilla.shaped;
 
+import com.ablackpikatchu.refinement.data.common.recipes.builder.ShapedNoMirrorRecipeBuilder;
+
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.Ingredient;
@@ -78,6 +80,14 @@ public class KeyIngredient {
 	 * @param recipe the recipe to insert the ingredient in
 	 */
 	public void getShapedRecipe(ShapedRecipeBuilder recipe) {
+		recipe.define(this.key, this.ingredient);
+	}
+	
+	/**
+	 * Inserts the ingredient in a {@link ShapedNoMirrorRecipeBuilder}
+	 * @param recipe the recipe to insert the ingredient in
+	 */
+	public void getShapedNoMirrorRecipe(ShapedNoMirrorRecipeBuilder recipe) {
 		recipe.define(this.key, this.ingredient);
 	}
 

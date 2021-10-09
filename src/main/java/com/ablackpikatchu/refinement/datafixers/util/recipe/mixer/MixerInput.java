@@ -1,6 +1,6 @@
 package com.ablackpikatchu.refinement.datafixers.util.recipe.mixer;
 
-import com.ablackpikatchu.refinement.data.common.recipes.MixerRecipeBuilder;
+import com.ablackpikatchu.refinement.data.common.recipes.builder.MixerRecipeBuilder;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.IngredientInput;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.TagInput;
 

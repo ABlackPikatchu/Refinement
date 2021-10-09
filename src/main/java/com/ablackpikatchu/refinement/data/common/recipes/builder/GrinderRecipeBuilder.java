@@ -1,11 +1,11 @@
-package com.ablackpikatchu.refinement.data.common.recipes;
+package com.ablackpikatchu.refinement.data.common.recipes.builder;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
 import javax.annotation.Nullable;
 
-import com.ablackpikatchu.refinement.common.recipe.MoldPressRecipe;
+import com.ablackpikatchu.refinement.common.recipe.GrinderRecipe;
 import com.ablackpikatchu.refinement.core.util.NameUtils;
 import com.google.gson.JsonObject;
 
@@ -18,7 +18,8 @@ import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 
-public class MoldPressRecipeBuilder {
+public class GrinderRecipeBuilder {
+
 	private final IRecipeSerializer<?> serializer;
 	private final ArrayList<Ingredient> ingredients = new ArrayList<>();
 	private int inputCount = 0;
@@ -26,52 +27,52 @@ public class MoldPressRecipeBuilder {
 	private boolean isTag = false;
 	private final Item resultItem;
 	private final int resultCount;
-	private Item mold;
 
-	public MoldPressRecipeBuilder(Item resultItem, int count) {
-		this.serializer = MoldPressRecipe.SERIALIZER;
+	public GrinderRecipeBuilder(IRecipeSerializer<?> serializer, Item resultItem, int count) {
+		this.serializer = serializer;
 		this.resultItem = resultItem;
 		this.resultCount = count;
 	}
 
-	public static MoldPressRecipeBuilder recipeBuilder(IItemProvider result, int count) {
-		return new MoldPressRecipeBuilder(result.asItem(), count);
+	/**
+	 * Creates a new grinder recipe
+	 * @param result the recipe result item
+	 * @param count the recipe result count
+	 * @return
+	 */
+	public static GrinderRecipeBuilder recipeBuilder(IItemProvider result, int count) {
+		return new GrinderRecipeBuilder(GrinderRecipe.SERIALIZER, result.asItem(), count);
 	}
 
-	public MoldPressRecipeBuilder addIngredient(IItemProvider item) {
+	public GrinderRecipeBuilder addIngredient(IItemProvider item) {
 		return addIngredient(Ingredient.of(item));
 	}
 
-	public MoldPressRecipeBuilder addIngredient(IItemProvider item, int count) {
+	public GrinderRecipeBuilder addIngredient(IItemProvider item, int count) {
 		return addIngredient(Ingredient.of(item), count);
 	}
 
-	public MoldPressRecipeBuilder addIngredient(ITag<Item> tag) {
+	public GrinderRecipeBuilder addIngredient(ITag<Item> tag) {
 		this.isTag = true;
 		this.tag = tag.toString();
 		this.inputCount = 1;
 		return this;
 	}
 
-	public MoldPressRecipeBuilder addIngredient(ITag<Item> tag, int count) {
+	public GrinderRecipeBuilder addIngredient(ITag<Item> tag, int count) {
 		this.isTag = true;
 		this.tag = tag.toString();
 		this.inputCount = count;
 		return this;
 	}
 
-	public MoldPressRecipeBuilder addIngredient(Ingredient ingredient) {
+	public GrinderRecipeBuilder addIngredient(Ingredient ingredient) {
 		return addIngredient(ingredient, 1);
 	}
 
-	public MoldPressRecipeBuilder addIngredient(Ingredient ingredient, int count) {
+	public GrinderRecipeBuilder addIngredient(Ingredient ingredient, int count) {
 		this.ingredients.add(ingredient);
 		this.inputCount = count;
-		return this;
-	}
-	
-	public MoldPressRecipeBuilder addMold(Item mold) {
-		this.mold = mold;
 		return this;
 	}
 
@@ -105,7 +106,6 @@ public class MoldPressRecipeBuilder {
 		public void serializeRecipeData(JsonObject json) {
 			if (isTag) json.add("input", serializeTag());
 			else json.add("input", serializeIngredients());
-			json.add("mold", serializeMold());
 			json.add("output", serializeResult());
 		}
 
@@ -135,12 +135,6 @@ public class MoldPressRecipeBuilder {
 			}
 			return ret;
 		}
-		
-		private JsonObject serializeMold() {
-			JsonObject ret = new JsonObject();
-			ret.addProperty("item", NameUtils.from(mold).toString());
-			return ret;
-		}
 
 		@Override
 		public ResourceLocation getId() {
@@ -164,4 +158,5 @@ public class MoldPressRecipeBuilder {
 			return null;
 		}
 	}
+
 }

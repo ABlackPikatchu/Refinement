@@ -1,4 +1,4 @@
-package com.ablackpikatchu.refinement.core.init;
+package com.ablackpikatchu.refinement.resourcecrops.core;
 
 import static com.ablackpikatchu.refinement.core.init.ItemInit.ITEMS;
 import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.REFINEMENT_RESOURCE_CROPS;
@@ -56,6 +56,10 @@ public class CropInit {
 	public static final RegistryObject<Block> NATURE_CROP = BLOCKS.register("nature_crop",
 			() -> new ModCrop(AbstractBlock.Properties.copy(Blocks.WHEAT), mod("nature_seeds"), mod("nature_essence"),
 					false));
+	
+	public static final RegistryObject<Block> WOOD_CROP = BLOCKS.register("wood_crop",
+			() -> new ModCrop(AbstractBlock.Properties.copy(Blocks.WHEAT), mod("wood_seeds"), mod("wood_essence"),
+					false));
 
 	// Seeds
 	public static final RegistryObject<BlockItem> IRON_SEEDS = ITEMS.register("iron_seeds",
@@ -70,10 +74,15 @@ public class CropInit {
 			() -> new ModSeeds(CropInit.LAPIS_CROP.get(), new Item.Properties().tab(REFINEMENT_RESOURCE_CROPS)));
 	public static final RegistryObject<BlockItem> EMERALD_SEEDS = ITEMS.register("emerald_seeds",
 			() -> new ModSeeds(CropInit.EMERALD_CROP.get(), new Item.Properties().tab(REFINEMENT_RESOURCE_CROPS)));
+	
 	public static final RegistryObject<BlockItem> PURE_CRYSTAL_SEEDS = ITEMS.register("pure_crystal_seeds",
 			() -> new ModSeeds(CropInit.PURE_CRYSTAL_CROP.get(), new Item.Properties().tab(REFINEMENT_RESOURCE_CROPS)));
+	
 	public static final RegistryObject<BlockItem> NATURE_SEEDS = ITEMS.register("nature_seeds",
 			() -> new ModSeeds(CropInit.NATURE_CROP.get(), new Item.Properties().tab(REFINEMENT_RESOURCE_CROPS)));
+	
+	public static final RegistryObject<BlockItem> WOOD_SEEDS = ITEMS.register("wood_seeds",
+			() -> new ModSeeds(CropInit.WOOD_CROP.get(), new Item.Properties().tab(REFINEMENT_RESOURCE_CROPS)));
 
 	// Essences
 	public static final RegistryObject<Item> IRON_ESSENCE = ITEMS.register("iron_essence",
@@ -88,8 +97,13 @@ public class CropInit {
 			() -> new ModEssence(new Item.Properties().tab(REFINEMENT_RESOURCE_CROPS)));
 	public static final RegistryObject<Item> EMERALD_ESSENCE = ITEMS.register("emerald_essence",
 			() -> new ModEssence(new Item.Properties().tab(REFINEMENT_RESOURCE_CROPS)));
+	
 	public static final RegistryObject<Item> NATURE_ESSENCE = ITEMS.register("nature_essence",
 			() -> new ModEssence(new Item.Properties().tab(REFINEMENT_RESOURCE_CROPS)));
+	
+	public static final RegistryObject<Item> WOOD_ESSENCE = ITEMS.register("wood_essence",
+			() -> new ModEssence(new Item.Properties().tab(REFINEMENT_RESOURCE_CROPS)));
+	
 	public static final RegistryObject<Item> PURE_CRYSTAL_ESSENCE = ITEMS.register("pure_crystal_essence",
 			() -> new ModEssence(new Item.Properties().tab(REFINEMENT_RESOURCE_CROPS)));
 

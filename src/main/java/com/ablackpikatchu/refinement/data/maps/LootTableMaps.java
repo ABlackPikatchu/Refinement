@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.ablackpikatchu.refinement.core.init.BlockInit;
-import com.ablackpikatchu.refinement.core.init.CropInit;
+import com.ablackpikatchu.refinement.resourcecrops.core.CropInit;
 
 import net.minecraft.block.Block;
 import net.minecraft.util.IItemProvider;
@@ -35,6 +35,7 @@ public class LootTableMaps {
 		map.put(CropInit.LAPIS_CROP.get(), CropInit.LAPIS_ESSENCE.get());
 		map.put(CropInit.NATURE_CROP.get(), CropInit.NATURE_ESSENCE.get());
 		map.put(CropInit.PURE_CRYSTAL_CROP.get(), CropInit.PURE_CRYSTAL_ESSENCE.get());
+		map.put(CropInit.WOOD_CROP.get(), CropInit.WOOD_ESSENCE.get());
 	}
 	
 	public static void addLeavesLoot(HashMap<Block, Block> map) {

@@ -1,6 +1,6 @@
 package com.ablackpikatchu.refinement.datafixers.util.recipe.dna_sequencer;
 
-import com.ablackpikatchu.refinement.data.common.recipes.DNASequencerRecipeBuilder;
+import com.ablackpikatchu.refinement.data.common.recipes.builder.DNASequencerRecipeBuilder;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.IngredientInput;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.TagInput;
 

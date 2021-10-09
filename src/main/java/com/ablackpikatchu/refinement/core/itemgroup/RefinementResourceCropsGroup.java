@@ -1,6 +1,6 @@
 package com.ablackpikatchu.refinement.core.itemgroup;
 
-import com.ablackpikatchu.refinement.core.init.CropInit;
+import com.ablackpikatchu.refinement.resourcecrops.core.CropInit;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;

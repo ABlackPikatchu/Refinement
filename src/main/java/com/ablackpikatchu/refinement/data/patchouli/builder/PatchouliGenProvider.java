@@ -51,10 +51,10 @@ public abstract class PatchouliGenProvider implements IDataProvider {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-		
+
 		addEntries();
 		writeEntries(pCache);
-		
+
 		addCategories();
 		try {
 			writeCategories(pCache);
@@ -66,8 +66,8 @@ public abstract class PatchouliGenProvider implements IDataProvider {
 	private void writeEntries(DirectoryCache cache) {
 		Path outputFolder = this.generator.getOutputFolder();
 		entries.forEach(entry -> {
-			Path path = outputFolder.resolve("data/" + modid + "/patchouli_books/" + bookName + "/" + language + "/entries/"
-					+ entry.category + "/" + entry.fileName + ".json");
+			Path path = outputFolder.resolve("data/" + modid + "/patchouli_books/" + bookName + "/" + language
+					+ "/entries/" + entry.category + "/" + entry.fileName + ".json");
 			try {
 				IDataProvider.save(GSON, cache, entry.serialize(), path);
 			} catch (IOException e) {
@@ -75,28 +75,28 @@ public abstract class PatchouliGenProvider implements IDataProvider {
 			}
 		});
 	}
-	
+
 	private void writeCategories(DirectoryCache cache) throws Exception {
 		Path outputFolder = this.generator.getOutputFolder();
 		Class<?> clazz = this.getClass();
-	    for (Field field : clazz.getDeclaredFields()) {
-	        if (field.isAnnotationPresent(PatchouliCategoryGen.class)) {
-	        	field.setAccessible(true);
-	        	if (field.getType() == PatchouliCategory.class) {
-	        		PatchouliCategory category = (PatchouliCategory) field.get(clazz);
-	        		Path path = outputFolder.resolve("data/" + modid + "/patchouli_books/" + bookName + "/" + language + "/categories/"
-	    					+ category.fileName + ".json");
-	        		try {
-	    				IDataProvider.save(GSON, cache, category.serialize(), path);
-	    			} catch (IOException e) {
-	    				LOGGER.error("Couldn't generate category!", path, (Object) e);
-	    			}
-	        	}
-	        }
-	    }
+		for (Field field : clazz.getDeclaredFields()) {
+			if (field.isAnnotationPresent(PatchouliCategoryGen.class)) {
+				field.setAccessible(true);
+				if (field.getType() == PatchouliCategory.class) {
+					PatchouliCategory category = (PatchouliCategory) field.get(clazz);
+					Path path = outputFolder.resolve("data/" + modid + "/patchouli_books/" + bookName + "/" + language
+							+ "/categories/" + category.fileName + ".json");
+					try {
+						IDataProvider.save(GSON, cache, category.serialize(), path);
+					} catch (IOException e) {
+						LOGGER.error("Couldn't generate category!", path, (Object) e);
+					}
+				}
+			}
+		}
 		categories.forEach(category -> {
-			Path path = outputFolder.resolve("data/" + modid + "/patchouli_books/" + bookName + "/" + language + "/categories/"
-					+ category.fileName + ".json");
+			Path path = outputFolder.resolve("data/" + modid + "/patchouli_books/" + bookName + "/" + language
+					+ "/categories/" + category.fileName + ".json");
 			try {
 				IDataProvider.save(GSON, cache, category.serialize(), path);
 			} catch (IOException e) {
@@ -104,28 +104,30 @@ public abstract class PatchouliGenProvider implements IDataProvider {
 			}
 		});
 	}
-	
+
 	private void writeBook(DirectoryCache cache) throws Exception {
 		Path outputFolder = this.generator.getOutputFolder();
 		Class<?> clazz = this.getClass();
-	    for (Field field : clazz.getDeclaredFields()) {
-	        if (field.isAnnotationPresent(PatchouliBookGen.class)) {
-	        	field.setAccessible(true);
-	        	if (field.getType() == PatchouliBook.class) {
-	        		PatchouliBook book = (PatchouliBook) field.get(clazz);
-	        		Path path = outputFolder.resolve("data/" + modid + "/patchouli_books/" + bookName + "/" + "book.json");
-	        		try {
-	    				IDataProvider.save(GSON, cache, book.serialize(), path);
-	    			} catch (IOException e) {
-	    				LOGGER.error("Couldn't generate book!", path, (Object) e);
-	    			}
-	        	}
-	        }
-	    }
+		for (Field field : clazz.getDeclaredFields()) {
+			if (field.isAnnotationPresent(PatchouliBookGen.class)) {
+				field.setAccessible(true);
+				if (field.getType() == PatchouliBook.class) {
+					PatchouliBook book = (PatchouliBook) field.get(clazz);
+					Path path = outputFolder
+							.resolve("data/" + modid + "/patchouli_books/" + bookName + "/" + "book.json");
+					try {
+						IDataProvider.save(GSON, cache, book.serialize(), path);
+					} catch (IOException e) {
+						LOGGER.error("Couldn't generate book!", path, (Object) e);
+					}
+				}
+			}
+		}
 	}
 
 	@Nullable
 	public abstract void addEntries();
+
 	@Nullable
 	public abstract void addCategories();
 
@@ -137,13 +139,13 @@ public abstract class PatchouliGenProvider implements IDataProvider {
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.FIELD)
 	protected @interface PatchouliCategoryGen {
-		
+
 	}
-	
+
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.FIELD)
 	protected @interface PatchouliBookGen {
-		
+
 	}
-	
+
 }

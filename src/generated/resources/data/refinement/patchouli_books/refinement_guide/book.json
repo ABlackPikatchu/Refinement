@@ -8,11 +8,13 @@
   "show_progress": false,
   "version": 2,
   "crafting_texture": "refinement:textures/gui/patchouli/crafting.png",
+  "header_color": "BF1DB8",
   "macros": {
     "<b>": "$(l)",
     "<i>": "$(o)",
     "</>": "$()",
     "<br2>": "$(br2)",
-    "<item>": "$(item)"
+    "<item>": "$(item)",
+    "<player>": "$(playername)"
   }
 }

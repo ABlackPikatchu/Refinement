@@ -38,13 +38,13 @@ public class GrinderRecipe implements IRecipe<IInventory> {
 	}
 
 	@Override
-	public boolean matches(IInventory p_77569_1_, World p_77569_2_) {
-		return this.input.test(p_77569_1_.getItem(0));
+	public boolean matches(IInventory inv, World p_77569_2_) {
+		return (this.input.test(inv.getItem(0)) && inv.getItem(0).getCount() >= this.count);
 	}
 
 	@Override
 	public ItemStack assemble(IInventory p_77572_1_) {
-		return null;
+		return this.getResultItem().copy();
 	}
 
 	@Override

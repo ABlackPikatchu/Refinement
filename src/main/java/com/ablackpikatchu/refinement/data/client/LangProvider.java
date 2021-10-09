@@ -109,7 +109,11 @@ public class LangProvider extends LanguageProvider {
 		ItemInit.ITEMS.getEntries().stream().map(RegistryObject<Item>::get).forEach(item -> {
 			if (!ALL_BLOCKS.contains(item.getRegistryName().getPath())) {
 				String name = item.getRegistryName().getPath().replace("_", " ");
+				try {
 				add(item, TextFormattingUtils.capitalizeWord(name));
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 	}

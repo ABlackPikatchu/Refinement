@@ -16,7 +16,6 @@ import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.BlockItemInit;
 import com.ablackpikatchu.refinement.core.init.CommandInit;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
-import com.ablackpikatchu.refinement.core.init.CropInit;
 import com.ablackpikatchu.refinement.core.init.FeatureInit;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.ParticleTypesInit;
@@ -29,6 +28,7 @@ import com.ablackpikatchu.refinement.core.network.RefinementNetwork;
 import com.ablackpikatchu.refinement.core.util.Conversions;
 import com.ablackpikatchu.refinement.core.util.StrippingMap;
 import com.ablackpikatchu.refinement.core.util.lists.TradeLists;
+import com.ablackpikatchu.refinement.resourcecrops.core.CropInit;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;

@@ -9,26 +9,25 @@
             "text": "This is the Refined Iron Ingot. Its properties are better then regular iron. Lets see how to make it! $(br2)First you have to sand an ingot down with some grit paper. $(br)Then combine it with some refining dust."
         },
         {
+        	"type": "refinement:grinder_recipe",
+        	"recipe": "refinement:grinder/iron_dust_from_iron_ingot",
+        	"header": "Iron Dust",
+        	"text": "Now that you have the Refined Iron Dust, you have to make it into an unfired ingot."
+        },
+        {
         	"type": "patchouli:crafting",
         	"recipe": "refinement:sanding/item/iron_ingot_to_iron_dust",
-        	"recipe2": "refinement:mixing_bowl/refined_iron_dust_bowl"
-        },
-        {
-        	"type": "patchouli:text",
-        	"text": "Now that you have the Refined Iron Dust, you have to make it into an unfired ingot."
-        	
+        	"recipe2": "refinement:mixing_bowl/refined_dusts/refined_iron_dust"
         },
         {
         	"type": "patchouli:crafting",
-        	"recipe": "refinement:unfired_ingots_gems/unfired_refined_iron_ingot"
-        },
-        {
-        	"type": "patchouli:text",
-        	"text": "After you have the unfired ingot you have to smelt that to get the Refined Iron Ingot! $(br2) Note: You can also smelt it in a blasting furnace!"
+        	"recipe": "refinement:unfired/unfired_refined_iron_ingot",
+        	"title": "Unf Refined Iron Ingot",
+        	"text": "After you have the unfired ingot you have to smelt that to get the Refined Iron Ingot! $(br2)Note: You can also smelt it in a blasting furnace!"
         },
         {
         	"type": "patchouli:smelting",
-        	"recipe": "refinement:smelting/refined_iron_from_smelting"
+        	"recipe": "refinement:cooking/smelting/refined_iron_ingot_from_unfired_refined_iron_ingot"
         }
     ]
 }

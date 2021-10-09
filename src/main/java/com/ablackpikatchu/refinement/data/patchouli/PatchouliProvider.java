@@ -8,8 +8,10 @@ import com.ablackpikatchu.refinement.data.patchouli.builder.page.TextPage;
 import com.ablackpikatchu.refinement.data.patchouli.builder.type.PatchouliBook;
 import com.ablackpikatchu.refinement.data.patchouli.builder.type.PatchouliCategory;
 import com.ablackpikatchu.refinement.data.patchouli.builder.type.PatchouliEntry;
+import com.ablackpikatchu.refinement.data.patchouli.builder.vars.StringItemStack;
 
 import net.minecraft.data.DataGenerator;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 
@@ -22,15 +24,21 @@ public class PatchouliProvider extends PatchouliGenProvider {
 					.setTab("refinement_tools_weapons")
 					.setBookTexture(new ResourceLocation("patchouli", "textures/gui/book_purple.png"))
 					.setIndexIcon(Items.WRITABLE_BOOK).showProgress(false).setVersion(2).addDefaultMacros()
-					.setCraftingTexture(new ResourceLocation(Refinement.MOD_ID, "textures/gui/patchouli/crafting.png"));
+					.setCraftingTexture(new ResourceLocation(Refinement.MOD_ID, "textures/gui/patchouli/crafting.png"))
+					.setHeaderColor("BF1DB8");
+
+	public PatchouliProvider(DataGenerator generator) {
+		super(generator, Refinement.MOD_ID, "en_us", "refinement_guide");
+	}
 
 	@PatchouliCategoryGen
 	public static PatchouliCategory MACHINES_CATEGORY = new PatchouliCategory("Machines", "machines",
 			"Information about the Refinement machines!", ItemInit.MACHINE_FRAME.get());
 
-	public PatchouliProvider(DataGenerator generator) {
-		super(generator, Refinement.MOD_ID, "en_us", "refinement_guide");
-	}
+	@PatchouliCategoryGen
+	public static PatchouliCategory UPGRADES = new PatchouliCategory("Upgrades", "upgrades",
+			"Some info about the Refinement machine upgrades!", null)
+					.setIcon(new StringItemStack(new ItemStack(ItemInit.SPEED_UPGRADE.get(), 8)));
 
 	@Override
 	public void addEntries() {

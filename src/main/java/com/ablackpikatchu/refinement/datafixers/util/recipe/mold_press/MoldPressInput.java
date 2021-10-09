@@ -1,6 +1,6 @@
 package com.ablackpikatchu.refinement.datafixers.util.recipe.mold_press;
 
-import com.ablackpikatchu.refinement.data.common.recipes.MoldPressRecipeBuilder;
+import com.ablackpikatchu.refinement.data.common.recipes.builder.MoldPressRecipeBuilder;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.IngredientInput;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.TagInput;
 

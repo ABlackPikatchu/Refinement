@@ -1,7 +1,7 @@
 package com.ablackpikatchu.refinement.client.render;
 
 import com.ablackpikatchu.refinement.core.init.BlockInit;
-import com.ablackpikatchu.refinement.core.init.CropInit;
+import com.ablackpikatchu.refinement.resourcecrops.core.CropInit;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderType;

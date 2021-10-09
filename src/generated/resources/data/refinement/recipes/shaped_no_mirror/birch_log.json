@@ -1,0 +1,17 @@
+{
+  "type": "refinement:shaped_no_mirror",
+  "pattern": [
+    "LLL",
+    "   ",
+    "   "
+  ],
+  "key": {
+    "L": {
+      "item": "refinement:wood_essence"
+    }
+  },
+  "result": {
+    "item": "minecraft:birch_log",
+    "count": 16
+  }
+}

@@ -1,12 +1,14 @@
-package com.ablackpikatchu.refinement.data.common.recipes;
+package com.ablackpikatchu.refinement.data.common.recipes.builder;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
 import javax.annotation.Nullable;
 
-import com.ablackpikatchu.refinement.common.recipe.MixerRecipe;
+import com.ablackpikatchu.refinement.common.recipe.DNASequencerRecipe;
+import com.ablackpikatchu.refinement.common.recipe.conditions.CropsEnabledCondition;
 import com.ablackpikatchu.refinement.core.util.NameUtils;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import net.minecraft.data.IFinishedRecipe;
@@ -18,7 +20,8 @@ import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 
-public class MixerRecipeBuilder {
+public class DNASequencerRecipeBuilder {
+
 	private final IRecipeSerializer<?> serializer;
 	private final ArrayList<Ingredient> ingredients = new ArrayList<>();
 	private int inputCount = 0;
@@ -30,74 +33,95 @@ public class MixerRecipeBuilder {
 	private boolean isTag2 = false;
 	private final Item resultItem;
 	private final int resultCount;
+	private int successProbability;
+	private boolean noFuelRequired;
+	private boolean cropsEnabled;
 
-	public MixerRecipeBuilder(Item resultItem, int count) {
-		this.serializer = MixerRecipe.SERIALIZER;
+	public DNASequencerRecipeBuilder(Item resultItem, int count) {
+		this.serializer = DNASequencerRecipe.SERIALIZER;
 		this.resultItem = resultItem;
 		this.resultCount = count;
 	}
 
-	public static MixerRecipeBuilder recipeBuilder(IItemProvider result, int count) {
-		return new MixerRecipeBuilder(result.asItem(), count);
+	public static DNASequencerRecipeBuilder recipeBuilder(IItemProvider result, int count) {
+		return new DNASequencerRecipeBuilder(result.asItem(), count);
 	}
 
-	public MixerRecipeBuilder addIngredient(IItemProvider item) {
+	public DNASequencerRecipeBuilder addIngredient(IItemProvider item) {
 		return addIngredient(Ingredient.of(item));
 	}
 
-	public MixerRecipeBuilder addIngredient(IItemProvider item, int count) {
+	public DNASequencerRecipeBuilder addIngredient(IItemProvider item, int count) {
 		return addIngredient(Ingredient.of(item), count);
 	}
 
-	public MixerRecipeBuilder addIngredient(Ingredient ingredient) {
+	public DNASequencerRecipeBuilder addIngredient(Ingredient ingredient) {
 		return addIngredient(ingredient, 1);
 	}
 
-	public MixerRecipeBuilder addIngredient(Ingredient ingredient, int count) {
+	public DNASequencerRecipeBuilder addIngredient(Ingredient ingredient, int count) {
 		this.ingredients.add(ingredient);
 		this.inputCount = count;
 		return this;
 	}
-	
-	public MixerRecipeBuilder addIngredient(ITag<Item> tag, int count) {
+
+	public DNASequencerRecipeBuilder addIngredient(ITag<Item> tag, int count) {
 		this.isTag = true;
 		this.tag = tag.toString();
 		this.inputCount = count;
 		return this;
 	}
-	
-	public MixerRecipeBuilder addSecondaryIngredient(ITag<Item> tag, int count) {
+
+	public DNASequencerRecipeBuilder addSecondaryIngredient(ITag<Item> tag, int count) {
 		this.isTag2 = true;
 		this.tag2 = tag.toString();
 		this.inputCount2 = count;
 		return this;
 	}
-	
-	public MixerRecipeBuilder addSecondaryIngredient(IItemProvider item) {
+
+	public DNASequencerRecipeBuilder addSecondaryIngredient(IItemProvider item) {
 		return addSecondaryIngredient(Ingredient.of(item));
 	}
 
-	public MixerRecipeBuilder addSecondaryIngredient(IItemProvider item, int count) {
+	public DNASequencerRecipeBuilder addSecondaryIngredient(IItemProvider item, int count) {
 		return addSecondaryIngredient(Ingredient.of(item), count);
 	}
 
-	public MixerRecipeBuilder addSecondaryIngredient(Ingredient ingredient) {
+	public DNASequencerRecipeBuilder addSecondaryIngredient(Ingredient ingredient) {
 		return addSecondaryIngredient(ingredient, 1);
 	}
 
-	public MixerRecipeBuilder addSecondaryIngredient(Ingredient ingredient, int count) {
+	public DNASequencerRecipeBuilder addSecondaryIngredient(Ingredient ingredient, int count) {
 		this.ingredients2.add(ingredient);
 		this.inputCount2 = count;
 		return this;
 	}
 
 	public void build(Consumer<IFinishedRecipe> consumer) {
-		String name  = this.resultItem.getRegistryName().getPath();
+		String name = this.resultItem.getRegistryName().getPath();
 		build(consumer, new ResourceLocation(serializer.getRegistryName() + "/" + name));
 	}
 
 	public void build(Consumer<IFinishedRecipe> consumer, ResourceLocation recipeId) {
 		consumer.accept(new Result(recipeId));
+	}
+
+	public DNASequencerRecipeBuilder setSuccessProbability(int successProbability) {
+		if (successProbability <= 100)
+			this.successProbability = successProbability;
+		else
+			this.successProbability = 100;
+		return this;
+	}
+
+	public DNASequencerRecipeBuilder setNoFuelRequired(boolean noFuelRequired) {
+		this.noFuelRequired = noFuelRequired;
+		return this;
+	}
+
+	public DNASequencerRecipeBuilder setCropsEnabledCondition(boolean cropsEnabled) {
+		this.cropsEnabled = cropsEnabled;
+		return this;
 	}
 
 	public class Result implements IFinishedRecipe {
@@ -109,11 +133,18 @@ public class MixerRecipeBuilder {
 
 		@Override
 		public void serializeRecipeData(JsonObject json) {
-			if (!isTag) json.add("input", serializeInput());
-			else json.add("input", serializeTag(tag));
-			if (!isTag2) json.add("secondary_input", serializeSecondaryInput());
-			else json.add("secondary_input", serializeTag(tag2));
+			if (cropsEnabled)
+				addCondition(json);
+			if (!isTag)
+				json.add("input", serializeInput());
+			else
+				json.add("input", serializeTag(tag));
+			if (!isTag2)
+				json.add("secondary_input", serializeSecondaryInput());
+			else
+				json.add("secondary_input", serializeTag(tag2));
 			json.add("output", serializeResult());
+			json.addProperty("no_fuel_required", noFuelRequired);
 		}
 
 		private JsonObject serializeInput() {
@@ -126,7 +157,7 @@ public class MixerRecipeBuilder {
 			ret.addProperty("count", inputCount);
 			return ret;
 		}
-		
+
 		private JsonObject serializeSecondaryInput() {
 			JsonObject ret = new JsonObject();
 			for (Ingredient ingredient : ingredients2) {
@@ -144,14 +175,26 @@ public class MixerRecipeBuilder {
 			if (resultCount > 1) {
 				ret.addProperty("count", resultCount);
 			}
+			if (successProbability >= 0) {
+				ret.addProperty("success_chance", successProbability);
+			}
 			return ret;
 		}
-		
+
 		private JsonObject serializeTag(String tag) {
 			JsonObject ret = new JsonObject();
 			ret.addProperty("tag", tag.substring(tag.indexOf("[") + 1).replace("]", ""));
 			ret.addProperty("count", inputCount);
 			return ret;
+		}
+
+		private void addCondition(JsonObject ret) {
+			JsonArray conditions = new JsonArray();
+			JsonObject condition = new JsonObject();
+			condition.addProperty("type", CropsEnabledCondition.ID.toString());
+			condition.addProperty("value", true);
+			conditions.add(condition);
+			ret.add("conditions", conditions);
 		}
 
 		@Override
@@ -176,4 +219,5 @@ public class MixerRecipeBuilder {
 			return null;
 		}
 	}
+
 }

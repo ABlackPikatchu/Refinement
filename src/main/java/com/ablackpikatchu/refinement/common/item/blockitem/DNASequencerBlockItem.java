@@ -1,8 +1,8 @@
 package com.ablackpikatchu.refinement.common.item.blockitem;
 
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
-import com.ablackpikatchu.refinement.core.init.CropInit;
 import com.ablackpikatchu.refinement.core.util.helper.PlayerHelper;
+import com.ablackpikatchu.refinement.resourcecrops.core.CropInit;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
