@@ -6,10 +6,8 @@ import com.ablackpikatchu.refinement.core.util.helper.JSONHelper;
 import com.ablackpikatchu.refinement.datafixers.util.json.JSONInput;
 import com.google.gson.JsonObject;
 
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
@@ -18,11 +16,10 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public class AnvilRecipe implements IRecipe<IInventory> {
+public class AnvilRecipe extends AbstractModRecipe {
 	
 	public static final Serializer SERIALIZER = new Serializer();
 
@@ -43,21 +40,6 @@ public class AnvilRecipe implements IRecipe<IInventory> {
 		this.rightCount = rightCount;
 		this.output = output;
 		this.xpRequired = xpRequired;
-	}
-
-	@Override
-	public boolean matches(IInventory p_77569_1_, World p_77569_2_) {
-		return false;
-	}
-
-	@Override
-	public ItemStack assemble(IInventory p_77572_1_) {
-		return null;
-	}
-
-	@Override
-	public boolean canCraftInDimensions(int p_194133_1_, int p_194133_2_) {
-		return true;
 	}
 
 	@Override
