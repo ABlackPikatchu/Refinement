@@ -1,0 +1,22 @@
+{
+  "name": "Fuel Usage",
+  "category": "refinement:machines",
+  "icon": "refinement:refined_carbon_ingot",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "A Refinement machine can use one of 2 fuel types. $(b)FE$() or $(item)Refined Carbon Ingots$().",
+      "title": "Fuel Types"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "refinement:refined_carbon_ingot",
+      "text": "A machine that uses $()Refined Carbon Ingots$() as a fuel, will have a fuel slot in the bottom left corner. You can insert fuel into that slot through the sides of the machine, or by using an $(item)Auto Import Upgrade$()."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "A machine that uses FE as fuel will have a FE bar in the right side of the GUI. It will also have an info square which, when hovered over, will display information about the machine's energy usage, energy storage, etc. Energy can be inserted theru any side, using anything that outputs fuel.",
+      "title": "Using FE as fuel"
+    }
+  ]
+}

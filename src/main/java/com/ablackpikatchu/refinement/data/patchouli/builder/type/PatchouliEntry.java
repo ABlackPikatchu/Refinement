@@ -1,4 +1,4 @@
-package com.ablackpikatchu.refinement.data.patchouli.builder;
+package com.ablackpikatchu.refinement.data.patchouli.builder.type;
 
 import java.util.ArrayList;
 
@@ -24,6 +24,13 @@ public class PatchouliEntry {
 
 	public PatchouliEntry(String category, String displayName, IItemProvider icon) {
 		this.category = category;
+		this.fileName = displayName.toLowerCase().replace(' ', '_');
+		this.displayName = displayName;
+		this.icon = icon.asItem();
+	}
+	
+	public PatchouliEntry(PatchouliCategory category, String displayName, IItemProvider icon) {
+		this.category = category.fileName;
 		this.fileName = displayName.toLowerCase().replace(' ', '_');
 		this.displayName = displayName;
 		this.icon = icon.asItem();
