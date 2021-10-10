@@ -126,10 +126,12 @@ public abstract class PatchouliGenProvider implements IDataProvider {
 	}
 
 	@Nullable
-	public abstract void addEntries();
+	public void addEntries() {
+	}
 
 	@Nullable
-	public abstract void addCategories();
+	public void addCategories() {
+	}
 
 	@Override
 	public String getName() {
