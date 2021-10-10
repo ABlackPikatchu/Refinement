@@ -28,6 +28,7 @@ import com.ablackpikatchu.refinement.core.network.RefinementNetwork;
 import com.ablackpikatchu.refinement.core.util.Conversions;
 import com.ablackpikatchu.refinement.core.util.StrippingMap;
 import com.ablackpikatchu.refinement.core.util.lists.TradeLists;
+import com.ablackpikatchu.refinement.data.client.LangProvider;
 import com.ablackpikatchu.refinement.resourcecrops.core.CropInit;
 
 import net.minecraft.entity.player.PlayerEntity;
@@ -145,6 +146,7 @@ public class Refinement {
 		BlockItemInit.BLOCKS_THAT_NEED_BLOCKITEMS.forEach(block -> {
 			event.getRegistry().register(new BlockItem(block, new Item.Properties().tab(RefinementItemGroup.REFINEMENT))
 					.setRegistryName(block.getRegistryName()));
+			LangProvider.ALL_BLOCKS.add(block.getRegistryName().getPath());
 		});
 	}
 

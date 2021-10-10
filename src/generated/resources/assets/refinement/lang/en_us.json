@@ -1,5 +1,6 @@
 {
   "block.refinement.blank_ore": "Blank Ore",
+  "block.refinement.carbon_generator": "Carbon Generator",
   "block.refinement.coal_crop": "Coal Seeds",
   "block.refinement.diamond_crop": "Diamond Seeds",
   "block.refinement.dna_sequencer": "DNA Sequencer",
@@ -82,6 +83,7 @@
   "item.refinement.miners_jerky": "Miners Jerky",
   "item.refinement.miners_stew": "Miners Stew",
   "item.refinement.mixing_bowl": "Mixing Bowl",
+  "item.refinement.mod_loot_box": "Mod Loot Box",
   "item.refinement.nature_essence": "Nature Essence",
   "item.refinement.netherite_dust": "Netherite Dust",
   "item.refinement.netherite_grit_paper": "Netherite Grit Paper",

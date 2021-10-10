@@ -1,7 +1,12 @@
 package com.ablackpikatchu.refinement.core.util.helper;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.IItemProvider;
+import net.minecraft.util.ResourceLocation;
+
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class NBTHelper {
 	public static boolean getBoolean(ItemStack stack, String key) {
@@ -58,5 +63,13 @@ public class NBTHelper {
 
 	public static void setFloat(ItemStack stack, String key, float value) {
 		getTagCompound(stack).putFloat(key, value);
+	}
+	
+	public static Item getItem(ItemStack stack, String key) {
+		return ForgeRegistries.ITEMS.getValue(new ResourceLocation(getString(stack, key)));
+	}
+	
+	public static void setItem(ItemStack stack, String key, IItemProvider item) {
+		setString(stack, key, item.asItem().getRegistryName().toString());
 	}
 }

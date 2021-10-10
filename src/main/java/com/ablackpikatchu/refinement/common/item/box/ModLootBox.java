@@ -1,33 +1,48 @@
 package com.ablackpikatchu.refinement.common.item.box;
 
-import com.ablackpikatchu.refinement.core.config.ModJsonConfigs;
-import com.ablackpikatchu.refinement.core.config.json.LootBoxConfig.BoxType;
+import java.util.List;
 
+import com.ablackpikatchu.refinement.core.config.ModJsonConfigs;
+import com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup;
+import com.ablackpikatchu.refinement.core.util.helper.NBTHelper;
+
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
 public class ModLootBox extends Item {
-	
-	public final BoxType boxType;
 
-	public ModLootBox(Properties properties, BoxType boxType) {
-		super(properties);
-		this.boxType = boxType;
+	public ModLootBox() {
+		super(new Item.Properties().tab(RefinementItemGroup.REFINEMENT).stacksTo(1));
 	}
 	
 	@Override
-	public ActionResult<ItemStack> use(World worldIn, PlayerEntity player, Hand hand) {
+	public ActionResult<ItemStack> use(World pLevel, PlayerEntity pPlayer, Hand pHand) {
 		
-		ItemStack box = player.getItemInHand(hand);
-
-		player.drop(ModJsonConfigs.LOOT_BOXES.getLootForBox(this.boxType), false);
+		ItemStack box = pPlayer.getItemInHand(pHand);
+		
+		if (NBTHelper.getString(box, "mod") == "")
+			return ActionResult.fail(box);
+		
+		if (ModJsonConfigs.LOOT_BOXES.getModLootBoxPool(NBTHelper.getString(box, "mod")).isEmpty())
+			return ActionResult.fail(box);
+		
+		pPlayer.drop(ModJsonConfigs.LOOT_BOXES.getModLootBoxPool(NBTHelper.getString(box, "mod")), false);
 		box.shrink(1);
 		
-		return super.use(worldIn, player, hand);
+		return super.use(pLevel, pPlayer, pHand);
+	}
+
+	@Override
+	public void appendHoverText(ItemStack pStack, World pLevel, List<ITextComponent> pTooltip, ITooltipFlag pFlag) {
+		if (NBTHelper.getString(pStack, "mod") != "")
+			pTooltip.add(new StringTextComponent("Loot box for mod: \u00A76" + NBTHelper.getString(pStack, "mod")));
 	}
 
 }

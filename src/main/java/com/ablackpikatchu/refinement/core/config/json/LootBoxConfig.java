@@ -3,9 +3,11 @@ package com.ablackpikatchu.refinement.core.config.json;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.ablackpikatchu.refinement.core.config.entry.ModLootBoxEntry;
 import com.ablackpikatchu.refinement.core.config.entry.WeightBasedItemEntry;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.util.MathUtils;
+import com.google.common.collect.Lists;
 import com.google.gson.annotations.Expose;
 
 import net.minecraft.item.Item;
@@ -21,6 +23,8 @@ public class LootBoxConfig extends JsonConfig {
 
 	@Expose
 	private List<WeightBasedItemEntry> FOOD_POOLS;
+	@Expose
+	private List<ModLootBoxEntry> MOD_LOOT_BOXES_POOLS;
 
 	@Override
 	public String getName() {
@@ -33,17 +37,17 @@ public class LootBoxConfig extends JsonConfig {
 
 		this.FOOD_POOLS.add(new WeightBasedItemEntry(ItemInit.MINERS_APPLE.get(), 2, 4, 6));
 		FOOD_POOLS.add(new WeightBasedItemEntry(Items.GOLDEN_CARROT, 2, 16, 32));
-		
+
 		FOOD_POOLS.add(new WeightBasedItemEntry(Items.CARROT, 4, 20, 45));
 		FOOD_POOLS.add(new WeightBasedItemEntry(Items.APPLE, 4, 20, 45));
 		FOOD_POOLS.add(new WeightBasedItemEntry(Items.COOKIE, 4, 20, 45));
 		FOOD_POOLS.add(new WeightBasedItemEntry(Items.BREAD, 4, 20, 45));
 		FOOD_POOLS.add(new WeightBasedItemEntry(Items.POTATO, 4, 20, 45));
 		FOOD_POOLS.add(new WeightBasedItemEntry(Items.SWEET_BERRIES, 4, 20, 45));
-		
+
 		FOOD_POOLS.add(new WeightBasedItemEntry(Items.MELON_SLICE, 3, 20, 45));
 		FOOD_POOLS.add(new WeightBasedItemEntry(Items.PUMPKIN_PIE, 3, 20, 45));
-		
+
 		FOOD_POOLS.add(new WeightBasedItemEntry(Items.COOKED_BEEF, 3, 18, 40));
 		FOOD_POOLS.add(new WeightBasedItemEntry(Items.COOKED_CHICKEN, 3, 18, 40));
 		FOOD_POOLS.add(new WeightBasedItemEntry(Items.COOKED_COD, 3, 18, 40));
@@ -51,6 +55,10 @@ public class LootBoxConfig extends JsonConfig {
 		FOOD_POOLS.add(new WeightBasedItemEntry(Items.COOKED_PORKCHOP, 3, 18, 40));
 		FOOD_POOLS.add(new WeightBasedItemEntry(Items.COOKED_RABBIT, 3, 18, 40));
 		FOOD_POOLS.add(new WeightBasedItemEntry(Items.COOKED_SALMON, 3, 18, 40));
+
+		this.MOD_LOOT_BOXES_POOLS = new LinkedList<>();
+		this.MOD_LOOT_BOXES_POOLS.add(new ModLootBoxEntry("refinement",
+				Lists.newArrayList((new WeightBasedItemEntry(ItemInit.REFINED_BONEMEAL.get(), 10, 12, 14)))));
 	}
 
 	public ItemStack getRandomLoot(List<WeightBasedItemEntry> loottable) {
@@ -94,6 +102,17 @@ public class LootBoxConfig extends JsonConfig {
 		}
 
 		return stack;
+	}
+	
+	public ItemStack getModLootBoxPool(String modid) {
+		for (ModLootBoxEntry lootBox : this.MOD_LOOT_BOXES_POOLS) {
+			if (lootBox.modid.equalsIgnoreCase(modid)) {
+				System.out.println("a");
+				return getRandomLoot(lootBox.pools);
+			}
+		}
+		
+		return ItemStack.EMPTY;
 	}
 
 	public ItemStack getLootForBox(BoxType box) {
