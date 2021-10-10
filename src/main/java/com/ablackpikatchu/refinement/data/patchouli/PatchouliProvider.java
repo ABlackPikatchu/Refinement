@@ -64,9 +64,4 @@ public class PatchouliProvider extends PatchouliGenProvider {
 						"A machine that uses FE as fuel will have a FE bar in the right side of the GUI. It will also have an info square which, when hovered over, will display information about the machine's energy usage, energy storage, etc. Energy can be inserted theru any side, using anything that outputs fuel.")));
 	}
 
-	@Override
-	public void addCategories() {
-
-	}
-
 }

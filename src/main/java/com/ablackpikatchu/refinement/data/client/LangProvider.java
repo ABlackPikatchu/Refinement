@@ -16,6 +16,8 @@ import net.minecraft.item.Item;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.fml.RegistryObject;
 
+import static com.ablackpikatchu.refinement.core.init.BlockInit.*;
+
 public class LangProvider extends LanguageProvider {
 
 	private static List<String> ALL_BLOCKS = new ArrayList<String>();
@@ -44,6 +46,8 @@ public class LangProvider extends LanguageProvider {
 		add(BlockInit.SMELTER_BLOCK.get(), "Smelter");
 		add(BlockInit.MATERIALS_STATION.get(), "Materials Station");
 		add(BlockInit.RESOURCE_STATUE_BLOCK.get(), "Resource Statue");
+		add(CARBON_GENERATOR_BLOCK.get(), "Carbon Generator");
+		add(SMELTER_BLOCK.get(), "Smelter");
 		
 		add(BlockInit.REFINED_LOG.get(), "Refined Log");
 		add(BlockInit.REFINED_STRIPPED_LOG.get(), "Refined Stripped Log");
