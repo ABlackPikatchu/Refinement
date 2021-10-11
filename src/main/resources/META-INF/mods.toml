@@ -27,7 +27,7 @@ Refinement is a mod that adds several new materials, tools, armors and machines.
     side="BOTH"
 [[dependencies.refinement]]
     modId="patchouli"
-    mandatory=true
+    mandatory=false
     versionRange="[1.16.4,1.17)"
     ordering="NONE"
     side="BOTH"
