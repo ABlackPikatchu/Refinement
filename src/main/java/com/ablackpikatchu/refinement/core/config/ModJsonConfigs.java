@@ -3,6 +3,7 @@ package com.ablackpikatchu.refinement.core.config;
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.core.config.json.ArmourConfig;
 import com.ablackpikatchu.refinement.core.config.json.LootBoxConfig;
+import com.ablackpikatchu.refinement.core.config.json.LootTablesConfig;
 import com.ablackpikatchu.refinement.core.config.json.MaterialistTrades;
 import com.ablackpikatchu.refinement.core.config.json.OreConversionConfig;
 import com.ablackpikatchu.refinement.core.config.json.ResourceStatueConfig;
@@ -17,6 +18,7 @@ public class ModJsonConfigs {
 	public static MaterialistTrades MATERIALIST_TRADES;
 	
 	public static WorldGenConfig WORLD_GEN;
+	public static LootTablesConfig LOOT_TABLES;
 
 	public static ArmourConfig ARMOUR;
 	public static ToolsConfig TOOLS;
@@ -34,7 +36,8 @@ public class ModJsonConfigs {
 		ARMOUR = (ArmourConfig) new ArmourConfig().readConfig();
 		TOOLS = (ToolsConfig) new ToolsConfig().readConfig();
 		MATERIALIST_TRADES = (MaterialistTrades) new MaterialistTrades().readConfig();
-
+		LOOT_TABLES = (LootTablesConfig) new LootTablesConfig().readConfig();
+		
 		Refinement.LOGGER.info("Before regsitries JSON Configs Loaded!");
 	}
 

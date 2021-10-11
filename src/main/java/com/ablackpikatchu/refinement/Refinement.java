@@ -37,7 +37,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.loot.ItemLootEntry;
 import net.minecraft.loot.LootPool;
-import net.minecraft.loot.RandomValueRange;
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.common.MinecraftForge;
@@ -72,7 +71,7 @@ public class Refinement {
 
 	public static final Logger LOGGER = LogManager.getLogger();
 	public static final String MOD_ID = "refinement";
-	
+
 	public static final String CONFIG_DIR_PATH = "config/" + MOD_ID + "/";
 	public static final File CONFIF_DIR = new File(CONFIG_DIR_PATH);
 
@@ -86,10 +85,10 @@ public class Refinement {
 			CONFIF_DIR.mkdirs();
 			LOGGER.info("Created Refinement Config folder!");
 		}
-		
+
 		ModLoadingContext.get().registerConfig(Type.COMMON, CommonConfig.SPEC, MOD_ID + "/common.toml");
 		ModLoadingContext.get().registerConfig(Type.CLIENT, ClientConfig.SPEC, MOD_ID + "/client.toml");
-		
+
 		modBus.addGenericListener(IRecipeSerializer.class, RecipeInit::registerRecipes);
 
 		ParticleTypesInit.PARTICLE_TYPES.register(modBus);
@@ -102,7 +101,7 @@ public class Refinement {
 		VillagerInit.VillagerProfessions.VILLAGER_PROFESSIONS.register(modBus);
 		VillagerInit.PointOfInterests.POINT_OF_INTEREST_TYPES.register(modBus);
 		FeatureInit.FEATURES.register(modBus);
-		
+
 		LOGGER.info("Registry Entries Registered!");
 
 		MinecraftForge.EVENT_BUS.register(this);
@@ -122,11 +121,12 @@ public class Refinement {
 
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public void onRegisterLootTables(LootTableLoadEvent event) {
-		if (event.getName().equals(new ResourceLocation("minecraft:chests/end_city_treasure"))) {
-			event.getTable().addPool(LootPool.lootPool().setRolls(RandomValueRange.between(0, 1))
-					.add(ItemLootEntry.lootTableItem(ItemInit.RESOURCE_STATUE_ITEM.get())).build());
-			LOGGER.info("Changed Minecraft loot tables!");
-		}
+		ModJsonConfigs.LOOT_TABLES.getToAddLootTables().forEach(table -> {
+			if (event.getName().equals(new ResourceLocation(table.lootTableName))) {
+				event.getTable().addPool(LootPool.lootPool().setRolls(table.lootTable.toRandomRange())
+						.add(ItemLootEntry.lootTableItem(table.getItem())).build());
+			}
+		});
 	}
 
 	public void onRegisterCommands(final RegisterCommandsEvent event) {
@@ -169,7 +169,7 @@ public class Refinement {
 			TradeLists.fillTradeData();
 		});
 	}
-	
+
 	public void constructMod(FMLConstructModEvent event) {
 		ModJsonConfigs.registerBeforeRegistries();
 	}
