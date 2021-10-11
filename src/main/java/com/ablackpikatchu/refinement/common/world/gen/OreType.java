@@ -1,15 +1,14 @@
 package com.ablackpikatchu.refinement.common.world.gen;
 
-import com.ablackpikatchu.refinement.core.init.BlockInit;
-
 import net.minecraft.block.Block;
+
 import net.minecraftforge.common.util.Lazy;
 
 public enum OreType {
 
-	PURE(Lazy.of(BlockInit.PURE_CRYSTAL_ORE), 6, 4, 20),
-    BLANK(Lazy.of(BlockInit.BLANK_ORE), 2, 5, 25);
-
+	//PURE(Lazy.of(BlockInit.PURE_CRYSTAL_ORE), 6, 4, 20),
+    //BLANK(Lazy.of(BlockInit.BLANK_ORE), 2, 5, 25);
+	;
 	private final Lazy<Block> block;
 	private final int maxVeinSize;
 	private final int minHeight;
