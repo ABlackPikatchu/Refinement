@@ -10,15 +10,16 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
-public class ModLootBox extends Item {
-
-	public ModLootBox() {
+public class CustomLootBox extends Item {
+	
+	public CustomLootBox() {
 		super(new Item.Properties().tab(RefinementItemGroup.REFINEMENT).stacksTo(1));
 	}
 	
@@ -27,13 +28,15 @@ public class ModLootBox extends Item {
 		
 		ItemStack box = pPlayer.getItemInHand(pHand);
 		
-		if (NBTHelper.getString(box, "mod") == "")
+		if (NBTHelper.getString(box, "pool") == "")
 			return ActionResult.fail(box);
 		
-		if (ModJsonConfigs.LOOT_BOXES.getModLootBoxPool(NBTHelper.getString(box, "mod")).isEmpty())
+		ItemStack stack = ModJsonConfigs.LOOT_BOXES.getCustomLootPoxPool(NBTHelper.getString(box, "pool"));
+		
+		if (stack.isEmpty() || stack.getItem() == Items.AIR)
 			return ActionResult.fail(box);
 		
-		pPlayer.drop(ModJsonConfigs.LOOT_BOXES.getModLootBoxPool(NBTHelper.getString(box, "mod")), false);
+		pPlayer.drop(stack, false);
 		if (!pPlayer.isCreative()) box.shrink(1);
 		
 		return super.use(pLevel, pPlayer, pHand);
@@ -41,8 +44,8 @@ public class ModLootBox extends Item {
 
 	@Override
 	public void appendHoverText(ItemStack pStack, World pLevel, List<ITextComponent> pTooltip, ITooltipFlag pFlag) {
-		if (NBTHelper.getString(pStack, "mod") != "")
-			pTooltip.add(new StringTextComponent("Loot box for mod: \u00A76" + NBTHelper.getString(pStack, "mod")));
+		if (NBTHelper.getString(pStack, "pool") != "")
+			pTooltip.add(new StringTextComponent("Loot Pool: \u00A76" + NBTHelper.getString(pStack, "pool")));
 	}
-
+	
 }

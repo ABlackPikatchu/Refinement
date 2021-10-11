@@ -3,6 +3,7 @@ package com.ablackpikatchu.refinement.core.config.json;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.ablackpikatchu.refinement.core.config.entry.CustomLootBoxEntry;
 import com.ablackpikatchu.refinement.core.config.entry.ModLootBoxEntry;
 import com.ablackpikatchu.refinement.core.config.entry.WeightBasedItemEntry;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
@@ -25,6 +26,8 @@ public class LootBoxConfig extends JsonConfig {
 	private List<WeightBasedItemEntry> FOOD_POOLS;
 	@Expose
 	private List<ModLootBoxEntry> MOD_LOOT_BOXES_POOLS;
+	@Expose
+	private List<CustomLootBoxEntry> CUSTOM_LOOT_BOXES_POOLS;
 
 	@Override
 	public String getName() {
@@ -58,6 +61,10 @@ public class LootBoxConfig extends JsonConfig {
 
 		this.MOD_LOOT_BOXES_POOLS = new LinkedList<>();
 		this.MOD_LOOT_BOXES_POOLS.add(new ModLootBoxEntry("refinement",
+				Lists.newArrayList((new WeightBasedItemEntry(ItemInit.REFINED_BONEMEAL.get(), 10, 12, 14)))));
+		
+		this.CUSTOM_LOOT_BOXES_POOLS = new LinkedList<>();
+		this.CUSTOM_LOOT_BOXES_POOLS.add(new CustomLootBoxEntry("epic",
 				Lists.newArrayList((new WeightBasedItemEntry(ItemInit.REFINED_BONEMEAL.get(), 10, 12, 14)))));
 	}
 
@@ -107,7 +114,16 @@ public class LootBoxConfig extends JsonConfig {
 	public ItemStack getModLootBoxPool(String modid) {
 		for (ModLootBoxEntry lootBox : this.MOD_LOOT_BOXES_POOLS) {
 			if (lootBox.modid.equalsIgnoreCase(modid)) {
-				System.out.println("a");
+				return getRandomLoot(lootBox.pools);
+			}
+		}
+		
+		return ItemStack.EMPTY;
+	}
+	
+	public ItemStack getCustomLootPoxPool(String poolName) {
+		for (CustomLootBoxEntry lootBox : this.CUSTOM_LOOT_BOXES_POOLS) {
+			if (lootBox.poolName.equalsIgnoreCase(poolName)) {
 				return getRandomLoot(lootBox.pools);
 			}
 		}

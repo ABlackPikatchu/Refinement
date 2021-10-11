@@ -24,6 +24,7 @@ import com.ablackpikatchu.refinement.common.item.RefinedCoal;
 import com.ablackpikatchu.refinement.common.item.RefinedCoalBlockItem;
 import com.ablackpikatchu.refinement.common.item.ResourceStatueItem;
 import com.ablackpikatchu.refinement.common.item.blockitem.DNASequencerBlockItem;
+import com.ablackpikatchu.refinement.common.item.box.CustomLootBox;
 import com.ablackpikatchu.refinement.common.item.box.ModLootBox;
 import com.ablackpikatchu.refinement.common.item.box.RefinementLootBox;
 import com.ablackpikatchu.refinement.common.item.food.CuringApple;
@@ -340,6 +341,7 @@ public class ItemInit {
 					BoxType.FOOD));
 	
 	public static final RegistryObject<Item> MOD_LOOT_BOX = ITEMS.register("mod_loot_box", ModLootBox::new);
+	public static final RegistryObject<Item> CUSTOM_LOOT_BOX = ITEMS.register("custom_loot_box", CustomLootBox::new);
 
 	// Misc Item Blocks
 	public static final RegistryObject<BlockItem> BLANK_ORE_ITEM = ITEMS.register("blank_ore",

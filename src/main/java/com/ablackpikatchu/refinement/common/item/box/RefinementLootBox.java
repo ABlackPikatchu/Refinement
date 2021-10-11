@@ -25,7 +25,7 @@ public class RefinementLootBox extends Item {
 		ItemStack box = player.getItemInHand(hand);
 
 		player.drop(ModJsonConfigs.LOOT_BOXES.getLootForBox(this.boxType), false);
-		box.shrink(1);
+		if (!player.isCreative()) box.shrink(1);
 		
 		return super.use(worldIn, player, hand);
 	}
