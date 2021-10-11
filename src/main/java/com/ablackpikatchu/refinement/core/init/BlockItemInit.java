@@ -11,6 +11,6 @@ public class BlockItemInit {
 
 	public static final ArrayList<Block> BLOCKS_THAT_NEED_BLOCKITEMS = Lists.newArrayList(BlockInit.REFINED_LOG.get(),
 			BlockInit.REFINED_STRIPPED_LOG.get(), BlockInit.REFINED_LEAVES.get(), BlockInit.REFINED_SAPLING.get(),
-			BlockInit.CARBON_GENERATOR_BLOCK.get(), ENERGY_GENERATOR_BLOCK.get(), SMELTER_BLOCK.get());
+			BlockInit.CARBON_GENERATOR_BLOCK.get(), ENERGY_GENERATOR_BLOCK.get(), SMELTER_BLOCK.get(), CABLE_BLOCK.get());
 
 }

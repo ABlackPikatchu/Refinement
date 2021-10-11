@@ -469,7 +469,7 @@ public abstract class LockableSidedInventoryTileEntity extends LockableTileEntit
             for (Direction direction : directions) {
                 TileEntity te = level.getBlockEntity(worldPosition.relative(direction));
                 if (te != null) {
-                    boolean doContinue = te.getCapability(CapabilityEnergy.ENERGY, direction).map(handler -> {
+                    boolean doContinue = te.getCapability(CapabilityEnergy.ENERGY, direction.getOpposite()).map(handler -> {
                                 if (handler.canReceive()) {
                                     int received = handler.receiveEnergy(Math.min(capacity.get(), energyStorage.getMaxExtract()), false);
                                     capacity.addAndGet(-received);

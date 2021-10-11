@@ -2,6 +2,7 @@ package com.ablackpikatchu.refinement.core.init;
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.te.machine.*;
+import com.ablackpikatchu.refinement.common.te.misc_tes.CableTileEntity;
 import com.ablackpikatchu.refinement.common.te.misc_tes.ResourceStatueTileEntity;
 import com.ablackpikatchu.refinement.common.te.misc_tes.VaccumulatorTileEntity;
 
@@ -48,5 +49,9 @@ public class TileEntityTypesInit {
 	public static final RegistryObject<TileEntityType<ResourceStatueTileEntity>> RESOURCE_STATUE_TILE_ENTITY_TYPE = TILE_ENTITY_TYPE
 			.register("resource_statue", () -> TileEntityType.Builder
 					.of(ResourceStatueTileEntity::new, BlockInit.RESOURCE_STATUE_BLOCK.get()).build(null));
+	
+	public static final RegistryObject<TileEntityType<CableTileEntity>> CABLE_TILE_ENTITY_TYPE = TILE_ENTITY_TYPE
+			.register("cable", () -> TileEntityType.Builder
+					.of(CableTileEntity::new, BlockInit.CABLE_BLOCK.get()).build(null));
 
 }
