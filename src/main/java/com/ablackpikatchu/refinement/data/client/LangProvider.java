@@ -102,6 +102,9 @@ public class LangProvider extends LanguageProvider {
 
 		// Villager
 		addVillagerName("materials", "Materialist");
+		
+		// Component
+		addComponent("loot_box", "Loot Box");
 
 		// Blocks
 		BlockInit.BLOCKS.getEntries().parallelStream().map(RegistryObject<Block>::get).forEach(block -> {
@@ -143,6 +146,10 @@ public class LangProvider extends LanguageProvider {
 
 	private void addVillagerName(String key, String value) {
 		this.add("entity.minecraft.villager." + Refinement.MOD_ID + "." + key, value);
+	}
+	
+	private void addComponent(String key, String value) {
+		this.add("component." + Refinement.MOD_ID + "." + key, value);
 	}
 
 }

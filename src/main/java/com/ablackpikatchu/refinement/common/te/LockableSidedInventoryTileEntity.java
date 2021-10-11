@@ -405,7 +405,6 @@ public abstract class LockableSidedInventoryTileEntity extends LockableTileEntit
         }
     }
 
-
     /**
      * Handles Fuel Auto Importing
      *

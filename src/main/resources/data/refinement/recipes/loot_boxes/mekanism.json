@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"conditions": [
+		{
+			"type": "forge:mod_loaded",
+			"modid": "mekanism"
+		}
+	],
+	"pattern": [
+		"TTT"
+	],
+	"key": {
+		"T": {
+			"tag": "forge:ingots/tin"
+		}
+	},
+	"result": {
+		"item": "refinement:mod_loot_box",
+		"nbt": "{mod: 'mekanism'}"
+	}
+}
