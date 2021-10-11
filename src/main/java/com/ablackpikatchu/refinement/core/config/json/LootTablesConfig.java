@@ -3,7 +3,7 @@ package com.ablackpikatchu.refinement.core.config.json;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.ablackpikatchu.refinement.core.config.entry.loottable.LootTableEntry;
+import com.ablackpikatchu.refinement.core.config.entry.LootTableEntry;
 import com.google.gson.annotations.Expose;
 
 public class LootTablesConfig extends JsonConfig {

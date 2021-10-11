@@ -1,4 +1,4 @@
-package com.ablackpikatchu.refinement.core.config.entry.loottable;
+package com.ablackpikatchu.refinement.core.config.entry;
 
 import com.google.gson.annotations.Expose;
 
