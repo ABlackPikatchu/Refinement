@@ -1,0 +1,26 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"conditions": [
+		{
+			"type": "forge:mod_loaded",
+			"modid": "thermal"
+		}
+	],
+	"pattern": [
+		"TTT",
+		"TST",
+		"TTT"
+	],
+	"key": {
+		"T": {
+			"tag": "forge:ingots/invar"
+		},
+		"S": {
+			"item": "thermal:machine_frame"
+		}
+	},
+	"result": {
+		"item": "refinement:mod_loot_box",
+		"nbt": "{mod: 'thermal'}"
+	}
+}

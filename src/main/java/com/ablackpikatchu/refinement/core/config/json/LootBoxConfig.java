@@ -120,7 +120,34 @@ public class LootBoxConfig extends JsonConfig {
 						new WeightBasedItemEntry(mek("upgrade_anchor"), 1, 1, 1),
 						
 						new WeightBasedItemEntry(mek("steel_casing"), 3, 2, 5)
-		)));
+				)));
+		
+		this.MOD_LOOT_BOXES_POOLS.add(new ModLootBoxEntry("thermal", Lists.newArrayList(
+						new WeightBasedItemEntry(thermal("upgrade_augument_1"), 4, 2, 5),
+						new WeightBasedItemEntry(thermal("upgrade_augument_2"), 3, 2, 4),
+						new WeightBasedItemEntry(thermal("upgrade_augument_3"), 1, 1, 3),
+						
+						
+						new WeightBasedItemEntry(thermal("machine_speed_augment"), 4, 2, 6),
+						new WeightBasedItemEntry(thermal("machine_efficiency_augment"), 4, 2, 6),
+						new WeightBasedItemEntry(thermal("machine_output_augment"), 4, 1, 3),
+						new WeightBasedItemEntry(thermal("machine_catalyst_augment"), 4, 1, 3),
+						new WeightBasedItemEntry(thermal("machine_cycle_augment"), 3),
+						
+						new WeightBasedItemEntry(thermal("machine_frame"), 2, 3, 6),
+						
+						new WeightBasedItemEntry(thermal("rf_coil"), 3, 32, 48),
+						new WeightBasedItemEntry(thermal("redstone_servo"), 3, 16, 40),
+						
+						new WeightBasedItemEntry(thermal("lumium_ingot"), 2, 16, 32),
+						new WeightBasedItemEntry(thermal("signalum_ingot"), 2, 10, 32),
+						new WeightBasedItemEntry(thermal("enderium_ingot"), 1, 10, 32)
+				)));
+		
+		this.CUSTOM_LOOT_BOXES_POOLS = new LinkedList<>();
+		this.CUSTOM_LOOT_BOXES_POOLS.add(new CustomLootBoxEntry("test", Lists.newArrayList(
+						new WeightBasedItemEntry("test:test_item", 2, 34, 56)
+				)));
 
 	}
 
@@ -219,6 +246,10 @@ public class LootBoxConfig extends JsonConfig {
 	
 	public String mekEnriched(String item) {
 		return mek("enriched_" + item);
+	}
+	
+	public String thermal(String value) {
+		return "thermal:" + value;
 	}
 
 	public enum BoxType {
