@@ -7,11 +7,16 @@
 		}
 	],
 	"pattern": [
+		"TTT",
+		"TST",
 		"TTT"
 	],
 	"key": {
 		"T": {
 			"tag": "forge:ingots/tin"
+		},
+		"S": {
+			"item": "mekanism:steel_casing"
 		}
 	},
 	"result": {

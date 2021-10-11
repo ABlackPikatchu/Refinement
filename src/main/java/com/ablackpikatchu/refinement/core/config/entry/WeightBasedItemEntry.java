@@ -29,6 +29,14 @@ public class WeightBasedItemEntry {
 		this.maxAmount = maxAmount;
 	}
 	
+	public WeightBasedItemEntry(@Nonnull String item, @Nonnull int weight) {
+		this.item = item;
+		this.nbt = null;
+		this.weight = weight;
+		this.minAmount = 1;
+		this.maxAmount = 1;
+	}
+	
 	public WeightBasedItemEntry(@Nonnull Item item, String nbt, @Nonnull int weight,
 			@Nonnull int minAmount, @Nonnull int maxAmount) {
 		this.item = item.getRegistryName().toString();
