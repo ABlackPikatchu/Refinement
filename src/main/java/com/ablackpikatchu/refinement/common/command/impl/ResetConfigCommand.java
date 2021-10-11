@@ -38,7 +38,7 @@ public class ResetConfigCommand extends BaseCommand {
 	private enum Type {
 		RESOURCE_STATUE(ModJsonConfigs.RESOURCE_STATUE), LOOT_BOXES(ModJsonConfigs.LOOT_BOXES),
 		ARMOUR(ModJsonConfigs.ARMOUR), TOOLS(ModJsonConfigs.TOOLS), ORE_UNIFY(ModJsonConfigs.ORE_CONVERSION),
-		MATERIALIST_TRADES(ModJsonConfigs.MATERIALIST_TRADES);
+		MATERIALIST_TRADES(ModJsonConfigs.MATERIALIST_TRADES), WORLD_GEN(ModJsonConfigs.WORLD_GEN);
 
 		private final JsonConfig config;
 
