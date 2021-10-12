@@ -1,0 +1,7 @@
+{
+  "parent": "refinement:block/cable/item/straight",
+  "textures": {
+    "0": "refinement:blocks/energy_cable",
+    "particle": "refinement:blocks/energy_cable"
+  }
+}

@@ -5,6 +5,7 @@ import java.io.File;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.ablackpikatchu.refinement.client.ClientSetup;
 import com.ablackpikatchu.refinement.client.render.RenderLayers;
 import com.ablackpikatchu.refinement.common.capability.playerpower.CapabilityPlayerPower;
 import com.ablackpikatchu.refinement.common.recipe.conditions.CropsEnabledCondition;
@@ -39,6 +40,7 @@ import net.minecraft.loot.ItemLootEntry;
 import net.minecraft.loot.LootPool;
 import net.minecraft.util.ResourceLocation;
 
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.event.LootTableLoadEvent;
@@ -48,6 +50,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
@@ -80,6 +83,8 @@ public class Refinement {
 
 		// mod bus events
 		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+		
+		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientSetup::new);
 
 		if (!CONFIF_DIR.exists()) {
 			CONFIF_DIR.mkdirs();

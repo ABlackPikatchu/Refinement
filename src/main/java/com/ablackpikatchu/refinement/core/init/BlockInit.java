@@ -82,7 +82,7 @@ public class BlockInit {
 	public static final RegistryObject<Block> SMELTER_BLOCK = BLOCKS.register("smelter",
 			() -> new SmelterBlock());
 	
-	public static final RegistryObject<Block> CABLE_BLOCK = BLOCKS.register("cable", CableBlock::new);
+	public static final RegistryObject<Block> ENERGY_CABLE_BLOCK = BLOCKS.register("energy_cable", EnergyCableBlock::new);
 	
 	public static final RegistryObject<Block> RESOURCE_STATUE_BLOCK = BLOCKS.register("resource_statue", () -> new ResourceStatueBlock());
 
