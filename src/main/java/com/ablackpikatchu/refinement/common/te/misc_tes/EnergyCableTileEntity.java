@@ -52,6 +52,7 @@ public class EnergyCableTileEntity extends TileEntity implements ITickableTileEn
 	public void tick() {
 		if (!this.level.isClientSide) {
 			sendOutPower(this.energyStorage, Direction.values());
+			setConnections(Direction.values());
 		}
 	}
 

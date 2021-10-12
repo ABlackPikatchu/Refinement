@@ -29,7 +29,7 @@ public class EnergyCableBlock extends Block {
 		super(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(10f).sound(SoundType.METAL)
 				.harvestLevel(4).noOcclusion());
 
-		this.registerDefaultState(defaultBlockState().setValue(NORTH, false).setValue(EAST, false)
+		this.registerDefaultState(this.stateDefinition.any().setValue(NORTH, false).setValue(EAST, false)
 				.setValue(SOUTH, false).setValue(WEST, false).setValue(UP, false).setValue(DOWN, false));
 	}
 
