@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 public class CustomLootBox extends Item {
 
 	public CustomLootBox() {
-		super(new Item.Properties().tab(RefinementItemGroup.REFINEMENT).stacksTo(1));
+		super(new Item.Properties().tab(RefinementItemGroup.REFINEMENT));
 	}
 
 	@Override

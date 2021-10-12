@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 public class ModLootBox extends Item {
 
 	public ModLootBox() {
-		super(new Item.Properties().tab(RefinementItemGroup.REFINEMENT).stacksTo(1));
+		super(new Item.Properties().tab(RefinementItemGroup.REFINEMENT));
 	}
 
 	@Override
