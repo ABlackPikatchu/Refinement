@@ -14,7 +14,6 @@ import com.ablackpikatchu.refinement.core.util.enums.Upgrades;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
@@ -24,16 +23,15 @@ import net.minecraft.util.IWorldPosCallable;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class GrinderContainer extends Container {
-	public final GrinderTileEntity te;
+public class GrinderContainer extends MachineContainer<GrinderTileEntity> {
+
 	private final IWorldPosCallable canInteractWithCallable;
 	public FunctionalIntReferenceHolder currentWaitTime;
 	public FunctionalIntReferenceHolder maxWaitTime;
 	
 	public GrinderContainer(final int windowId, final PlayerInventory playerInv,
 			final GrinderTileEntity te) {
-		super(ContainerTypesInit.GRINDER_CONTAINER_TYPE.get(), windowId);
-		this.te = te;
+		super(ContainerTypesInit.GRINDER_CONTAINER_TYPE.get(), windowId, te);
 		this.canInteractWithCallable = IWorldPosCallable.create(te.getLevel(), te.getBlockPos());
 
 		// Tile Entity

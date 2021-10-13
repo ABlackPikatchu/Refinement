@@ -16,7 +16,6 @@ import com.ablackpikatchu.refinement.core.util.lists.ItemLists;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
@@ -26,17 +25,15 @@ import net.minecraft.util.IWorldPosCallable;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class MoldPressContainer extends Container {
+public class MoldPressContainer extends MachineContainer<MoldPressTileEntity> {
 	
-	public final MoldPressTileEntity te;
 	private final IWorldPosCallable canInteractWithCallable;
 	public FunctionalIntReferenceHolder currentWaitTime;
 	public FunctionalIntReferenceHolder maxWaitTime;
 	
 	public MoldPressContainer(final int windowId, final PlayerInventory playerInv,
 			final MoldPressTileEntity te) {
-		super(ContainerTypesInit.MOLD_PRESS_CONTAINER_TYPE.get(), windowId);
-		this.te = te;
+		super(ContainerTypesInit.MOLD_PRESS_CONTAINER_TYPE.get(), windowId, te);
 		this.canInteractWithCallable = IWorldPosCallable.create(te.getLevel(), te.getBlockPos());
 
 		// Tile Entity

@@ -8,22 +8,19 @@ import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IWorldPosCallable;
 
-public class VaccumulatorContainer extends Container {
+public class VaccumulatorContainer extends MachineContainer<VaccumulatorTileEntity> {
 
-	public final VaccumulatorTileEntity te;
 	private final IWorldPosCallable canInteractWithCallable;
 
 	public VaccumulatorContainer(final int windowId, final PlayerInventory playerInventory,
 			final VaccumulatorTileEntity te) {
-		super(ContainerTypesInit.VACCUMULATOR_CONTAINER_TYPE.get(), windowId);
-		this.te = te;
+		super(ContainerTypesInit.VACCUMULATOR_CONTAINER_TYPE.get(), windowId, te);
 		this.canInteractWithCallable = IWorldPosCallable.create(te.getLevel(), te.getBlockPos());
 
 		// Main Inventory

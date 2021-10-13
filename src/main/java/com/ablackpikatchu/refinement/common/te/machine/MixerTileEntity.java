@@ -8,7 +8,7 @@ import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.block.machine.MixerBlock;
 import com.ablackpikatchu.refinement.common.container.MixerContainer;
 import com.ablackpikatchu.refinement.common.recipe.MixerRecipe;
-import com.ablackpikatchu.refinement.common.te.LockableSidedInventoryTileEntity;
+import com.ablackpikatchu.refinement.common.te.SidedInventoryTileEntity;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
@@ -29,7 +29,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 import net.minecraftforge.common.util.Constants;
 
-public class MixerTileEntity extends LockableSidedInventoryTileEntity implements ITickableTileEntity {
+public class MixerTileEntity extends SidedInventoryTileEntity implements ITickableTileEntity {
 
 	List<ItemStack> allItems = null;
 	private ITextComponent customName;

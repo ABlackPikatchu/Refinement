@@ -35,6 +35,7 @@
   "category.refinement.mixer_recipe": "Mixer",
   "category.refinement.mold_press_recipe": "Mold Press",
   "component.refinement.loot_box": "Loot Box",
+  "component.refinement.ownership_error": "You cannot open this machine as you do not own it.",
   "container.refinement.carbon_generator": "Carbon Generator",
   "container.refinement.dna_sequencer": "DNA Sequencer",
   "container.refinement.energy_generator": "Energy Generator",

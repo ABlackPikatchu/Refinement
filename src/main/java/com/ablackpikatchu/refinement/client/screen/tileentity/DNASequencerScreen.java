@@ -27,6 +27,9 @@ public class DNASequencerScreen extends MachineContainerScreen<DNASequencerConta
 		this.topPos = 0;
 		this.imageWidth = 220;
 		this.imageHeight = 201;
+
+		//this.addButton(new Button(this.leftPos + 63, this.topPos + 26, 30, 30, DialogTexts.GUI_DONE,
+		//		(p_214187_1_) -> System.out.println("yes")));
 	}
 
 	@Override
@@ -47,7 +50,7 @@ public class DNASequencerScreen extends MachineContainerScreen<DNASequencerConta
 	protected void renderBg(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
 		super.renderBg(matrixStack, partialTicks, mouseX, mouseY);
 		renderSussyGui(matrixStack, partialTicks, this.topPos + 82);
-		this.minecraft.textureManager.bind(DNA_SEQUENCER_GUI);
+		bind(DNA_SEQUENCER_GUI);
 		this.blit(matrixStack, this.leftPos + 62, this.topPos + 26, 3, 231, this.menu.getProgressionScaled(), 22);
 	}
 

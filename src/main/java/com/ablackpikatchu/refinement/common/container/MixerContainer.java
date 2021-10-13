@@ -14,7 +14,6 @@ import com.ablackpikatchu.refinement.core.util.enums.Upgrades;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
@@ -24,16 +23,14 @@ import net.minecraft.util.IWorldPosCallable;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class MixerContainer extends Container {
+public class MixerContainer extends MachineContainer<MixerTileEntity> {
 
-	public final MixerTileEntity te;
 	private final IWorldPosCallable canInteractWithCallable;
 	public FunctionalIntReferenceHolder currentWaitTime;
 	public FunctionalIntReferenceHolder maxWaitTime;
 
 	public MixerContainer(final int windowId, final PlayerInventory playerInv, final MixerTileEntity te) {
-		super(ContainerTypesInit.MIXER_CONTAINER_TYPE.get(), windowId);
-		this.te = te;
+		super(ContainerTypesInit.MIXER_CONTAINER_TYPE.get(), windowId, te);
 		this.canInteractWithCallable = IWorldPosCallable.create(te.getLevel(), te.getBlockPos());
 
 		// Tile Entity

@@ -3,7 +3,7 @@ package com.ablackpikatchu.refinement.common.te.machine;
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.block.machine.EnergyGeneratorBlock;
 import com.ablackpikatchu.refinement.common.container.EnergyGeneratorContainer;
-import com.ablackpikatchu.refinement.common.te.LockableSidedInventoryTileEntity;
+import com.ablackpikatchu.refinement.common.te.SidedInventoryTileEntity;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
@@ -30,7 +30,7 @@ import net.minecraftforge.energy.IEnergyStorage;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class EnergyGeneratorTileEntity extends LockableSidedInventoryTileEntity {
+public class EnergyGeneratorTileEntity extends SidedInventoryTileEntity {
 
     public final ModEnergyStorage energyStorage = createEnergy();
     public final static int slots = 2;

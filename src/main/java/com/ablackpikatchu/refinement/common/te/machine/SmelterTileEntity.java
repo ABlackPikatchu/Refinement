@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.block.machine.SmelterBlock;
 import com.ablackpikatchu.refinement.common.container.SmelterContainer;
-import com.ablackpikatchu.refinement.common.te.LockableSidedInventoryTileEntity;
+import com.ablackpikatchu.refinement.common.te.SidedInventoryTileEntity;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
 import com.ablackpikatchu.refinement.core.util.energy.ModEnergyStorage;
@@ -32,7 +32,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 
-public class SmelterTileEntity extends LockableSidedInventoryTileEntity {
+public class SmelterTileEntity extends SidedInventoryTileEntity {
 
 	public final ModEnergyStorage energyStorage = createEnergy();
 	public final static int slots = 5;

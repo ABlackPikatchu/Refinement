@@ -31,7 +31,7 @@ public class EnergyGeneratorScreen extends MachineContainerScreen<EnergyGenerato
     protected void renderLabels(MatrixStack matrixStack, int mouseX, int mouseY) {
         this.font.draw(matrixStack, this.inventory.getDisplayName(), 7.0f, 73.0f, 0xA3703A);
         this.font.draw(matrixStack, this.menu.te.getDisplayName(), 7.0f, 7.0f, 0xA3703A);
-        if (isHoveringBetween(mouseX, mouseY, this.leftPos + 176, this.topPos + 0, 32, 32)) {
+        if (isBetween(mouseX, mouseY, this.leftPos + 176, this.topPos + 0, 32, 32)) {
             EnergyInfoTextBoxElement textBoxElement = new EnergyInfoTextBoxElement();
             int dropDownNumber = 10;
             int xPos = mouseX - this.leftPos - textBoxElement.getWidth();

@@ -105,6 +105,7 @@ public class LangProvider extends LanguageProvider {
 		
 		// Component
 		addComponent("loot_box", "Loot Box");
+		addComponent("ownership_error", "You cannot open this machine as you do not own it.");
 
 		// Blocks
 		BlockInit.BLOCKS.getEntries().parallelStream().map(RegistryObject<Block>::get).forEach(block -> {

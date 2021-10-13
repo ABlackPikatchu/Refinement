@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.container.VaccumulatorContainer;
-import com.ablackpikatchu.refinement.common.te.LockableSidedInventoryTileEntity;
+import com.ablackpikatchu.refinement.common.te.SidedInventoryTileEntity;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
 
@@ -26,7 +26,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.util.Constants;
 
-public class VaccumulatorTileEntity extends LockableSidedInventoryTileEntity implements ITickableTileEntity {
+public class VaccumulatorTileEntity extends SidedInventoryTileEntity implements ITickableTileEntity {
 
 	List<ItemStack> allItems = null;
 	private ITextComponent customName;

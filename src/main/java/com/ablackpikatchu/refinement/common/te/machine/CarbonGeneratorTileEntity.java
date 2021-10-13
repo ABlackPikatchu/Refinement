@@ -7,7 +7,7 @@ import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.block.machine.CarbonGeneratorBlock;
 import com.ablackpikatchu.refinement.common.block.machine.SmelterBlock;
 import com.ablackpikatchu.refinement.common.container.CarbonGeneratorContainer;
-import com.ablackpikatchu.refinement.common.te.LockableSidedInventoryTileEntity;
+import com.ablackpikatchu.refinement.common.te.SidedInventoryTileEntity;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
@@ -33,14 +33,14 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 
-public class CarbonGeneratorTileEntity extends LockableSidedInventoryTileEntity implements ITickableTileEntity {
+public class CarbonGeneratorTileEntity extends SidedInventoryTileEntity implements ITickableTileEntity {
 
     public final ModEnergyStorage energyStorage = createEnergy();
     public final static int slots = 3;
     protected NonNullList<ItemStack> items = NonNullList.withSize(slots, ItemStack.EMPTY);
 
     private final LazyOptional<IEnergyStorage> energy = LazyOptional.of(() -> energyStorage);
-
+    
     private boolean hasPower = false;
 
     public CarbonGeneratorTileEntity(TileEntityType<?> p_i48285_1_) {

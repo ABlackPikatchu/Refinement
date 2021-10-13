@@ -13,7 +13,6 @@ import com.ablackpikatchu.refinement.core.util.enums.Upgrades;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
@@ -23,9 +22,8 @@ import net.minecraft.util.IWorldPosCallable;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class CarbonGeneratorContainer extends Container {
+public class CarbonGeneratorContainer extends MachineContainer<CarbonGeneratorTileEntity> {
 
-	public final CarbonGeneratorTileEntity te;
 	private final IWorldPosCallable canInteractWithCallable;
 	public FunctionalIntReferenceHolder currentEnergy;
 	public FunctionalIntReferenceHolder currentWaitTime;
@@ -34,8 +32,7 @@ public class CarbonGeneratorContainer extends Container {
 
 	public CarbonGeneratorContainer(final int windowId, final PlayerInventory playerInv,
 			final CarbonGeneratorTileEntity te) {
-		super(ContainerTypesInit.CARBON_GENERATOR_CONTAINER_TYPE.get(), windowId);
-		this.te = te;
+		super(ContainerTypesInit.CARBON_GENERATOR_CONTAINER_TYPE.get(), windowId, te);
 		this.canInteractWithCallable = IWorldPosCallable.create(te.getLevel(), te.getBlockPos());
 
 		// Tile Entity

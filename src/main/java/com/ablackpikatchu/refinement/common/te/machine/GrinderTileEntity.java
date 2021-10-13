@@ -2,6 +2,7 @@ package com.ablackpikatchu.refinement.common.te.machine;
 
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import javax.annotation.Nullable;
 
@@ -9,7 +10,9 @@ import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.block.machine.GrinderBlock;
 import com.ablackpikatchu.refinement.common.container.GrinderContainer;
 import com.ablackpikatchu.refinement.common.recipe.GrinderRecipe;
-import com.ablackpikatchu.refinement.common.te.LockableSidedInventoryTileEntity;
+import com.ablackpikatchu.refinement.common.security.ISecurableTile;
+import com.ablackpikatchu.refinement.common.security.SecurityType;
+import com.ablackpikatchu.refinement.common.te.SidedInventoryTileEntity;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
@@ -31,7 +34,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 import net.minecraftforge.common.util.Constants;
 
-public class GrinderTileEntity extends LockableSidedInventoryTileEntity implements ITickableTileEntity {
+public class GrinderTileEntity extends SidedInventoryTileEntity implements ITickableTileEntity, ISecurableTile {
 
 	List<ItemStack> allItems = null;
 	private ITextComponent customName;
@@ -208,6 +211,22 @@ public class GrinderTileEntity extends LockableSidedInventoryTileEntity implemen
 			return false;
 		else
 			return true;
+	}
+
+	@Override
+	public SecurityType getSecurity() {
+		return this.security;
+	}
+	
+	@Override
+	public void setSecurity(SecurityType security) {
+		this.security = security;
+		TileEntityHelper.updateTE(this);
+	}
+
+	@Override
+	public UUID getOwnerUUID() {
+		return this.ownerUUID;
 	}
 
 }
