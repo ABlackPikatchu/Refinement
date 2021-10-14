@@ -83,6 +83,11 @@ repositories {
 	maven { 
 		url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' 
 	}
+	maven {
+    	name 'tterrag maven'
+    	url "http://maven.tterrag.com/"
+    	allowInsecureProtocol = true
+	}
 }
 
 dependencies {
@@ -100,6 +105,9 @@ dependencies {
 	
 	runtimeOnly fg.deobf("curse.maven:mekanism-268560:3206392")
 	runtimeOnly fg.deobf("curse.maven:mekanism-generators-268566:3206395")
+	
+	compileOnly fg.deobf("mcjty.theoneprobe:TheOneProbe-1.16:${top_version}:api")
+	runtimeOnly fg.deobf("mcjty.theoneprobe:TheOneProbe-1.16:${top_version}")
 
 }
 

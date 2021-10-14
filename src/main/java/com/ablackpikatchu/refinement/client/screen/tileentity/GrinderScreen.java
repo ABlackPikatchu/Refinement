@@ -2,7 +2,11 @@ package com.ablackpikatchu.refinement.client.screen.tileentity;
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.client.screen.element.SecurityElement;
+import com.ablackpikatchu.refinement.client.screen.element.SecurityElement.SecurityPrivateElement;
+import com.ablackpikatchu.refinement.client.screen.element.SecurityElement.SecurityPublicElement;
 import com.ablackpikatchu.refinement.common.container.GrinderContainer;
+import com.ablackpikatchu.refinement.core.network.RefinementNetwork;
+import com.ablackpikatchu.refinement.core.network.message.TileSecurityMessage;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import net.minecraft.entity.player.PlayerInventory;
@@ -40,10 +44,9 @@ public class GrinderScreen extends MachineContainerScreen<GrinderContainer> {
 
 	@Override
 	protected void renderBg(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
-		//if (this.menu.te.security != null && this.menu.te.security.isPrivate())
-		//	elements.add(0, new SecurityPrivateElement(this.leftPos + 191, this.topPos + 82));
-		//else
-		//	elements.add(0, new SecurityPublicElement(this.leftPos + 191, this.topPos + 82));
+		secElement = new SecurityPublicElement();
+		if (this.menu.security.get() == 1)
+			secElement = new SecurityPrivateElement();
 		super.renderBg(matrixStack, partialTicks, mouseX, mouseY);
 		renderSussyGui(matrixStack, partialTicks, this.topPos + 77);
 		secElement.render(matrixStack, this.leftPos + 191, this.topPos + 82, partialTicks);
@@ -51,12 +54,10 @@ public class GrinderScreen extends MachineContainerScreen<GrinderContainer> {
 		this.blit(matrixStack, this.leftPos + 68, this.topPos + 9, 2, 207, this.menu.getProgressionScaled(), 47);
 	}
 
-	/**
 	@Override
 	public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
-		if (isBetween((int) pMouseX, (int) pMouseY, this.leftPos + 194, this.topPos + 76, 6, 7))
+		if (isBetween((int) pMouseX, (int) pMouseY, this.leftPos + 191, this.topPos + 82, 6, 7))
 			RefinementNetwork.TILE_SECURITY_CHANNEL.sendToServer(new TileSecurityMessage(this.menu.te.getBlockPos()));
 		return true;
 	}
-	**/
 }

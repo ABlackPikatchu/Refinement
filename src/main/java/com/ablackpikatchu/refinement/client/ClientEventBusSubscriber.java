@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.client.render.model.EnergyCableBakedModel;
+import com.ablackpikatchu.refinement.client.screen.tileentity.AlloySmelterScreen;
 import com.ablackpikatchu.refinement.client.screen.tileentity.CarbonGeneratorScreen;
 import com.ablackpikatchu.refinement.client.screen.tileentity.DNASequencerScreen;
 import com.ablackpikatchu.refinement.client.screen.tileentity.EnergyGeneratorScreen;
@@ -45,7 +46,8 @@ public class ClientEventBusSubscriber {
 		ScreenManager.register(MIXER_CONTAINER_TYPE.get(), MixerScreen::new);
 		ScreenManager.register(MOLD_PRESS_CONTAINER_TYPE.get(), MoldPressScreen::new);
 		ScreenManager.register(DNA_SEQUENCER_CONTAINER_TYPE.get(), DNASequencerScreen::new);
-
+		ScreenManager.register(ALLOY_SMELTER_CONTAINER_TYPE.get(), AlloySmelterScreen::new);
+		
 		ScreenManager.register(VACCUMULATOR_CONTAINER_TYPE.get(), VaccumulatorScreen::new);
 
 		ScreenManager.register(CARBON_GENERATOR_CONTAINER_TYPE.get(), CarbonGeneratorScreen::new);

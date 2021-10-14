@@ -8,6 +8,7 @@ import com.ablackpikatchu.refinement.client.screen.element.PowerIndicatorElement
 import com.ablackpikatchu.refinement.client.screen.element.SussyElement;
 import com.ablackpikatchu.refinement.common.container.MachineContainer;
 import com.ablackpikatchu.refinement.core.config.ClientConfig;
+import com.google.common.collect.Lists;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
@@ -16,10 +17,11 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.container.Slot;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
-public class MachineContainerScreen<T extends MachineContainer<?>> extends ContainerScreen<T> {
+public abstract class MachineContainerScreen<T extends MachineContainer<?>> extends ContainerScreen<T> {
 
 	protected final ArrayList<GuiElement> elements = new ArrayList<>();
 
@@ -48,7 +50,10 @@ public class MachineContainerScreen<T extends MachineContainer<?>> extends Conta
 	protected void renderLabels(MatrixStack matrixStack, int mouseX, int mouseY) {
 		updateElements();
 		drawElements(matrixStack, true);
-		super.renderLabels(matrixStack, mouseX, mouseY);
+		this.font.draw(matrixStack, this.inventory.getDisplayName(), (float) this.titleLabelX, (float) this.titleLabelY,
+				0xA3703A);
+		this.font.draw(matrixStack, this.menu.te.getDisplayName(), (float) this.inventoryLabelX,
+				(float) this.inventoryLabelY, 0xA3703A);
 	}
 
 	@Override
@@ -64,7 +69,6 @@ public class MachineContainerScreen<T extends MachineContainer<?>> extends Conta
 		this.renderTooltip(matrixStack, mouseX, mouseY);
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	protected void renderBg(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
 		RenderSystem.color4f(1f, 1f, 1f, 1f);
@@ -127,7 +131,8 @@ public class MachineContainerScreen<T extends MachineContainer<?>> extends Conta
 	public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
 
 		elements.forEach(elem -> {
-			System.out.println(pMouseX + " renderX is " + elem.renderX + ", " + pMouseY + " renderY is " + elem.renderY);
+			System.out
+					.println(pMouseX + " renderX is " + elem.renderX + ", " + pMouseY + " renderY is " + elem.renderY);
 			if (this.isBetween((int) pMouseX, (int) pMouseY, elem.renderX, elem.renderY, elem.getWidth(),
 					elem.getHeight())) {
 				elem.handleClick((int) pMouseX, (int) pMouseY, this.menu);
@@ -168,6 +173,42 @@ public class MachineContainerScreen<T extends MachineContainer<?>> extends Conta
 				}
 			}
 		}
+	}
+
+	/**
+	 * If the machine is using energy, return an array list of what slots need to
+	 * <b><strong>NOT</strong></b> be rendered from the <strong>machine's</strong>
+	 * inventory when the player is hovering over the energy info area. (based on
+	 * {@link #isHoveringOverEnergyInfo})
+	 * 
+	 * @return slots that wont be rendered when the player is hovering over the
+	 *         energy info area
+	 */
+	public ArrayList<Integer> getNoEnergyInfoRenderSlots() {
+		return Lists.newArrayList();
+	}
+
+	/**
+	 * Make this true if the machine is using energy and if the player is hovering
+	 * over the energy info area (false when the player is not hovering over the
+	 * energy info area).
+	 */
+	public boolean isHoveringOverEnergyInfo;
+
+	@Override
+	public void renderSlot(MatrixStack pPoseStack, Slot pSlot) {
+		boolean noRender = false;
+		if (isHoveringOverEnergyInfo) {
+			if (getNoEnergyInfoRenderSlots().contains(pSlot.getSlotIndex())) {
+				for (int slotIndex : getNoEnergyInfoRenderSlots()) {
+					if (slotIndex == pSlot.getSlotIndex()) {
+						noRender = pSlot.equals(this.menu.slots.get(slotIndex));
+					}
+				}
+			}
+		}
+		if (!noRender)
+			super.renderSlot(pPoseStack, pSlot);
 	}
 
 }

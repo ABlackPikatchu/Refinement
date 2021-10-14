@@ -3,9 +3,9 @@ package com.ablackpikatchu.refinement.client.screen.tileentity;
 import java.util.ArrayList;
 
 import com.ablackpikatchu.refinement.Refinement;
-import com.ablackpikatchu.refinement.client.screen.element.PowerIndicatorElement;
 import com.ablackpikatchu.refinement.client.screen.element.EnergyInfoTextBoxElement;
-import com.ablackpikatchu.refinement.common.container.CarbonGeneratorContainer;
+import com.ablackpikatchu.refinement.client.screen.element.PowerIndicatorElement;
+import com.ablackpikatchu.refinement.common.container.AlloySmelterContainer;
 import com.ablackpikatchu.refinement.core.util.text.NumberFormatting;
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -15,26 +15,27 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 
-public class CarbonGeneratorScreen extends MachineContainerScreen<CarbonGeneratorContainer> {
+public class AlloySmelterScreen extends MachineContainerScreen<AlloySmelterContainer> {
 
-	public static final ResourceLocation CARBON_GENERATOR_GUI = new ResourceLocation(Refinement.MOD_ID,
-			"textures/gui/carbon_generator.png");
+	public static final ResourceLocation ALLOY_SMELTER_GUI = new ResourceLocation(Refinement.MOD_ID,
+			"textures/gui/alloy_smelter.png");
 
-	public CarbonGeneratorScreen(CarbonGeneratorContainer screenContainer, PlayerInventory inv,
-			ITextComponent titleIn) {
-		super(screenContainer, inv, titleIn, CARBON_GENERATOR_GUI);
+	public static final ResourceLocation ALLOY_SMELTER_JEI_SCREEN = new ResourceLocation(Refinement.MOD_ID,
+			"textures/gui/jei/alloy_smelter.png");
+
+	public AlloySmelterScreen(AlloySmelterContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
+		super(screenContainer, inv, titleIn, ALLOY_SMELTER_GUI);
 
 		this.leftPos = 0;
 		this.topPos = 0;
 		this.imageWidth = 220;
 		this.imageHeight = 201;
 	}
-	
+
 	@Override
 	protected void renderLabels(MatrixStack matrixStack, int mouseX, int mouseY) {
-		this.font.draw(matrixStack, this.inventory.getDisplayName(), 7.0f, 73.0f, 0xA3703A);
-		this.font.draw(matrixStack, this.menu.te.getDisplayName(), 7.0f, 7.0f, 0xA3703A);
-		if (isBetween(mouseX, mouseY, this.leftPos + 176, this.topPos + 0, 32, 32)) {
+		super.renderLabels(matrixStack, mouseX, mouseY);
+		if (isBetween(mouseX, mouseY, this.leftPos + 176, this.topPos + 0, 32, 32) && this.menu.usingEnergy()) {
 			isHoveringOverEnergyInfo = true;
 			EnergyInfoTextBoxElement textBoxElement = new EnergyInfoTextBoxElement();
 			int dropDownNumber = 10;
@@ -45,20 +46,20 @@ public class CarbonGeneratorScreen extends MachineContainerScreen<CarbonGenerato
 					new StringTextComponent("Energy Stored: \u00A7b"
 							+ NumberFormatting.toThousandsFormat(this.menu.currentEnergy.get(), 1) + "\u00A7f FE"),
 					xPos + 3, yPos + dropDownNumber + 4, 0xffffff);
-			this.font.draw(matrixStack, new StringTextComponent("Energy Used: \u00A7b"
-					+ this.menu.energyUsed.get() + "\u00A7f FE/tick"),
+			this.font.draw(matrixStack,
+					new StringTextComponent("Energy Used: \u00A7b" + this.menu.energyUsed.get() + "\u00A7f FE/tick"),
 					xPos + 3, yPos + dropDownNumber + 4 + 10, 0xffffff);
 			this.font.draw(matrixStack,
 					new StringTextComponent(
 							"Max Transfer: \u00A7b" + this.menu.te.energyStorage.getMaxReceive() + "\u00A7f FE/tick"),
 					xPos + 3, yPos + dropDownNumber + 4 + 20, 0xffffff);
-		} else 
+		} else
 			isHoveringOverEnergyInfo = false;
 	}
-	
+
 	@Override
 	public ArrayList<Integer> getNoEnergyInfoRenderSlots() {
-		return Lists.newArrayList(0);
+		return Lists.newArrayList(0, 1, 2, 3, 4);
 	}
 
 	@Override
@@ -67,24 +68,29 @@ public class CarbonGeneratorScreen extends MachineContainerScreen<CarbonGenerato
 		renderSussyGui(matrixStack, partialTicks, this.topPos + 84);
 
 		PowerIndicatorElement powerIndicatorElement = new PowerIndicatorElement();
-		powerIndicatorElement.render(matrixStack, this.leftPos + 176, this.topPos + 0, partialTicks);
+		if (this.menu.usingEnergy())
+			powerIndicatorElement.render(matrixStack, this.leftPos + 176, this.topPos + 0, partialTicks);
 
-		this.minecraft.textureManager.bind(CARBON_GENERATOR_GUI);
+		bind(ALLOY_SMELTER_GUI);
+		this.blit(matrixStack, this.leftPos + 98, this.topPos + 25, 4, 216, this.menu.getProgressionScaled(), 17);
+		renderEnergyBar(matrixStack, this.menu.usingEnergy());
+		renderFuelSlot(matrixStack, this.menu.usingEnergy());
+	}
 
-		// Energy bar
-		for (int i = 0; i <= 76; ++i) {
-			if (this.menu.getEnergyScaled() >= i) {
-				this.blit(matrixStack, this.leftPos + 161, this.topPos + 4 + 76 - i, 249, 0 + 76 - i, 7, 1);
+	public void renderEnergyBar(MatrixStack matrixStack, boolean usingEnergy) {
+		if (usingEnergy) {
+			for (int i = 0; i <= 76; ++i) {
+				if (this.menu.getEnergyScaled() >= i) {
+					this.blit(matrixStack, this.leftPos + 161, this.topPos + 4 + 76 - i, 249, 0 + 76 - i, 7, 1);
+				}
 			}
-		}
+		} else
+			this.blit(matrixStack, this.leftPos + 161, this.topPos + 4, 241, 175, 7, 76);
+	}
 
-		// Progression bar
-		for (int i = 0; i <= 77; ++i) {
-			if (this.menu.getProgressionScaled() >= i) {
-				this.blit(matrixStack, this.leftPos + 76 + 77 - i, this.topPos + 32, 2 + 77 - i, 231, 1, 22);
-			}
-		}
-
+	public void renderFuelSlot(MatrixStack matrixStack, boolean usingEnergy) {
+		if (!usingEnergy)
+			this.blit(matrixStack, this.leftPos + 7, this.topPos + 50, 215, 228, 18, 18);
 	}
 
 }

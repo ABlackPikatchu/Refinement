@@ -1,10 +1,13 @@
 package com.ablackpikatchu.refinement.client.screen.tileentity;
 
+import java.util.ArrayList;
+
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.client.screen.element.EnergyInfoTextBoxElement;
 import com.ablackpikatchu.refinement.client.screen.element.PowerIndicatorElement;
 import com.ablackpikatchu.refinement.common.container.EnergyGeneratorContainer;
 import com.ablackpikatchu.refinement.core.util.text.NumberFormatting;
+import com.google.common.collect.Lists;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import net.minecraft.entity.player.PlayerInventory;
@@ -32,6 +35,7 @@ public class EnergyGeneratorScreen extends MachineContainerScreen<EnergyGenerato
         this.font.draw(matrixStack, this.inventory.getDisplayName(), 7.0f, 73.0f, 0xA3703A);
         this.font.draw(matrixStack, this.menu.te.getDisplayName(), 7.0f, 7.0f, 0xA3703A);
         if (isBetween(mouseX, mouseY, this.leftPos + 176, this.topPos + 0, 32, 32)) {
+        	isHoveringOverEnergyInfo = true;
             EnergyInfoTextBoxElement textBoxElement = new EnergyInfoTextBoxElement();
             int dropDownNumber = 10;
             int xPos = mouseX - this.leftPos - textBoxElement.getWidth();
@@ -48,7 +52,13 @@ public class EnergyGeneratorScreen extends MachineContainerScreen<EnergyGenerato
                     new StringTextComponent(
                             "Max Transfer: \u00A7b" + this.menu.te.energyStorage.getMaxExtract() + "\u00A7f FE/tick"),
                     xPos + 3, yPos + dropDownNumber + 4 + 20, 0xffffff);
-        }
+        } else
+        	isHoveringOverEnergyInfo = false;
+    }
+    
+    @Override
+    public ArrayList<Integer> getNoEnergyInfoRenderSlots() {
+    	return Lists.newArrayList(0);
     }
 
     @Override

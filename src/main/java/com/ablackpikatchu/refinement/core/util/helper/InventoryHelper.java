@@ -108,7 +108,7 @@ public class InventoryHelper {
 		if (!container.canPlaceItem(slot, stack)) {
 			return false;
 		} else {
-			return !(container instanceof ISidedInventory)
+			return (container instanceof ISidedInventory)
 					|| ((ISidedInventory) container).canPlaceItemThroughFace(slot, stack, side);
 		}
 	}

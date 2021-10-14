@@ -12,7 +12,7 @@ import com.ablackpikatchu.refinement.common.container.GrinderContainer;
 import com.ablackpikatchu.refinement.common.recipe.GrinderRecipe;
 import com.ablackpikatchu.refinement.common.security.ISecurableTile;
 import com.ablackpikatchu.refinement.common.security.SecurityType;
-import com.ablackpikatchu.refinement.common.te.SidedInventoryTileEntity;
+import com.ablackpikatchu.refinement.common.te.MachineTileEntity;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
@@ -34,7 +34,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 import net.minecraftforge.common.util.Constants;
 
-public class GrinderTileEntity extends SidedInventoryTileEntity implements ITickableTileEntity, ISecurableTile {
+public class GrinderTileEntity extends MachineTileEntity implements ITickableTileEntity, ISecurableTile {
 
 	List<ItemStack> allItems = null;
 	private ITextComponent customName;
@@ -92,10 +92,11 @@ public class GrinderTileEntity extends SidedInventoryTileEntity implements ITick
 								this.getBlockState().setValue(GrinderBlock.LIT, true));
 					}
 				}
-			} else regressProgress();
+			} else
+				regressProgress();
 		}
 	}
-	
+
 	@Nullable
 	private GrinderRecipe getRecipe(ItemStack stack) {
 		if (stack.isEmpty()) {
@@ -167,6 +168,8 @@ public class GrinderTileEntity extends SidedInventoryTileEntity implements ITick
 		if (this.customName != null) {
 			compound.putString("CustomName", ITextComponent.Serializer.toJson(this.customName));
 		}
+		if (security != null)
+			compound.putString("SecurityType", security.getName());
 		return compound;
 	}
 
@@ -176,6 +179,10 @@ public class GrinderTileEntity extends SidedInventoryTileEntity implements ITick
 		if (nbt.contains("CustomName", Constants.NBT.TAG_STRING)) {
 			this.customName = ITextComponent.Serializer.fromJson(nbt.getString("CustomName"));
 		}
+		if (nbt.contains("SecurityType"))
+			security = SecurityType.byName(nbt.getString("SecurityType"));
+		else
+			security = SecurityType.PUBLIC;
 	}
 
 	@Override
@@ -217,7 +224,7 @@ public class GrinderTileEntity extends SidedInventoryTileEntity implements ITick
 	public SecurityType getSecurity() {
 		return this.security;
 	}
-	
+
 	@Override
 	public void setSecurity(SecurityType security) {
 		this.security = security;
@@ -227,6 +234,11 @@ public class GrinderTileEntity extends SidedInventoryTileEntity implements ITick
 	@Override
 	public UUID getOwnerUUID() {
 		return this.ownerUUID;
+	}
+
+	@Override
+	public int getFuelSlot() {
+		return 2;
 	}
 
 }

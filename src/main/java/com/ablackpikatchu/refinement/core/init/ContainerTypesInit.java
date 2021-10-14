@@ -36,6 +36,9 @@ public class ContainerTypesInit {
 			.register("energy_generator", () -> IForgeContainerType.create(EnergyGeneratorContainer::new));
 	
 	public static final RegistryObject<ContainerType<SmelterContainer>> SMELTER_CONTAINER_TYPE = CONTAINER_TYPES
-			.register("smleter", () -> IForgeContainerType.create(SmelterContainer::new));
+			.register("smelter", () -> IForgeContainerType.create(SmelterContainer::new));
+	
+	public static final RegistryObject<ContainerType<AlloySmelterContainer>> ALLOY_SMELTER_CONTAINER_TYPE = CONTAINER_TYPES
+			.register("alloy_smelter", () -> IForgeContainerType.create(AlloySmelterContainer::new));
 
 }

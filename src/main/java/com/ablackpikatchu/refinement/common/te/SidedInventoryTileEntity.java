@@ -258,15 +258,16 @@ public abstract class SidedInventoryTileEntity extends LockableTileEntity
 	protected void storeResultItem(ItemStack stack) {
 		// Merge the item into any output slot it can fit in
 		for (int i : getOutputSlots()) {
-			ItemStack output = getItem(i);
+			ItemStack output = ((IInventory) this).getItem(i);
 			if (TileEntityHelper.canPlaceItemInStack(output, stack)) {
 				if (output.isEmpty()) {
-					setItem(i, stack);
+					((IInventory) this).setItem(i, stack);
 				} else {
 					output.setCount(output.getCount() + stack.getCount());
 				}
 				return;
-			}
+			} else if (getOutputSlots().length == 1)
+				return;
 		}
 	}
 
@@ -485,9 +486,11 @@ public abstract class SidedInventoryTileEntity extends LockableTileEntity
 		ArrayList<Item> validInputs = new ArrayList<>();
 		this.getRecipes(recipeType).forEach(recipe -> {
 			recipe.getIngredients().forEach(ingredient -> {
-				if (!validInputs.contains(ingredient.getItems()[0].getItem())
-						&& ingredient.getItems()[0].getItem() != ItemInit.REFINED_CARBON_INGOT.get())
-					validInputs.add(ingredient.getItems()[0].getItem());
+				for (ItemStack item : ingredient.getItems()) {
+				if (!validInputs.contains(item.getItem())
+						&& item.getItem() != ItemInit.REFINED_CARBON_INGOT.get() && !item.isEmpty())
+					validInputs.add(item.getItem());
+				}
 			});
 		});
 		return validInputs;

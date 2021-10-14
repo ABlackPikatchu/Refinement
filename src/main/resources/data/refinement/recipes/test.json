@@ -1,0 +1,21 @@
+{
+  "type": "refinement:alloy_smelting",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/iron",
+      "count": 3
+    },
+    {
+      "tag": "forge:ingots/tin",
+      "count": 1
+    },
+    {
+      "tag": "forge:dusts/glowstone",
+      "count": 4
+    }
+  ],
+  "output": {
+    "item": "refinement:refined_carbon_ingot",
+    "count": 4
+  }
+}

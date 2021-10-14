@@ -35,6 +35,8 @@ public class RefinementJEIPlugin implements IModPlugin {
 		registration.addRecipes(getRecipes(manager, RecipeInit.MIXER_RECIPE), MixerRecipeCategory.ID);
 		registration.addRecipes(getRecipes(manager, RecipeInit.MOLD_PRESS_RECIPE), MoldPressRecipeCatgory.ID);
 		registration.addRecipes(getRecipes(manager, RecipeInit.DNA_SEQUENCER_RECIPE), DNASequencerRecipeCategory.ID);
+		registration.addRecipes(getRecipes(manager, RecipeInit.ALLOY_SMELTING_RECIPE), AlloySmelterRecipeCategory.ID);
+		
 		registration.addRecipes(getRecipes(manager, RecipeInit.ANVIL_RECIPE), AnvilRecipeCategory.ID);
 	}
 
@@ -46,6 +48,8 @@ public class RefinementJEIPlugin implements IModPlugin {
 		registration.addRecipeCategories(new MixerRecipeCategory(helper));
 		registration.addRecipeCategories(new MoldPressRecipeCatgory(helper));
 		registration.addRecipeCategories(new DNASequencerRecipeCategory(helper));
+		registration.addRecipeCategories(new AlloySmelterRecipeCategory(helper));
+		
 		registration.addRecipeCategories(new AnvilRecipeCategory(helper));
 	}
 

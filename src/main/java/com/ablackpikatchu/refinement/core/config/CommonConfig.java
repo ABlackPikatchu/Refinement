@@ -26,7 +26,7 @@ public class CommonConfig {
 	// DNA Sequencer
 	public static ForgeConfigSpec.ConfigValue<Integer> DNA_SEQUENCER_DEFAULT_PROCESS_TIME;
 	public static ForgeConfigSpec.ConfigValue<Integer> DNA_SEQUENCER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE;
-
+	
 	// Carbon Generator
 	public static ForgeConfigSpec.ConfigValue<Integer> CARBON_GENERATOR_DEFAULT_PROCESS_TIME;
 	public static ForgeConfigSpec.ConfigValue<Integer> CARBON_GENERATOR_TIME_DECREASED_BY_EACH_SPEED_UPGRADE;
@@ -71,6 +71,7 @@ public class CommonConfig {
 		addMixerConfig();
 		addMoldPressConfig();
 		addDNASequencerConfig();
+		addAlloySmelterConfig();
 		addCarbonGeneratorConfig();
 		addEnergyGeneratorConfig();
 		addSmelterConfig();
@@ -171,6 +172,25 @@ public class CommonConfig {
 		DNA_SEQUENCER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE = BUILDER.comment(
 				"The ticks amount each speed upgrades decreases from the process time of the DNA Sequencer. (Default value is 10)")
 				.define("speedUpgradeTimeDecreased", 10);
+		BUILDER.pop();
+	}
+	
+	// Alloy Smelter
+	public static ForgeConfigSpec.ConfigValue<Integer> ALLOY_SMELTER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE;
+	public static ForgeConfigSpec.ConfigValue<Integer> ALLOY_SMELTER_ENERGY_USAGE_PER_SPEED_UPGRADE;
+	public static ForgeConfigSpec.ConfigValue<Integer> ALLOY_SMELTER_DEFAULT_ENERGY_USAGE;
+	
+	public static void addAlloySmelterConfig() {
+		BUILDER.push("Alloy_Smelter");
+		ALLOY_SMELTER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE = BUILDER.comment(
+				"The ticks amount each speed upgrades decreases from the process time of the Alloy Smelter. (Default value is 20)")
+				.define("speedUpgradeTimeDecreased", 20);
+		ALLOY_SMELTER_DEFAULT_ENERGY_USAGE = BUILDER.comment(
+				"(Only for Alloy Smelters that have the Energy Ability Upgrade) The default energy usage (FE/tick) of the Alloy Smelter, per tick. (with no speed upgrades) (Default value is 60)")
+				.define("defaultEnergyUsage", 60);
+		ALLOY_SMELTER_ENERGY_USAGE_PER_SPEED_UPGRADE = BUILDER.comment(
+				"(Only for Alloy Smelters that have the Energy Ability Upgrade) The amount of FE/tick the Alloy Smelter furthermore consumes for each speed upgrade. (Default value is 10)")
+				.define("speedUpgradeEnergyUsage", 10);
 		BUILDER.pop();
 	}
 

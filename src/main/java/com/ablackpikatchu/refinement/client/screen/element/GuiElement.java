@@ -3,11 +3,11 @@ package com.ablackpikatchu.refinement.client.screen.element;
 import java.util.function.BooleanSupplier;
 
 import com.ablackpikatchu.refinement.common.container.MachineContainer;
+import com.ablackpikatchu.refinement.common.te.SidedInventoryTileEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.Widget;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -61,7 +61,7 @@ public class GuiElement extends Widget {
 
     }
     
-    public <Z extends TileEntity> void handleClick(int mouseX, int mouseY, MachineContainer<Z> container) {
+    public <Z extends SidedInventoryTileEntity> void handleClick(int mouseX, int mouseY, MachineContainer<Z> container) {
     	
     }
 

@@ -47,6 +47,7 @@ public class LangProvider extends LanguageProvider {
 		add(BlockInit.RESOURCE_STATUE_BLOCK.get(), "Resource Statue");
 		add(CARBON_GENERATOR_BLOCK.get(), "Carbon Generator");
 		add(SMELTER_BLOCK.get(), "Smelter");
+		add(ALLOY_SMELTER_BLOCK.get(), "Alloy Smelter");
 		
 		add(BlockInit.REFINED_LOG.get(), "Refined Log");
 		add(BlockInit.REFINED_STRIPPED_LOG.get(), "Refined Stripped Log");
@@ -67,6 +68,7 @@ public class LangProvider extends LanguageProvider {
 		addContainer("carbon_generator", "Carbon Generator");
 		addContainer("energy_generator", "Energy Generator");
 		addContainer("smelter", "Smelter");
+		addContainer("alloy_smelter", "Alloy Smelter");
 		
 		// Category
 		addCategory("mixer_recipe", "Mixer");
@@ -74,6 +76,7 @@ public class LangProvider extends LanguageProvider {
 		addCategory("grinder_recipe", "Grinder");
 		addCategory("dna_sequencer", "DNA Sequencer");
 		addCategory("anvil", "Anvil");
+		addCategory("alloy_smelting", "Alloy Smelting");
 
 		// Item Group
 		addItemGroup(RefinementItemGroup.REFINEMENT.getName(), "Refinement");

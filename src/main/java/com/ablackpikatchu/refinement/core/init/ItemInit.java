@@ -10,6 +10,7 @@ import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.R
 import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.REFINEMENT_TOOLS_WEAPONS;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.common.ModRarity;
 import com.ablackpikatchu.refinement.common.item.ArmorUpgrader;
 import com.ablackpikatchu.refinement.common.item.AutoEjectUpgrade;
 import com.ablackpikatchu.refinement.common.item.AutoImportUpgrade;
@@ -365,6 +366,8 @@ public class ItemInit {
 			() -> new AutoImportUpgrade(new Item.Properties().tab(REFINEMENT).stacksTo(1).rarity(GOLD_RARITY)));
 	public static final RegistryObject<Item> SPEED_UPGRADE = ITEMS.register("speed_upgrade", () -> new Item(
 			new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE).stacksTo(8).rarity(DARK_RED_RARITY)));
+	public static final RegistryObject<Item> ENERGY_ABILITY_UPGRADE = ITEMS.register("energy_ability_upgrade", () -> new Item(
+			new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE).stacksTo(1).rarity(ModRarity.GREEN_RARITY)));
 
 	// Food
 	public static final RegistryObject<Item> MINERS_STEW = ITEMS.register("miners_stew",

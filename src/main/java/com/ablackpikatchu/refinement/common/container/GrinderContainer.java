@@ -29,6 +29,8 @@ public class GrinderContainer extends MachineContainer<GrinderTileEntity> {
 	public FunctionalIntReferenceHolder currentWaitTime;
 	public FunctionalIntReferenceHolder maxWaitTime;
 	
+	public FunctionalIntReferenceHolder security;
+	
 	public GrinderContainer(final int windowId, final PlayerInventory playerInv,
 			final GrinderTileEntity te) {
 		super(ContainerTypesInit.GRINDER_CONTAINER_TYPE.get(), windowId, te);
@@ -58,6 +60,9 @@ public class GrinderContainer extends MachineContainer<GrinderTileEntity> {
 				value -> this.te.currentWaitTime = value));
 		this.addDataSlot(maxWaitTime = new FunctionalIntReferenceHolder(() -> this.te.maxWaitTime,
 				value -> this.te.maxWaitTime = value));
+		
+		this.addDataSlot(security = new FunctionalIntReferenceHolder(() -> this.te.getSecurityInt(), 
+				value -> this.te.setIntSecurity(value)));
 	}
 
 	public GrinderContainer(final int windowId, final PlayerInventory playerInv, final PacketBuffer data) {

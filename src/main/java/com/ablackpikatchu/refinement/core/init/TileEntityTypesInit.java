@@ -42,6 +42,10 @@ public class TileEntityTypesInit {
 			.register("energy_generator", () -> TileEntityType.Builder
 					.of(EnergyGeneratorTileEntity::new, BlockInit.ENERGY_GENERATOR_BLOCK.get()).build(null));
 	
+	public static final RegistryObject<TileEntityType<AlloySmelterTileEntity>> ALLOY_SMELTER_TILE_ENTITY_TYPE = TILE_ENTITY_TYPE
+			.register("alloy_smelter", () -> TileEntityType.Builder
+					.of(AlloySmelterTileEntity::new, BlockInit.ALLOY_SMELTER_BLOCK.get()).build(null));
+	
 	public static final RegistryObject<TileEntityType<SmelterTileEntity>> SMELTER_TILE_ENTITY_TYPE = TILE_ENTITY_TYPE
 			.register("smelter", () -> TileEntityType.Builder
 					.of(SmelterTileEntity::new, BlockInit.SMELTER_BLOCK.get()).build(null));

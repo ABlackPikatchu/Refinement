@@ -2,6 +2,7 @@ package com.ablackpikatchu.refinement.core.init;
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.block.*;
+import com.ablackpikatchu.refinement.common.block.machine.AlloySmelterBlock;
 import com.ablackpikatchu.refinement.common.block.machine.CarbonGeneratorBlock;
 import com.ablackpikatchu.refinement.common.block.machine.DNASequencerBlock;
 import com.ablackpikatchu.refinement.common.block.machine.EnergyGeneratorBlock;
@@ -81,6 +82,8 @@ public class BlockInit {
 	
 	public static final RegistryObject<Block> SMELTER_BLOCK = BLOCKS.register("smelter",
 			() -> new SmelterBlock());
+	
+	public static final RegistryObject<Block> ALLOY_SMELTER_BLOCK = BLOCKS.register("alloy_smelter", AlloySmelterBlock::new);
 	
 	public static final RegistryObject<Block> ENERGY_CABLE_BLOCK = BLOCKS.register("energy_cable", EnergyCableBlock::new);
 	
