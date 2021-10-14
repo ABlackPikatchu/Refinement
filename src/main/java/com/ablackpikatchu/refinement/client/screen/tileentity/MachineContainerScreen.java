@@ -131,11 +131,9 @@ public abstract class MachineContainerScreen<T extends MachineContainer<?>> exte
 	public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
 
 		elements.forEach(elem -> {
-			System.out
-					.println(pMouseX + " renderX is " + elem.renderX + ", " + pMouseY + " renderY is " + elem.renderY);
 			if (this.isBetween((int) pMouseX, (int) pMouseY, elem.renderX, elem.renderY, elem.getWidth(),
 					elem.getHeight())) {
-				elem.handleClick((int) pMouseX, (int) pMouseY, this.menu);
+				//elem.handleClick((int) pMouseX, (int) pMouseY, this.menu);
 			}
 		});
 
