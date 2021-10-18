@@ -28,22 +28,6 @@ public abstract class MachineTileEntity extends SidedInventoryTileEntity {
 		super(typeIn, inventorySize);
 	}
 
-	public int getIntUsingEnergy() {
-		if (usingEnergy)
-			return 1;
-		else
-			return 0;
-	}
-
-	public void setIntUsingEnergy(int usingEnergy) {
-		switch (usingEnergy) {
-		case 0:
-			this.usingEnergy = false;
-		case 1:
-			this.usingEnergy = true;
-		}
-	}
-
 	public boolean isUsingEnergy() {
 		return usingEnergy;
 	}
@@ -107,6 +91,10 @@ public abstract class MachineTileEntity extends SidedInventoryTileEntity {
 		tags.putBoolean("UsingEnergy", usingEnergy);
 		if (energyStorage != null)
 			tags.putInt("energyStored", energyStorage.getEnergyStored());
+		if (ownerUUID != null)
+			tags.putUUID("owner", ownerUUID);
+		if (security != null)
+			tags.putString("security", security.getName());
 		return super.save(tags);
 	}
 
@@ -116,6 +104,9 @@ public abstract class MachineTileEntity extends SidedInventoryTileEntity {
 		usingEnergy = tags.getBoolean("UsingEnergy");
 		if (energyStorage != null)
 			energyStorage.setEnergy(tags.getInt("energyStored"));
+		if (tags.hasUUID("owner"))
+			ownerUUID = tags.getUUID("owner");
+		security = SecurityType.byName(tags.getString("security"));
 	}
 	
 	public void setIntSecurity(int sec) {

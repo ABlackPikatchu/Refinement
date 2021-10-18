@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "refinement:lumium_ingot"
+    },
+    {
+      "item": "refinement:lumium_ingot"
+    },
+    {
+      "item": "refinement:lumium_ingot"
+    },
+    {
+      "item": "refinement:lumium_ingot"
+    },
+    {
+      "item": "refinement:lumium_ingot"
+    },
+    {
+      "item": "refinement:lumium_ingot"
+    },
+    {
+      "item": "refinement:lumium_ingot"
+    },
+    {
+      "item": "refinement:lumium_ingot"
+    },
+    {
+      "item": "refinement:lumium_ingot"
+    }
+  ],
+  "result": {
+    "item": "refinement:lumium_block"
+  }
+}

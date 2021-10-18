@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "refinement:signalum_block"
+    }
+  ],
+  "result": {
+    "item": "refinement:signalum_ingot",
+    "count": 9
+  }
+}

@@ -51,6 +51,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Food;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.PickaxeItem;
@@ -218,6 +219,22 @@ public class ItemInit {
 	public static final RegistryObject<Item> REFINED_NETHERITE_HOE = ITEMS.register("refined_netherite_hoe",
 			() -> new HoeItem(ModItemTier.REFINEDNETHERITE, -4, 0.0F,
 					new Item.Properties().tab(RefinementToolsWeaponsGroup.REFINEMENT_TOOLS_WEAPONS)));
+	
+	// Thermal Stuff
+	public static final RegistryObject<Item> LUMIUM_INGOT = normalItem("lumium_ingot", REFINEMENT_MATERIALS);
+	public static final RegistryObject<Item> SIGNALUM_INGOT = normalItem("signalum_ingot", REFINEMENT_MATERIALS);
+	public static final RegistryObject<Item> ENDERIUM_INGOT = normalItem("enderium_ingot", REFINEMENT_MATERIALS);
+	
+	public static final RegistryObject<Item> TIN_INGOT = normalItem("tin_ingot", REFINEMENT_MATERIALS);
+	public static final RegistryObject<Item> SILVER_INGOT = normalItem("silver_ingot", REFINEMENT_MATERIALS);
+	public static final RegistryObject<Item> LEAD_INGOT = normalItem("lead_ingot", REFINEMENT_MATERIALS);
+	public static final RegistryObject<Item> COPPER_INGOT = normalItem("copper_ingot", REFINEMENT_MATERIALS);
+	
+	public static final RegistryObject<Item> TIN_DUST = normalItem("tin_dust", REFINEMENT_MATERIALS);
+	public static final RegistryObject<Item> SILVER_DUST = normalItem("silver_dust", REFINEMENT_MATERIALS);
+	public static final RegistryObject<Item> LEAD_DUST = normalItem("lead_dust", REFINEMENT_MATERIALS);
+	public static final RegistryObject<Item> COPPER_DUST = normalItem("copper_dust", REFINEMENT_MATERIALS);
+	
 	// Custom Tools
 	public static final RegistryObject<Item> MIXING_BOWL = ITEMS.register("mixing_bowl", () -> new MixingBowl(
 			new Item.Properties().tab(RefinementToolsWeaponsGroup.REFINEMENT_TOOLS_WEAPONS).defaultDurability(20)));
@@ -391,5 +408,9 @@ public class ItemInit {
 	public static final RegistryObject<Item> MINERS_JERKY = ITEMS.register("miners_jerky", MinersJerky::new);
 	public static final RegistryObject<Item> MINERS_BREAD = ITEMS.register("miners_bread", MinersBread::new);
 	public static final RegistryObject<Item> CURING_APPLE = ITEMS.register("curing_apple", CuringApple::new);
+	
+	private static RegistryObject<Item> normalItem(String registryName, ItemGroup tab) {
+		return ITEMS.register(registryName, () -> new Item(new Item.Properties().tab(tab)));
+	}
 
 }

@@ -35,6 +35,14 @@ public class BlockTagsProvider extends net.minecraft.data.BlockTagsProvider {
     	tag(TagInit.Blocks.NETHERITE_STORAGE).add(BlockInit.REFINED_NETHERITE_BLOCK.get());
     	tag(TagInit.Blocks.STORAGE_BLOCKS).add(BlockInit.REFINED_CARBON_BLOCK.get());
     	tag(TagInit.Blocks.CARBON_STORAGE).add(BlockInit.REFINED_CARBON_BLOCK.get());
+    	
+    	tag(TagInit.Blocks.LUMIUM_STORAGE).add(BlockInit.LUMIUM_BLOCK.get());
+    	tag(TagInit.Blocks.SIGNALUM_STORAGE).add(BlockInit.SIGNALUM_BLOCK.get());
+    	tag(TagInit.Blocks.ENDERIUM_STORAGE).add(BlockInit.ENDERIUM_BLOCK.get());
+    	tag(TagInit.Blocks.TIN_STORAGE).add(BlockInit.TIN_BLOCK.get());
+    	tag(TagInit.Blocks.SILVER_STORAGE).add(BlockInit.SILVER_BLOCK.get());
+    	tag(TagInit.Blocks.LEAD_STORAGE).add(BlockInit.LEAD_BLOCK.get());
+    	tag(TagInit.Blocks.COPPER_STORAGE).add(BlockInit.COPPER_BLOCK.get());
 		
 	}
 

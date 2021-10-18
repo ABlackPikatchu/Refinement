@@ -1,0 +1,22 @@
+{
+  "type": "refinement:alloy_smelting",
+  "ingredients": [
+    {
+      "count": 3,
+      "tag": "forge:ingots_dusts/tin"
+    },
+    {
+      "count": 1,
+      "tag": "forge:ingots_dusts/silver"
+    },
+    {
+      "count": 2,
+      "tag": "forge:dusts/glowstone"
+    }
+  ],
+  "output": {
+    "item": "refinement:lumium_ingot",
+    "count": 4
+  },
+  "process_time": 250
+}

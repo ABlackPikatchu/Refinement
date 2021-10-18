@@ -65,8 +65,8 @@ public class AlloySmelterContainer extends MachineContainer<AlloySmelterTileEnti
 		this.addDataSlot(currentEnergy = new FunctionalIntReferenceHolder(() -> this.te.energyStorage.getEnergyStored(),
 				value -> this.te.energyStorage.setEnergy(value)));
 
-		this.addDataSlot(usingEnergy = new FunctionalIntReferenceHolder(() -> this.te.getIntUsingEnergy(),
-				value -> this.te.setIntUsingEnergy(value)));
+		this.addDataSlot(usingEnergy = new FunctionalIntReferenceHolder(() -> this.te.getItem(9).getCount(),
+				value -> this.te.getItem(9).setCount(value)));
 	}
 
 	@Override

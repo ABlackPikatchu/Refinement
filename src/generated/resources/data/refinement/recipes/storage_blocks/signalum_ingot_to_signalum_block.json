@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "refinement:signalum_ingot"
+    },
+    {
+      "item": "refinement:signalum_ingot"
+    },
+    {
+      "item": "refinement:signalum_ingot"
+    },
+    {
+      "item": "refinement:signalum_ingot"
+    },
+    {
+      "item": "refinement:signalum_ingot"
+    },
+    {
+      "item": "refinement:signalum_ingot"
+    },
+    {
+      "item": "refinement:signalum_ingot"
+    },
+    {
+      "item": "refinement:signalum_ingot"
+    },
+    {
+      "item": "refinement:signalum_ingot"
+    }
+  ],
+  "result": {
+    "item": "refinement:signalum_block"
+  }
+}

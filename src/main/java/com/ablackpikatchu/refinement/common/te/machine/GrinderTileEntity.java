@@ -139,10 +139,12 @@ public class GrinderTileEntity extends MachineTileEntity implements ITickableTil
 		return new TranslationTextComponent("container." + Refinement.MOD_ID + ".grinder");
 	}
 
+	@Override
 	public void setCustomName(ITextComponent name) {
 		this.customName = name;
 	}
 
+	@Override
 	public ITextComponent getName() {
 		return this.customName != null ? this.customName : this.getDefaultName();
 	}
@@ -152,6 +154,7 @@ public class GrinderTileEntity extends MachineTileEntity implements ITickableTil
 		return this.getName();
 	}
 
+	@Override
 	@Nullable
 	public ITextComponent getCustomName() {
 		return this.customName;
@@ -168,8 +171,6 @@ public class GrinderTileEntity extends MachineTileEntity implements ITickableTil
 		if (this.customName != null) {
 			compound.putString("CustomName", ITextComponent.Serializer.toJson(this.customName));
 		}
-		if (security != null)
-			compound.putString("SecurityType", security.getName());
 		return compound;
 	}
 
@@ -179,10 +180,6 @@ public class GrinderTileEntity extends MachineTileEntity implements ITickableTil
 		if (nbt.contains("CustomName", Constants.NBT.TAG_STRING)) {
 			this.customName = ITextComponent.Serializer.fromJson(nbt.getString("CustomName"));
 		}
-		if (nbt.contains("SecurityType"))
-			security = SecurityType.byName(nbt.getString("SecurityType"));
-		else
-			security = SecurityType.PUBLIC;
 	}
 
 	@Override

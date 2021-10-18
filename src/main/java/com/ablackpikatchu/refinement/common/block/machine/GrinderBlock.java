@@ -97,7 +97,7 @@ public class GrinderBlock extends Block {
 			TileEntity te = worldIn.getBlockEntity(pos);
 			if (te instanceof GrinderTileEntity) {
 				GrinderTileEntity grinder = (GrinderTileEntity) te;
-				if (!grinder.isPrivate())
+				if (!grinder.isPrivate() || player.isCreative() || player.hasPermissions(2))
 					NetworkHooks.openGui((ServerPlayerEntity) player, grinder, pos);
 				else {
 					if (player.getUUID().equals(grinder.ownerUUID))

@@ -1,10 +1,12 @@
 package com.ablackpikatchu.refinement.data.maps;
 
 import java.util.HashMap;
+import java.util.function.Consumer;
 
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.TagInit;
+import com.ablackpikatchu.refinement.data.common.recipes.builder.AlloySmelterRecipeBuilder;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.IngredientInput;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.Output;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.TagInput;
@@ -14,11 +16,15 @@ import com.ablackpikatchu.refinement.datafixers.util.recipe.mold_press.MoldPress
 import com.ablackpikatchu.refinement.resourcecrops.core.CropInit;
 
 import net.minecraft.block.Block;
+import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 
 public class RecipeMaps {
+
+	private RecipeMaps() {
+	}
 
 	public static void addShapelessBlockIngotEntries(HashMap<Block, Item> map) {
 		map.put(BlockInit.REFINED_CARBON_BLOCK.get(), ItemInit.REFINED_CARBON_INGOT.get());
@@ -26,6 +32,13 @@ public class RecipeMaps {
 		map.put(BlockInit.REFINED_GOLD_BLOCK.get(), ItemInit.REFINED_GOLD_INGOT.get());
 		map.put(BlockInit.REFINED_DIAMOND_BLOCK.get(), ItemInit.REFINED_DIAMOND.get());
 		map.put(BlockInit.REFINED_NETHERITE_BLOCK.get(), ItemInit.REFINED_NETHERITE_INGOT.get());
+
+		map.put(BlockInit.LUMIUM_BLOCK.get(), ItemInit.LUMIUM_INGOT.get());
+		map.put(BlockInit.SIGNALUM_BLOCK.get(), ItemInit.SIGNALUM_INGOT.get());
+		map.put(BlockInit.ENDERIUM_BLOCK.get(), ItemInit.ENDERIUM_INGOT.get());
+
+		map.put(BlockInit.TIN_BLOCK.get(), ItemInit.TIN_INGOT.get());
+		map.put(BlockInit.SILVER_BLOCK.get(), ItemInit.SILVER_INGOT.get());
 	}
 
 	public static void addShapelessIngotNuggetEntries(HashMap<Item, Item> map) {
@@ -214,7 +227,24 @@ public class RecipeMaps {
 		map.put(new DNASequencerInput(new IngredientInput(CropInit.PURE_CRYSTAL_ESSENCE.get(), 4),
 				new IngredientInput(Items.COBBLESTONE, 2), 60).setCropsEnabledCondition(true),
 				new Output(ItemInit.PURE_CRYSTAL.get(), 2));
-		
+
+	}
+
+	public static void addAlloySmelterRecipes(Consumer<IFinishedRecipe> consumer) {
+		AlloySmelterRecipeBuilder.recipeBuilder(ItemInit.LUMIUM_INGOT.get(), 4)
+				.addIngredient(new TagInput(TagInit.Items.TIN_INGOTS_DUSTS, 3))
+				.addIngredient(new TagInput(TagInit.Items.SILVER_INGOTS_DUSTS, 1))
+				.addIngredient(new TagInput(TagInit.Items.GLOWSTONE_DUST, 2)).setProcessTime(250).build(consumer);
+
+		AlloySmelterRecipeBuilder.recipeBuilder(ItemInit.SIGNALUM_INGOT.get(), 4)
+				.addIngredient(new TagInput(TagInit.Items.COPPER_INGOTS_DUSTS, 3))
+				.addIngredient(new TagInput(TagInit.Items.SILVER_INGOTS_DUSTS, 1))
+				.addIngredient(new TagInput(TagInit.Items.REDSTONE_DUST, 4)).setProcessTime(250).build(consumer);
+
+		AlloySmelterRecipeBuilder.recipeBuilder(ItemInit.ENDERIUM_INGOT.get(), 2)
+				.addIngredient(new TagInput(TagInit.Items.LEAD_INGOTS_DUSTS, 3))
+				.addIngredient(new TagInput(TagInit.Items.DIAMOND_DUST, 1))
+				.addIngredient(new TagInput(TagInit.Items.ENDER_PEARLS, 2)).setProcessTime(300).build(consumer);
 	}
 
 }

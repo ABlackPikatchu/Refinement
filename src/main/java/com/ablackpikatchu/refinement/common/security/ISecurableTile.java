@@ -8,8 +8,6 @@ public interface ISecurableTile {
 
 	SecurityType getSecurity();
 	
-	//void setSecurity(SecurityType security);
-	
 	UUID getOwnerUUID();
 	
 }

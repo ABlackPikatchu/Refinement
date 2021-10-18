@@ -42,11 +42,10 @@ public class PlayerEvents {
 		if (event.getEntityLiving() instanceof PlayerEntity) {
 			PlayerEntity player = (PlayerEntity) event.getEntityLiving();
 			TileEntity tile = event.getEntity().level.getBlockEntity(event.getPos());
-			if (tile != null && tile instanceof ISecurableTile) {
+			if (tile instanceof ISecurableTile) {
 				ISecurableTile securableTile = (ISecurableTile) tile;
-				if (securableTile != null && securableTile.getSecurity().isPrivate())
-					if (!player.getUUID().equals(securableTile.getOwnerUUID()))
-						event.setCanceled(true);
+				if (securableTile.getSecurity().isPrivate() && !player.getUUID().equals(securableTile.getOwnerUUID()))
+					event.setCanceled(true);
 			}
 		}
 	}

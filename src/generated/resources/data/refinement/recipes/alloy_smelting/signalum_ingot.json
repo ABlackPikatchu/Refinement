@@ -1,0 +1,22 @@
+{
+  "type": "refinement:alloy_smelting",
+  "ingredients": [
+    {
+      "count": 3,
+      "tag": "forge:ingots_dusts/copper"
+    },
+    {
+      "count": 1,
+      "tag": "forge:ingots_dusts/silver"
+    },
+    {
+      "count": 4,
+      "tag": "forge:dusts/redstone"
+    }
+  ],
+  "output": {
+    "item": "refinement:signalum_ingot",
+    "count": 4
+  },
+  "process_time": 250
+}

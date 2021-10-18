@@ -1,5 +1,8 @@
 package com.ablackpikatchu.refinement.datafixers.util.recipe;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
 import net.minecraft.item.Item;
 import net.minecraft.tags.ITag;
 
@@ -8,7 +11,7 @@ import net.minecraft.tags.ITag;
  * @author matyrobbrt
  *
  */
-public class TagInput {
+public class TagInput implements IIngredient {
 	
 	private final ITag<Item> tag;
 	private final int count;
@@ -37,5 +40,13 @@ public class TagInput {
 	 */
 	public int getCount() {
 		return this.count;
+	}
+
+	@Override
+	public JsonElement toJson() {
+		JsonObject obj = new JsonObject();
+		obj.addProperty("count", count);
+		obj.addProperty("tag", tag.toString().replace("[", "").replace("]", "").replace("NamedTag", ""));
+		return obj;
 	}
 }

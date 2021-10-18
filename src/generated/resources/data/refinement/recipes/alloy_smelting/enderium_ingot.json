@@ -1,0 +1,22 @@
+{
+  "type": "refinement:alloy_smelting",
+  "ingredients": [
+    {
+      "count": 3,
+      "tag": "forge:ingots_dusts/lead"
+    },
+    {
+      "count": 1,
+      "tag": "forge:dusts/diamond"
+    },
+    {
+      "count": 2,
+      "tag": "forge:ender_pearls"
+    }
+  ],
+  "output": {
+    "item": "refinement:enderium_ingot",
+    "count": 2
+  },
+  "process_time": 300
+}

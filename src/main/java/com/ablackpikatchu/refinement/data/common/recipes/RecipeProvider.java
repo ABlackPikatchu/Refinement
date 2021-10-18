@@ -6,6 +6,7 @@ import java.util.function.Consumer;
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.TagInit;
+import com.ablackpikatchu.refinement.data.common.recipes.builder.AlloySmelterRecipeBuilder;
 import com.ablackpikatchu.refinement.data.common.recipes.builder.DNASequencerRecipeBuilder;
 import com.ablackpikatchu.refinement.data.common.recipes.builder.GrinderRecipeBuilder;
 import com.ablackpikatchu.refinement.data.common.recipes.builder.MixerRecipeBuilder;
@@ -190,6 +191,8 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 			input.getDNASequencerRecipe(recipe);
 			recipe.build(consumer);
 		});
+		
+		RecipeMaps.addAlloySmelterRecipes(consumer);
 
 		SmeltingRecipes.smeltingRecipes().forEach(recipe -> {
 			ResourceLocation name = cooking(smelting(recipe.getOutput().asItem().getRegistryName().getPath() + "_from_"
@@ -216,7 +219,7 @@ public class RecipeProvider extends net.minecraft.data.RecipeProvider {
 		});
 		
 		ShapedNoMirrorRecipes.addRecipes(consumer);
-
+		
 	}
 
 	protected void addQOLRecipes(Consumer<IFinishedRecipe> consumer) {

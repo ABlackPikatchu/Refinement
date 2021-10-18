@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "refinement:enderium_ingot"
+    },
+    {
+      "item": "refinement:enderium_ingot"
+    },
+    {
+      "item": "refinement:enderium_ingot"
+    },
+    {
+      "item": "refinement:enderium_ingot"
+    },
+    {
+      "item": "refinement:enderium_ingot"
+    },
+    {
+      "item": "refinement:enderium_ingot"
+    },
+    {
+      "item": "refinement:enderium_ingot"
+    },
+    {
+      "item": "refinement:enderium_ingot"
+    },
+    {
+      "item": "refinement:enderium_ingot"
+    }
+  ],
+  "result": {
+    "item": "refinement:enderium_block"
+  }
+}

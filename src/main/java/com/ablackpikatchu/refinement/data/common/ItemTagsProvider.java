@@ -38,6 +38,14 @@ public class ItemTagsProvider extends net.minecraft.data.ItemTagsProvider {
 		tag(TagInit.Items.REFINED_CARBON_INGOT).add(ItemInit.REFINED_CARBON_INGOT.get());
 		tag(TagInit.Items.INGOTS).add(ItemInit.REFINED_CARBON_INGOT.get());
 		
+		tag(TagInit.Items.LUMIUM_INGOT).add(ItemInit.LUMIUM_INGOT.get());
+		tag(TagInit.Items.SIGNALUM_INGOT).add(ItemInit.SIGNALUM_INGOT.get());
+		tag(TagInit.Items.ENDERIUM_INGOT).add(ItemInit.ENDERIUM_INGOT.get());
+		tag(TagInit.Items.TIN_INGOT).add(ItemInit.TIN_INGOT.get());
+		tag(TagInit.Items.SILVER_INGOT).add(ItemInit.SILVER_INGOT.get());
+		tag(TagInit.Items.LEAD_INGOT).add(ItemInit.LEAD_INGOT.get());
+		tag(TagInit.Items.COPPER_INGOT).add(ItemInit.COPPER_INGOT.get());
+		
 		//Dust
 		tag(TagInit.Items.DIAMOND_DUST).add(ItemInit.DIAMOND_DUST.get());
 		tag(TagInit.Items.CHARCOAL_DUST).add(ItemInit.CHARCOAL_DUST.get());
@@ -57,6 +65,11 @@ public class ItemTagsProvider extends net.minecraft.data.ItemTagsProvider {
 		tag(TagInit.Items.DUSTS).add(ItemInit.REFINED_CARBON_DUST.get());
 		tag(TagInit.Items.REFINING_DUST).add(ItemInit.REFINING_DUST.get());
 		tag(TagInit.Items.DUSTS).add(ItemInit.REFINING_DUST.get());
+		
+		tag(TagInit.Items.TIN_DUST).add(ItemInit.TIN_DUST.get());
+		tag(TagInit.Items.SILVER_DUST).add(ItemInit.SILVER_DUST.get());
+		tag(TagInit.Items.LEAD_DUST).add(ItemInit.LEAD_DUST.get());
+		tag(TagInit.Items.COPPER_DUST).add(ItemInit.COPPER_DUST.get());
 		
 		//Gems
 		tag(Tags.Items.GEMS_DIAMOND).add(net.minecraft.item.Items.DIAMOND);
