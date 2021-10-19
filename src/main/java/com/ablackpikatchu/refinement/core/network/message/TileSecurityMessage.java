@@ -2,8 +2,8 @@ package com.ablackpikatchu.refinement.core.network.message;
 
 import java.util.function.Supplier;
 
-import com.ablackpikatchu.refinement.common.security.ISecurableTile;
-import com.ablackpikatchu.refinement.common.security.SecurityType;
+import com.ablackpikatchu.refinement.common.te.security.ISecurableTile;
+import com.ablackpikatchu.refinement.common.te.security.SecurityType;
 
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;

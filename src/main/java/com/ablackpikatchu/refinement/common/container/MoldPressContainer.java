@@ -7,10 +7,10 @@ import com.ablackpikatchu.refinement.common.slot.OutputSlot;
 import com.ablackpikatchu.refinement.common.slot.itemspecific.CarbonSlot;
 import com.ablackpikatchu.refinement.common.slot.itemspecific.UpgradeSlot;
 import com.ablackpikatchu.refinement.common.te.machine.MoldPressTileEntity;
+import com.ablackpikatchu.refinement.common.te.upgrade.Upgrade;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
 import com.ablackpikatchu.refinement.core.util.FunctionalIntReferenceHolder;
-import com.ablackpikatchu.refinement.core.util.enums.Upgrades;
 import com.ablackpikatchu.refinement.core.util.lists.ItemLists;
 
 import net.minecraft.entity.player.PlayerEntity;
@@ -41,9 +41,9 @@ public class MoldPressContainer extends MachineContainer<MoldPressTileEntity> {
 		this.addSlot(new OutputSlot((IInventory) te, 1, 119, 6)); //Output
 		this.addSlot(new ItemsReservedSlot((IInventory) te, 2, 62, 53, ItemLists.MOLDS)); //Mold
 		this.addSlot(new CarbonSlot(te, 3, 8, 44)); //Coal
-		this.addSlot(new UpgradeSlot((IInventory) te, 4, 197, 113, Upgrades.SPEED)); //Speed Upgrade
-		this.addSlot(new UpgradeSlot(te, 5, 179, 113, Upgrades.AUTO_EJECT)); // Auto eject upgrade
-		this.addSlot(new UpgradeSlot(te, 6, 197, 95, Upgrades.AUTO_IMPORT)); // Auto Import Upgrade
+		this.addSlot(new UpgradeSlot((IInventory) te, 4, 197, 113, Upgrade.SPEED)); //Speed Upgrade
+		this.addSlot(new UpgradeSlot(te, 5, 179, 113, Upgrade.AUTO_EJECT)); // Auto eject upgrade
+		this.addSlot(new UpgradeSlot(te, 6, 197, 95, Upgrade.AUTO_IMPORT)); // Auto Import Upgrade
 
 		// Main Player Inventory
 		for (int row = 0; row < 3; row++) {

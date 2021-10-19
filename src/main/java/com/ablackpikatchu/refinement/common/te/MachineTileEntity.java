@@ -2,7 +2,7 @@ package com.ablackpikatchu.refinement.common.te;
 
 import javax.annotation.Nullable;
 
-import com.ablackpikatchu.refinement.common.security.SecurityType;
+import com.ablackpikatchu.refinement.common.te.security.SecurityType;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.util.energy.ModEnergyStorage;
 import com.ablackpikatchu.refinement.core.util.helper.TileEntityHelper;

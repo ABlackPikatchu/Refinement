@@ -6,11 +6,11 @@ import com.ablackpikatchu.refinement.common.slot.FuelSlot;
 import com.ablackpikatchu.refinement.common.slot.OutputSlot;
 import com.ablackpikatchu.refinement.common.slot.itemspecific.UpgradeSlot;
 import com.ablackpikatchu.refinement.common.te.machine.AlloySmelterTileEntity;
+import com.ablackpikatchu.refinement.common.te.upgrade.Upgrade;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
 import com.ablackpikatchu.refinement.core.util.FunctionalIntReferenceHolder;
 import com.ablackpikatchu.refinement.core.util.InventoryUtils;
-import com.ablackpikatchu.refinement.core.util.enums.Upgrades;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -48,10 +48,10 @@ public class AlloySmelterContainer extends MachineContainer<AlloySmelterTileEnti
 
 		this.addSlot(new FuelSlot(te, 5, 8, 51));
 
-		this.addSlot(new UpgradeSlot(te, 6, 197, 120, Upgrades.SPEED));
-		this.addSlot(new UpgradeSlot(te, 7, 179, 120, Upgrades.AUTO_EJECT));
-		this.addSlot(new UpgradeSlot(te, 8, 197, 102, Upgrades.AUTO_IMPORT));
-		this.addSlot(new UpgradeSlot(te, 9, 179, 102, Upgrades.ENERGY_ABILITY));
+		this.addSlot(new UpgradeSlot(te, 6, 197, 120, Upgrade.SPEED));
+		this.addSlot(new UpgradeSlot(te, 7, 179, 120, Upgrade.AUTO_EJECT));
+		this.addSlot(new UpgradeSlot(te, 8, 197, 102, Upgrade.AUTO_IMPORT));
+		this.addSlot(new UpgradeSlot(te, 9, 179, 102, Upgrade.ENERGY_ABILITY));
 
 		InventoryUtils.createPlayerSlots(playerInv, 8, 84).forEach(this::addSlot);
 

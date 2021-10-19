@@ -24,6 +24,7 @@ import com.ablackpikatchu.refinement.common.item.Mold;
 import com.ablackpikatchu.refinement.common.item.RefinedCoal;
 import com.ablackpikatchu.refinement.common.item.RefinedCoalBlockItem;
 import com.ablackpikatchu.refinement.common.item.ResourceStatueItem;
+import com.ablackpikatchu.refinement.common.item.UpgradeItem;
 import com.ablackpikatchu.refinement.common.item.blockitem.DNASequencerBlockItem;
 import com.ablackpikatchu.refinement.common.item.box.CustomLootBox;
 import com.ablackpikatchu.refinement.common.item.box.ModLootBox;
@@ -36,6 +37,7 @@ import com.ablackpikatchu.refinement.common.item.food.MinersJerky;
 import com.ablackpikatchu.refinement.common.item.food.ModEffectFood;
 import com.ablackpikatchu.refinement.common.material.ModArmorMaterial;
 import com.ablackpikatchu.refinement.common.material.ModItemTier;
+import com.ablackpikatchu.refinement.common.te.upgrade.Upgrade;
 import com.ablackpikatchu.refinement.core.config.json.LootBoxConfig.BoxType;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementArmorGroup;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementFoodGroup;
@@ -377,14 +379,16 @@ public class ItemInit {
 			() -> new GluttonyBracelet(new Item.Properties().tab(REFINEMENT).defaultDurability(2048)));
 	public static final RegistryObject<Item> ARMOR_UPGRADER = ITEMS.register("armor_upgrader",
 			() -> new ArmorUpgrader(new Item.Properties().tab(REFINEMENT).stacksTo(1)));
+	
+	// Upgrades
 	public static final RegistryObject<Item> AUTO_EJECT_UPGRADE = ITEMS.register("auto_eject_upgrade",
-			() -> new AutoEjectUpgrade(new Item.Properties().tab(REFINEMENT).stacksTo(1).rarity(DARK_PURPLE_RARITY)));
+			() -> new AutoEjectUpgrade(new Item.Properties().tab(REFINEMENT).stacksTo(1).rarity(DARK_PURPLE_RARITY), Upgrade.AUTO_EJECT));
 	public static final RegistryObject<Item> AUTO_IMPORT_UPGRADE = ITEMS.register("auto_import_upgrade",
-			() -> new AutoImportUpgrade(new Item.Properties().tab(REFINEMENT).stacksTo(1).rarity(GOLD_RARITY)));
-	public static final RegistryObject<Item> SPEED_UPGRADE = ITEMS.register("speed_upgrade", () -> new Item(
-			new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE).stacksTo(8).rarity(DARK_RED_RARITY)));
-	public static final RegistryObject<Item> ENERGY_ABILITY_UPGRADE = ITEMS.register("energy_ability_upgrade", () -> new Item(
-			new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE).stacksTo(1).rarity(ModRarity.GREEN_RARITY)));
+			() -> new AutoImportUpgrade(new Item.Properties().tab(REFINEMENT).stacksTo(1).rarity(GOLD_RARITY), Upgrade.AUTO_IMPORT));
+	public static final RegistryObject<Item> SPEED_UPGRADE = ITEMS.register("speed_upgrade", () -> new UpgradeItem(
+			new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE).stacksTo(8).rarity(DARK_RED_RARITY), Upgrade.SPEED));
+	public static final RegistryObject<Item> ENERGY_ABILITY_UPGRADE = ITEMS.register("energy_ability_upgrade", () -> new UpgradeItem(
+			new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE).stacksTo(1).rarity(ModRarity.GREEN_RARITY), Upgrade.ENERGY_ABILITY));
 
 	// Food
 	public static final RegistryObject<Item> MINERS_STEW = ITEMS.register("miners_stew",

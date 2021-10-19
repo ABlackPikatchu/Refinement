@@ -3,12 +3,12 @@ package com.ablackpikatchu.refinement.common.item;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ablackpikatchu.refinement.common.te.upgrade.Upgrade;
 import com.ablackpikatchu.refinement.core.util.helper.NBTHelper;
 import com.google.common.collect.Lists;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Direction;
@@ -18,16 +18,16 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
-public class AutoImportUpgrade extends Item {
+public class AutoImportUpgrade extends UpgradeItem {
+
+	public AutoImportUpgrade(Properties properties, Upgrade upgradeType) {
+		super(properties, upgradeType);
+	}
 
 	public static final ArrayList<Direction> DIRECTIONS = Lists.newArrayList(Direction.UP, Direction.DOWN,
 			Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST);
 
 	public static final String DIRECTION_PROPERTY = "direction";
-
-	public AutoImportUpgrade(Properties properties) {
-		super(properties);
-	}
 
 	@Override
 	public ActionResult<ItemStack> use(World level, PlayerEntity player, Hand hand) {

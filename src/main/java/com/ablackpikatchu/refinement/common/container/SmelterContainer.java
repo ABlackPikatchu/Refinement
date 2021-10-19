@@ -6,10 +6,10 @@ import com.ablackpikatchu.refinement.common.slot.OutputSlot;
 import com.ablackpikatchu.refinement.common.slot.itemspecific.SmeltablesSlot;
 import com.ablackpikatchu.refinement.common.slot.itemspecific.UpgradeSlot;
 import com.ablackpikatchu.refinement.common.te.machine.SmelterTileEntity;
+import com.ablackpikatchu.refinement.common.te.upgrade.Upgrade;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
 import com.ablackpikatchu.refinement.core.util.FunctionalIntReferenceHolder;
-import com.ablackpikatchu.refinement.core.util.enums.Upgrades;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -38,9 +38,9 @@ public class SmelterContainer extends MachineContainer<SmelterTileEntity> {
 		// Tile Entity
 		this.addSlot(new SmeltablesSlot((IInventory) te, this.te.getLevel(), 0, 26, 35)); // Input
 		this.addSlot(new OutputSlot(te, 1, 126, 35)); // Output
-		this.addSlot(new UpgradeSlot(te, 2, 197, 120, Upgrades.SPEED)); // Speed upgrade
-		this.addSlot(new UpgradeSlot(te, 3, 179, 120, Upgrades.AUTO_EJECT)); // Auto Eject upgrade
-		this.addSlot(new UpgradeSlot(te, 4, 197, 102, Upgrades.AUTO_IMPORT)); // Auto Import upgrade
+		this.addSlot(new UpgradeSlot(te, 2, 197, 120, Upgrade.SPEED)); // Speed upgrade
+		this.addSlot(new UpgradeSlot(te, 3, 179, 120, Upgrade.AUTO_EJECT)); // Auto Eject upgrade
+		this.addSlot(new UpgradeSlot(te, 4, 197, 102, Upgrade.AUTO_IMPORT)); // Auto Import upgrade
 
 		// Main Player Inventory
 		for (int row = 0; row < 3; row++) {

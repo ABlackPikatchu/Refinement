@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 
 import com.ablackpikatchu.refinement.common.item.AutoEjectUpgrade;
 import com.ablackpikatchu.refinement.common.item.AutoImportUpgrade;
-import com.ablackpikatchu.refinement.common.security.SecurityType;
+import com.ablackpikatchu.refinement.common.te.security.SecurityType;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.util.MCMathUtils;
 import com.ablackpikatchu.refinement.core.util.energy.ModEnergyStorage;

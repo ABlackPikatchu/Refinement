@@ -10,8 +10,9 @@ import com.ablackpikatchu.refinement.common.block.machine.AlloySmelterBlock;
 import com.ablackpikatchu.refinement.common.container.AlloySmelterContainer;
 import com.ablackpikatchu.refinement.common.item.AutoImportUpgrade;
 import com.ablackpikatchu.refinement.common.recipe.AlloySmeltingRecipe;
-import com.ablackpikatchu.refinement.common.te.IUpgradable;
 import com.ablackpikatchu.refinement.common.te.MachineTileEntity;
+import com.ablackpikatchu.refinement.common.te.upgrade.IUpgradableTile;
+import com.ablackpikatchu.refinement.common.te.upgrade.Upgrade;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
@@ -41,7 +42,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 import net.minecraftforge.common.util.Constants;
 
-public class AlloySmelterTileEntity extends MachineTileEntity implements ITickableTileEntity, IUpgradable {
+public class AlloySmelterTileEntity extends MachineTileEntity implements ITickableTileEntity, IUpgradableTile {
 
 	List<ItemStack> allItems = null;
 	private ITextComponent customName;
@@ -236,10 +237,12 @@ public class AlloySmelterTileEntity extends MachineTileEntity implements ITickab
 		return new TranslationTextComponent("container." + Refinement.MOD_ID + ".alloy_smelter");
 	}
 
+	@Override
 	public void setCustomName(ITextComponent name) {
 		this.customName = name;
 	}
 
+	@Override
 	public ITextComponent getName() {
 		return this.customName != null ? this.customName : this.getDefaultName();
 	}
@@ -249,6 +252,7 @@ public class AlloySmelterTileEntity extends MachineTileEntity implements ITickab
 		return this.getName();
 	}
 
+	@Override
 	@Nullable
 	public ITextComponent getCustomName() {
 		return this.customName;
@@ -326,6 +330,19 @@ public class AlloySmelterTileEntity extends MachineTileEntity implements ITickab
 			} else return usedStack;
 		}
 		return usedStack;
+	}
+
+	@Override
+	public int getSlotForUpgrade(Upgrade upgrade) {
+		switch (upgrade) {
+		case SPEED: return 6;
+		case AUTO_EJECT: return 7;
+		case AUTO_IMPORT: return 8;
+		case ENERGY_ABILITY: return 9;
+		default:
+			break;
+		}
+		return -1;
 	}
 
 }

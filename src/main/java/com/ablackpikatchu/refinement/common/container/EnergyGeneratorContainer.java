@@ -5,11 +5,11 @@ import java.util.Objects;
 import com.ablackpikatchu.refinement.common.slot.ItemReservedSlot;
 import com.ablackpikatchu.refinement.common.slot.itemspecific.UpgradeSlot;
 import com.ablackpikatchu.refinement.common.te.machine.EnergyGeneratorTileEntity;
+import com.ablackpikatchu.refinement.common.te.upgrade.Upgrade;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.util.FunctionalIntReferenceHolder;
-import com.ablackpikatchu.refinement.core.util.enums.Upgrades;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -38,7 +38,7 @@ public class EnergyGeneratorContainer extends MachineContainer<EnergyGeneratorTi
 
         // Tile Entity
         this.addSlot(new ItemReservedSlot((IInventory) te, 0, 26, 35, ItemInit.REFINED_CARBON_INGOT.get()));
-        this.addSlot(new UpgradeSlot(te, 1, 197, 102, Upgrades.AUTO_IMPORT)); // Auto Eject Upgrade
+        this.addSlot(new UpgradeSlot(te, 1, 197, 102, Upgrade.AUTO_IMPORT)); // Auto Eject Upgrade
 
         // Main Player Inventory
         for (int row = 0; row < 3; row++) {

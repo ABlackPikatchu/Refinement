@@ -10,7 +10,7 @@ import com.ablackpikatchu.refinement.client.render.RenderLayers;
 import com.ablackpikatchu.refinement.common.capability.playerpower.CapabilityPlayerPower;
 import com.ablackpikatchu.refinement.common.recipe.conditions.CropsEnabledCondition;
 import com.ablackpikatchu.refinement.common.recipe.conditions.EnableableCondition;
-import com.ablackpikatchu.refinement.common.te.IUpgradable;
+import com.ablackpikatchu.refinement.common.te.upgrade.IUpgradableTile;
 import com.ablackpikatchu.refinement.core.config.ClientConfig;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.config.ModJsonConfigs;
@@ -189,8 +189,8 @@ public class Refinement {
 			protected ItemStack execute(IBlockSource pSource, ItemStack pStack) {
 				Direction direction = pSource.getBlockState().getValue(DispenserBlock.FACING);
 				BlockPos blockpos = pSource.getPos().relative(direction);
-				if (pSource.getLevel().getBlockEntity(blockpos) instanceof IUpgradable)
-					return ((IUpgradable) pSource.getLevel().getBlockEntity(blockpos))
+				if (pSource.getLevel().getBlockEntity(blockpos) instanceof IUpgradableTile)
+					return ((IUpgradableTile) pSource.getLevel().getBlockEntity(blockpos))
 							.executeDispenserBehaviour(pSource, pStack);
 				return pStack;
 			}

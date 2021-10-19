@@ -1,4 +1,4 @@
-package com.ablackpikatchu.refinement.common.security;
+package com.ablackpikatchu.refinement.common.te.security;
 
 import net.minecraft.nbt.CompoundNBT;
 

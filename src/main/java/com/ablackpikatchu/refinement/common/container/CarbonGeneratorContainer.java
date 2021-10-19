@@ -5,10 +5,10 @@ import java.util.Objects;
 import com.ablackpikatchu.refinement.common.slot.OutputSlot;
 import com.ablackpikatchu.refinement.common.slot.itemspecific.UpgradeSlot;
 import com.ablackpikatchu.refinement.common.te.machine.CarbonGeneratorTileEntity;
+import com.ablackpikatchu.refinement.common.te.upgrade.Upgrade;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
 import com.ablackpikatchu.refinement.core.util.FunctionalIntReferenceHolder;
-import com.ablackpikatchu.refinement.core.util.enums.Upgrades;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -37,8 +37,8 @@ public class CarbonGeneratorContainer extends MachineContainer<CarbonGeneratorTi
 
 		// Tile Entity
 		this.addSlot(new OutputSlot((IInventory) te, 0, 26, 35));
-		this.addSlot(new UpgradeSlot(te, 1, 197, 120, Upgrades.SPEED)); // Speed Upgrade
-		this.addSlot(new UpgradeSlot(te, 2, 179, 120, Upgrades.AUTO_EJECT)); // Auto Eject Upgrade
+		this.addSlot(new UpgradeSlot(te, 1, 197, 120, Upgrade.SPEED)); // Speed Upgrade
+		this.addSlot(new UpgradeSlot(te, 2, 179, 120, Upgrade.AUTO_EJECT)); // Auto Eject Upgrade
 
 		// Main Player Inventory
 		for (int row = 0; row < 3; row++) {

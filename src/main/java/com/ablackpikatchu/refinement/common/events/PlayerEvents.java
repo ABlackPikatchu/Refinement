@@ -1,7 +1,7 @@
 package com.ablackpikatchu.refinement.common.events;
 
 import com.ablackpikatchu.refinement.Refinement;
-import com.ablackpikatchu.refinement.common.security.ISecurableTile;
+import com.ablackpikatchu.refinement.common.te.security.ISecurableTile;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.util.helper.PlayerHelper;
 

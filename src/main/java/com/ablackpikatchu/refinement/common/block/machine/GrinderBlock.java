@@ -1,8 +1,8 @@
 package com.ablackpikatchu.refinement.common.block.machine;
 
 import com.ablackpikatchu.refinement.client.RefinementLang;
-import com.ablackpikatchu.refinement.common.security.SecurityType;
 import com.ablackpikatchu.refinement.common.te.machine.GrinderTileEntity;
+import com.ablackpikatchu.refinement.common.te.security.SecurityType;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
 
 import net.minecraft.block.AbstractBlock;
