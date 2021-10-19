@@ -1,0 +1,35 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "refinement:copper_ingot"
+    },
+    {
+      "item": "refinement:copper_ingot"
+    },
+    {
+      "item": "refinement:copper_ingot"
+    },
+    {
+      "item": "refinement:copper_ingot"
+    },
+    {
+      "item": "refinement:copper_ingot"
+    },
+    {
+      "item": "refinement:copper_ingot"
+    },
+    {
+      "item": "refinement:copper_ingot"
+    },
+    {
+      "item": "refinement:copper_ingot"
+    },
+    {
+      "item": "refinement:copper_ingot"
+    }
+  ],
+  "result": {
+    "item": "refinement:copper_block"
+  }
+}

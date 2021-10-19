@@ -26,6 +26,10 @@ public class ItemModelProvider extends net.minecraftforge.client.model.generator
 		builder(ItemInit.ENDERIUM_INGOT.get(), "ingots/enderium");
 		builder(ItemInit.SILVER_INGOT.get(), "ingots/silver");
 		builder(ItemInit.SIGNALUM_INGOT.get(), "ingots/signalum");
+		builder(ItemInit.COPPER_INGOT.get(), "ingots/copper");
+		
+		builder(ItemInit.COPPER_DUST.get(), "dusts/copper_dust");
+		builder(ItemInit.CURING_APPLE.get(), "food/curing_apple");
 		
 		for (String item : ITEMS) {
 			builder(itemGenerated, item);
@@ -43,7 +47,8 @@ public class ItemModelProvider extends net.minecraftforge.client.model.generator
     }
     
     public static String[] BLOCK_ITEMS = {
-    		"grinder", "refined_log", "refined_stripped_log", "refined_leaves", "refined_sapling"
+    		"grinder", "refined_log", "refined_stripped_log", "refined_leaves", "refined_sapling",
+    		"copper_block"
     };
     
     public static String[] ITEMS = {

@@ -39,6 +39,8 @@ public class RecipeMaps {
 
 		map.put(BlockInit.TIN_BLOCK.get(), ItemInit.TIN_INGOT.get());
 		map.put(BlockInit.SILVER_BLOCK.get(), ItemInit.SILVER_INGOT.get());
+		map.put(BlockInit.COPPER_BLOCK.get(), ItemInit.COPPER_INGOT.get());
+		map.put(BlockInit.LEAD_BLOCK.get(), ItemInit.LEAD_INGOT.get());
 	}
 
 	public static void addShapelessIngotNuggetEntries(HashMap<Item, Item> map) {

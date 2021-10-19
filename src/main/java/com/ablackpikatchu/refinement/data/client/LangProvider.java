@@ -48,6 +48,16 @@ public class LangProvider extends LanguageProvider {
 		add(CARBON_GENERATOR_BLOCK.get(), "Carbon Generator");
 		add(SMELTER_BLOCK.get(), "Smelter");
 		add(ALLOY_SMELTER_BLOCK.get(), "Alloy Smelter");
+		add(ENERGY_GENERATOR_BLOCK.get(), "Energy Generator");
+		
+		add(SIGNALUM_BLOCK.get(), "Signalum Block");
+		add(LUMIUM_BLOCK.get(), "Lumium Block");
+		add(ENDERIUM_BLOCK.get(), "Enderium Block");
+		
+		add(COPPER_BLOCK.get(), "Copper Block");
+		add(TIN_BLOCK.get(), "Tin Block");
+		add(SILVER_BLOCK.get(), "Silver Block");
+		add(LEAD_BLOCK.get(), "Lead Block");
 		
 		add(BlockInit.REFINED_LOG.get(), "Refined Log");
 		add(BlockInit.REFINED_STRIPPED_LOG.get(), "Refined Stripped Log");
@@ -120,7 +130,7 @@ public class LangProvider extends LanguageProvider {
 			if (!ALL_BLOCKS.contains(item.getRegistryName().getPath())) {
 				String name = item.getRegistryName().getPath().replace("_", " ");
 				try {
-				add(item, TextFormattingUtils.capitalizeWord(name));
+					add(item, TextFormattingUtils.capitalizeWord(name));
 				} catch (IllegalStateException e) {
 					e.printStackTrace();
 				}

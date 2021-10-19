@@ -44,9 +44,12 @@ public class BlockStatesProvider extends BlockStateProvider {
 		logBlock(BlockInit.REFINED_LOG.get());
 		logBlock(BlockInit.REFINED_STRIPPED_LOG.get());
 		cross(BlockInit.REFINED_SAPLING.get());
+		
+		cubeAll(BlockInit.COPPER_BLOCK.get());
 
 	}
 
+	
 	private void cross(Block block) {
 		getVariantBuilder(block).partialState().setModels(new ConfiguredModel(crossModel(block, blockTexture(block))));
 	}
@@ -83,6 +86,7 @@ public class BlockStatesProvider extends BlockStateProvider {
         axisBlock((RotatedPillarBlock) block, blockTexture(block), extend(blockTexture(block), "_top"));
     }
 	
+	@Override
 	public ResourceLocation blockTexture(Block block) {
         ResourceLocation name = block.getRegistryName();
         return new ResourceLocation(name.getNamespace(), "blocks" + "/" + name.getPath());

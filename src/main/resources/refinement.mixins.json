@@ -1,0 +1,10 @@
+{
+	"required": true,
+	"package": "com.ablackpikatchu.refinement.mixin",
+	"compatibilityLevel": "JAVA_8",
+	"refmap": "refinement.refmap.json",
+	"mixins": [
+		
+	],
+	"minVersion": "0.8"
+}

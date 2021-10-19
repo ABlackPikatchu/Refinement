@@ -10,6 +10,7 @@ import com.ablackpikatchu.refinement.client.render.RenderLayers;
 import com.ablackpikatchu.refinement.common.capability.playerpower.CapabilityPlayerPower;
 import com.ablackpikatchu.refinement.common.recipe.conditions.CropsEnabledCondition;
 import com.ablackpikatchu.refinement.common.recipe.conditions.EnableableCondition;
+import com.ablackpikatchu.refinement.common.te.IUpgradable;
 import com.ablackpikatchu.refinement.core.config.ClientConfig;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.config.ModJsonConfigs;
@@ -32,13 +33,19 @@ import com.ablackpikatchu.refinement.core.util.lists.TradeLists;
 import com.ablackpikatchu.refinement.data.client.LangProvider;
 import com.ablackpikatchu.refinement.resourcecrops.core.CropInit;
 
+import net.minecraft.block.DispenserBlock;
+import net.minecraft.dispenser.DefaultDispenseItemBehavior;
+import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.loot.ItemLootEntry;
 import net.minecraft.loot.LootPool;
+import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -83,7 +90,7 @@ public class Refinement {
 
 		// mod bus events
 		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
-		
+
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientSetup::new);
 
 		if (!CONFIF_DIR.exists()) {
@@ -113,6 +120,7 @@ public class Refinement {
 
 		modBus.addListener(this::constructMod);
 		modBus.addListener(this::commonSetup);
+		modBus.addListener(this::registerDispenseBehaviours);
 		modBus.addListener(this::onLoadComplete);
 
 		modBus.addGenericListener(IRecipeSerializer.class, this::recipeConditions);
@@ -173,6 +181,21 @@ public class Refinement {
 			VillagerInit.registerPOIS();
 			TradeLists.fillTradeData();
 		});
+	}
+
+	public void registerDispenseBehaviours(final FMLCommonSetupEvent event) {
+		DefaultDispenseItemBehavior upgradeTileBehaviour = new DefaultDispenseItemBehavior() {
+			@Override
+			protected ItemStack execute(IBlockSource pSource, ItemStack pStack) {
+				Direction direction = pSource.getBlockState().getValue(DispenserBlock.FACING);
+				BlockPos blockpos = pSource.getPos().relative(direction);
+				if (pSource.getLevel().getBlockEntity(blockpos) instanceof IUpgradable)
+					return ((IUpgradable) pSource.getLevel().getBlockEntity(blockpos))
+							.executeDispenserBehaviour(pSource, pStack);
+				return pStack;
+			}
+		};
+		DispenserBlock.registerBehavior(ItemInit.ENERGY_ABILITY_UPGRADE.get(), upgradeTileBehaviour);
 	}
 
 	public void constructMod(FMLConstructModEvent event) {

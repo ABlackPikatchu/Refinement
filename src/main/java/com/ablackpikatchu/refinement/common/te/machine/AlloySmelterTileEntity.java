@@ -10,6 +10,7 @@ import com.ablackpikatchu.refinement.common.block.machine.AlloySmelterBlock;
 import com.ablackpikatchu.refinement.common.container.AlloySmelterContainer;
 import com.ablackpikatchu.refinement.common.item.AutoImportUpgrade;
 import com.ablackpikatchu.refinement.common.recipe.AlloySmeltingRecipe;
+import com.ablackpikatchu.refinement.common.te.IUpgradable;
 import com.ablackpikatchu.refinement.common.te.MachineTileEntity;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
@@ -22,6 +23,7 @@ import com.ablackpikatchu.refinement.core.util.helper.TileEntityHelper;
 import com.google.common.collect.Lists;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
@@ -39,7 +41,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 import net.minecraftforge.common.util.Constants;
 
-public class AlloySmelterTileEntity extends MachineTileEntity implements ITickableTileEntity {
+public class AlloySmelterTileEntity extends MachineTileEntity implements ITickableTileEntity, IUpgradable {
 
 	List<ItemStack> allItems = null;
 	private ITextComponent customName;
@@ -82,7 +84,7 @@ public class AlloySmelterTileEntity extends MachineTileEntity implements ITickab
 			}
 		};
 	}
-	
+
 	@Override
 	public void handleAutoImport(@Nullable IRecipeType<?> recipeType, int autoImportUpgradeSlot, int... inputSlots) {
 		for (int inputSlot : inputSlots) {
@@ -129,18 +131,18 @@ public class AlloySmelterTileEntity extends MachineTileEntity implements ITickab
 	@Override
 	public ArrayList<Item> getValidInputs(IRecipeType<?> recipeType) {
 		ArrayList<Item> validInputs = new ArrayList<>();
-			getRecipes(RecipeInit.ALLOY_SMELTING_RECIPE).forEach(recipe -> {
-				//AlloySmeltingRecipe alloySmeltingRecipe = (AlloySmeltingRecipe) recipe;
-				recipe.getIngredients().forEach(ingredient -> {
-					if (!ingredient.isEmpty()) {
-						for (ItemStack itemStack : ingredient.getItems()) {
+		getRecipes(RecipeInit.ALLOY_SMELTING_RECIPE).forEach(recipe -> {
+			// AlloySmeltingRecipe alloySmeltingRecipe = (AlloySmeltingRecipe) recipe;
+			recipe.getIngredients().forEach(ingredient -> {
+				if (!ingredient.isEmpty()) {
+					for (ItemStack itemStack : ingredient.getItems()) {
 						Item item = itemStack.getItem();
 						if (item != ItemInit.REFINED_CARBON_INGOT.get() && !validInputs.contains(item))
 							validInputs.add(item);
-						}
 					}
-				});
+				}
 			});
+		});
 		return validInputs;
 	}
 
@@ -231,7 +233,7 @@ public class AlloySmelterTileEntity extends MachineTileEntity implements ITickab
 
 	@Override
 	protected ITextComponent getDefaultName() {
-		return new TranslationTextComponent("container." + Refinement.MOD_ID + ".grinder");
+		return new TranslationTextComponent("container." + Refinement.MOD_ID + ".alloy_smelter");
 	}
 
 	public void setCustomName(ITextComponent name) {
@@ -313,6 +315,17 @@ public class AlloySmelterTileEntity extends MachineTileEntity implements ITickab
 	@Override
 	public int getFuelSlot() {
 		return 5;
+	}
+
+	@Override
+	public ItemStack executeDispenserBehaviour(IBlockSource dispenser, ItemStack usedStack) {
+		if (usedStack.getItem() == ItemInit.ENERGY_ABILITY_UPGRADE.get()) {
+			if (this.getItem(9).isEmpty()) {
+				this.setItem(9, new ItemStack(ItemInit.ENERGY_ABILITY_UPGRADE.get()));
+				usedStack.shrink(1);
+			} else return usedStack;
+		}
+		return usedStack;
 	}
 
 }

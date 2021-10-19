@@ -50,9 +50,9 @@ public abstract class MachineContainerScreen<T extends MachineContainer<?>> exte
 	protected void renderLabels(MatrixStack matrixStack, int mouseX, int mouseY) {
 		updateElements();
 		drawElements(matrixStack, true);
-		this.font.draw(matrixStack, this.inventory.getDisplayName(), (float) this.titleLabelX, (float) this.titleLabelY,
+		this.font.draw(matrixStack, this.menu.te.getDisplayName(), (float) this.titleLabelX, (float) this.titleLabelY,
 				0xA3703A);
-		this.font.draw(matrixStack, this.menu.te.getDisplayName(), (float) this.inventoryLabelX,
+		this.font.draw(matrixStack, this.inventory.getDisplayName(), (float) this.inventoryLabelX,
 				(float) this.inventoryLabelY, 0xA3703A);
 	}
 
@@ -69,6 +69,7 @@ public abstract class MachineContainerScreen<T extends MachineContainer<?>> exte
 		this.renderTooltip(matrixStack, mouseX, mouseY);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void renderBg(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
 		RenderSystem.color4f(1f, 1f, 1f, 1f);
