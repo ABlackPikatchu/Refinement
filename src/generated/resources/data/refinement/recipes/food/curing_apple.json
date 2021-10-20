@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "E",
+    "G",
+    "M"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:golden_apple"
+    },
+    "E": {
+      "item": "minecraft:fermented_spider_eye"
+    },
+    "M": {
+      "item": "minecraft:milk_bucket"
+    }
+  },
+  "result": {
+    "item": "refinement:curing_apple"
+  }
+}

@@ -39,7 +39,7 @@ public class SmelterTileEntity extends SidedInventoryTileEntity {
 	protected NonNullList<ItemStack> items = NonNullList.withSize(slots, ItemStack.EMPTY);
 
 	private final LazyOptional<IEnergyStorage> energy = LazyOptional.of(() -> energyStorage);
-
+	
 	private boolean hasPower = false;
 
 	public SmelterTileEntity(TileEntityType<?> p_i48285_1_) {
@@ -101,6 +101,7 @@ public class SmelterTileEntity extends SidedInventoryTileEntity {
 			} else
 				regressProgress();
 		});
+		
 	}
 
 	@Override

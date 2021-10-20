@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RRR",
+    "RFR",
+    "RTR"
+  ],
+  "key": {
+    "R": {
+      "tag": "forge:storage_blocks/redstone"
+    },
+    "F": {
+      "item": "minecraft:furnace"
+    },
+    "T": {
+      "item": "refinement:carbon_generator"
+    }
+  },
+  "result": {
+    "item": "refinement:smelter"
+  }
+}

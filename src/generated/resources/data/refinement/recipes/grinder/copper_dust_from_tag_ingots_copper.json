@@ -1,0 +1,10 @@
+{
+  "type": "refinement:grinder",
+  "input": {
+    "tag": "forge:ingots/copper",
+    "count": 1
+  },
+  "output": {
+    "item": "refinement:copper_dust"
+  }
+}

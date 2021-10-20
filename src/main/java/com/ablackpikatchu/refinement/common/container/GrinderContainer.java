@@ -86,26 +86,7 @@ public class GrinderContainer extends MachineContainer<GrinderTileEntity> {
 
 	@Override
 	public ItemStack quickMoveStack(PlayerEntity playerIn, int index) {
-		ItemStack stack = ItemStack.EMPTY;
-		Slot slot = this.slots.get(index);
-		if (slot != null && slot.hasItem()) {
-			ItemStack stack1 = slot.getItem();
-			stack = stack1.copy();
-			if (index < GrinderTileEntity.slots
-					&& !this.moveItemStackTo(stack1, GrinderTileEntity.slots, this.slots.size(), true)) {
-				return ItemStack.EMPTY;
-			}
-			if (!this.moveItemStackTo(stack1, 0, GrinderTileEntity.slots, false)) {
-				return ItemStack.EMPTY;
-			}
-
-			if (stack1.isEmpty()) {
-				slot.set(ItemStack.EMPTY);
-			} else {
-				slot.setChanged();
-			}
-		}
-		return stack;
+		return handleShiftClick(playerIn, index, GrinderTileEntity.slots);
 	}
 
 	@OnlyIn(Dist.CLIENT)

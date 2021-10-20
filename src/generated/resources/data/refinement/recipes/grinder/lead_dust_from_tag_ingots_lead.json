@@ -1,0 +1,10 @@
+{
+  "type": "refinement:grinder",
+  "input": {
+    "tag": "forge:ingots/lead",
+    "count": 1
+  },
+  "output": {
+    "item": "refinement:lead_dust"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "FBF",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:apple"
+    },
+    "B": {
+      "item": "refinement:miners_bread"
+    },
+    "F": {
+      "item": "minecraft:feather"
+    }
+  },
+  "result": {
+    "item": "refinement:miners_apple"
+  }
+}

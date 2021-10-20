@@ -189,11 +189,15 @@ public class AlloySmelterTileEntity extends MachineTileEntity implements ITickab
 			if (TileEntityHelper.canPlaceItemInStack(this.getItem(4), getRecipe().getResultItem())) {
 				consumeFuel();
 				getRecipe().consumeIngredients(iInventory);
+				if (getRecipe() != null) 
+					storeResultItem(getRecipe().getResultItem());
+				/**
 				int oldCount = 0;
 				if (this.getItem(4) != ItemStack.EMPTY)
 					oldCount = this.getItem(4).getCount();
 				this.setItem(4, new ItemStack(getRecipe().getResultItem().getItem(),
 						getRecipe().getResultItem().getCount() + oldCount));
+				**/
 				this.currentWaitTime = 0;
 				tickSinceLastStore = 0;
 				TileEntityHelper.updateTE(this);

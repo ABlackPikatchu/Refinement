@@ -1,9 +1,0 @@
-{
-  "parent": "minecraft:block/orientable",
-  "textures": {
-    "top": "refinement:blocks/grinder_side",
-    "front": "refinement:blocks/grinder_front",
-    "side": "refinement:blocks/grinder_side",
-    "down": "refinement:blocks/grinder_side"
-  }
-}

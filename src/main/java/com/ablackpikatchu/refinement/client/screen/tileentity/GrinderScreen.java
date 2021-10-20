@@ -5,8 +5,6 @@ import com.ablackpikatchu.refinement.client.screen.element.SecurityElement;
 import com.ablackpikatchu.refinement.client.screen.element.SecurityElement.SecurityPrivateElement;
 import com.ablackpikatchu.refinement.client.screen.element.SecurityElement.SecurityPublicElement;
 import com.ablackpikatchu.refinement.common.container.GrinderContainer;
-import com.ablackpikatchu.refinement.core.network.RefinementNetwork;
-import com.ablackpikatchu.refinement.core.network.message.TileSecurityMessage;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import net.minecraft.entity.player.PlayerInventory;
@@ -49,15 +47,15 @@ public class GrinderScreen extends MachineContainerScreen<GrinderContainer> {
 			secElement = new SecurityPrivateElement();
 		super.renderBg(matrixStack, partialTicks, mouseX, mouseY);
 		renderSussyGui(matrixStack, partialTicks, this.topPos + 77);
-		secElement.render(matrixStack, this.leftPos + 191, this.topPos + 82, partialTicks);
+		//secElement.render(matrixStack, this.leftPos + 191, this.topPos + 82, partialTicks);
 		this.minecraft.textureManager.bind(GRINDER_GUI);
 		this.blit(matrixStack, this.leftPos + 68, this.topPos + 9, 2, 207, this.menu.getProgressionScaled(), 47);
 	}
 
 	@Override
 	public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
-		if (isBetween((int) pMouseX, (int) pMouseY, this.leftPos + 191, this.topPos + 82, 6, 7))
-			RefinementNetwork.TILE_SECURITY_CHANNEL.sendToServer(new TileSecurityMessage(this.menu.te.getBlockPos()));
-		return true;
+		//if (isBetween((int) pMouseX, (int) pMouseY, this.leftPos + 191, this.topPos + 82, 6, 7))
+		//	RefinementNetwork.TILE_SECURITY_CHANNEL.sendToServer(new TileSecurityMessage(this.menu.te.getBlockPos()));
+		return super.mouseClicked(pMouseX, pMouseY, pButton);
 	}
 }

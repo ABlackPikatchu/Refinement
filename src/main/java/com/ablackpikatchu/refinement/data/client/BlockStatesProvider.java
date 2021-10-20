@@ -1,8 +1,11 @@
 package com.ablackpikatchu.refinement.data.client;
 
+import static com.ablackpikatchu.refinement.Refinement.MOD_ID;
+
 import java.util.HashMap;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.common.block.MachineBlock;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.data.maps.LootTableMaps;
 import com.ablackpikatchu.refinement.resourcecrops.common.ModCrop;
@@ -10,6 +13,8 @@ import com.ablackpikatchu.refinement.resourcecrops.common.ModCrop;
 import net.minecraft.block.Block;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.util.Direction;
+import static net.minecraft.util.Direction.*;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 
@@ -17,6 +22,7 @@ import net.minecraftforge.client.model.generators.BlockModelProvider;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.client.model.generators.VariantBlockStateBuilder.PartialBlockstate;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class BlockStatesProvider extends BlockStateProvider {
@@ -39,61 +45,101 @@ public class BlockStatesProvider extends BlockStateProvider {
 		cropBlocks.forEach((block, resource) -> {
 			cropBlock(block);
 		});
-		
+
 		simpleBlock(BlockInit.REFINED_LEAVES.get());
 		logBlock(BlockInit.REFINED_LOG.get());
 		logBlock(BlockInit.REFINED_STRIPPED_LOG.get());
 		cross(BlockInit.REFINED_SAPLING.get());
-		
+
 		cubeAll(BlockInit.COPPER_BLOCK.get());
+
+		machineBlock(BlockInit.SMELTER_BLOCK.get(), "machines/smelter", "machines/smelter_lit");
+		machineBlock(BlockInit.GRINDER.get(), "machines/grinder", "machines/grinder_lit");
+		machineBlock(BlockInit.MIXER.get(), "machines/mixer", "machines/mixer_lit");
 
 	}
 
-	
 	private void cross(Block block) {
 		getVariantBuilder(block).partialState().setModels(new ConfiguredModel(crossModel(block, blockTexture(block))));
 	}
 
 	public void cropBlock(Block block) {
 		getVariantBuilder(block).partialState().with(ModCrop.AGE, 0).modelForState()
-				.modelFile(models().cross(name(block) + "_0", cropModel(block, 0))).addModel().partialState()
-				.with(ModCrop.AGE, 1).modelForState().modelFile(models().cross(name(block) + "_1", cropModel(block, 1)))
-				.addModel().partialState().with(ModCrop.AGE, 2).modelForState()
-				.modelFile(models().cross(name(block) + "_2", cropModel(block, 2))).addModel().partialState()
-				.with(ModCrop.AGE, 3).modelForState().modelFile(models().cross(name(block) + "_3", cropModel(block, 3)))
-				.addModel().partialState().with(ModCrop.AGE, 4).modelForState()
-				.modelFile(models().cross(name(block) + "_4", cropModel(block, 4))).addModel().partialState()
-				.with(ModCrop.AGE, 5).modelForState().modelFile(models().cross(name(block) + "_5", cropModel(block, 5)))
-				.addModel().partialState().with(ModCrop.AGE, 6).modelForState()
-				.modelFile(models().cross(name(block) + "_6", cropModel(block, 6))).addModel().partialState()
-				.with(ModCrop.AGE, 7).modelForState().modelFile(models().cross(name(block) + "_7", cropModel(block, 7)))
-				.addModel();
+				.modelFile(models().cross("block/crop/" + name(block) + "_0", cropModel(block, 0))).addModel()
+				.partialState().with(ModCrop.AGE, 1).modelForState()
+				.modelFile(models().cross("block/crop/" + name(block) + "_1", cropModel(block, 1))).addModel()
+				.partialState().with(ModCrop.AGE, 2).modelForState()
+				.modelFile(models().cross("block/crop/" + name(block) + "_2", cropModel(block, 2))).addModel()
+				.partialState().with(ModCrop.AGE, 3).modelForState()
+				.modelFile(models().cross("block/crop/" + name(block) + "_3", cropModel(block, 3))).addModel()
+				.partialState().with(ModCrop.AGE, 4).modelForState()
+				.modelFile(models().cross("block/crop/" + name(block) + "_4", cropModel(block, 4))).addModel()
+				.partialState().with(ModCrop.AGE, 5).modelForState()
+				.modelFile(models().cross("block/crop/" + name(block) + "_5", cropModel(block, 5))).addModel()
+				.partialState().with(ModCrop.AGE, 6).modelForState()
+				.modelFile(models().cross("block/crop/" + name(block) + "_6", cropModel(block, 6))).addModel()
+				.partialState().with(ModCrop.AGE, 7).modelForState()
+				.modelFile(models().cross("block/crop/" + name(block) + "_7", cropModel(block, 7))).addModel();
+	}
+
+	public static final Direction[] ROTATABLE_DIRECTIONS = new Direction[] {
+			NORTH, SOUTH, EAST, WEST
+	};
+
+	public void machineBlock(Block block, String normalTexture, String litTexture) {
+		PartialBlockstate state = getVariantBuilder(block).partialState();
+		for (Direction direction : ROTATABLE_DIRECTIONS) {
+			int rotationY = 0;
+			if (direction == Direction.EAST)
+				rotationY = 90;
+			if (direction == Direction.SOUTH)
+				rotationY = 180;
+			if (direction == Direction.WEST)
+				rotationY = 270;
+
+			state.with(MachineBlock.LIT, false).with(MachineBlock.FACING, direction).modelForState()
+					.modelFile(models().orientable("block/machine/" + name(block),
+							new ResourceLocation(MOD_ID, "blocks/machines/machine_side"),
+							new ResourceLocation(MOD_ID, "blocks/" + normalTexture),
+							new ResourceLocation(MOD_ID, "blocks/machines/machine_side")))
+					.rotationY(rotationY).addModel();
+
+			state.with(MachineBlock.LIT, true).with(MachineBlock.FACING, direction).modelForState()
+					.modelFile(models().orientable("block/machine/" + name(block) + "_lit",
+							new ResourceLocation(MOD_ID, "blocks/machines/machine_side"),
+							new ResourceLocation(MOD_ID, "blocks/" + litTexture),
+							new ResourceLocation(MOD_ID, "blocks/machines/machine_side")))
+					.rotationY(rotationY).addModel();
+		}
+		
+		itemModels().withExistingParent(block.asItem().getRegistryName().toString(),
+				new ResourceLocation(MOD_ID, "block/machine/" + name(block)));
 	}
 
 	public String name(Block block) {
 		return block.getRegistryName().getPath();
 	}
-	
+
 	public ModelFile crossModel(Block block, ResourceLocation name) {
-        return models().cross(name(block), name);
-    }
+		return models().cross(name(block), name);
+	}
 
 	public ResourceLocation cropModel(Block block, int age) {
 		return new ResourceLocation(Refinement.MOD_ID, "blocks/crops/" + name(block) + "/stage_" + age);
 	}
-	
+
 	public void logBlock(Block block) {
-        axisBlock((RotatedPillarBlock) block, blockTexture(block), extend(blockTexture(block), "_top"));
-    }
-	
+		axisBlock((RotatedPillarBlock) block, blockTexture(block), extend(blockTexture(block), "_top"));
+	}
+
 	@Override
 	public ResourceLocation blockTexture(Block block) {
-        ResourceLocation name = block.getRegistryName();
-        return new ResourceLocation(name.getNamespace(), "blocks" + "/" + name.getPath());
-    }
-	
+		ResourceLocation name = block.getRegistryName();
+		return new ResourceLocation(name.getNamespace(), "blocks" + "/" + name.getPath());
+	}
+
 	private ResourceLocation extend(ResourceLocation rl, String suffix) {
-        return new ResourceLocation(rl.getNamespace(), rl.getPath() + suffix);
-    }
+		return new ResourceLocation(rl.getNamespace(), rl.getPath() + suffix);
+	}
 
 }

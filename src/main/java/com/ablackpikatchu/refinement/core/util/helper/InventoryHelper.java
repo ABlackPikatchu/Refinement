@@ -81,13 +81,11 @@ public class InventoryHelper {
 	*/
 	
 	public static boolean canMergeItems(ItemStack destination, ItemStack source) {
-		if (destination.isEmpty())
-			return true;
 		if (destination.getItem() != source.getItem()) {
 			return false;
 		} else if (destination.getDamageValue() != source.getDamageValue()) {
 			return false;
-		} else if (destination.getCount() + source.getCount() > destination.getMaxStackSize()) {
+		} else if (destination.getCount() > destination.getMaxStackSize()) {
 			return false;
 		} else {
 			return ItemStack.tagMatches(destination, source);

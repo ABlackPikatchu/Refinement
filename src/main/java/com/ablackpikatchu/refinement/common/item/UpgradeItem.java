@@ -2,7 +2,7 @@ package com.ablackpikatchu.refinement.common.item;
 
 import com.ablackpikatchu.refinement.common.te.upgrade.IUpgradableTile;
 import com.ablackpikatchu.refinement.common.te.upgrade.Upgrade;
-import com.ablackpikatchu.refinement.core.util.helper.InventoryHelper;
+import com.ablackpikatchu.refinement.core.util.helper.TileEntityHelper;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -32,7 +32,7 @@ public class UpgradeItem extends Item {
 			ItemStack oneItemStack = this.getDefaultInstance().copy();
 			oneItemStack.setCount(1);
 			if (upgradeSlot != -1
-					&& InventoryHelper.canMergeItems(((IInventory) tile).getItem(upgradeSlot), oneItemStack)) {
+					&& TileEntityHelper.canPlaceItemInStack(((IInventory) tile).getItem(upgradeSlot), oneItemStack)) {
 				int oldCount = 0;
 				if (!((IInventory) tile).getItem(upgradeSlot).isEmpty())
 					oldCount = ((IInventory) tile).getItem(upgradeSlot).getCount();

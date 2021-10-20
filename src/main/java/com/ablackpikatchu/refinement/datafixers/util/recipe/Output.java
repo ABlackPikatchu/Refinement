@@ -1,6 +1,10 @@
 package com.ablackpikatchu.refinement.datafixers.util.recipe;
 
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
+
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.ForgeRegistries;
 
 /**
  * Class for defining outputs of recipes
@@ -19,6 +23,22 @@ public class Output {
 	 */
 	public Output(Item item, int count) {
 		this.item = item;
+		this.count = count;
+	}
+	
+	/**
+	 * @see #Output
+	 */
+	public Output(RegistryObject<Item> item, int count) {
+		this.item = item.get();
+		this.count = count;
+	}
+	
+	/**
+	 * @see #Output
+	 */
+	public Output(ResourceLocation item, int count) {
+		this.item = ForgeRegistries.ITEMS.getValue(item);
 		this.count = count;
 	}
 	

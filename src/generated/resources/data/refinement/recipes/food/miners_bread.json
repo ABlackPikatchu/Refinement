@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    "W W",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:wheat"
+    }
+  },
+  "result": {
+    "item": "refinement:miners_bread",
+    "count": 2
+  }
+}

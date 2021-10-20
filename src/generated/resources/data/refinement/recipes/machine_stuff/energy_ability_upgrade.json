@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ECE",
+    "PNP",
+    "ECE"
+  ],
+  "key": {
+    "E": {
+      "item": "refinement:enderium_ingot"
+    },
+    "C": {
+      "item": "refinement:refined_carbon_ingot"
+    },
+    "P": {
+      "item": "refinement:machine_parts"
+    },
+    "N": {
+      "item": "refinement:refined_netherite_ingot"
+    }
+  },
+  "result": {
+    "item": "refinement:energy_ability_upgrade"
+  }
+}

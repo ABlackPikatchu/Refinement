@@ -1,0 +1,10 @@
+{
+  "type": "refinement:grinder",
+  "input": {
+    "tag": "forge:ingots/silver",
+    "count": 1
+  },
+  "output": {
+    "item": "refinement:silver_dust"
+  }
+}

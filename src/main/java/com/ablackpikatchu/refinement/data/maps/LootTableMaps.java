@@ -16,6 +16,9 @@ public class LootTableMaps {
 		map.add(BlockInit.REFINED_LOG.get());
 		map.add(BlockInit.REFINED_STRIPPED_LOG.get());
 		map.add(BlockInit.REFINED_SAPLING.get());
+		map.add(BlockInit.ALLOY_SMELTER_BLOCK.get());
+		map.add(BlockInit.CARBON_GENERATOR_BLOCK.get());
+		map.add(BlockInit.ENERGY_GENERATOR_BLOCK.get());
 	}
 
 	/**

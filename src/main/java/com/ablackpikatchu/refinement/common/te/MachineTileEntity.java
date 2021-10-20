@@ -23,6 +23,8 @@ public abstract class MachineTileEntity extends SidedInventoryTileEntity {
 	public ModEnergyStorage energyStorage;
 	public boolean hasPower = false;
 	private final LazyOptional<IEnergyStorage> energy = LazyOptional.of(() -> energyStorage);
+	
+	protected boolean isWorking;
 
 	protected MachineTileEntity(TileEntityType<?> typeIn, int inventorySize) {
 		super(typeIn, inventorySize);
@@ -84,7 +86,9 @@ public abstract class MachineTileEntity extends SidedInventoryTileEntity {
 	}
 
 	@Nullable
-	public abstract int getFuelSlot();
+	public int getFuelSlot() {
+		return -1;
+	}
 
 	@Override
 	public CompoundNBT save(CompoundNBT tags) {
@@ -93,8 +97,8 @@ public abstract class MachineTileEntity extends SidedInventoryTileEntity {
 			tags.putInt("energyStored", energyStorage.getEnergyStored());
 		if (ownerUUID != null)
 			tags.putUUID("owner", ownerUUID);
-		if (security != null)
-			tags.putString("security", security.getName());
+		//if (security != null)
+		//	tags.putString("security", security.getName());
 		return super.save(tags);
 	}
 
@@ -106,7 +110,7 @@ public abstract class MachineTileEntity extends SidedInventoryTileEntity {
 			energyStorage.setEnergy(tags.getInt("energyStored"));
 		if (tags.hasUUID("owner"))
 			ownerUUID = tags.getUUID("owner");
-		security = SecurityType.byName(tags.getString("security"));
+		//security = SecurityType.byName(tags.getString("security"));
 	}
 	
 	public void setIntSecurity(int sec) {

@@ -131,12 +131,14 @@ public abstract class MachineContainerScreen<T extends MachineContainer<?>> exte
 	@Override
 	public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
 
+		/**
 		elements.forEach(elem -> {
 			if (this.isBetween((int) pMouseX, (int) pMouseY, elem.renderX, elem.renderY, elem.getWidth(),
 					elem.getHeight())) {
 				//elem.handleClick((int) pMouseX, (int) pMouseY, this.menu);
 			}
 		});
+		**/
 
 		return super.mouseClicked(pMouseX, pMouseY, pButton);
 	}
@@ -206,6 +208,8 @@ public abstract class MachineContainerScreen<T extends MachineContainer<?>> exte
 				}
 			}
 		}
+		if (!pSlot.isActive())
+			noRender = true;
 		if (!noRender)
 			super.renderSlot(pPoseStack, pSlot);
 	}

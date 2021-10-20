@@ -20,5 +20,10 @@ public class FuelSlot extends Slot {
 	public boolean mayPlace(ItemStack pStack) {
 		return pStack.getItem() == ItemInit.REFINED_CARBON_INGOT.get();
 	}
+	
+	@Override
+	public boolean isActive() {
+		return !machine.isUsingEnergy();
+	}
 
 }

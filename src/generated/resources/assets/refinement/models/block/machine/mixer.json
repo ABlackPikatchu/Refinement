@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "side": "refinement:blocks/machines/machine_side",
+    "front": "refinement:blocks/machines/mixer",
+    "top": "refinement:blocks/machines/machine_side"
+  }
+}

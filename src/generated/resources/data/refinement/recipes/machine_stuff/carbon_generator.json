@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RCR",
+    "RFR",
+    "RTR"
+  ],
+  "key": {
+    "R": {
+      "tag": "forge:storage_blocks/redstone"
+    },
+    "F": {
+      "item": "refinement:refined_carbon_ingot"
+    },
+    "T": {
+      "tag": "forge:storage_blocks/tin"
+    },
+    "C": {
+      "tag": "forge:storage_blocks/copper"
+    }
+  },
+  "result": {
+    "item": "refinement:carbon_generator"
+  }
+}

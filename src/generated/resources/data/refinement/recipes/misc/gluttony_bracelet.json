@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CDC",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:cocoa_beans"
+    },
+    "D": {
+      "tag": "forge:gems/diamond"
+    }
+  },
+  "result": {
+    "item": "refinement:gluttony_bracelet"
+  }
+}

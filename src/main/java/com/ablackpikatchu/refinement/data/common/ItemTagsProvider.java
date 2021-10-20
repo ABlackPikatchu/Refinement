@@ -1,7 +1,9 @@
 package com.ablackpikatchu.refinement.data.common;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
+import static com.ablackpikatchu.refinement.core.init.ItemInit.*;
 import com.ablackpikatchu.refinement.core.init.TagInit;
 import com.ablackpikatchu.refinement.core.util.lists.ItemLists;
 
@@ -15,6 +17,7 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
+@SuppressWarnings("unused")
 public class ItemTagsProvider extends net.minecraft.data.ItemTagsProvider {
 
 	public ItemTagsProvider(DataGenerator p_i232552_1_, BlockTagsProvider p_i232552_2_,
@@ -152,7 +155,7 @@ public class ItemTagsProvider extends net.minecraft.data.ItemTagsProvider {
     	
     	//Storage Blocks
     	tag(TagInit.Items.STORAGE_BLOCKS).add(ItemInit.REFINED_IRON_BLOCK.get());
-    	tag(TagInit.Items.IRON_STORAGE).add(ItemInit.REFINED_IRON_BLOCK.get());
+    	tag(TagInit.Items.REFINED_IRON_STORAGE).add(ItemInit.REFINED_IRON_BLOCK.get());
     	tag(TagInit.Items.STORAGE_BLOCKS).add(ItemInit.REFINED_GOLD_BLOCK.get());
     	tag(TagInit.Items.GOLD_STORAGE).add(ItemInit.REFINED_GOLD_BLOCK.get());
     	tag(TagInit.Items.STORAGE_BLOCKS).add(ItemInit.REFINED_DIAMOND_BLOCK.get());
@@ -184,6 +187,14 @@ public class ItemTagsProvider extends net.minecraft.data.ItemTagsProvider {
 		tag(TagInit.Items.MC_GLASS).add(Items.GLASS);
 		tag(TagInit.Items.MC_GLASS_PANE).add(Items.GLASS_PANE);
     	
+		tag(TagInit.Items.COPPER_STORAGE).add(BlockInit.COPPER_BLOCK.get().asItem());
+		tag(TagInit.Items.TIN_STORAGE).add(BlockInit.TIN_BLOCK.get().asItem());
+		tag(TagInit.Items.SILVER_STORAGE).add(BlockInit.SILVER_BLOCK.get().asItem());
+		tag(TagInit.Items.LEAD_STORAGE).add(BlockInit.LEAD_BLOCK.get().asItem());
+		
+		tag(TagInit.Items.LUMIUM_STORAGE).add(BlockInit.LUMIUM_BLOCK.get().asItem());
+		tag(TagInit.Items.SIGNALUM_STORAGE).add(BlockInit.SIGNALUM_BLOCK.get().asItem());
+		tag(TagInit.Items.ENDERIUM_STORAGE).add(BlockInit.ENDERIUM_BLOCK.get().asItem());
 	}
 
 }

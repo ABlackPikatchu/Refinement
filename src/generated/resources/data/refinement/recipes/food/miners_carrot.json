@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    " B ",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:carrot"
+    },
+    "B": {
+      "item": "refinement:miners_bread"
+    }
+  },
+  "result": {
+    "item": "refinement:miners_carrot",
+    "count": 2
+  }
+}

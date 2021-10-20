@@ -151,6 +151,10 @@ public class RecipeMaps {
 				new Output(ItemInit.REFINED_NETHERITE_DUST.get(), 1));
 
 		tagMap.put(new TagInput(TagInit.Items.COBBLESTONE, 16), new Output(Items.GRAVEL, 16));
+		tagMap.put(new TagInput(TagInit.Items.SILVER_INGOT, 1), new Output(ItemInit.SILVER_DUST, 1));
+		tagMap.put(new TagInput(TagInit.Items.TIN_INGOT, 1), new Output(ItemInit.TIN_DUST, 1));
+		tagMap.put(new TagInput(TagInit.Items.LEAD_INGOT, 1), new Output(ItemInit.LEAD_DUST, 1));
+		tagMap.put(new TagInput(TagInit.Items.COPPER_INGOT, 1), new Output(ItemInit.COPPER_DUST, 1));
 	}
 
 	public static void addMixerRecipes(HashMap<MixerInput, Output> map) {

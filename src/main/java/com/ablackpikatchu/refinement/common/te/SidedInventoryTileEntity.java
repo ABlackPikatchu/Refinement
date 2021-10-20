@@ -258,8 +258,9 @@ public abstract class SidedInventoryTileEntity extends LockableTileEntity
 	protected void storeResultItem(ItemStack stack) {
 		// Merge the item into any output slot it can fit in
 		for (int i : getOutputSlots()) {
+			try { 
 			ItemStack output = ((IInventory) this).getItem(i);
-			if (TileEntityHelper.canPlaceItemInStack(output, stack)) {
+			if (getItems() != null && TileEntityHelper.canPlaceItemInStack(output, stack)) {
 				if (output.isEmpty()) {
 					((IInventory) this).setItem(i, stack);
 				} else {
@@ -268,6 +269,9 @@ public abstract class SidedInventoryTileEntity extends LockableTileEntity
 				return;
 			} else if (getOutputSlots().length == 1)
 				return;
+			} catch (Exception e) {
+				
+			}
 		}
 	}
 

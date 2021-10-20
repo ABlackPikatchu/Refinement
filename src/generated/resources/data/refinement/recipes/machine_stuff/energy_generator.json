@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RCR",
+    "RFR",
+    "RTR"
+  ],
+  "key": {
+    "R": {
+      "tag": "forge:storage_blocks/redstone"
+    },
+    "F": {
+      "item": "refinement:refined_iron_cogwheel"
+    },
+    "T": {
+      "tag": "forge:storage_blocks/tin"
+    },
+    "C": {
+      "tag": "forge:storage_blocks/silver"
+    }
+  },
+  "result": {
+    "item": "refinement:energy_generator"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CIC",
+    "ISI",
+    "CIC"
+  ],
+  "key": {
+    "C": {
+      "item": "refinement:refined_diamond_cogwheel"
+    },
+    "I": {
+      "tag": "forge:storage_blocks/iron"
+    },
+    "S": {
+      "item": "refinement:smelter"
+    }
+  },
+  "result": {
+    "item": "refinement:alloy_smelter"
+  }
+}

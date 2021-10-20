@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "BDB",
+    "BBB"
+  ],
+  "key": {
+    "D": {
+      "item": "minecraft:crafting_table"
+    },
+    "B": {
+      "tag": "forge:storage_blocks/emerald"
+    }
+  },
+  "result": {
+    "item": "refinement:materials_station"
+  }
+}
