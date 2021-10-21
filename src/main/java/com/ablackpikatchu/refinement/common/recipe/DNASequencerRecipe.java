@@ -1,8 +1,9 @@
 package com.ablackpikatchu.refinement.common.recipe;
 
+import static com.ablackpikatchu.refinement.Refinement.MOD_ID;
+
 import java.util.Random;
 
-import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
@@ -28,6 +29,7 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 public class DNASequencerRecipe implements IRecipe<IInventory> {
 
 	public static final Serializer SERIALIZER = new Serializer();
+	public static final ResourceLocation REGISTRY_NAME = new ResourceLocation(MOD_ID, "dna_sequencer");
 
 	private final Ingredient input;
 	private final Ingredient secondaryInput;
@@ -54,8 +56,9 @@ public class DNASequencerRecipe implements IRecipe<IInventory> {
 	}
 
 	@Override
-	public boolean matches(IInventory p_77569_1_, World p_77569_2_) {
-		return false;
+	public boolean matches(IInventory inv, World p_77569_2_) {
+		return (this.input.test(inv.getItem(0)) && this.secondaryInput.test(inv.getItem(1)) && inv.getItem(0).getCount() >= this.inputCount
+				&& inv.getItem(1).getCount() >= this.secondaryInputCount);
 	}
 
 	@Override
@@ -133,7 +136,7 @@ public class DNASequencerRecipe implements IRecipe<IInventory> {
 	private static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>>
 			implements IRecipeSerializer<DNASequencerRecipe> {
 		public Serializer() {
-			this.setRegistryName(Refinement.MOD_ID, "dna_sequencer");
+			this.setRegistryName(new ResourceLocation(MOD_ID, "dna_sequencer"));
 		}
 
 		@Override

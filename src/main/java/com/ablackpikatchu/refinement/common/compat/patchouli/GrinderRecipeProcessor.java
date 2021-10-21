@@ -1,4 +1,4 @@
-package com.ablackpikatchu.refinement.common.patchouli;
+package com.ablackpikatchu.refinement.common.compat.patchouli;
 
 import com.ablackpikatchu.refinement.common.recipe.GrinderRecipe;
 

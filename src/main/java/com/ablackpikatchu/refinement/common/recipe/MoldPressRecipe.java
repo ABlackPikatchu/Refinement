@@ -1,6 +1,7 @@
 package com.ablackpikatchu.refinement.common.recipe;
 
-import com.ablackpikatchu.refinement.Refinement;
+import static com.ablackpikatchu.refinement.Refinement.MOD_ID;
+
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
@@ -19,10 +20,13 @@ import net.minecraft.util.JSONUtils;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 public class MoldPressRecipe implements IRecipe<IInventory> {
+	
 	public static final Serializer SERIALIZER = new Serializer();
+	public static final ResourceLocation REGISTRY_NAME = new ResourceLocation(MOD_ID, "mold_press");
 
 	private final Ingredient input;
 	private final Ingredient moldInput;
@@ -40,8 +44,13 @@ public class MoldPressRecipe implements IRecipe<IInventory> {
 	}
 
 	@Override
-	public boolean matches(IInventory p_77569_1_, World p_77569_2_) {
-		return this.input.test(p_77569_1_.getItem(0));
+	public boolean matches(IInventory pInv, World pLevel) {
+		ItemStack inputStack = pInv.getItem(0);
+		return this.input.test(inputStack) && inputStack.getCount() >= this.count && this.moldInput.test(pInv.getItem(2));
+	}
+	
+	public void consumeInput(IInventory pInv) {
+		pInv.getItem(0).shrink(count);
 	}
 
 	@Override
@@ -106,7 +115,7 @@ public class MoldPressRecipe implements IRecipe<IInventory> {
 	private static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>>
 			implements IRecipeSerializer<MoldPressRecipe> {
 		public Serializer() {
-			this.setRegistryName(Refinement.MOD_ID, "mold_press");
+			this.setRegistryName(new ResourceLocation(MOD_ID, "mold_press"));
 		}
 
 		@Override

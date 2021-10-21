@@ -129,6 +129,9 @@ public class CommonConfig {
 		SPEC = BUILDER.build();
 
 	}
+	
+	public static ForgeConfigSpec.ConfigValue<Integer> GRINDER_ENERGY_USAGE_PER_SPEED_UPGRADE;
+	public static ForgeConfigSpec.ConfigValue<Integer> GRINDER_DEFAULT_ENERGY_USAGE;
 
 	public static void addGrinderConfig() {
 		BUILDER.push("Grinder");
@@ -139,6 +142,12 @@ public class CommonConfig {
 		GRINDER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE = BUILDER.comment(
 				"The ticks amount each speed upgrades decreases from the process time of the Grinder. (Default value is 15)")
 				.define("speedUpgradeTimeDecreased", 15);
+		GRINDER_ENERGY_USAGE_PER_SPEED_UPGRADE = BUILDER.comment(
+				"(Only for Grinders that have the Energy Ability Upgrade) The default energy usage (FE/tick) of the Grinder, per tick. (with no speed upgrades) (Default value is 7)")
+				.define("defaultEnergyUsage", 7);
+		GRINDER_DEFAULT_ENERGY_USAGE = BUILDER.comment(
+				"(Only for Grinders that have the Energy Ability Upgrade) The amount of FE/tick the Grinder furthermore consumes for each speed upgrade. (Default value is 55)")
+				.define("speedUpgradeEnergyUsage", 55);
 		BUILDER.pop();
 	}
 

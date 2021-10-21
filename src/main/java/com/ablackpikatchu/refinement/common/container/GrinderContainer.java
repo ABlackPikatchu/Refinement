@@ -2,8 +2,8 @@ package com.ablackpikatchu.refinement.common.container;
 
 import java.util.Objects;
 
+import com.ablackpikatchu.refinement.common.slot.FuelSlot;
 import com.ablackpikatchu.refinement.common.slot.OutputSlot;
-import com.ablackpikatchu.refinement.common.slot.itemspecific.CarbonSlot;
 import com.ablackpikatchu.refinement.common.slot.itemspecific.UpgradeSlot;
 import com.ablackpikatchu.refinement.common.te.machine.GrinderTileEntity;
 import com.ablackpikatchu.refinement.common.te.upgrade.Upgrade;
@@ -31,6 +31,11 @@ public class GrinderContainer extends MachineContainer<GrinderTileEntity> {
 	
 	public FunctionalIntReferenceHolder security;
 	
+	public FunctionalIntReferenceHolder energyUsed;
+	public FunctionalIntReferenceHolder currentEnergy;
+
+	public FunctionalIntReferenceHolder usingEnergy;
+	
 	public GrinderContainer(final int windowId, final PlayerInventory playerInv,
 			final GrinderTileEntity te) {
 		super(ContainerTypesInit.GRINDER_CONTAINER_TYPE.get(), windowId, te);
@@ -38,11 +43,12 @@ public class GrinderContainer extends MachineContainer<GrinderTileEntity> {
 
 		// Tile Entity
 		this.addSlot(new Slot((IInventory) te, 0, 44, 23)); //Input
-		this.addSlot(new OutputSlot((IInventory) te, 1, 135, 23)); //Output
-		this.addSlot(new CarbonSlot(te, 2, 8, 44)); //Coal
+		this.addSlot(new OutputSlot((IInventory) te, 1, 134, 23)); //Output
+		this.addSlot(new FuelSlot(te, 2, 8, 44)); //Coal
 		this.addSlot(new UpgradeSlot((IInventory) te, 3, 197, 113, Upgrade.SPEED)); //Speed Upgrade
 		this.addSlot(new UpgradeSlot((IInventory) te, 4, 179, 113, Upgrade.AUTO_EJECT)); // Auto eject upgrade
 		this.addSlot(new UpgradeSlot(te, 5, 197, 95, Upgrade.AUTO_IMPORT)); // Auto import upgrade
+		this.addSlot(new UpgradeSlot(te, 6, 179, 95, Upgrade.ENERGY_ABILITY)); // Energy Ability upgrade
 
 		// Main Player Inventory
 		for (int row = 0; row < 3; row++) {
@@ -63,6 +69,14 @@ public class GrinderContainer extends MachineContainer<GrinderTileEntity> {
 		
 		this.addDataSlot(security = new FunctionalIntReferenceHolder(() -> this.te.getSecurityInt(), 
 				value -> this.te.setIntSecurity(value)));
+		
+		this.addDataSlot(energyUsed = new FunctionalIntReferenceHolder(() -> this.te.energyStorage.energyUsed,
+				value -> this.te.energyStorage.energyUsed = value));
+		this.addDataSlot(currentEnergy = new FunctionalIntReferenceHolder(() -> this.te.energyStorage.getEnergyStored(),
+				value -> this.te.energyStorage.setEnergy(value)));
+
+		this.addDataSlot(usingEnergy = new FunctionalIntReferenceHolder(() -> this.te.getItem(6).getCount(),
+				value -> this.te.getItem(6).setCount(value)));
 	}
 
 	public GrinderContainer(final int windowId, final PlayerInventory playerInv, final PacketBuffer data) {
@@ -94,5 +108,19 @@ public class GrinderContainer extends MachineContainer<GrinderTileEntity> {
 		return this.currentWaitTime.get() != 0 && this.maxWaitTime.get() != 0
 				? this.currentWaitTime.get() * 59 / this.maxWaitTime.get()
 				: 0;
+	}
+
+	@OnlyIn(Dist.CLIENT)
+	public int getEnergyScaled() {
+		return this.currentEnergy.get() != 0 && this.te.energyStorage.getMaxEnergyStored() != 0
+				? this.currentEnergy.get() * 69 / this.te.energyStorage.getMaxEnergyStored()
+				: 0;
+	}
+
+	public boolean usingEnergy() {
+		if (this.usingEnergy.get() == 1)
+			return true;
+		else
+			return false;
 	}
 }

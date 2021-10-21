@@ -36,9 +36,15 @@ public class MoldPressTileEntity extends SidedInventoryTileEntity implements ITi
 	private ITextComponent customName;
 	public static int slots = 7;
 	protected NonNullList<ItemStack> items = NonNullList.withSize(slots, ItemStack.EMPTY);
-	private static final int[] SLOTS_FOR_UP = new int[] { 0 };
-	private static final int[] SLOTS_FOR_DOWN = new int[] { 1 };
-	private static final int[] SLOTS_FOR_SIDES = new int[] { 3 };
+	private static final int[] SLOTS_FOR_UP = new int[] {
+			0
+	};
+	private static final int[] SLOTS_FOR_DOWN = new int[] {
+			1
+	};
+	private static final int[] SLOTS_FOR_SIDES = new int[] {
+			3
+	};
 
 	public MoldPressTileEntity(final TileEntityType<?> tileEntityTypeIn) {
 		super(tileEntityTypeIn, slots);
@@ -57,33 +63,39 @@ public class MoldPressTileEntity extends SidedInventoryTileEntity implements ITi
 			handleFuelAutoImport(6, 3);
 			handleAutoImport(RecipeInit.MOLD_PRESS_RECIPE, 6, 0);
 			this.level.setBlockAndUpdate(this.getBlockPos(), this.getBlockState().setValue(MoldPressBlock.LIT, false));
-			getRecipes(RecipeInit.MOLD_PRESS_RECIPE).forEach(recipe -> {
-				final MoldPressRecipe moldPressRecipe = (MoldPressRecipe) recipe;
-				if (moldPressRecipe.isValid(this.getItem(0), this.getItem(2))
-						&& this.getItem(3).getItem() == ItemInit.REFINED_CARBON_INGOT.get()
-						&& this.getItem(3).getCount() >= this.usedCarbon) {
-					if (this.currentWaitTime >= this.maxWaitTime) {
-						TileEntityHelper.updateTE(this);
-						if (TileEntityHelper.canPlaceItemInStack(this.getItem(1), recipe.getResultItem())) {
-							this.getItem(0).shrink(moldPressRecipe.getInputCount());
-							this.getItem(3).shrink(this.usedCarbon);
-							int oldCount = 0;
-							if (this.getItem(1) != ItemStack.EMPTY)
-								oldCount = this.getItem(1).getCount();
-							this.setItem(1, new ItemStack(recipe.getResultItem().getItem(),
-									recipe.getResultItem().getCount() + oldCount));
-							this.currentWaitTime = 0;
-							TileEntityHelper.updateTE(this);
-						}
-					} else {
-						this.currentWaitTime++;
-						this.setChanged();
+			if (getRecipe() != null && this.getItem(3).getItem() == ItemInit.REFINED_CARBON_INGOT.get()
+					&& this.getItem(3).getCount() >= this.usedCarbon) {
+				final MoldPressRecipe recipe = getRecipe();
+				if (this.currentWaitTime >= this.maxWaitTime) {
+					TileEntityHelper.updateTE(this);
+					if (TileEntityHelper.canPlaceItemInStack(this.getItem(1), recipe.getResultItem())) {
+						recipe.consumeInput(iInventory);
+						this.getItem(3).shrink(this.usedCarbon);
+						int oldCount = 0;
+						if (this.getItem(1) != ItemStack.EMPTY)
+							oldCount = this.getItem(1).getCount();
+						this.setItem(1, new ItemStack(recipe.getResultItem().getItem(),
+								recipe.getResultItem().getCount() + oldCount));
+						this.currentWaitTime = 0;
 						this.level.setBlockAndUpdate(this.getBlockPos(),
 								this.getBlockState().setValue(MoldPressBlock.LIT, true));
+						TileEntityHelper.updateTE(this);
 					}
+				} else {
+					this.currentWaitTime++;
+					this.setChanged();
+					this.level.setBlockAndUpdate(this.getBlockPos(),
+							this.getBlockState().setValue(MoldPressBlock.LIT, true));
 				}
-			});
+			}
 		}
+	}
+
+	@Nullable
+	protected MoldPressRecipe getRecipe() {
+		if (level == null)
+			return null;
+		return level.getRecipeManager().getRecipeFor(RecipeInit.MOLD_PRESS_RECIPE, this, level).orElse(null);
 	}
 
 	@Override

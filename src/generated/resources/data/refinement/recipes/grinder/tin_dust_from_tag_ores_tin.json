@@ -1,0 +1,11 @@
+{
+  "type": "refinement:grinder",
+  "input": {
+    "tag": "forge:ores/tin",
+    "count": 1
+  },
+  "output": {
+    "item": "refinement:tin_dust",
+    "count": 2
+  }
+}

@@ -178,6 +178,8 @@ public class AlloySmelterTileEntity extends MachineTileEntity implements ITickab
 					} else {
 						TileEntityHelper.setStateProperty(this, AlloySmelterBlock.LIT, true);
 						advanceProgress();
+						if (usingEnergy)
+							energyStorage.useEnergy();
 					}
 				}
 			}

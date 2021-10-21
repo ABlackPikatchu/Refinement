@@ -1,5 +1,5 @@
 {
-    "processor": "com.ablackpikatchu.refinement.common.patchouli.GrinderRecipeProcessor",
+    "processor": "com.ablackpikatchu.refinement.common.compat.patchouli.GrinderRecipeProcessor",
 	"components": [
 		{
 			"type": "item", "item": "#item1", "x": 4, "y": 25, "framed": true

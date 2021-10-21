@@ -107,6 +107,7 @@ public class AlloySmelterContainer extends MachineContainer<AlloySmelterTileEnti
 				: 0;
 	}
 
+	@OnlyIn(Dist.CLIENT)
 	public boolean usingEnergy() {
 		if (this.usingEnergy.get() == 1)
 			return true;

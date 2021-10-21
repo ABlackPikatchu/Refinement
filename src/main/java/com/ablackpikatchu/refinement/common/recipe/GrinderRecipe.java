@@ -1,6 +1,7 @@
 package com.ablackpikatchu.refinement.common.recipe;
 
-import com.ablackpikatchu.refinement.Refinement;
+import static com.ablackpikatchu.refinement.Refinement.MOD_ID;
+
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
@@ -19,10 +20,13 @@ import net.minecraft.util.JSONUtils;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 public class GrinderRecipe implements IRecipe<IInventory> {
+	
 	public static final Serializer SERIALIZER = new Serializer();
+	public static final ResourceLocation REGISTRY_NAME = new ResourceLocation(MOD_ID, "grinder");
 
 	private final Ingredient input;
 	private final int count;
@@ -40,6 +44,23 @@ public class GrinderRecipe implements IRecipe<IInventory> {
 	@Override
 	public boolean matches(IInventory inv, World p_77569_2_) {
 		return (this.input.test(inv.getItem(0)) && inv.getItem(0).getCount() >= this.count);
+	}
+	
+	public void storeResult(IInventory inv) {
+		int oldCount = 0;
+		if (inv.getItem(1) != ItemStack.EMPTY)
+			oldCount = inv.getItem(1).getCount();
+		inv.setItem(1, new ItemStack(getResultItem().getItem(),
+				getResultItem().getCount() + oldCount));
+	}
+	
+	public void consumeIngredients(IInventory inv) {
+		inv.getItem(0).shrink(getInputCount());
+	}
+	
+	public void finishRecipe(IInventory inv) {
+		storeResult(inv);
+		consumeIngredients(inv);
 	}
 
 	@Override
@@ -96,7 +117,7 @@ public class GrinderRecipe implements IRecipe<IInventory> {
 	private static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>>
 			implements IRecipeSerializer<GrinderRecipe> {
 		public Serializer() {
-			this.setRegistryName(Refinement.MOD_ID, "grinder");
+			this.setRegistryName(new ResourceLocation(MOD_ID, "grinder"));
 		}
 
 		@Override

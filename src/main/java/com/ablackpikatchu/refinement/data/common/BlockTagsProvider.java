@@ -23,6 +23,11 @@ public class BlockTagsProvider extends net.minecraft.data.BlockTagsProvider {
     	tag(TagInit.Blocks.ORES).add(BlockInit.BLANK_ORE.get());
     	tag(TagInit.Blocks.BLANK_ORE).add(BlockInit.BLANK_ORE.get());
     	
+    	tag(TagInit.Blocks.TIN_ORE).add(BlockInit.TIN_ORE.get());
+    	tag(TagInit.Blocks.SILVER_ORE).add(BlockInit.SILVER_ORE.get());
+    	tag(TagInit.Blocks.COPPER_ORE).add(BlockInit.COPPER_ORE.get());
+    	tag(TagInit.Blocks.LEAD_ORE).add(BlockInit.LEAD_ORE.get());
+    	
     	
 		//Storage Blocks
 		tag(TagInit.Blocks.STORAGE_BLOCKS).add(BlockInit.REFINED_IRON_BLOCK.get());

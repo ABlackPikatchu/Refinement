@@ -1,20 +1,26 @@
-package com.ablackpikatchu.refinement.common.jei;
+package com.ablackpikatchu.refinement.common.compat.jei;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
 
-import mezz.jei.api.IModPlugin;
-import mezz.jei.api.JeiPlugin;
-import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.registration.IRecipeCategoryRegistration;
-import mezz.jei.api.registration.IRecipeRegistration;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.util.ResourceLocation;
+
+import mezz.jei.api.IModPlugin;
+import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.VanillaRecipeCategoryUid;
+import mezz.jei.api.helpers.IGuiHelper;
+import mezz.jei.api.registration.IRecipeCatalystRegistration;
+import mezz.jei.api.registration.IRecipeCategoryRegistration;
+import mezz.jei.api.registration.IRecipeRegistration;
 
 @JeiPlugin
 public class RefinementJEIPlugin implements IModPlugin {
@@ -24,6 +30,17 @@ public class RefinementJEIPlugin implements IModPlugin {
 	@Override
 	public ResourceLocation getPluginUid() {
 		return PLUGIN_ID;
+	}
+	
+	@Override
+	public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
+		registration.addRecipeCatalyst(new ItemStack(BlockInit.SMELTER_BLOCK.get()), VanillaRecipeCategoryUid.FURNACE);
+		registration.addRecipeCatalyst(new ItemStack(BlockInit.ALLOY_SMELTER_BLOCK.get()), AlloySmelterRecipeCategory.ID);
+		registration.addRecipeCatalyst(new ItemStack(BlockInit.GRINDER.get()), GrinderRecipeCategory.ID);
+		registration.addRecipeCatalyst(new ItemStack(BlockInit.DNA_SEQUENCER.get()), DNASequencerRecipeCategory.ID);
+		registration.addRecipeCatalyst(new ItemStack(BlockInit.MIXER.get()), MixerRecipeCategory.ID);
+		registration.addRecipeCatalyst(new ItemStack(BlockInit.MOLD_PRESS.get()), MoldPressRecipeCatgory.ID);
+		registration.addRecipeCatalyst(new ItemStack(Blocks.ANVIL), AnvilRecipeCategory.ID);
 	}
 
 	@SuppressWarnings("resource")

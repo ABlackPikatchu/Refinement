@@ -1,9 +1,14 @@
 package com.ablackpikatchu.refinement.common.recipe;
 
-import com.ablackpikatchu.refinement.Refinement;
+import static com.ablackpikatchu.refinement.Refinement.MOD_ID;
+
+import java.util.Map;
+
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
+import com.ablackpikatchu.refinement.core.util.InventoryUtils;
+import com.google.common.collect.ImmutableMap.Builder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
@@ -23,7 +28,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 public class MixerRecipe implements IRecipe<IInventory> {
+	
 	public static final Serializer SERIALIZER = new Serializer();
+	public static final ResourceLocation REGISTRY_NAME = new ResourceLocation(MOD_ID, "mixer");
 
 	private final Ingredient input;
 	private final Ingredient secondaryInput;
@@ -32,6 +39,8 @@ public class MixerRecipe implements IRecipe<IInventory> {
 	private final ItemStack output;
 	private final ResourceLocation id;
 	private final Ingredient refinedCoal = Ingredient.of(new ItemStack(ItemInit.REFINED_CARBON_INGOT.get()));
+	
+	private final Map<Ingredient, Integer> ingredientsMap;
 
 	public MixerRecipe(ResourceLocation id, Ingredient input, Ingredient secondaryInput, ItemStack output,
 			int inputCount, int secondaryInputCount) {
@@ -41,6 +50,41 @@ public class MixerRecipe implements IRecipe<IInventory> {
 		this.inputCount = inputCount;
 		this.secondaryInputCount = secondaryInputCount;
 		this.output = output;
+		ingredientsMap = (new Builder<Ingredient, Integer>()).put(input, inputCount).put(secondaryInput, secondaryInputCount).build();
+	}
+	
+	@Override
+	public boolean matches(IInventory inv, World pLevel) {
+		for (Map.Entry<Ingredient, Integer> entry : ingredientsMap.entrySet()) {
+			int required = entry.getValue();
+			int found = InventoryUtils.getTotalCount(inv, entry.getKey());
+			if (found < required) {
+				return false;
+			}
+		}
+
+		// Check for non-matching items
+		for (int i = 0; i < 1; ++i) {
+			ItemStack stack = inv.getItem(i);
+			if (!stack.isEmpty()) {
+				boolean foundMatch = false;
+				for (Map.Entry<Ingredient, Integer> entry : ingredientsMap.entrySet()) {
+					if (entry.getKey().test(stack)) {
+						foundMatch = true;
+						break;
+					}
+				}
+				if (!foundMatch) {
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
+	
+	public void consumeIngredients(IInventory inv) {
+		ingredientsMap.forEach(((ingredient, count) -> InventoryUtils.consumeItems(inv, ingredient, count)));
 	}
 
 	@Override
@@ -98,7 +142,7 @@ public class MixerRecipe implements IRecipe<IInventory> {
 	private static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>>
 			implements IRecipeSerializer<MixerRecipe> {
 		public Serializer() {
-			this.setRegistryName(Refinement.MOD_ID, "mixer");
+			this.setRegistryName(new ResourceLocation(MOD_ID, "mixer"));
 		}
 
 		@Override
@@ -158,11 +202,6 @@ public class MixerRecipe implements IRecipe<IInventory> {
 			recipe.secondaryInput.toNetwork(buffer);
 			buffer.writeItem(recipe.output);
 		}
-	}
-
-	@Override
-	public boolean matches(IInventory inv, World p_77569_2_) {
-		return false;
 	}
 
 	@Override

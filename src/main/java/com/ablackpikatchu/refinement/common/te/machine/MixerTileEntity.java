@@ -62,47 +62,27 @@ public class MixerTileEntity extends SidedInventoryTileEntity implements ITickab
 			handleFuelAutoImport(6, 3);
 			handleAutoImport(RecipeInit.MIXER_RECIPE, 6, 0, 1);
 			this.level.setBlockAndUpdate(this.getBlockPos(), this.getBlockState().setValue(MixerBlock.LIT, false));
-			getRecipes(RecipeInit.MIXER_RECIPE).forEach(recipe -> {
-				final MixerRecipe mixerRecipe = (MixerRecipe) recipe;
-				if (this.getItem(3).getItem() == ItemInit.REFINED_CARBON_INGOT.get()
-						&& this.getItem(3).getCount() >= this.usedCarbon) {
-					if (mixerRecipe.isValid(this.getItem(0), this.getItem(1))) {
-						if (this.currentWaitTime >= this.maxWaitTime) {
-							TileEntityHelper.updateTE(this);
-							if (TileEntityHelper.canPlaceItemInStack(this.getItem(2), recipe.getResultItem())) {
-								this.getItem(0).shrink(mixerRecipe.getInputCount());
-								this.getItem(1).shrink(mixerRecipe.getSecondaryInputCount());
-								this.getItem(3).shrink(this.usedCarbon);
-								int oldCount = 0;
-								if (this.getItem(2) != ItemStack.EMPTY)
-									oldCount = this.getItem(2).getCount();
-								this.setItem(2, new ItemStack(recipe.getResultItem().getItem(),
-										recipe.getResultItem().getCount() + oldCount));
-								this.currentWaitTime = 0;
-								TileEntityHelper.updateTE(this);
-							}
-						} else
-							increaseTime();
-					} else if (mixerRecipe.isValid(this.getItem(1), this.getItem(0))) {
-						if (this.currentWaitTime >= this.maxWaitTime) {
-							TileEntityHelper.updateTE(this);
-							if (TileEntityHelper.canPlaceItemInStack(this.getItem(2), recipe.getResultItem())) {
-								this.getItem(1).shrink(mixerRecipe.getInputCount());
-								this.getItem(0).shrink(mixerRecipe.getSecondaryInputCount());
-								this.getItem(3).shrink(this.usedCarbon);
-								int oldCount = 0;
-								if (this.getItem(2) != ItemStack.EMPTY)
-									oldCount = this.getItem(2).getCount();
-								this.setItem(2, new ItemStack(recipe.getResultItem().getItem(),
-										recipe.getResultItem().getCount() + oldCount));
-								this.currentWaitTime = 0;
-								TileEntityHelper.updateTE(this);
-							}
-						} else
-							increaseTime();
+			if (this.getItem(3).getItem() == ItemInit.REFINED_CARBON_INGOT.get()
+					&& this.getItem(3).getCount() >= this.usedCarbon && getRecipe() != null) {
+				final MixerRecipe recipe = getRecipe();
+				if (this.currentWaitTime >= this.maxWaitTime) {
+					TileEntityHelper.updateTE(this);
+					if (TileEntityHelper.canPlaceItemInStack(this.getItem(2), recipe.getResultItem())) {
+						recipe.consumeIngredients(iInventory);
+						this.getItem(3).shrink(this.usedCarbon);
+						int oldCount = 0;
+						if (this.getItem(2) != ItemStack.EMPTY)
+							oldCount = this.getItem(2).getCount();
+						this.setItem(2, new ItemStack(recipe.getResultItem().getItem(),
+								recipe.getResultItem().getCount() + oldCount));
+						this.currentWaitTime = 0;
+						this.level.setBlockAndUpdate(this.getBlockPos(), this.getBlockState().setValue(MixerBlock.LIT, true));
+						TileEntityHelper.updateTE(this);
 					}
-				}
-			});
+				} else
+					increaseTime();
+			} else
+				regressProgress();
 		}
 	}
 
@@ -110,6 +90,13 @@ public class MixerTileEntity extends SidedInventoryTileEntity implements ITickab
 		this.currentWaitTime++;
 		this.setChanged();
 		this.level.setBlockAndUpdate(this.getBlockPos(), this.getBlockState().setValue(MixerBlock.LIT, true));
+	}
+
+	@Nullable
+	protected MixerRecipe getRecipe() {
+		if (level == null)
+			return null;
+		return level.getRecipeManager().getRecipeFor(RecipeInit.MIXER_RECIPE, this, level).orElse(null);
 	}
 
 	@Override

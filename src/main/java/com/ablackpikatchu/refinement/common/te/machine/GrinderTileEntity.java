@@ -17,6 +17,7 @@ import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
+import com.ablackpikatchu.refinement.core.util.energy.ModEnergyStorage;
 import com.ablackpikatchu.refinement.core.util.helper.TileEntityHelper;
 
 import net.minecraft.block.BlockState;
@@ -38,7 +39,7 @@ public class GrinderTileEntity extends MachineTileEntity implements ITickableTil
 
 	List<ItemStack> allItems = null;
 	private ITextComponent customName;
-	public static int slots = 6;
+	public static int slots = 7;
 	protected NonNullList<ItemStack> items = NonNullList.withSize(slots, ItemStack.EMPTY);
 	private static final int[] SLOTS_FOR_UP = new int[] {
 			0
@@ -52,6 +53,21 @@ public class GrinderTileEntity extends MachineTileEntity implements ITickableTil
 
 	public GrinderTileEntity(final TileEntityType<?> tileEntityTypeIn) {
 		super(tileEntityTypeIn, slots);
+		this.energyStorage = createEnergy();
+	}
+
+	private ModEnergyStorage createEnergy() {
+		return new ModEnergyStorage(100000, (CommonConfig.GRINDER_DEFAULT_ENERGY_USAGE.get()
+				+ CommonConfig.GRINDER_ENERGY_USAGE_PER_SPEED_UPGRADE.get() * 8) / 4 * 5, 0) {
+			@Override
+			protected void onEnergyChanged() {
+				boolean newHasPower = hasEnoughPowerToWork();
+				if (newHasPower != hasPower) {
+					hasPower = newHasPower;
+				}
+				setChanged();
+			}
+		};
 	}
 
 	public GrinderTileEntity() {
@@ -61,32 +77,40 @@ public class GrinderTileEntity extends MachineTileEntity implements ITickableTil
 	@Override
 	public void tick() {
 		if (!this.level.isClientSide()) {
-			handleSpeedUpgrades(3, CommonConfig.GRINDER_DEFAULT_PROCESS_TIME.get(),
-					CommonConfig.GRINDER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get());
+			handleEnergyAbilityUpgrade(6);
 			handleAutoEject(4, 1);
-			handleFuelAutoImport(5, 2);
+
+			if (!usingEnergy)
+				handleFuelAutoImport(5, 2);
+
 			handleAutoImport(RecipeInit.GRINDER_RECIPE, 5, 0);
+
+			if (!usingEnergy)
+				handleSpeedUpgrades(3, CommonConfig.GRINDER_DEFAULT_PROCESS_TIME.get(),
+						CommonConfig.GRINDER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get());
+			else
+				handleEnergySpeedUpgrades(3, CommonConfig.GRINDER_DEFAULT_PROCESS_TIME.get(),
+						CommonConfig.GRINDER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get(), energyStorage,
+						CommonConfig.GRINDER_DEFAULT_ENERGY_USAGE.get(),
+						CommonConfig.GRINDER_ENERGY_USAGE_PER_SPEED_UPGRADE.get());
+
 			this.level.setBlockAndUpdate(this.getBlockPos(), this.getBlockState().setValue(GrinderBlock.LIT, false));
 			if (getRecipe(this.getItem(0)) != null) {
 				IRecipe<?> recipe = getRecipe(this.getItem(0));
 				final GrinderRecipe grinderRecipe = (GrinderRecipe) recipe;
-				if (this.getItem(2).getItem() == ItemInit.REFINED_CARBON_INGOT.get()
-						&& this.getItem(2).getCount() >= this.usedCarbon) {
+				if (canWork()) {
 					if (this.currentWaitTime >= this.maxWaitTime) {
 						TileEntityHelper.updateTE(this);
 						if (TileEntityHelper.canPlaceItemInStack(this.getItem(1), recipe.getResultItem())) {
-							this.getItem(0).shrink(grinderRecipe.getInputCount());
-							this.getItem(2).shrink(this.usedCarbon);
-							int oldCount = 0;
-							if (this.getItem(1) != ItemStack.EMPTY)
-								oldCount = this.getItem(1).getCount();
-							this.setItem(1, new ItemStack(recipe.getResultItem().getItem(),
-									recipe.getResultItem().getCount() + oldCount));
+							consumeFuel();
+							grinderRecipe.finishRecipe(iInventory);
 							this.currentWaitTime = 0;
 							TileEntityHelper.updateTE(this);
 						}
 					} else {
 						this.currentWaitTime++;
+						if (usingEnergy)
+							energyStorage.useEnergy();
 						this.setChanged();
 						this.level.setBlockAndUpdate(this.getBlockPos(),
 								this.getBlockState().setValue(GrinderBlock.LIT, true));

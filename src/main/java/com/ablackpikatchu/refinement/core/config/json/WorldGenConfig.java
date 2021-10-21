@@ -17,6 +17,11 @@ public class WorldGenConfig extends JsonConfig {
 		this.ORE_GEN = new LinkedList<>();
 		ORE_GEN.add(new OreEntry(BlockInit.PURE_CRYSTAL_ORE.get(), 6, 4, 20, OreEntry.Type.NATURAL_STONE));
 		ORE_GEN.add(new OreEntry(BlockInit.BLANK_ORE.get(), 2, 5, 25, OreEntry.Type.NATURAL_STONE));
+		
+		ORE_GEN.add(new OreEntry(BlockInit.TIN_ORE.get(), 8, 5, 60, OreEntry.Type.NATURAL_STONE));
+		ORE_GEN.add(new OreEntry(BlockInit.COPPER_ORE.get(), 8, 5, 60, OreEntry.Type.NATURAL_STONE));
+		ORE_GEN.add(new OreEntry(BlockInit.LEAD_ORE.get(), 8, 5, 48, OreEntry.Type.NATURAL_STONE));
+		ORE_GEN.add(new OreEntry(BlockInit.SILVER_ORE.get(), 8, 5, 56, OreEntry.Type.NATURAL_STONE));
 	}
 	
 	public List<OreEntry> getOreGen() {

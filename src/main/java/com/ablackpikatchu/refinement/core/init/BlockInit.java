@@ -104,6 +104,10 @@ public class BlockInit {
 					.sound(SoundType.STONE)));
 
 	public static final RegistryObject<Block> BLANK_ORE = BLOCKS.register("blank_ore", () -> new BlankOreBlock());
+	public static final RegistryObject<Block> TIN_ORE = oreBlock("tin_ore");
+	public static final RegistryObject<Block> SILVER_ORE = oreBlock("silver_ore");
+	public static final RegistryObject<Block> COPPER_ORE = oreBlock("copper_ore");
+	public static final RegistryObject<Block> LEAD_ORE = oreBlock("lead_ore");
 
 	// TE Blocks
 	public static final RegistryObject<Block> GRINDER = BLOCKS.register("grinder", () -> new GrinderBlock());
@@ -150,4 +154,8 @@ public class BlockInit {
 	public static final RegistryObject<Block> REFINED_SAPLING = BLOCKS.register("refined_sapling",
 			() -> new RefinedSaplingBlock(TreeInit.REFINED, AbstractBlock.Properties.of(Material.LEAVES)
 					.sound(SoundType.GRASS).strength(0f).randomTicks().noOcclusion()));
+	
+	private static RegistryObject<Block> oreBlock(String registryName) {
+		return BLOCKS.register(registryName, () -> new Block(AbstractBlock.Properties.copy(Blocks.IRON_ORE)));
+	}
 }

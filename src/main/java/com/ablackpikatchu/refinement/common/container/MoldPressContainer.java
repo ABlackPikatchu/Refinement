@@ -2,21 +2,25 @@ package com.ablackpikatchu.refinement.common.container;
 
 import java.util.Objects;
 
+import com.ablackpikatchu.refinement.common.recipe.MoldPressRecipe;
 import com.ablackpikatchu.refinement.common.slot.ItemsReservedSlot;
 import com.ablackpikatchu.refinement.common.slot.OutputSlot;
+import com.ablackpikatchu.refinement.common.slot.RecipeIngredientSlot;
 import com.ablackpikatchu.refinement.common.slot.itemspecific.CarbonSlot;
 import com.ablackpikatchu.refinement.common.slot.itemspecific.UpgradeSlot;
 import com.ablackpikatchu.refinement.common.te.machine.MoldPressTileEntity;
 import com.ablackpikatchu.refinement.common.te.upgrade.Upgrade;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
+import com.ablackpikatchu.refinement.core.init.RecipeInit;
+import com.ablackpikatchu.refinement.core.init.TagInit;
 import com.ablackpikatchu.refinement.core.util.FunctionalIntReferenceHolder;
-import com.ablackpikatchu.refinement.core.util.lists.ItemLists;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
@@ -37,9 +41,9 @@ public class MoldPressContainer extends MachineContainer<MoldPressTileEntity> {
 		this.canInteractWithCallable = IWorldPosCallable.create(te.getLevel(), te.getBlockPos());
 
 		// Tile Entity
-		this.addSlot(new Slot((IInventory) te, 0, 62, 6)); //Input
+		this.addSlot(new RecipeIngredientSlot<MoldPressRecipe>(RecipeInit.MOLD_PRESS_RECIPE, te.getLevel(), te, 0, 62, 6)); //Input
 		this.addSlot(new OutputSlot((IInventory) te, 1, 119, 6)); //Output
-		this.addSlot(new ItemsReservedSlot((IInventory) te, 2, 62, 53, ItemLists.MOLDS)); //Mold
+		this.addSlot(new ItemsReservedSlot((IInventory) te, 2, 62, 53, TagInit.Items.MOLDS.getValues().toArray(new Item[] {}))); //Mold
 		this.addSlot(new CarbonSlot(te, 3, 8, 44)); //Coal
 		this.addSlot(new UpgradeSlot((IInventory) te, 4, 197, 113, Upgrade.SPEED)); //Speed Upgrade
 		this.addSlot(new UpgradeSlot(te, 5, 179, 113, Upgrade.AUTO_EJECT)); // Auto eject upgrade

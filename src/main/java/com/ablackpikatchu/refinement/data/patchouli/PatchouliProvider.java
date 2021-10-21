@@ -3,6 +3,7 @@ package com.ablackpikatchu.refinement.data.patchouli;
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.data.patchouli.builder.PatchouliGenProvider;
+import com.ablackpikatchu.refinement.data.patchouli.builder.page.CraftingRecipePage;
 import com.ablackpikatchu.refinement.data.patchouli.builder.page.SpotlightPage;
 import com.ablackpikatchu.refinement.data.patchouli.builder.page.TextPage;
 import com.ablackpikatchu.refinement.data.patchouli.builder.type.PatchouliBook;
@@ -62,6 +63,10 @@ public class PatchouliProvider extends PatchouliGenProvider {
 						"A machine that uses $()Refined Carbon Ingots$() as a fuel, will have a fuel slot in the bottom left corner. You can insert fuel into that slot through the sides of the machine, or by using an $(item)Auto Import Upgrade$()."))
 				.addPage(new TextPage("Using FE as fuel",
 						"A machine that uses FE as fuel will have a FE bar in the right side of the GUI. It will also have an info square which, when hovered over, will display information about the machine's energy usage, energy storage, etc. Energy can be inserted theru any side, using anything that outputs fuel.")));
+		
+		entries.add(new PatchouliEntry(UPGRADES_CATEGORY, "Energy Ability Upgrade", ItemInit.ENERGY_ABILITY_UPGRADE.get())
+				.addPage(new SpotlightPage(ItemInit.ENERGY_ABILITY_UPGRADE.get(), "A machine usually runs off $(item)Refined Carbon Ingots$() but, some machines can be switched to using energy by installing an $(item)Energy Ability Upgrade$()."))
+				.addPage(new CraftingRecipePage("refinement:machine_stuff/energy_ability_upgrade")));
 	}
 
 }

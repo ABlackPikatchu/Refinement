@@ -1,0 +1,16 @@
+{
+  "name": "Energy Ability Upgrade",
+  "category": "refinement:upgrades",
+  "icon": "refinement:energy_ability_upgrade",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "refinement:energy_ability_upgrade",
+      "text": "A machine usually runs off $(item)Refined Carbon Ingots$() but, some machines can be switched to using energy by installing an $(item)Energy Ability Upgrade$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "refinement:machine_stuff/energy_ability_upgrade"
+    }
+  ]
+}

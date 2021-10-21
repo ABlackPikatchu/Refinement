@@ -1,4 +1,4 @@
-package com.ablackpikatchu.refinement.common.jei;
+package com.ablackpikatchu.refinement.common.compat.jei;
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.client.screen.tileentity.AlloySmelterScreen;

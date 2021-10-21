@@ -31,6 +31,7 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 public class AlloySmeltingRecipe extends AbstractModRecipe {
 
 	public static final Serializer SERIALIZER = new Serializer();
+	public static final ResourceLocation REGISTRY_NAME = new ResourceLocation(MOD_ID, "alloy_smelting");
 
 	private final ResourceLocation id;
 	private final Map<Ingredient, Integer> ingredients = new LinkedHashMap<>();

@@ -19,8 +19,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
@@ -167,16 +165,6 @@ public class SmelterTileEntity extends SidedInventoryTileEntity {
 	@Override
 	protected void setItems(NonNullList<ItemStack> p_199721_1_) {
 		this.items = p_199721_1_;
-	}
-
-	@Override
-	public SUpdateTileEntityPacket getUpdatePacket() {
-		return super.getUpdatePacket();
-	}
-
-	@Override
-	public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket packet) {
-		super.onDataPacket(net, packet);
 	}
 
 	@Override

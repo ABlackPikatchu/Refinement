@@ -1,6 +1,7 @@
 package com.ablackpikatchu.refinement.common.recipe;
 
-import com.ablackpikatchu.refinement.Refinement;
+import static com.ablackpikatchu.refinement.Refinement.MOD_ID;
+
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
 import com.ablackpikatchu.refinement.core.util.helper.JSONHelper;
 import com.ablackpikatchu.refinement.datafixers.util.json.JSONInput;
@@ -22,6 +23,7 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 public class AnvilRecipe extends AbstractModRecipe {
 	
 	public static final Serializer SERIALIZER = new Serializer();
+	public static final ResourceLocation REGISTRY_NAME = new ResourceLocation(MOD_ID, "anvil");
 
 	private final Ingredient left;
 	private final int leftCount;
@@ -94,7 +96,7 @@ public class AnvilRecipe extends AbstractModRecipe {
 	private static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>>
 			implements IRecipeSerializer<AnvilRecipe> {
 		public Serializer() {
-			this.setRegistryName(Refinement.MOD_ID, "anvil");
+			this.setRegistryName(new ResourceLocation(MOD_ID, "anvil"));
 		}
 
 		@Override

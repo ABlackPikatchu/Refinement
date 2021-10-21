@@ -104,17 +104,34 @@ public class Refinement {
 		modBus.addGenericListener(IRecipeSerializer.class, RecipeInit::registerRecipes);
 
 		ParticleTypesInit.PARTICLE_TYPES.register(modBus);
+		LOGGER.info("Particle Types Registered!");
+		
 		BlockInit.BLOCKS.register(modBus);
+		LOGGER.info("Blocks Registered!");
+		
 		CropInit.BLOCKS.register(modBus);
+		LOGGER.info("Crops Registered!");
+		
 		ItemInit.ITEMS.register(modBus);
+		LOGGER.info("Items Registered!");
+		
 		PotionInit.EFFECTS.register(modBus);
+		LOGGER.info("Effects + Potions Registered!");
+		
 		TileEntityTypesInit.TILE_ENTITY_TYPE.register(modBus);
+		LOGGER.info("Tile Entity Types Registered!");
+		
 		ContainerTypesInit.CONTAINER_TYPES.register(modBus);
+		LOGGER.info("Conatiner Types Registered!");
+		
 		VillagerInit.VillagerProfessions.VILLAGER_PROFESSIONS.register(modBus);
+		LOGGER.info("Villager Professtion Registered!");
+		
 		VillagerInit.PointOfInterests.POINT_OF_INTEREST_TYPES.register(modBus);
+		LOGGER.info("POI Types Registered!");
+		
 		FeatureInit.FEATURES.register(modBus);
-
-		LOGGER.info("Registry Entries Registered!");
+		LOGGER.info("Features Registered!");
 
 		MinecraftForge.EVENT_BUS.register(this);
 
@@ -170,7 +187,7 @@ public class Refinement {
 
 	@SubscribeEvent
 	public static void clientSetup(final FMLClientSetupEvent event) {
-		RenderLayers.setRenderLayers();
+		event.enqueueWork(RenderLayers::setRenderLayers);
 	}
 
 	public void commonSetup(final FMLCommonSetupEvent event) {
@@ -196,6 +213,9 @@ public class Refinement {
 			}
 		};
 		DispenserBlock.registerBehavior(ItemInit.ENERGY_ABILITY_UPGRADE.get(), upgradeTileBehaviour);
+		DispenserBlock.registerBehavior(ItemInit.SPEED_UPGRADE.get(), upgradeTileBehaviour);
+		DispenserBlock.registerBehavior(ItemInit.AUTO_EJECT_UPGRADE.get(), upgradeTileBehaviour);
+		DispenserBlock.registerBehavior(ItemInit.AUTO_IMPORT_UPGRADE.get(), upgradeTileBehaviour);
 	}
 
 	public void constructMod(FMLConstructModEvent event) {

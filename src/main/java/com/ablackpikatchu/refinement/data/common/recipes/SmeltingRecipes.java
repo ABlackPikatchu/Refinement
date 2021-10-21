@@ -39,6 +39,11 @@ public class SmeltingRecipes {
 		smelting.add(new Smelting(Ingredient.of(BlockInit.REFINED_LOG.get()), ItemInit.UNFIRED_REFINED_CARBON_INGOT.get()));
 		smelting.add(new Smelting(Ingredient.of(BlockInit.REFINED_STRIPPED_LOG.get()), ItemInit.UNFIRED_REFINED_CARBON_INGOT.get()));
 		smelting.add(new Smelting(Ingredient.of(BlockInit.REFINED_LEAVES.get()), ItemInit.UNFIRED_REFINED_CARBON_INGOT.get()));
+		
+		//smelting.add(new Smelting(Ingredient.of(TagInit.Items.COPPER_DUST), ItemInit.COPPER_INGOT.get()));
+		//smelting.add(new Smelting(Ingredient.of(TagInit.Items.TIN_DUST), ItemInit.TIN_INGOT.get()));
+		//smelting.add(new Smelting(Ingredient.of(TagInit.Items.SILVER_DUST), ItemInit.SILVER_INGOT.get()));
+		//smelting.add(new Smelting(Ingredient.of(TagInit.Items.LEAD_DUST), ItemInit.LEAD_INGOT.get()));
 
 		return smelting;
 	}
@@ -65,6 +70,11 @@ public class SmeltingRecipes {
 		blasting.add(new Blasting(Ingredient.of(ItemInit.UNFIRED_REFINED_IRON_INGOT.get()), ItemInit.REFINED_IRON_INGOT.get()));
 		blasting.add(new Blasting(Ingredient.of(ItemInit.UNFIRED_REFINED_NETHERITE_INGOT.get()), ItemInit.REFINED_NETHERITE_INGOT.get()));
 
+		//blasting.add(new Blasting(Ingredient.of(TagInit.Items.COPPER_DUST), ItemInit.COPPER_INGOT.get()));
+		//blasting.add(new Blasting(Ingredient.of(TagInit.Items.TIN_DUST), ItemInit.TIN_INGOT.get()));
+		//blasting.add(new Blasting(Ingredient.of(TagInit.Items.SILVER_DUST), ItemInit.SILVER_INGOT.get()));
+		//blasting.add(new Blasting(Ingredient.of(TagInit.Items.LEAD_DUST), ItemInit.LEAD_INGOT.get()));
+		
 		return blasting;
 	}
 

@@ -1,5 +1,6 @@
 package com.ablackpikatchu.refinement.core.init;
 
+import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.recipe.AlloySmeltingRecipe;
 import com.ablackpikatchu.refinement.common.recipe.AlloySmeltingRecipe.AlloySmeltingRecipeType;
 import com.ablackpikatchu.refinement.common.recipe.AnvilRecipe;
@@ -42,6 +43,8 @@ public class RecipeInit {
 		
 		registerRecipe(event, ANVIL_RECIPE, AnvilRecipe.SERIALIZER);
 		registerRecipe(event, SHAPED_NO_MIRROR, ShapedNoMirrorRecipe.SERIALIZER);
+		
+		Refinement.LOGGER.info("Recipes Registered!");
 	}
 
 	private static void registerRecipe(Register<IRecipeSerializer<?>> event, IRecipeType<?> type,

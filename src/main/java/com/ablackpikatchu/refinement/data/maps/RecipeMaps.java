@@ -155,6 +155,11 @@ public class RecipeMaps {
 		tagMap.put(new TagInput(TagInit.Items.TIN_INGOT, 1), new Output(ItemInit.TIN_DUST, 1));
 		tagMap.put(new TagInput(TagInit.Items.LEAD_INGOT, 1), new Output(ItemInit.LEAD_DUST, 1));
 		tagMap.put(new TagInput(TagInit.Items.COPPER_INGOT, 1), new Output(ItemInit.COPPER_DUST, 1));
+		
+		tagMap.put(new TagInput(TagInit.Items.COPPER_ORE, 1), new Output(ItemInit.COPPER_DUST, 2));
+		tagMap.put(new TagInput(TagInit.Items.TIN_ORE, 1), new Output(ItemInit.TIN_DUST, 2));
+		tagMap.put(new TagInput(TagInit.Items.SILVER_ORE, 1), new Output(ItemInit.SILVER_DUST, 2));
+		tagMap.put(new TagInput(TagInit.Items.LEAD_ORE, 1), new Output(ItemInit.LEAD_DUST, 2));
 	}
 
 	public static void addMixerRecipes(HashMap<MixerInput, Output> map) {

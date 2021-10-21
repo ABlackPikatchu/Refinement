@@ -124,6 +124,11 @@ public class TagInit {
 		public static final ITag.INamedTag<Item> PURE_CRYSTAL_ORE = forge("ores/pure_crystal");
 		public static final ITag.INamedTag<Item> BLANK_ORE = forge("ores/blank");
 		
+		public static final ITag.INamedTag<Item> TIN_ORE = forge("ores/tin");
+		public static final ITag.INamedTag<Item> SILVER_ORE = forge("ores/silver");
+		public static final ITag.INamedTag<Item> COPPER_ORE = forge("ores/copper");
+		public static final ITag.INamedTag<Item> LEAD_ORE = forge("ores/lead");
+		
 		public static final ITag.INamedTag<Item> EMERALD_STORAGE = forge("storage_blocks/emerald");
 		public static final ITag.INamedTag<Item> REDSTONE_STORAGE = forge("storage_blocks/redstone");
 		public static final ITag.INamedTag<Item> TIN_STORAGE = forge("storage_blocks/tin");
@@ -172,6 +177,11 @@ public class TagInit {
 		public static final ITag.INamedTag<Block> ORES = forge("ores");
 		public static final ITag.INamedTag<Block> PURE_CRYSTAL_ORE = forge("ores/pure_crystal");
 		public static final ITag.INamedTag<Block> BLANK_ORE = forge("ores/blank");
+		
+		public static final ITag.INamedTag<Block> TIN_ORE = forge("ores/tin");
+		public static final ITag.INamedTag<Block> SILVER_ORE = forge("ores/silver");
+		public static final ITag.INamedTag<Block> COPPER_ORE = forge("ores/copper");
+		public static final ITag.INamedTag<Block> LEAD_ORE = forge("ores/lead");
 
 		public static final ITag.INamedTag<Block> STORAGE_BLOCKS = forge("storage_blocks");
 		public static final ITag.INamedTag<Block> IRON_STORAGE = forge("storage_blocks/refined_iron");
