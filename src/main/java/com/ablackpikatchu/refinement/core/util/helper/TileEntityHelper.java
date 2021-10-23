@@ -15,8 +15,9 @@ public class TileEntityHelper {
 	 */
 	public static void updateTE(TileEntity te) {
 		te.setChanged();
-		te.getLevel().sendBlockUpdated(te.getBlockPos(), te.getBlockState(), te.getBlockState(),
-				Constants.BlockFlags.BLOCK_UPDATE);
+		if (te.getBlockState() != null)
+			te.getLevel().sendBlockUpdated(te.getBlockPos(), te.getBlockState(), te.getBlockState(),
+					Constants.BlockFlags.BLOCK_UPDATE);
 	}
 
 	public static <T extends Comparable<T>, V extends T> void setStateProperty(TileEntity te, Property<T> property,

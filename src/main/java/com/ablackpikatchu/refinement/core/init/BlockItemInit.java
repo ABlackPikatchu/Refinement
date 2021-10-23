@@ -14,6 +14,7 @@ public class BlockItemInit {
 			BlockInit.CARBON_GENERATOR_BLOCK.get(), ENERGY_GENERATOR_BLOCK.get(), SMELTER_BLOCK.get(),
 			ALLOY_SMELTER_BLOCK.get(), SIGNALUM_BLOCK.get(), LUMIUM_BLOCK.get(),
 			ENDERIUM_BLOCK.get(), TIN_BLOCK.get(), SILVER_BLOCK.get(), LEAD_BLOCK.get(), COPPER_BLOCK.get(),
-			COPPER_ORE.get(), LEAD_ORE.get(), TIN_ORE.get(), SILVER_ORE.get());
+			COPPER_ORE.get(), LEAD_ORE.get(), TIN_ORE.get(), SILVER_ORE.get(), ALPHA_STORAGE_BIN_BLOCK.get(),
+			BETA_STORAGE_BIN_BLOCK.get());
 
 }

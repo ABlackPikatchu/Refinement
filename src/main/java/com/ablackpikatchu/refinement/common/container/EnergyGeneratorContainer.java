@@ -2,7 +2,7 @@ package com.ablackpikatchu.refinement.common.container;
 
 import java.util.Objects;
 
-import com.ablackpikatchu.refinement.common.slot.ItemReservedSlot;
+import com.ablackpikatchu.refinement.common.inventory.slot.ItemReservedSlot;
 import com.ablackpikatchu.refinement.common.slot.itemspecific.UpgradeSlot;
 import com.ablackpikatchu.refinement.common.te.machine.EnergyGeneratorTileEntity;
 import com.ablackpikatchu.refinement.common.te.upgrade.Upgrade;

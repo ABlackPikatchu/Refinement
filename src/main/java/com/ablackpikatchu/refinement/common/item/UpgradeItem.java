@@ -1,23 +1,39 @@
 package com.ablackpikatchu.refinement.common.item;
 
+import java.util.List;
+
+import com.ablackpikatchu.refinement.client.RefinementLang;
 import com.ablackpikatchu.refinement.common.te.upgrade.IUpgradableTile;
 import com.ablackpikatchu.refinement.common.te.upgrade.Upgrade;
 import com.ablackpikatchu.refinement.core.util.helper.TileEntityHelper;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.world.World;
 
 public class UpgradeItem extends Item {
+
+	private ITextComponent compatibleMachinesToolTip;
 
 	public final Upgrade upgradeType;
 
 	public UpgradeItem(Properties properties, Upgrade upgradeType) {
 		super(properties);
 		this.upgradeType = upgradeType;
+		if (upgradeType.compatibleMachines.length != 0)
+			compatibleMachinesToolTip = new StringTextComponent(String.join(", ", upgradeType.compatibleMachines));
+	}
+
+	public UpgradeItem withCompatibleMachinesTooltip(ITextComponent text) {
+		this.compatibleMachinesToolTip = text;
+		return this;
 	}
 
 	@Override
@@ -45,6 +61,14 @@ public class UpgradeItem extends Item {
 		}
 
 		return super.useOn(pContext);
+	}
+
+	@Override
+	public void appendHoverText(ItemStack pStack, World pLevel, List<ITextComponent> pTooltip, ITooltipFlag pFlag) {
+		if (compatibleMachinesToolTip != null)
+			pTooltip.add(new StringTextComponent(
+					"\u00A76" + RefinementLang.COMPATIBLE_MACHINES_COMPONENT.getString() + "§r: " + compatibleMachinesToolTip.getString()));
+		super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
 	}
 
 }

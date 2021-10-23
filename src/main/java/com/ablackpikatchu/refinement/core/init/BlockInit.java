@@ -132,6 +132,9 @@ public class BlockInit {
 	
 	public static final RegistryObject<Block> ENERGY_CABLE_BLOCK = BLOCKS.register("energy_cable", EnergyCableBlock::new);
 	
+	public static final RegistryObject<Block> ALPHA_STORAGE_BIN_BLOCK = BLOCKS.register("alpha_storage_bin", () -> new StorageBinBlock(4096));
+	public static final RegistryObject<Block> BETA_STORAGE_BIN_BLOCK = BLOCKS.register("beta_storage_bin", () -> new StorageBinBlock(8192));
+	
 	public static final RegistryObject<Block> RESOURCE_STATUE_BLOCK = BLOCKS.register("resource_statue", () -> new ResourceStatueBlock());
 
 	// POIs

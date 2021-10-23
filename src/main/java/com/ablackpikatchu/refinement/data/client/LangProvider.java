@@ -59,6 +59,9 @@ public class LangProvider extends LanguageProvider {
 		add(SILVER_BLOCK.get(), "Silver Block");
 		add(LEAD_BLOCK.get(), "Lead Block");
 		
+		add(ALPHA_STORAGE_BIN_BLOCK.get(), "Alpha Storage Bin");
+		add(BETA_STORAGE_BIN_BLOCK, "Beta Storage Bin");
+		
 		add(BlockInit.REFINED_LOG.get(), "Refined Log");
 		add(BlockInit.REFINED_STRIPPED_LOG.get(), "Refined Stripped Log");
 		add(BlockInit.REFINED_LEAVES.get(), "Refined Leaves");
@@ -119,6 +122,10 @@ public class LangProvider extends LanguageProvider {
 		// Component
 		addComponent("loot_box", "Loot Box");
 		addComponent("ownership_error", "You cannot open this machine as you do not own it.");
+		addComponent("compatible_machines", "Compatible Machines");
+		addComponent("stack_limit", "Stack Limit: §6%l");
+		addComponent("count", "Count: §6%c");
+		addComponent("stored_item", "Stored Item: §6%i");
 
 		// Blocks
 		BlockInit.BLOCKS.getEntries().parallelStream().map(RegistryObject<Block>::get).forEach(block -> {
@@ -136,6 +143,10 @@ public class LangProvider extends LanguageProvider {
 				}
 			}
 		});
+	}
+	
+	private void add(RegistryObject<Block> block, String name) {
+		add(block.get(), name);
 	}
 
 	private void addTooltip(String key, String value) {

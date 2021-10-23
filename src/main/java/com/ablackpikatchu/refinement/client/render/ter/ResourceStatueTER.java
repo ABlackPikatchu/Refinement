@@ -1,4 +1,4 @@
-package com.ablackpikatchu.refinement.client.ter;
+package com.ablackpikatchu.refinement.client.render.ter;
 
 import com.ablackpikatchu.refinement.common.te.misc_tes.ResourceStatueTileEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;

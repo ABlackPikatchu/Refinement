@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "refinement:block/storage_bin/alpha",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "refinement:block/storage_bin/alpha"
+    },
+    "facing=south": {
+      "model": "refinement:block/storage_bin/alpha",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "refinement:block/storage_bin/alpha",
+      "y": 270
+    }
+  }
+}

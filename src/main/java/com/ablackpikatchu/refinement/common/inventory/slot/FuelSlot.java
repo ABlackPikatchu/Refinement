@@ -1,4 +1,4 @@
-package com.ablackpikatchu.refinement.common.slot;
+package com.ablackpikatchu.refinement.common.inventory.slot;
 
 import com.ablackpikatchu.refinement.common.te.MachineTileEntity;
 import com.ablackpikatchu.refinement.core.init.ItemInit;

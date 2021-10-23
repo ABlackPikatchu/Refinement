@@ -1,7 +1,25 @@
 package com.ablackpikatchu.refinement.client;
 
+import static com.ablackpikatchu.refinement.Refinement.MOD_ID;
+import static com.ablackpikatchu.refinement.core.init.ContainerTypesInit.ALLOY_SMELTER_CONTAINER_TYPE;
+import static com.ablackpikatchu.refinement.core.init.ContainerTypesInit.CARBON_GENERATOR_CONTAINER_TYPE;
+import static com.ablackpikatchu.refinement.core.init.ContainerTypesInit.DNA_SEQUENCER_CONTAINER_TYPE;
+import static com.ablackpikatchu.refinement.core.init.ContainerTypesInit.ENERGY_GENERATOR_CONTAINER_TYPE;
+import static com.ablackpikatchu.refinement.core.init.ContainerTypesInit.GRINDER_CONTAINER_TYPE;
+import static com.ablackpikatchu.refinement.core.init.ContainerTypesInit.MIXER_CONTAINER_TYPE;
+import static com.ablackpikatchu.refinement.core.init.ContainerTypesInit.MOLD_PRESS_CONTAINER_TYPE;
+import static com.ablackpikatchu.refinement.core.init.ContainerTypesInit.SMELTER_CONTAINER_TYPE;
+import static com.ablackpikatchu.refinement.core.init.ContainerTypesInit.VACCUMULATOR_CONTAINER_TYPE;
+import static com.ablackpikatchu.refinement.core.init.ItemInit.AUTO_EJECT_UPGRADE;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.client.render.model.EnergyCableBakedModel;
+import com.ablackpikatchu.refinement.client.render.ter.ResourceStatueTER;
+import com.ablackpikatchu.refinement.client.render.ter.StorageBinTER;
 import com.ablackpikatchu.refinement.client.screen.tileentity.AlloySmelterScreen;
 import com.ablackpikatchu.refinement.client.screen.tileentity.CarbonGeneratorScreen;
 import com.ablackpikatchu.refinement.client.screen.tileentity.DNASequencerScreen;
@@ -11,7 +29,6 @@ import com.ablackpikatchu.refinement.client.screen.tileentity.MixerScreen;
 import com.ablackpikatchu.refinement.client.screen.tileentity.MoldPressScreen;
 import com.ablackpikatchu.refinement.client.screen.tileentity.SmelterScreen;
 import com.ablackpikatchu.refinement.client.screen.tileentity.VaccumulatorScreen;
-import com.ablackpikatchu.refinement.client.ter.ResourceStatueTER;
 import com.ablackpikatchu.refinement.common.item.AutoEjectUpgrade;
 import com.ablackpikatchu.refinement.common.item.AutoImportUpgrade;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
@@ -36,23 +53,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
-import static com.ablackpikatchu.refinement.core.init.ContainerTypesInit.ALLOY_SMELTER_CONTAINER_TYPE;
-import static com.ablackpikatchu.refinement.core.init.ContainerTypesInit.CARBON_GENERATOR_CONTAINER_TYPE;
-import static com.ablackpikatchu.refinement.core.init.ContainerTypesInit.DNA_SEQUENCER_CONTAINER_TYPE;
-import static com.ablackpikatchu.refinement.core.init.ContainerTypesInit.ENERGY_GENERATOR_CONTAINER_TYPE;
-import static com.ablackpikatchu.refinement.core.init.ContainerTypesInit.GRINDER_CONTAINER_TYPE;
-import static com.ablackpikatchu.refinement.core.init.ContainerTypesInit.MIXER_CONTAINER_TYPE;
-import static com.ablackpikatchu.refinement.core.init.ContainerTypesInit.MOLD_PRESS_CONTAINER_TYPE;
-import static com.ablackpikatchu.refinement.core.init.ContainerTypesInit.SMELTER_CONTAINER_TYPE;
-import static com.ablackpikatchu.refinement.core.init.ContainerTypesInit.VACCUMULATOR_CONTAINER_TYPE;
-import static com.ablackpikatchu.refinement.core.init.ItemInit.*;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import static com.ablackpikatchu.refinement.Refinement.MOD_ID;
-
 @Mod.EventBusSubscriber(modid = Refinement.MOD_ID, bus = Bus.MOD, value = Dist.CLIENT)
 public class ClientEvents {
 	
@@ -76,6 +76,8 @@ public class ClientEvents {
 
 		ClientRegistry.bindTileEntityRenderer(TileEntityTypesInit.RESOURCE_STATUE_TILE_ENTITY_TYPE.get(),
 				ResourceStatueTER::new);
+		ClientRegistry.bindTileEntityRenderer(TileEntityTypesInit.STORAGE_BIN_TILE_ENTITY_TYPE.get(),
+				StorageBinTER::new);
 	}
 
 	@SubscribeEvent

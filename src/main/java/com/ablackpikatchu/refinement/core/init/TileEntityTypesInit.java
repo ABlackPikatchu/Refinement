@@ -4,6 +4,7 @@ import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.te.machine.*;
 import com.ablackpikatchu.refinement.common.te.misc_tes.EnergyCableTileEntity;
 import com.ablackpikatchu.refinement.common.te.misc_tes.ResourceStatueTileEntity;
+import com.ablackpikatchu.refinement.common.te.misc_tes.StorageBinTileEntity;
 import com.ablackpikatchu.refinement.common.te.misc_tes.VaccumulatorTileEntity;
 
 import net.minecraft.tileentity.TileEntityType;
@@ -53,6 +54,10 @@ public class TileEntityTypesInit {
 	public static final RegistryObject<TileEntityType<ResourceStatueTileEntity>> RESOURCE_STATUE_TILE_ENTITY_TYPE = TILE_ENTITY_TYPE
 			.register("resource_statue", () -> TileEntityType.Builder
 					.of(ResourceStatueTileEntity::new, BlockInit.RESOURCE_STATUE_BLOCK.get()).build(null));
+	
+	public static final RegistryObject<TileEntityType<StorageBinTileEntity>> STORAGE_BIN_TILE_ENTITY_TYPE = TILE_ENTITY_TYPE
+			.register("alpha_storage_bin", () -> TileEntityType.Builder
+					.of(StorageBinTileEntity::new, BlockInit.ALPHA_STORAGE_BIN_BLOCK.get()).build(null));
 	
 	public static final RegistryObject<TileEntityType<EnergyCableTileEntity>> ENERGY_CABLE_TILE_ENTITY_TYPE = TILE_ENTITY_TYPE
 			.register("cable", () -> TileEntityType.Builder

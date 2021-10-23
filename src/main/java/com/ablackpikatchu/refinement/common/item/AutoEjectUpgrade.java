@@ -65,12 +65,12 @@ public class AutoEjectUpgrade extends UpgradeItem {
 
 	@Override
 	public void appendHoverText(ItemStack stack, World level, List<ITextComponent> tooltip, ITooltipFlag flag) {
+		super.appendHoverText(stack, level, tooltip, flag);
 		if (NBTHelper.getString(stack, DIRECTION_PROPERTY) != "")
 			tooltip.add(new StringTextComponent("Direction: \u00A76" + NBTHelper.getString(stack, DIRECTION_PROPERTY)));
 		
 		tooltip.add(new StringTextComponent("Right click to cycle through directions!"));
 
-		super.appendHoverText(stack, level, tooltip, flag);
 	}
 
 }

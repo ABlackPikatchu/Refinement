@@ -2,10 +2,10 @@ package com.ablackpikatchu.refinement.common.container;
 
 import java.util.Objects;
 
+import com.ablackpikatchu.refinement.common.inventory.slot.ItemsReservedSlot;
+import com.ablackpikatchu.refinement.common.inventory.slot.OutputSlot;
+import com.ablackpikatchu.refinement.common.inventory.slot.RecipeIngredientSlot;
 import com.ablackpikatchu.refinement.common.recipe.MoldPressRecipe;
-import com.ablackpikatchu.refinement.common.slot.ItemsReservedSlot;
-import com.ablackpikatchu.refinement.common.slot.OutputSlot;
-import com.ablackpikatchu.refinement.common.slot.RecipeIngredientSlot;
 import com.ablackpikatchu.refinement.common.slot.itemspecific.CarbonSlot;
 import com.ablackpikatchu.refinement.common.slot.itemspecific.UpgradeSlot;
 import com.ablackpikatchu.refinement.common.te.machine.MoldPressTileEntity;

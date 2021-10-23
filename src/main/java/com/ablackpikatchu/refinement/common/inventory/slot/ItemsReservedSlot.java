@@ -1,4 +1,4 @@
-package com.ablackpikatchu.refinement.common.slot;
+package com.ablackpikatchu.refinement.common.inventory.slot;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
