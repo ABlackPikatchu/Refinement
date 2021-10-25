@@ -1,4 +1,4 @@
-package com.ablackpikatchu.refinement.core.anotation.registries;
+package com.ablackpikatchu.refinement.core.annotation.registries;
 
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
@@ -17,7 +17,7 @@ import com.ablackpikatchu.refinement.Refinement;
 @Documented
 @Retention(RUNTIME)
 @Target(TYPE)
-public @interface HoldsRegstries {
+public @interface HoldsRegistries {
 	
 	/**
 	 * The mod id under which the registry fields will be registered

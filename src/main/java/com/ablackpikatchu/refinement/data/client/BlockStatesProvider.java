@@ -59,7 +59,7 @@ public class BlockStatesProvider extends BlockStateProvider {
 		machineBlock(BlockInit.MIXER.get(), "machines/mixer", "machines/mixer_lit");
 		
 		storageBin(BlockInit.ALPHA_STORAGE_BIN_BLOCK.get(), "storage_bins/alpha_front", "storage_bins/alpha_front_locked", "storage_bins/alpha_top");
-		storageBin(BlockInit.BETA_STORAGE_BIN_BLOCK.get(), "storage_bins/beta_front", "storage_bins/beta_front_locked", "storage_bins/beta_top");
+		storageBin(BlockInit.BETA_STORAGE_BIN_BLOCK, "storage_bins/beta_front", "storage_bins/beta_front_locked", "storage_bins/beta_top");
 		storageBin(BlockInit.GAMMA_STORAGE_BIN_BLOCK, "storage_bins/gamma_front", "storage_bins/gamma_front_locked", "storage_bins/gamma_top");
 		storageBin(BlockInit.EPSILON_STORAGE_BIN_BLOCK, "storage_bins/epsilon_front", "storage_bins/epsilon_front_locked", "storage_bins/epsilon_top");
 		storageBin(BlockInit.OMEGA_STORAGE_BIN_BLOCK, "storage_bins/omega_front", "storage_bins/omega_front_locked", "storage_bins/omega_top");

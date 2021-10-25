@@ -3,8 +3,8 @@ package com.ablackpikatchu.refinement.common.container;
 import java.util.Objects;
 
 import com.ablackpikatchu.refinement.common.inventory.slot.OutputSlot;
-import com.ablackpikatchu.refinement.common.slot.itemspecific.SmeltablesSlot;
-import com.ablackpikatchu.refinement.common.slot.itemspecific.UpgradeSlot;
+import com.ablackpikatchu.refinement.common.inventory.slot.itemspecific.SmeltablesSlot;
+import com.ablackpikatchu.refinement.common.inventory.slot.itemspecific.UpgradeSlot;
 import com.ablackpikatchu.refinement.common.te.machine.SmelterTileEntity;
 import com.ablackpikatchu.refinement.common.te.upgrade.Upgrade;
 import com.ablackpikatchu.refinement.core.init.BlockInit;

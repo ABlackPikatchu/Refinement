@@ -1,5 +1,7 @@
 package com.ablackpikatchu.refinement.data.client;
 
+import static com.ablackpikatchu.refinement.core.init.BlockInit.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,10 +15,9 @@ import com.ablackpikatchu.refinement.core.util.text.TextFormattingUtils;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
+
 import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.fml.RegistryObject;
-
-import static com.ablackpikatchu.refinement.core.init.BlockInit.*;
 
 public class LangProvider extends LanguageProvider {
 
@@ -150,10 +151,6 @@ public class LangProvider extends LanguageProvider {
 		});
 	}
 	
-	private void add(RegistryObject<Block> block, String name) {
-		add(block.get(), name);
-	}
-
 	private void addTooltip(String key, String value) {
 		this.add("tooltip." + Refinement.MOD_ID + "." + key, value);
 	}

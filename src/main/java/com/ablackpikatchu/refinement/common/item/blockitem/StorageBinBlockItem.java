@@ -1,5 +1,6 @@
 package com.ablackpikatchu.refinement.common.item.blockitem;
 
+import com.ablackpikatchu.refinement.common.block.StorageBinBlock;
 import com.ablackpikatchu.refinement.common.inventory.StorageBinHandler;
 import com.ablackpikatchu.refinement.common.te.misc_tes.StorageBinTileEntity;
 import com.ablackpikatchu.refinement.core.util.helper.ItemStackHelper;
@@ -18,6 +19,12 @@ public class StorageBinBlockItem extends BlockItem {
 
 	public StorageBinBlockItem(Block pBlock, Properties pProperties) {
 		super(pBlock, pProperties);
+	}
+	
+	public int getStackLimit() {
+		if (this.getBlock() instanceof StorageBinBlock)
+			return ((StorageBinBlock) this.getBlock()).getStackLimit();
+		return 0;
 	}
 
 	@Override

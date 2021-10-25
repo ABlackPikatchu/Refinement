@@ -1,0 +1,20 @@
+{
+  "type": "refinement:storage_bin_upgrade",
+  "pattern": [
+		"CCC",
+		"CBC",
+		"CCC"
+	],
+	"key": {
+		"C": {
+			"item": "refinement:beta_circuit"
+		},
+		"B": {
+			"item": "refinement:alpha_storage_bin"
+		}
+	},
+	"result": {
+		"item": "refinement:beta_storage_bin"
+	},
+	"old_bin_slot": 4
+}

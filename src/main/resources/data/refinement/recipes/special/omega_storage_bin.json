@@ -1,0 +1,20 @@
+{
+  "type": "refinement:storage_bin_upgrade",
+  "pattern": [
+		"CCC",
+		"CBC",
+		"CCC"
+	],
+	"key": {
+		"C": {
+			"item": "refinement:omega_circuit"
+		},
+		"B": {
+			"item": "refinement:epsilon_storage_bin"
+		}
+	},
+	"result": {
+		"item": "refinement:omega_storage_bin"
+	},
+	"old_bin_slot": 4
+}

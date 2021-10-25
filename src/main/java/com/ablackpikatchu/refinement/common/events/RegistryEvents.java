@@ -9,9 +9,9 @@ import java.util.stream.Collectors;
 import org.objectweb.asm.Type;
 
 import com.ablackpikatchu.refinement.Refinement;
-import com.ablackpikatchu.refinement.core.anotation.registries.HoldsRegstries;
-import com.ablackpikatchu.refinement.core.anotation.registries.RegisterBlock;
-import com.ablackpikatchu.refinement.core.anotation.registries.RegisterItem;
+import com.ablackpikatchu.refinement.core.annotation.registries.HoldsRegistries;
+import com.ablackpikatchu.refinement.core.annotation.registries.RegisterBlock;
+import com.ablackpikatchu.refinement.core.annotation.registries.RegisterItem;
 import com.ablackpikatchu.refinement.core.util.ReflectionsUtils;
 
 import net.minecraft.block.Block;
@@ -25,7 +25,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.forgespi.language.ModFileScanData;
 
-@HoldsRegstries
+@HoldsRegistries
 @Mod.EventBusSubscriber(modid = Refinement.MOD_ID, bus = Bus.MOD)
 public class RegistryEvents {
 
@@ -34,10 +34,10 @@ public class RegistryEvents {
 	public static void init() {
 		final List<ModFileScanData.AnnotationData> annotations = ModList.get().getAllScanData().stream()
 				.map(ModFileScanData::getAnnotations).flatMap(Collection::stream)
-				.filter(a -> a.getAnnotationType().equals(Type.getType(HoldsRegstries.class)))
+				.filter(a -> a.getAnnotationType().equals(Type.getType(HoldsRegistries.class)))
 				.collect(Collectors.toList());
 
-		annotations.stream().filter(a -> Type.getType(HoldsRegstries.class).equals(a.getAnnotationType()))
+		annotations.stream().filter(a -> Type.getType(HoldsRegistries.class).equals(a.getAnnotationType()))
 				.filter(a -> a.getTargetType() == ElementType.TYPE).forEach(data -> {
 					try {
 						REGISTRY_CLASSES.add(Class.forName(data.getClassType().getClassName(), false,
@@ -57,7 +57,7 @@ public class RegistryEvents {
 				if (field.isAccessible() && field.get(field.getDeclaringClass()) instanceof Item) {
 					Item item = (Item) field.get(field.getDeclaringClass());
 					item = item.setRegistryName(
-							new ResourceLocation(field.getDeclaringClass().getAnnotation(HoldsRegstries.class).modId(),
+							new ResourceLocation(field.getDeclaringClass().getAnnotation(HoldsRegistries.class).modId(),
 									field.getAnnotation(RegisterItem.class).registryName()));
 					event.getRegistry().register(item);
 				}
@@ -73,7 +73,7 @@ public class RegistryEvents {
 				if (field.isAccessible() && field.get(field.getDeclaringClass()) instanceof Block) {
 					Block block = (Block) field.get(field.getDeclaringClass());
 					block.setRegistryName(
-							new ResourceLocation(field.getDeclaringClass().getAnnotation(HoldsRegstries.class).modId(),
+							new ResourceLocation(field.getDeclaringClass().getAnnotation(HoldsRegistries.class).modId(),
 									field.getAnnotation(RegisterBlock.class).registryName()));
 					event.getRegistry().register(block);
 				}

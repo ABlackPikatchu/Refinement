@@ -1,4 +1,4 @@
-package com.ablackpikatchu.refinement.common.slot.itemspecific;
+package com.ablackpikatchu.refinement.common.inventory.slot.itemspecific;
 
 import com.ablackpikatchu.refinement.common.te.upgrade.Upgrade;
 

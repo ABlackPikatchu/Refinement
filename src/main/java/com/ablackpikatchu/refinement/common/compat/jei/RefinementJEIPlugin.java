@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.client.screen.tileentity.GrinderScreen;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
 
@@ -18,9 +19,11 @@ import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaRecipeCategoryUid;
 import mezz.jei.api.helpers.IGuiHelper;
+import mezz.jei.api.registration.IGuiHandlerRegistration;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
+import mezz.jei.api.registration.IRecipeTransferRegistration;
 
 @JeiPlugin
 public class RefinementJEIPlugin implements IModPlugin {
@@ -31,16 +34,27 @@ public class RefinementJEIPlugin implements IModPlugin {
 	public ResourceLocation getPluginUid() {
 		return PLUGIN_ID;
 	}
-	
+
 	@Override
 	public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
 		registration.addRecipeCatalyst(new ItemStack(BlockInit.SMELTER_BLOCK.get()), VanillaRecipeCategoryUid.FURNACE);
-		registration.addRecipeCatalyst(new ItemStack(BlockInit.ALLOY_SMELTER_BLOCK.get()), AlloySmelterRecipeCategory.ID);
+		registration.addRecipeCatalyst(new ItemStack(BlockInit.ALLOY_SMELTER_BLOCK.get()),
+				AlloySmelterRecipeCategory.ID);
 		registration.addRecipeCatalyst(new ItemStack(BlockInit.GRINDER.get()), GrinderRecipeCategory.ID);
 		registration.addRecipeCatalyst(new ItemStack(BlockInit.DNA_SEQUENCER.get()), DNASequencerRecipeCategory.ID);
 		registration.addRecipeCatalyst(new ItemStack(BlockInit.MIXER.get()), MixerRecipeCategory.ID);
 		registration.addRecipeCatalyst(new ItemStack(BlockInit.MOLD_PRESS.get()), MoldPressRecipeCatgory.ID);
 		registration.addRecipeCatalyst(new ItemStack(Blocks.ANVIL), AnvilRecipeCategory.ID);
+	}
+
+	@Override
+	public void registerGuiHandlers(IGuiHandlerRegistration registration) {
+		registration.addRecipeClickArea(GrinderScreen.class, 69, 9, 57, 46, GrinderRecipeCategory.ID);
+	}
+
+	@Override
+	public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
+		// TODO JEI transfer handlers
 	}
 
 	@SuppressWarnings("resource")
@@ -53,8 +67,10 @@ public class RefinementJEIPlugin implements IModPlugin {
 		registration.addRecipes(getRecipes(manager, RecipeInit.MOLD_PRESS_RECIPE), MoldPressRecipeCatgory.ID);
 		registration.addRecipes(getRecipes(manager, RecipeInit.DNA_SEQUENCER_RECIPE), DNASequencerRecipeCategory.ID);
 		registration.addRecipes(getRecipes(manager, RecipeInit.ALLOY_SMELTING_RECIPE), AlloySmelterRecipeCategory.ID);
-		
 		registration.addRecipes(getRecipes(manager, RecipeInit.ANVIL_RECIPE), AnvilRecipeCategory.ID);
+		
+		registration.addRecipes(getRecipes(manager, RecipeInit.STORAGE_BIN_UPGRADING), VanillaRecipeCategoryUid.CRAFTING);
+		registration.addRecipes(getRecipes(manager, RecipeInit.SHAPED_NO_MIRROR), VanillaRecipeCategoryUid.CRAFTING);
 	}
 
 	@Override
@@ -66,7 +82,7 @@ public class RefinementJEIPlugin implements IModPlugin {
 		registration.addRecipeCategories(new MoldPressRecipeCatgory(helper));
 		registration.addRecipeCategories(new DNASequencerRecipeCategory(helper));
 		registration.addRecipeCategories(new AlloySmelterRecipeCategory(helper));
-		
+
 		registration.addRecipeCategories(new AnvilRecipeCategory(helper));
 	}
 

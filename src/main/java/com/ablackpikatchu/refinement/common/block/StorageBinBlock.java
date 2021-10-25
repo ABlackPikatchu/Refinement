@@ -262,5 +262,9 @@ public class StorageBinBlock extends Block {
 				+ NBTHelper.getBoolean(stack, "RefillEnabled")));
 		super.appendHoverText(stack, pLevel, pTooltip, pFlag);
 	}
+	
+	public int getStackLimit() {
+		return this.stackLimit;
+	}
 
 }

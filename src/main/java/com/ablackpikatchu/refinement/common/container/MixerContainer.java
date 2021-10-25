@@ -3,8 +3,8 @@ package com.ablackpikatchu.refinement.common.container;
 import java.util.Objects;
 
 import com.ablackpikatchu.refinement.common.inventory.slot.OutputSlot;
-import com.ablackpikatchu.refinement.common.slot.itemspecific.CarbonSlot;
-import com.ablackpikatchu.refinement.common.slot.itemspecific.UpgradeSlot;
+import com.ablackpikatchu.refinement.common.inventory.slot.itemspecific.CarbonSlot;
+import com.ablackpikatchu.refinement.common.inventory.slot.itemspecific.UpgradeSlot;
 import com.ablackpikatchu.refinement.common.te.machine.MixerTileEntity;
 import com.ablackpikatchu.refinement.common.te.upgrade.Upgrade;
 import com.ablackpikatchu.refinement.core.init.BlockInit;

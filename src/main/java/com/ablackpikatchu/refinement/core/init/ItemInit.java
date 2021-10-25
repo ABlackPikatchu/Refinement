@@ -3,6 +3,7 @@ package com.ablackpikatchu.refinement.core.init;
 import static com.ablackpikatchu.refinement.common.ModRarity.DARK_PURPLE_RARITY;
 import static com.ablackpikatchu.refinement.common.ModRarity.DARK_RED_RARITY;
 import static com.ablackpikatchu.refinement.common.ModRarity.GOLD_RARITY;
+import static com.ablackpikatchu.refinement.common.ModRarity.*;
 import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.REFINEMENT;
 import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.REFINEMENT_ARMOUR;
 import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.REFINEMENT_MACHINE;
@@ -38,7 +39,8 @@ import com.ablackpikatchu.refinement.common.item.food.ModEffectFood;
 import com.ablackpikatchu.refinement.common.material.ModArmorMaterial;
 import com.ablackpikatchu.refinement.common.material.ModItemTier;
 import com.ablackpikatchu.refinement.common.te.upgrade.Upgrade;
-import com.ablackpikatchu.refinement.core.anotation.registries.HoldsRegstries;
+import com.ablackpikatchu.refinement.core.annotation.registries.HoldsRegistries;
+import com.ablackpikatchu.refinement.core.annotation.registries.RegisterItem;
 import com.ablackpikatchu.refinement.core.config.json.LootBoxConfig.BoxType;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementArmorGroup;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementFoodGroup;
@@ -69,7 +71,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-@HoldsRegstries
+@HoldsRegistries
 public class ItemInit {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS,
 			Refinement.MOD_ID);
@@ -238,6 +240,17 @@ public class ItemInit {
 	public static final RegistryObject<Item> SILVER_DUST = normalItem("silver_dust", REFINEMENT_MATERIALS);
 	public static final RegistryObject<Item> LEAD_DUST = normalItem("lead_dust", REFINEMENT_MATERIALS);
 	public static final RegistryObject<Item> COPPER_DUST = normalItem("copper_dust", REFINEMENT_MATERIALS);
+	
+	@RegisterItem(registryName = "alpha_circuit")
+	public static final Item ALPHA_CIRCUIT = tieredItem(REFINEMENT_MACHINE, ALPHA_RARITY);
+	@RegisterItem(registryName = "beta_circuit")
+	public static final Item BETA_CIRCUIT = tieredItem(REFINEMENT_MACHINE, BETA_RARITY);
+	@RegisterItem(registryName = "gamma_circuit")
+	public static final Item GAMMA_CIRCUIT = tieredItem(REFINEMENT_MACHINE, GAMMA_RARITY);
+	@RegisterItem(registryName = "epsilon_circuit")
+	public static final Item EPSILON_CIRCUIT = tieredItem(REFINEMENT_MACHINE, EPSILON_RARITY);
+	@RegisterItem(registryName = "omega_circuit")
+	public static final Item OMEGA_CIRCUIT = tieredItem(REFINEMENT_MACHINE, OMEGA_RARITY);
 	
 	// Custom Tools
 	public static final RegistryObject<Item> MIXING_BOWL = ITEMS.register("mixing_bowl", () -> new MixingBowl(
@@ -408,6 +421,10 @@ public class ItemInit {
 	
 	private static RegistryObject<Item> normalItem(String registryName, ItemGroup tab) {
 		return ITEMS.register(registryName, () -> new Item(new Item.Properties().tab(tab)));
+	}
+	
+	private static Item tieredItem(ItemGroup tab, Rarity rarity) {
+		return new Item(new Item.Properties().tab(tab).rarity(rarity));
 	}
 
 }
