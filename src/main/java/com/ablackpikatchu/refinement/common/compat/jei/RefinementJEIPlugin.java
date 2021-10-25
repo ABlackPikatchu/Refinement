@@ -50,6 +50,7 @@ public class RefinementJEIPlugin implements IModPlugin {
 	@Override
 	public void registerGuiHandlers(IGuiHandlerRegistration registration) {
 		registration.addRecipeClickArea(GrinderScreen.class, 69, 9, 57, 46, GrinderRecipeCategory.ID);
+		// TODO JEI recipe click areas for all machines
 	}
 
 	@Override
