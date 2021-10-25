@@ -2,9 +2,13 @@ package com.ablackpikatchu.refinement.common.te.tier;
 
 import java.awt.Color;
 
-public enum Tier {
+public class Tier {
 	
-	ALPHA(Color.GRAY), BETA(Color.CYAN);
+	public static final Tier ALPHA = new Tier(Color.GRAY); 
+	public static final Tier BETA = new Tier(Color.CYAN);
+	public static final Tier GAMMA = new Tier(Color.RED);
+	public static final Tier EPSILON = new Tier(Color.BLUE);
+	public static final Tier OMEGA = new Tier(new Color(0xAA00AA));
 	
 	private Color color;
 	

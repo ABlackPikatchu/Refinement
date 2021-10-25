@@ -1,7 +1,11 @@
 package com.ablackpikatchu.refinement.core.init;
 
 import com.ablackpikatchu.refinement.Refinement;
-import com.ablackpikatchu.refinement.common.block.*;
+import com.ablackpikatchu.refinement.common.block.BlankOreBlock;
+import com.ablackpikatchu.refinement.common.block.EnergyCableBlock;
+import com.ablackpikatchu.refinement.common.block.RefinedSaplingBlock;
+import com.ablackpikatchu.refinement.common.block.ResourceStatueBlock;
+import com.ablackpikatchu.refinement.common.block.StorageBinBlock;
 import com.ablackpikatchu.refinement.common.block.machine.AlloySmelterBlock;
 import com.ablackpikatchu.refinement.common.block.machine.CarbonGeneratorBlock;
 import com.ablackpikatchu.refinement.common.block.machine.DNASequencerBlock;
@@ -11,6 +15,8 @@ import com.ablackpikatchu.refinement.common.block.machine.MixerBlock;
 import com.ablackpikatchu.refinement.common.block.machine.MoldPressBlock;
 import com.ablackpikatchu.refinement.common.block.machine.SmelterBlock;
 import com.ablackpikatchu.refinement.common.block.machine.VaccumulatorBlock;
+import com.ablackpikatchu.refinement.common.te.tier.Tier;
+import com.ablackpikatchu.refinement.core.anotation.registries.RegisterBlock;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -132,8 +138,15 @@ public class BlockInit {
 	
 	public static final RegistryObject<Block> ENERGY_CABLE_BLOCK = BLOCKS.register("energy_cable", EnergyCableBlock::new);
 	
-	public static final RegistryObject<Block> ALPHA_STORAGE_BIN_BLOCK = BLOCKS.register("alpha_storage_bin", () -> new StorageBinBlock(4096));
-	public static final RegistryObject<Block> BETA_STORAGE_BIN_BLOCK = BLOCKS.register("beta_storage_bin", () -> new StorageBinBlock(8192));
+	public static final RegistryObject<Block> ALPHA_STORAGE_BIN_BLOCK = BLOCKS.register("alpha_storage_bin", () -> new StorageBinBlock(Tier.ALPHA, 4096));
+	public static final RegistryObject<Block> BETA_STORAGE_BIN_BLOCK = BLOCKS.register("beta_storage_bin", () -> new StorageBinBlock(Tier.BETA, 8192));
+	
+	@RegisterBlock(registryName = "gamma_storage_bin")
+	public static final Block GAMMA_STORAGE_BIN_BLOCK = new StorageBinBlock(Tier.GAMMA, 16384);
+	@RegisterBlock(registryName = "epsilon_storage_bin")
+	public static final Block EPSILON_STORAGE_BIN_BLOCK = new StorageBinBlock(Tier.EPSILON, 65536);
+	@RegisterBlock(registryName = "omega_storage_bin")
+	public static final Block OMEGA_STORAGE_BIN_BLOCK = new StorageBinBlock(Tier.OMEGA, 131072);
 	
 	public static final RegistryObject<Block> RESOURCE_STATUE_BLOCK = BLOCKS.register("resource_statue", () -> new ResourceStatueBlock());
 

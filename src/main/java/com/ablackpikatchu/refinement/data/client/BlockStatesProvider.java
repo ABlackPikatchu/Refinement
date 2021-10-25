@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.block.MachineBlock;
+import com.ablackpikatchu.refinement.common.block.StorageBinBlock;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.data.maps.LootTableMaps;
 import com.ablackpikatchu.refinement.resourcecrops.common.ModCrop;
@@ -56,6 +57,12 @@ public class BlockStatesProvider extends BlockStateProvider {
 		machineBlock(BlockInit.SMELTER_BLOCK.get(), "machines/smelter", "machines/smelter_lit");
 		machineBlock(BlockInit.GRINDER.get(), "machines/grinder", "machines/grinder_lit");
 		machineBlock(BlockInit.MIXER.get(), "machines/mixer", "machines/mixer_lit");
+		
+		storageBin(BlockInit.ALPHA_STORAGE_BIN_BLOCK.get(), "storage_bins/alpha_front", "storage_bins/alpha_front_locked", "storage_bins/alpha_top");
+		storageBin(BlockInit.BETA_STORAGE_BIN_BLOCK.get(), "storage_bins/beta_front", "storage_bins/beta_front_locked", "storage_bins/beta_top");
+		storageBin(BlockInit.GAMMA_STORAGE_BIN_BLOCK, "storage_bins/gamma_front", "storage_bins/gamma_front_locked", "storage_bins/gamma_top");
+		storageBin(BlockInit.EPSILON_STORAGE_BIN_BLOCK, "storage_bins/epsilon_front", "storage_bins/epsilon_front_locked", "storage_bins/epsilon_top");
+		storageBin(BlockInit.OMEGA_STORAGE_BIN_BLOCK, "storage_bins/omega_front", "storage_bins/omega_front_locked", "storage_bins/omega_top");
 
 	}
 
@@ -114,6 +121,36 @@ public class BlockStatesProvider extends BlockStateProvider {
 		
 		itemModels().withExistingParent(block.asItem().getRegistryName().toString(),
 				new ResourceLocation(MOD_ID, "block/machine/" + name(block)));
+	}
+	
+	public void storageBin(Block block, String normalFront, String lockedFront, String top) {
+		PartialBlockstate state = getVariantBuilder(block).partialState();
+		for (Direction direction : ROTATABLE_DIRECTIONS) {
+			int rotationY = 0;
+			if (direction == Direction.EAST)
+				rotationY = 90;
+			if (direction == Direction.SOUTH)
+				rotationY = 180;
+			if (direction == Direction.WEST)
+				rotationY = 270;
+			
+			state.with(StorageBinBlock.LOCKED, false).with(StorageBinBlock.FACING, direction).modelForState()
+			.modelFile(models().orientable("block/storage_bin/" + name(block),
+					new ResourceLocation(MOD_ID, "blocks/machines/machine_side"),
+					new ResourceLocation(MOD_ID, "blocks/" + normalFront),
+					new ResourceLocation(MOD_ID, "blocks/" + top)))
+			.rotationY(rotationY).addModel();
+			
+			state.with(StorageBinBlock.LOCKED, true).with(StorageBinBlock.FACING, direction).modelForState()
+			.modelFile(models().orientable("block/machine/" + name(block) + "_locked",
+					new ResourceLocation(MOD_ID, "blocks/machines/machine_side"),
+					new ResourceLocation(MOD_ID, "blocks/" + lockedFront),
+					new ResourceLocation(MOD_ID, "blocks/" + top)))
+			.rotationY(rotationY).addModel();
+		}
+		
+		itemModels().withExistingParent(block.asItem().getRegistryName().toString(),
+				new ResourceLocation(MOD_ID, "block/storage_bin/" + name(block)));
 	}
 
 	public String name(Block block) {

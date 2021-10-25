@@ -1,9 +1,11 @@
 package com.ablackpikatchu.refinement.common.events;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.common.item.blockitem.StorageBinBlockItem;
 import com.ablackpikatchu.refinement.core.init.KeybindsInit;
 import com.ablackpikatchu.refinement.core.network.RefinementNetwork;
 import com.ablackpikatchu.refinement.core.network.message.ConversionMessage;
+import com.ablackpikatchu.refinement.core.network.message.ToggleBinAutoRefillMessage;
 
 import net.minecraft.client.Minecraft;
 
@@ -30,6 +32,18 @@ public class InputEvents {
 		if (mc.level == null)
 			return;
 		onInput(mc, event.getButton(), event.getAction());
+	}
+	
+	@SubscribeEvent
+	public static void onMouseScroll(InputEvent.MouseScrollEvent event) {
+		Minecraft mc = Minecraft.getInstance();
+		if (mc.level == null)
+			return;
+		
+		if (mc.player.inventory.getSelected().getItem() instanceof StorageBinBlockItem && mc.player.isShiftKeyDown()) {
+			RefinementNetwork.STORAGE_BIN_CHANNEL.sendToServer(new ToggleBinAutoRefillMessage(mc.player.inventory.selected));
+			event.setCanceled(true);
+		}
 	}
 
 	private static void onInput(Minecraft mc, int key, int action) {

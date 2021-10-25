@@ -33,7 +33,6 @@ public class Magnet extends Item implements IEnableable {
 
 	@Override
 	public ActionResult<ItemStack> use(World p_77659_1_, PlayerEntity p_77659_2_, Hand p_77659_3_) {
-
 		ItemStack stack = p_77659_2_.getItemInHand(p_77659_3_);
 
 		if (!isEnabled())

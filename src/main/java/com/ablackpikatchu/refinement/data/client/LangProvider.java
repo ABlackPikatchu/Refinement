@@ -123,9 +123,11 @@ public class LangProvider extends LanguageProvider {
 		addComponent("loot_box", "Loot Box");
 		addComponent("ownership_error", "You cannot open this machine as you do not own it.");
 		addComponent("compatible_machines", "Compatible Machines");
-		addComponent("stack_limit", "Stack Limit: §6%l");
+		addComponent("capacity", "Capacity: §6%l §rItems");
 		addComponent("count", "Count: §6%c");
 		addComponent("stored_item", "Stored Item: §6%i");
+		addComponent("empty", "§4Empty");
+		addComponent("auto_refill", "Auto Refill");
 
 		// Blocks
 		BlockInit.BLOCKS.getEntries().parallelStream().map(RegistryObject<Block>::get).forEach(block -> {

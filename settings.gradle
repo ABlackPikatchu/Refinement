@@ -1,0 +1,3 @@
+include ':reflections'
+
+project(':reflections').projectDir = file('../reflections')

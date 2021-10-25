@@ -78,6 +78,25 @@ public class StorageBinHandler extends ItemStackHandler {
 	public int getRemainingCapacity() {
 		return getStackLimit(0, null) - getStackInSlot(0).getCount();
 	}
+	
+	@Nonnull
+	public ItemStack takeItemsFromSlot(int slot, int count) {
+		if (isEmpty())
+			return ItemStack.EMPTY;
+
+		ItemStack stack = getStackInSlot(0).copy();
+		stack.setCount(Math.min(count, getStoredItemCount()));
+
+		if (count >= getStoredItemCount() && isLocked(0)) {
+			setStoredItemCount(getStoredItemCount() - stack.getCount() + 1);
+			stack.shrink(1);
+		} else
+			setStoredItemCount(getStoredItemCount() - stack.getCount());
+		
+		onContentsChanged(0);
+
+		return stack;
+	}
 
 	@Override
 	@Nonnull
@@ -134,7 +153,9 @@ public class StorageBinHandler extends ItemStackHandler {
 	}
 
 	public boolean isLocked(int slot) {
-		return lockedSlots[slot] == 1;
+		if (lockedSlots.length >= slot + 1)
+			return lockedSlots[slot] == 1;
+		return false;
 	}
 
 	@Override
@@ -152,6 +173,7 @@ public class StorageBinHandler extends ItemStackHandler {
 		}
 		CompoundNBT nbt = new CompoundNBT();
 		nbt.put("Items", nbtTagList);
+		nbt.putIntArray("LockedSlots", lockedSlots);
 		return nbt;
 	}
 
@@ -192,6 +214,7 @@ public class StorageBinHandler extends ItemStackHandler {
 				}
 			}
 		}
+		lockedSlots = nbt.getIntArray("LockedSlots");
 		onLoad();
 	}
 

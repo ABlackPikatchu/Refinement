@@ -74,7 +74,11 @@ public class StorageBinTileEntity extends TileEntity implements ITickableTileEnt
 		ItemStack stack = itemHandler.getStackInSlot(0).copy();
 		stack.setCount(Math.min(count, itemHandler.getStoredItemCount()));
 
-		itemHandler.setStoredItemCount(itemHandler.getStoredItemCount() - stack.getCount());
+		if (count >= itemHandler.getStoredItemCount() && itemHandler.isLocked(0)) {
+			itemHandler.setStoredItemCount(itemHandler.getStoredItemCount() - stack.getCount() + 1);
+			stack.shrink(1);
+		} else
+			itemHandler.setStoredItemCount(itemHandler.getStoredItemCount() - stack.getCount());
 
 		if (level != null) {
 			level.updateNeighborsAt(worldPosition, getBlockState().getBlock());
@@ -261,6 +265,11 @@ public class StorageBinTileEntity extends TileEntity implements ITickableTileEnt
 		StorageBinHandler binInventory = new StorageBinHandler(stackLimit);
 		binInventory.deserializeNBT(nbt.getCompound("inv"));
 		return binInventory;
+	}
+	
+	public static void handlerToNbt(StorageBinHandler handler, CompoundNBT nbt) {
+		nbt.put("inv", handler.serializeNBT());
+		nbt.putInt("StackLimit", handler.getSlotLimit(0));
 	}
 	
 	@Override

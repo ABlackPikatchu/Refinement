@@ -37,6 +37,25 @@ public class ToolTipUtils {
 		}
 
 	}
+	
+	/**
+	 * Renders shift tooltips for an item
+	 * 
+	 * @param tooltip
+	 * @param tooltips The tooltips to add
+	 */
+	public static void renderShiftTooltips(List<ITextComponent> tooltip, ITextComponent... tooltips) {
+		
+		if (Screen.hasShiftDown()) {
+			for (ITextComponent component : tooltips) {
+				tooltip.add(component);
+			}
+		} else {
+			
+			tooltip.add(new TranslationTextComponent("tooltip." + Refinement.MOD_ID + "." + "hold_shift"));
+		}
+		
+	}
 
 	/**
 	 * Renders normal tooltips for an item

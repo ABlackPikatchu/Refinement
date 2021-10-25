@@ -8,8 +8,13 @@ import javax.annotation.Nonnull;
 import com.ablackpikatchu.refinement.client.RefinementLang;
 import com.ablackpikatchu.refinement.common.inventory.StorageBinHandler;
 import com.ablackpikatchu.refinement.common.te.misc_tes.StorageBinTileEntity;
+import com.ablackpikatchu.refinement.common.te.tier.Tier;
+import com.ablackpikatchu.refinement.core.util.helper.NBTHelper;
 import com.ablackpikatchu.refinement.core.util.helper.PlayerHelper;
+import com.ablackpikatchu.refinement.core.util.helper.TileEntityHelper;
 import com.ablackpikatchu.refinement.core.util.helper.WorldHelper;
+import com.ablackpikatchu.refinement.core.util.text.NumberFormatting;
+import com.ablackpikatchu.refinement.core.util.text.ToolTipUtils;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -25,6 +30,7 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootParameters;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer.Builder;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -49,20 +55,24 @@ import net.minecraft.world.World;
 
 public class StorageBinBlock extends Block {
 
+	public final Tier tier;
+
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+	public static final BooleanProperty LOCKED = BooleanProperty.create("locked");
 	public final int stackLimit;
 
-	public StorageBinBlock(int stackLimit) {
+	public StorageBinBlock(Tier tier, int stackLimit) {
 		super(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(5.5f)
 				.sound(SoundType.METAL).harvestLevel(3).noOcclusion());
-		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LOCKED, false));
 		this.stackLimit = stackLimit;
+		this.tier = tier;
 	}
 
 	@Override
 	protected void createBlockStateDefinition(Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
-		builder.add(FACING);
+		builder.add(FACING, LOCKED);
 	}
 
 	@SuppressWarnings("deprecation")
@@ -131,18 +141,31 @@ public class StorageBinBlock extends Block {
 	@Override
 	public ActionResultType use(BlockState state, World level, BlockPos pos, PlayerEntity player, Hand hand,
 			BlockRayTraceResult pHit) {
-		if (!level.isClientSide() && !player.isShiftKeyDown()) {
+		if (!level.isClientSide()) {
+
 			if (level.getBlockEntity(pos) instanceof StorageBinTileEntity
 					&& pHit.getDirection() == state.getValue(FACING)) {
 				StorageBinTileEntity binTile = (StorageBinTileEntity) level.getBlockEntity(pos);
-				ItemStack item = player.getItemInHand(hand);
-				if (hand == Hand.OFF_HAND)
-					return ActionResultType.PASS;
+				if (!player.isShiftKeyDown()) {
+					ItemStack item = player.getItemInHand(hand);
+					if (hand == Hand.OFF_HAND)
+						return ActionResultType.PASS;
 
-				binTile.interactPutItemsIntoSlot(0, player);
+					binTile.interactPutItemsIntoSlot(0, player);
 
-				if (item.isEmpty())
-					player.setItemInHand(hand, item);
+					if (item.isEmpty())
+						player.setItemInHand(hand, item);
+				} else {
+					if (player.getItemInHand(hand).isEmpty()) {
+						if (state.getValue(LOCKED)) {
+							TileEntityHelper.setStateProperty(binTile, LOCKED, false);
+						} else {
+							TileEntityHelper.setStateProperty(binTile, LOCKED, true);
+						}
+						binTile.getItemHandler().lockSlot(0);
+					} else
+						return ActionResultType.PASS;
+				}
 
 			} else
 				return ActionResultType.PASS;
@@ -154,8 +177,11 @@ public class StorageBinBlock extends Block {
 	@Override
 	public void setPlacedBy(World pLevel, BlockPos pPos, BlockState pState, LivingEntity pPlacer, ItemStack pStack) {
 		if (!pLevel.isClientSide()
-				&& WorldHelper.getTileEntity(StorageBinTileEntity.class, pLevel, pPos, false) != null)
+				&& WorldHelper.getTileEntity(StorageBinTileEntity.class, pLevel, pPos, false) != null) {
 			WorldHelper.getTileEntity(StorageBinTileEntity.class, pLevel, pPos, false).loadFromItem(pStack);
+			if (WorldHelper.getTileEntity(StorageBinTileEntity.class, pLevel, pPos, false).getItemHandler().isLocked(0))
+				TileEntityHelper.setStateProperty(pLevel.getBlockEntity(pPos), LOCKED, true);
+		}
 	}
 
 	@Override
@@ -201,24 +227,39 @@ public class StorageBinBlock extends Block {
 	@Override
 	public void appendHoverText(ItemStack stack, IBlockReader pLevel, List<ITextComponent> pTooltip,
 			ITooltipFlag pFlag) {
+		boolean normalToolTip = true;
 		if (stack.hasTag()) {
 			StorageBinHandler binHandler = StorageBinTileEntity.handlerFromNbt(stack.getOrCreateTag());
 			ItemStack item = binHandler.getStackInSlot(0);
 			int stackLimit = binHandler.getSlotLimit(0);
 			int count = binHandler.getStoredItemCount();
 
-			pTooltip.add(new StringTextComponent(RefinementLang.getComponent("stored_item").getString().replace("%i",
-					new TranslationTextComponent(item.getDescriptionId()).getString())));
-			
-			pTooltip.add(new StringTextComponent(RefinementLang.getComponent("count").getString().replace("%c",
-					"" + count)));
+			if (!item.isEmpty()) {
+				normalToolTip = false;
+				ITextComponent storedItemComponenet = new StringTextComponent(RefinementLang.getComponent("stored_item")
+						.getString().replace("%i", new TranslationTextComponent(item.getDescriptionId()).getString()));
 
-			pTooltip.add(new StringTextComponent(
-					RefinementLang.getComponent("stack_limit").getString().replace("%l", "" + stackLimit)));
-		} else {
-			pTooltip.add(new StringTextComponent(
-					RefinementLang.getComponent("stack_limit").getString().replace("%l", "" + stackLimit)));
+				ITextComponent countComponent = new StringTextComponent(
+						RefinementLang.getComponent("count").getString().replace("%c", "" + count));
+
+				ITextComponent stackLimitComponent = new StringTextComponent(RefinementLang.getComponent("capacity")
+						.getString().replace("%l", "" + NumberFormatting.buildWithComma(stackLimit)));
+
+				ToolTipUtils.renderShiftTooltips(pTooltip, storedItemComponenet, countComponent);
+				pTooltip.add(stackLimitComponent);
+			}
 		}
+		if (normalToolTip) {
+			pTooltip.add(new StringTextComponent(RefinementLang.getComponent("empty").getString()));
+			if (!stack.hasTag())
+				pTooltip.add(new StringTextComponent(RefinementLang.getComponent("capacity").getString().replace("%l",
+						NumberFormatting.buildWithComma(stackLimit))));
+			else
+				pTooltip.add(new StringTextComponent(RefinementLang.getComponent("capacity").getString().replace("%l",
+						NumberFormatting.buildWithComma(NBTHelper.getInt(stack, "StackLimit")))));
+		}
+		pTooltip.add(new StringTextComponent(RefinementLang.getComponent("auto_refill").getString() + ": §5"
+				+ NBTHelper.getBoolean(stack, "RefillEnabled")));
 		super.appendHoverText(stack, pLevel, pTooltip, pFlag);
 	}
 

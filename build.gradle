@@ -4,24 +4,42 @@ buildscript {
         maven { url = 'https://maven.minecraftforge.net' }
         maven { url 'https://maven.blamejared.com' }
         maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
+        maven {
+    		name 'reflections'
+    		url 'https://mvnrepository.com/artifact/org.reflections/reflections'
+    	}
         mavenCentral()
     }
     dependencies {
     	classpath 'org.parchmentmc:librarian:1.+'
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
     	classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
+    	//classpath 'org.reflections:reflections:0.10.1'
     }
 }
+
+/*
+plugins {
+	id "io.github.manosbatsis.gradle.plugin.reflections" version "1.1"
+}
+*/
+
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
+//apply plugin: "io.github.manosbatsis.gradle.plugin.reflections"
 
 mixin {
     add sourceSets.main, "refinement.refmap.json"
     config "refinement.mixins.json"
 }
+
+/*
+reflections{
+    dependsOn classes
+}*/
 
 version = '1.0'
 group = 'com.ablackpikatchu.refinement'
@@ -103,6 +121,10 @@ repositories {
 	maven {
         url = "https://maven.theillusivec4.top/"
     }
+    maven {
+    	name 'reflections'
+    	url 'https://mvnrepository.com/artifact/org.reflections/reflections'
+    }
 }
 
 dependencies {
@@ -128,6 +150,10 @@ dependencies {
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curious_version}:api")
 	
 	annotationProcessor 'org.spongepowered:mixin:0.8:processor'
+	
+	//implementation 'org.reflections:reflections:0.9.10'
+	//compileOnly 'org.reflections:reflections:0.9.10'
+	//compileOnly 'dom4j:dom4j:1.6.1'
 
 }
 
@@ -144,6 +170,7 @@ jar {
             "MixinConfigs": "refinement.mixins.json"
         ])
     }
+    //dependsOn reflections
 }
 
 jar.finalizedBy('reobfJar') 
