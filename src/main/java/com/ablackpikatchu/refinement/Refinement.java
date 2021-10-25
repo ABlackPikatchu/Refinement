@@ -10,6 +10,7 @@ import com.ablackpikatchu.refinement.client.ClientSetup;
 import com.ablackpikatchu.refinement.client.render.RenderLayers;
 import com.ablackpikatchu.refinement.common.block.StorageBinBlock;
 import com.ablackpikatchu.refinement.common.capability.playerpower.CapabilityPlayerPower;
+import com.ablackpikatchu.refinement.common.events.RegistryEvents;
 import com.ablackpikatchu.refinement.common.recipe.conditions.CropsEnabledCondition;
 import com.ablackpikatchu.refinement.common.recipe.conditions.EnableableCondition;
 import com.ablackpikatchu.refinement.common.te.misc_tes.StorageBinTileEntity;
@@ -260,6 +261,7 @@ public class Refinement {
 
 	public void constructMod(FMLConstructModEvent event) {
 		ModJsonConfigs.registerBeforeRegistries();
+		RegistryEvents.init();
 	}
 
 	public void onLoadComplete(final FMLLoadCompleteEvent event) {

@@ -38,6 +38,7 @@ import com.ablackpikatchu.refinement.common.item.food.ModEffectFood;
 import com.ablackpikatchu.refinement.common.material.ModArmorMaterial;
 import com.ablackpikatchu.refinement.common.material.ModItemTier;
 import com.ablackpikatchu.refinement.common.te.upgrade.Upgrade;
+import com.ablackpikatchu.refinement.core.anotation.registries.HoldsRegstries;
 import com.ablackpikatchu.refinement.core.config.json.LootBoxConfig.BoxType;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementArmorGroup;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementFoodGroup;
@@ -68,6 +69,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+@HoldsRegstries
 public class ItemInit {
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS,
 			Refinement.MOD_ID);
@@ -288,15 +290,6 @@ public class ItemInit {
 			() -> new BlockItem(BlockInit.MACHINE_FRAME.get(),
 					new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
 
-	public static final RegistryObject<BlockItem> GRINDER = ITEMS.register("grinder",
-			() -> new BlockItem(BlockInit.GRINDER.get(),
-					new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
-	public static final RegistryObject<BlockItem> MIXER = ITEMS.register("mixer",
-			() -> new BlockItem(BlockInit.MIXER.get(),
-					new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
-	public static final RegistryObject<BlockItem> MOLD_PRESS = ITEMS.register("mold_press",
-			() -> new BlockItem(BlockInit.MOLD_PRESS.get(),
-					new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));
 	public static final RegistryObject<BlockItem> VACCUMULATOR = ITEMS.register("vaccumulator",
 			() -> new BlockItem(BlockInit.VACCUMULATOR.get(),
 					new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE)));

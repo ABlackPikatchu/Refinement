@@ -49,4 +49,9 @@ public class PlayerEvents {
 			}
 		}
 	}
+	
+	@SubscribeEvent
+	public static void onPlayerPickup(PlayerEvent.ItemPickupEvent event) {
+		//TODO Auto-pickup of items by storage bins
+	}
 }

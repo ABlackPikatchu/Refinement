@@ -1,17 +1,25 @@
 package com.ablackpikatchu.refinement.core.init;
 
+import static com.ablackpikatchu.refinement.common.ModRarity.ALPHA_RARITY;
+import static com.ablackpikatchu.refinement.common.ModRarity.BETA_RARITY;
+import static com.ablackpikatchu.refinement.common.ModRarity.EPSILON_RARITY;
+import static com.ablackpikatchu.refinement.common.ModRarity.GAMMA_RARITY;
+import static com.ablackpikatchu.refinement.common.ModRarity.OMEGA_RARITY;
 import static com.ablackpikatchu.refinement.core.init.BlockInit.*;
 import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.REFINEMENT_MACHINE;
 
 import java.util.ArrayList;
 
 import com.ablackpikatchu.refinement.common.item.blockitem.StorageBinBlockItem;
+import com.ablackpikatchu.refinement.core.anotation.registries.HoldsRegstries;
 import com.ablackpikatchu.refinement.core.anotation.registries.RegisterItem;
 import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 
+@HoldsRegstries
 public class BlockItemInit {
 
 	public static final ArrayList<Block> BLOCKS_THAT_NEED_BLOCKITEMS = Lists.newArrayList(BlockInit.REFINED_LOG.get(),
@@ -23,23 +31,32 @@ public class BlockItemInit {
 
 	@RegisterItem(registryName = "alpha_storage_bin")
 	public static final StorageBinBlockItem ALPHA_STORAGE_BIN_BLOCK_ITEM = new StorageBinBlockItem(
-			BlockInit.ALPHA_STORAGE_BIN_BLOCK.get(), new Item.Properties().tab(REFINEMENT_MACHINE));
+			BlockInit.ALPHA_STORAGE_BIN_BLOCK.get(), new Item.Properties().tab(REFINEMENT_MACHINE).rarity(ALPHA_RARITY));
 	
 	@RegisterItem(registryName = "beta_storage_bin")
 	public static final StorageBinBlockItem BETA_STORAGE_BIN_BLOCK_ITEM = new StorageBinBlockItem(
-			BlockInit.BETA_STORAGE_BIN_BLOCK.get(), new Item.Properties().tab(REFINEMENT_MACHINE));
+			BlockInit.BETA_STORAGE_BIN_BLOCK.get(), new Item.Properties().tab(REFINEMENT_MACHINE).rarity(BETA_RARITY));
 	
 	@RegisterItem(registryName = "gamma_storage_bin")
 	public static final StorageBinBlockItem GAMMA_STORAGE_BIN_BLOCK_ITEM = new StorageBinBlockItem(
-			BlockInit.GAMMA_STORAGE_BIN_BLOCK, new Item.Properties().tab(REFINEMENT_MACHINE));
+			BlockInit.GAMMA_STORAGE_BIN_BLOCK, new Item.Properties().tab(REFINEMENT_MACHINE).rarity(GAMMA_RARITY));
 	
 	@RegisterItem(registryName = "epsilon_storage_bin")
 	public static final StorageBinBlockItem EPSILON_STORAGE_BIN_BLOCK_ITEM = new StorageBinBlockItem(
-			BlockInit.EPSILON_STORAGE_BIN_BLOCK, new Item.Properties().tab(REFINEMENT_MACHINE));
+			BlockInit.EPSILON_STORAGE_BIN_BLOCK, new Item.Properties().tab(REFINEMENT_MACHINE).rarity(EPSILON_RARITY));
 	
 	@RegisterItem(registryName = "omega_storage_bin")
 	public static final StorageBinBlockItem OMEGA_STORAGE_BIN_BLOCK_ITEM = new StorageBinBlockItem(
-			BlockInit.OMEGA_STORAGE_BIN_BLOCK, new Item.Properties().tab(REFINEMENT_MACHINE));
+			BlockInit.OMEGA_STORAGE_BIN_BLOCK, new Item.Properties().tab(REFINEMENT_MACHINE).rarity(OMEGA_RARITY));
+	
+	@RegisterItem(registryName = "grinder")
+	public static final BlockItem GRINDER_ITEM = new BlockItem(BlockInit.GRINDER.get(), new Item.Properties().tab(REFINEMENT_MACHINE));
+	
+	@RegisterItem(registryName = "mixer")
+	public static final BlockItem MIXER_ITEM = new BlockItem(BlockInit.MIXER.get(), new Item.Properties().tab(REFINEMENT_MACHINE));
+	
+	@RegisterItem(registryName = "mold_press")
+	public static final BlockItem MOLD_PRESS_ITEM = new BlockItem(BlockInit.MOLD_PRESS.get(), new Item.Properties().tab(REFINEMENT_MACHINE));
 
 
 }

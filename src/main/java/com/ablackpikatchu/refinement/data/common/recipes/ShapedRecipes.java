@@ -9,6 +9,7 @@ import javax.annotation.Nullable;
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
+import com.ablackpikatchu.refinement.core.init.BlockItemInit;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.TagInit;
 import com.ablackpikatchu.refinement.datafixers.util.recipe.Output;
@@ -54,14 +55,14 @@ public class ShapedRecipes {
 				new KeyIngredient('G', ItemInit.REFINED_GOLD_INGOT.get()),
 				new KeyIngredient('D', ItemInit.REFINED_DIAMOND.get()));
 
-		newShapedRecipe(new Output(ItemInit.GRINDER.get(), 1), new Pattern("RPR", "DFD", "RPR"),
-				machineStuff(itemName(ItemInit.GRINDER.get())), new KeyIngredient('P', ItemInit.MACHINE_PARTS),
+		newShapedRecipe(new Output(BlockItemInit.GRINDER_ITEM, 1), new Pattern("RPR", "DFD", "RPR"),
+				machineStuff(itemName(BlockItemInit.GRINDER_ITEM)), new KeyIngredient('P', ItemInit.MACHINE_PARTS),
 				new KeyIngredient('R', ItemInit.REFINED_IRON_INGOT.get()),
 				new KeyIngredient('D', ItemInit.REFINED_DIAMOND_COGWHEEL.get()),
 				new KeyIngredient('F', ItemInit.MACHINE_FRAME.get()));
 
-		newShapedRecipe(new Output(ItemInit.MIXER.get(), 1), new Pattern("RPR", "DFD", "RMR"),
-				machineStuff(itemName(ItemInit.MIXER.get())), new KeyIngredient('P', ItemInit.MACHINE_PARTS),
+		newShapedRecipe(new Output(BlockItemInit.MIXER_ITEM, 1), new Pattern("RPR", "DFD", "RMR"),
+				machineStuff(itemName(BlockItemInit.MIXER_ITEM)), new KeyIngredient('P', ItemInit.MACHINE_PARTS),
 				new KeyIngredient('R', ItemInit.REFINED_IRON_INGOT.get()),
 				new KeyIngredient('D', ItemInit.REFINED_DIAMOND_COGWHEEL.get()),
 				new KeyIngredient('F', ItemInit.MACHINE_FRAME.get()),
@@ -93,8 +94,8 @@ public class ShapedRecipes {
 				new KeyIngredient('T', TagInit.Items.TIN_STORAGE),
 				new KeyIngredient('C', TagInit.Items.SILVER_STORAGE));
 
-		newShapedRecipe(new Output(ItemInit.MOLD_PRESS.get(), 1), new Pattern("RPR", "DFD", "R#R"),
-				machineStuff(itemName(ItemInit.MOLD_PRESS.get())), new KeyIngredient('P', ItemInit.MACHINE_PARTS),
+		newShapedRecipe(new Output(BlockItemInit.MOLD_PRESS_ITEM, 1), new Pattern("RPR", "DFD", "R#R"),
+				machineStuff(itemName(BlockItemInit.MOLD_PRESS_ITEM)), new KeyIngredient('P', ItemInit.MACHINE_PARTS),
 				new KeyIngredient('R', ItemInit.REFINED_IRON_INGOT.get()),
 				new KeyIngredient('D', ItemInit.REFINED_IRON_COGWHEEL.get()),
 				new KeyIngredient('F', ItemInit.MACHINE_FRAME.get()),

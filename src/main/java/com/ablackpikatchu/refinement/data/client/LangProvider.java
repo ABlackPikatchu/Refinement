@@ -61,6 +61,9 @@ public class LangProvider extends LanguageProvider {
 		
 		add(ALPHA_STORAGE_BIN_BLOCK.get(), "Alpha Storage Bin");
 		add(BETA_STORAGE_BIN_BLOCK, "Beta Storage Bin");
+		add(GAMMA_STORAGE_BIN_BLOCK, "Gamma Storage Bin");
+		add(EPSILON_STORAGE_BIN_BLOCK, "Epsilon Storage Bin");
+		add(OMEGA_STORAGE_BIN_BLOCK, "Omega Storage Bin");
 		
 		add(BlockInit.REFINED_LOG.get(), "Refined Log");
 		add(BlockInit.REFINED_STRIPPED_LOG.get(), "Refined Stripped Log");

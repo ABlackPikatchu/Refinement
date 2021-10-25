@@ -67,7 +67,7 @@ public class UpgradeItem extends Item {
 	public void appendHoverText(ItemStack pStack, World pLevel, List<ITextComponent> pTooltip, ITooltipFlag pFlag) {
 		if (compatibleMachinesToolTip != null)
 			pTooltip.add(new StringTextComponent(
-					"\u00A76" + RefinementLang.COMPATIBLE_MACHINES_COMPONENT.getString() + "§r: " + compatibleMachinesToolTip.getString()));
+					"\u00A76" + RefinementLang.COMPATIBLE_MACHINES_COMPONENT.getString() + "\u00A7f: " + compatibleMachinesToolTip.getString()));
 		super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
 	}
 

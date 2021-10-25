@@ -16,6 +16,7 @@ import com.ablackpikatchu.refinement.common.block.machine.MoldPressBlock;
 import com.ablackpikatchu.refinement.common.block.machine.SmelterBlock;
 import com.ablackpikatchu.refinement.common.block.machine.VaccumulatorBlock;
 import com.ablackpikatchu.refinement.common.te.tier.Tier;
+import com.ablackpikatchu.refinement.core.anotation.registries.HoldsRegstries;
 import com.ablackpikatchu.refinement.core.anotation.registries.RegisterBlock;
 
 import net.minecraft.block.AbstractBlock;
@@ -32,6 +33,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+@HoldsRegstries
 public class BlockInit {
 
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS,
