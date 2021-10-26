@@ -5,8 +5,12 @@ import java.util.UUID;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.ablackpikatchu.refinement.common.block.StorageBinBlock;
 import com.ablackpikatchu.refinement.common.inventory.IItemHandlerInventory;
 import com.ablackpikatchu.refinement.common.inventory.StorageBinHandler;
+import com.ablackpikatchu.refinement.common.te.tier.ITieredTile;
+import com.ablackpikatchu.refinement.common.te.tier.Tier;
+import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
 import com.ablackpikatchu.refinement.core.network.RefinementNetwork;
 import com.ablackpikatchu.refinement.core.network.message.UpdateBinMessage;
@@ -34,7 +38,10 @@ import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
-public class StorageBinTileEntity extends TileEntity implements ITickableTileEntity, IItemHandlerInventory<StorageBinHandler>, IInventory, ISidedInventory {
+import static com.ablackpikatchu.refinement.common.te.tier.Tier.*;
+
+public class StorageBinTileEntity extends TileEntity implements ITickableTileEntity,
+		IItemHandlerInventory<StorageBinHandler>, IInventory, ISidedInventory, ITieredTile {
 
 	private final StorageBinHandler itemHandler = createHandler();
 	private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
@@ -84,7 +91,7 @@ public class StorageBinTileEntity extends TileEntity implements ITickableTileEnt
 			level.updateNeighborsAt(worldPosition, getBlockState().getBlock());
 			level.updateNeighborsAt(worldPosition.below(), getBlockState().getBlock());
 		}
-		
+
 		itemHandler.onContentsChanged(0);
 
 		return stack;
@@ -121,7 +128,7 @@ public class StorageBinTileEntity extends TileEntity implements ITickableTileEnt
 
 		itemHandler.setStoredItemCount(itemHandler.getStoredItemCount() + countAdded);
 		stack.shrink(countAdded);
-		
+
 		setChanged();
 
 		return countAdded;
@@ -197,6 +204,7 @@ public class StorageBinTileEntity extends TileEntity implements ITickableTileEnt
 	}
 
 	public void clientTick() {
+		//
 	}
 
 	@Override
@@ -245,13 +253,13 @@ public class StorageBinTileEntity extends TileEntity implements ITickableTileEnt
 		// itemStored = ItemStack.of(tag.getCompound("ItemStored"));
 		handleUpdateTag(getBlockState(), tag);
 	}
-	
+
 	public void storeDataToItem(ItemStack stack) {
 		CompoundNBT nbt = new CompoundNBT();
 		save(nbt);
 		stack.setTag(nbt);
 	}
-	
+
 	public void loadFromItem(ItemStack stack) {
 		if (!stack.hasTag())
 			return;
@@ -259,19 +267,19 @@ public class StorageBinTileEntity extends TileEntity implements ITickableTileEnt
 		itemHandler.deserializeNBT(nbt.getCompound("inv"));
 		stackLimit = nbt.getInt("StackLimit");
 	}
-	
+
 	public static StorageBinHandler handlerFromNbt(CompoundNBT nbt) {
 		int stackLimit = nbt.getInt("StackLimit");
 		StorageBinHandler binInventory = new StorageBinHandler(stackLimit);
 		binInventory.deserializeNBT(nbt.getCompound("inv"));
 		return binInventory;
 	}
-	
+
 	public static void handlerToNbt(StorageBinHandler handler, CompoundNBT nbt) {
 		nbt.put("inv", handler.serializeNBT());
 		nbt.putInt("StackLimit", handler.getSlotLimit(0));
 	}
-	
+
 	@Override
 	public void setChanged() {
 		if (level != null && !level.isClientSide() && level.getBlockEntity(worldPosition) != null)
@@ -300,7 +308,7 @@ public class StorageBinTileEntity extends TileEntity implements ITickableTileEnt
 		RefinementNetwork.STORAGE_BIN_CHANNEL.send(PacketDistributor.NEAR.with(() -> point),
 				new UpdateBinMessage(worldPosition, item, count, stackLimit));
 	}
-	
+
 	@Override
 	public World getLevel() {
 		return this.level;
@@ -364,7 +372,9 @@ public class StorageBinTileEntity extends TileEntity implements ITickableTileEnt
 
 	@Override
 	public int[] getSlotsForFace(Direction pSide) {
-		return new int[] {0};
+		return new int[] {
+				0
+		};
 	}
 
 	@Override
@@ -376,5 +386,54 @@ public class StorageBinTileEntity extends TileEntity implements ITickableTileEnt
 	public boolean canTakeItemThroughFace(int pIndex, ItemStack pStack, Direction pDirection) {
 		return true;
 	}
+
+	@Override
+	public Tier getCurrentTier() {
+		if (getBlockState().getBlock() == BlockInit.ALPHA_STORAGE_BIN_BLOCK.get())
+			return Tier.ALPHA;
+		if (getBlockState().getBlock() == BlockInit.BETA_STORAGE_BIN_BLOCK)
+			return Tier.BETA;
+		if (getBlockState().getBlock() == BlockInit.GAMMA_STORAGE_BIN_BLOCK)
+			return Tier.GAMMA;
+		if (getBlockState().getBlock() == BlockInit.EPSILON_STORAGE_BIN_BLOCK)
+			return Tier.EPSILON;
+		if (getBlockState().getBlock() == BlockInit.OMEGA_STORAGE_BIN_BLOCK)
+			return Tier.OMEGA;
+		return null;
+	}
+
+	@Override
+	public void setTier(Tier tier) {
+		Direction facing = getBlockState().getValue(StorageBinBlock.FACING);
+		boolean locked = this.itemHandler.isLocked(0);
+		
+		BlockState newState = getBlockState();
+		int newStackLimit = itemHandler.getSlotLimit(0);
+		if (tier == ALPHA) {
+			newState = BlockInit.ALPHA_STORAGE_BIN_BLOCK.get().defaultBlockState().setValue(StorageBinBlock.FACING, facing).setValue(StorageBinBlock.LOCKED, locked);
+			newStackLimit = BlockInit.ALPHA_STORAGE_BIN_BLOCK.get().getStackLimit();
+		} else if (tier == BETA) {
+			newState = BlockInit.BETA_STORAGE_BIN_BLOCK.defaultBlockState().setValue(StorageBinBlock.FACING, facing).setValue(StorageBinBlock.LOCKED, locked);
+			newStackLimit = BlockInit.BETA_STORAGE_BIN_BLOCK.getStackLimit();
+		} else if (tier == GAMMA) {
+			newState = BlockInit.GAMMA_STORAGE_BIN_BLOCK.defaultBlockState().setValue(StorageBinBlock.FACING, facing).setValue(StorageBinBlock.LOCKED, locked);
+			newStackLimit = BlockInit.GAMMA_STORAGE_BIN_BLOCK.getStackLimit();
+		} else if (tier == EPSILON) {
+			newState = BlockInit.EPSILON_STORAGE_BIN_BLOCK.defaultBlockState().setValue(StorageBinBlock.FACING, facing).setValue(StorageBinBlock.LOCKED, locked);
+			newStackLimit = BlockInit.EPSILON_STORAGE_BIN_BLOCK.getStackLimit();
+		} else if (tier == OMEGA) {
+			newState = BlockInit.OMEGA_STORAGE_BIN_BLOCK.defaultBlockState().setValue(StorageBinBlock.FACING, facing).setValue(StorageBinBlock.LOCKED, locked);
+			newStackLimit = BlockInit.OMEGA_STORAGE_BIN_BLOCK.getStackLimit();
+		}
+		
+		itemHandler.setStackLimit(newStackLimit);
+		this.stackLimit = newStackLimit;
+		
+		this.level.setBlockAndUpdate(worldPosition, newState);
+		if (this.level.getBlockEntity(worldPosition) instanceof StorageBinTileEntity) {
+			StorageBinTileEntity newTile = (StorageBinTileEntity) this.level.getBlockEntity(worldPosition);
+			newTile.itemHandler.copyFromOther(this.itemHandler);
+		}
+ 	}
 
 }

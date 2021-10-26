@@ -30,7 +30,7 @@ import net.minecraftforge.forgespi.language.ModFileScanData;
 public class RegistryEvents {
 
 	private static final ArrayList<Class<?>> REGISTRY_CLASSES = new ArrayList<>();
-
+	
 	public static void init() {
 		final List<ModFileScanData.AnnotationData> annotations = ModList.get().getAllScanData().stream()
 				.map(ModFileScanData::getAnnotations).flatMap(Collection::stream)
@@ -61,6 +61,8 @@ public class RegistryEvents {
 									field.getAnnotation(RegisterItem.class).registryName()));
 					event.getRegistry().register(item);
 				}
+				else
+					throw new RegistryException("The field " + field + " is annotated with @RegisterItem but it is not an item.");
 			} catch (IllegalArgumentException | IllegalAccessException | SecurityException e) {
 			}
 		});
@@ -77,8 +79,31 @@ public class RegistryEvents {
 									field.getAnnotation(RegisterBlock.class).registryName()));
 					event.getRegistry().register(block);
 				}
+				else
+					throw new RegistryException("The field " + field + " is annotated with @RegisterBlock but it is not a block.");
 			} catch (IllegalArgumentException | IllegalAccessException e) {
 			}
 		});
+	}
+	
+	public static class RegistryException extends RuntimeException {
+
+		private static final long serialVersionUID = 909384213793458361L;
+
+		public RegistryException() {
+			super();
+		}
+
+		public RegistryException(String message) {
+			super(message);
+		}
+
+		public RegistryException(String message, Throwable cause) {
+			super(message, cause);
+		}
+
+		public RegistryException(Throwable cause) {
+			super(cause);
+		}
 	}
 }

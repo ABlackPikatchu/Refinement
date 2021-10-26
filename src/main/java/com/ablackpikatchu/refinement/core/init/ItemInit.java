@@ -5,10 +5,11 @@ import static com.ablackpikatchu.refinement.common.ModRarity.DARK_RED_RARITY;
 import static com.ablackpikatchu.refinement.common.ModRarity.GOLD_RARITY;
 import static com.ablackpikatchu.refinement.common.ModRarity.*;
 import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.REFINEMENT;
-import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.REFINEMENT_ARMOUR;
 import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.REFINEMENT_MACHINE;
 import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.REFINEMENT_MATERIALS;
 import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.REFINEMENT_TOOLS_WEAPONS;
+
+import static net.minecraft.inventory.EquipmentSlotType.*;
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.ModRarity;
@@ -25,6 +26,7 @@ import com.ablackpikatchu.refinement.common.item.Mold;
 import com.ablackpikatchu.refinement.common.item.RefinedCoal;
 import com.ablackpikatchu.refinement.common.item.RefinedCoalBlockItem;
 import com.ablackpikatchu.refinement.common.item.ResourceStatueItem;
+import com.ablackpikatchu.refinement.common.item.TierUpgraderItem;
 import com.ablackpikatchu.refinement.common.item.UpgradeItem;
 import com.ablackpikatchu.refinement.common.item.blockitem.DNASequencerBlockItem;
 import com.ablackpikatchu.refinement.common.item.box.CustomLootBox;
@@ -38,6 +40,7 @@ import com.ablackpikatchu.refinement.common.item.food.MinersJerky;
 import com.ablackpikatchu.refinement.common.item.food.ModEffectFood;
 import com.ablackpikatchu.refinement.common.material.ModArmorMaterial;
 import com.ablackpikatchu.refinement.common.material.ModItemTier;
+import com.ablackpikatchu.refinement.common.te.tier.Tier;
 import com.ablackpikatchu.refinement.common.te.upgrade.Upgrade;
 import com.ablackpikatchu.refinement.core.annotation.registries.HoldsRegistries;
 import com.ablackpikatchu.refinement.core.annotation.registries.RegisterItem;
@@ -225,33 +228,7 @@ public class ItemInit {
 	public static final RegistryObject<Item> REFINED_NETHERITE_HOE = ITEMS.register("refined_netherite_hoe",
 			() -> new HoeItem(ModItemTier.REFINEDNETHERITE, -4, 0.0F,
 					new Item.Properties().tab(RefinementToolsWeaponsGroup.REFINEMENT_TOOLS_WEAPONS)));
-	
-	// Thermal Stuff
-	public static final RegistryObject<Item> LUMIUM_INGOT = normalItem("lumium_ingot", REFINEMENT_MATERIALS);
-	public static final RegistryObject<Item> SIGNALUM_INGOT = normalItem("signalum_ingot", REFINEMENT_MATERIALS);
-	public static final RegistryObject<Item> ENDERIUM_INGOT = normalItem("enderium_ingot", REFINEMENT_MATERIALS);
-	
-	public static final RegistryObject<Item> TIN_INGOT = normalItem("tin_ingot", REFINEMENT_MATERIALS);
-	public static final RegistryObject<Item> SILVER_INGOT = normalItem("silver_ingot", REFINEMENT_MATERIALS);
-	public static final RegistryObject<Item> LEAD_INGOT = normalItem("lead_ingot", REFINEMENT_MATERIALS);
-	public static final RegistryObject<Item> COPPER_INGOT = normalItem("copper_ingot", REFINEMENT_MATERIALS);
-	
-	public static final RegistryObject<Item> TIN_DUST = normalItem("tin_dust", REFINEMENT_MATERIALS);
-	public static final RegistryObject<Item> SILVER_DUST = normalItem("silver_dust", REFINEMENT_MATERIALS);
-	public static final RegistryObject<Item> LEAD_DUST = normalItem("lead_dust", REFINEMENT_MATERIALS);
-	public static final RegistryObject<Item> COPPER_DUST = normalItem("copper_dust", REFINEMENT_MATERIALS);
-	
-	@RegisterItem(registryName = "alpha_circuit")
-	public static final Item ALPHA_CIRCUIT = tieredItem(REFINEMENT_MACHINE, ALPHA_RARITY);
-	@RegisterItem(registryName = "beta_circuit")
-	public static final Item BETA_CIRCUIT = tieredItem(REFINEMENT_MACHINE, BETA_RARITY);
-	@RegisterItem(registryName = "gamma_circuit")
-	public static final Item GAMMA_CIRCUIT = tieredItem(REFINEMENT_MACHINE, GAMMA_RARITY);
-	@RegisterItem(registryName = "epsilon_circuit")
-	public static final Item EPSILON_CIRCUIT = tieredItem(REFINEMENT_MACHINE, EPSILON_RARITY);
-	@RegisterItem(registryName = "omega_circuit")
-	public static final Item OMEGA_CIRCUIT = tieredItem(REFINEMENT_MACHINE, OMEGA_RARITY);
-	
+
 	// Custom Tools
 	public static final RegistryObject<Item> MIXING_BOWL = ITEMS.register("mixing_bowl", () -> new MixingBowl(
 			new Item.Properties().tab(RefinementToolsWeaponsGroup.REFINEMENT_TOOLS_WEAPONS).defaultDurability(20)));
@@ -310,68 +287,16 @@ public class ItemInit {
 			() -> new DNASequencerBlockItem(BlockInit.DNA_SEQUENCER.get(),
 					new Item.Properties().tab(REFINEMENT_MACHINE)));
 
-	// Armors
-	public static final RegistryObject<Item> REFINED_IRON_HELMET = ITEMS.register("refined_iron_helmet",
-			() -> new ArmorItem(ModArmorMaterial.REFINEDIRONARMOR, EquipmentSlotType.HEAD,
-					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
-	public static final RegistryObject<Item> REFINED_IRON_CHESTPLATE = ITEMS.register("refined_iron_chestplate",
-			() -> new ArmorItem(ModArmorMaterial.REFINEDIRONARMOR, EquipmentSlotType.CHEST,
-					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
-	public static final RegistryObject<Item> REFINED_IRON_LEGGINGS = ITEMS.register("refined_iron_leggings",
-			() -> new ArmorItem(ModArmorMaterial.REFINEDIRONARMOR, EquipmentSlotType.LEGS,
-					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
-	public static final RegistryObject<Item> REFINED_IRON_BOOTS = ITEMS.register("refined_iron_boots",
-			() -> new ArmorItem(ModArmorMaterial.REFINEDIRONARMOR, EquipmentSlotType.FEET,
-					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
-	public static final RegistryObject<Item> REFINED_GOLD_HELMET = ITEMS.register("refined_gold_helmet",
-			() -> new ArmorItem(ModArmorMaterial.REFINEDGOLDARMOR, EquipmentSlotType.HEAD,
-					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
-	public static final RegistryObject<Item> REFINED_GOLD_CHESTPLATE = ITEMS.register("refined_gold_chestplate",
-			() -> new ArmorItem(ModArmorMaterial.REFINEDGOLDARMOR, EquipmentSlotType.CHEST,
-					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
-	public static final RegistryObject<Item> REFINED_GOLD_LEGGINGS = ITEMS.register("refined_gold_leggings",
-			() -> new ArmorItem(ModArmorMaterial.REFINEDGOLDARMOR, EquipmentSlotType.LEGS,
-					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
-	public static final RegistryObject<Item> REFINED_GOLD_BOOTS = ITEMS.register("refined_gold_boots",
-			() -> new ArmorItem(ModArmorMaterial.REFINEDGOLDARMOR, EquipmentSlotType.FEET,
-					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
-	public static final RegistryObject<Item> REFINED_DIAMOND_HELMET = ITEMS.register("refined_diamond_helmet",
-			() -> new ModUpgradableArmor(ModArmorMaterial.REFINEDDIAMONDARMOR, EquipmentSlotType.HEAD,
-					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
-	public static final RegistryObject<Item> REFINED_DIAMOND_CHESTPLATE = ITEMS.register("refined_diamond_chestplate",
-			() -> new ModUpgradableArmor(ModArmorMaterial.REFINEDDIAMONDARMOR, EquipmentSlotType.CHEST,
-					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
-	public static final RegistryObject<Item> REFINED_DIAMOND_LEGGINGS = ITEMS.register("refined_diamond_leggings",
-			() -> new ModUpgradableArmor(ModArmorMaterial.REFINEDDIAMONDARMOR, EquipmentSlotType.LEGS,
-					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
-	public static final RegistryObject<Item> REFINED_DIAMOND_BOOTS = ITEMS.register("refined_diamond_boots",
-			() -> new ModUpgradableArmor(ModArmorMaterial.REFINEDDIAMONDARMOR, EquipmentSlotType.FEET,
-					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
-	public static final RegistryObject<Item> REFINED_NETHERITE_HELMET = ITEMS.register("refined_netherite_helmet",
-			() -> new ModUpgradableArmor(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.HEAD,
-					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
-	public static final RegistryObject<Item> REFINED_NETHERITE_CHESTPLATE = ITEMS.register(
-			"refined_netherite_chestplate", () -> new ModUpgradableArmor(ModArmorMaterial.REFINEDNETHERITEARMOR,
-					EquipmentSlotType.CHEST, new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
-	public static final RegistryObject<Item> REFINED_NETHERITE_LEGGINGS = ITEMS.register("refined_netherite_leggings",
-			() -> new ModUpgradableArmor(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.LEGS,
-					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR)));
-	public static final RegistryObject<Item> REFINED_NETHERITE_BOOTS = ITEMS.register("refined_netherite_boots",
-			() -> new ModUpgradableArmor(ModArmorMaterial.REFINEDNETHERITEARMOR, EquipmentSlotType.FEET,
-					new Item.Properties().tab(REFINEMENT_ARMOUR)));
-
 	// Boxes
 	public static final RegistryObject<Item> FOOD_BOX = ITEMS.register("food_box",
 			() -> new RefinementLootBox(
 					new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).tab(RefinementItemGroup.REFINEMENT),
 					BoxType.FOOD));
-	
+
 	public static final RegistryObject<Item> MOD_LOOT_BOX = ITEMS.register("mod_loot_box", ModLootBox::new);
 	public static final RegistryObject<Item> CUSTOM_LOOT_BOX = ITEMS.register("custom_loot_box", CustomLootBox::new);
 
 	// Misc Item Blocks
-	public static final RegistryObject<BlockItem> BLANK_ORE_ITEM = ITEMS.register("blank_ore",
-			() -> new BlockItem(BlockInit.BLANK_ORE.get(), new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
 	public static final RegistryObject<BlockItem> MATERIALS_STATION_ITEM = ITEMS.register("materials_station",
 			() -> new BlockItem(BlockInit.MATERIALS_STATION.get(),
 					new Item.Properties().tab(RefinementItemGroup.REFINEMENT)));
@@ -385,46 +310,197 @@ public class ItemInit {
 			() -> new GluttonyBracelet(new Item.Properties().tab(REFINEMENT).defaultDurability(2048)));
 	public static final RegistryObject<Item> ARMOR_UPGRADER = ITEMS.register("armor_upgrader",
 			() -> new ArmorUpgrader(new Item.Properties().tab(REFINEMENT).stacksTo(1)));
-	
+
 	// Upgrades
 	public static final RegistryObject<Item> AUTO_EJECT_UPGRADE = ITEMS.register("auto_eject_upgrade",
-			() -> new AutoEjectUpgrade(new Item.Properties().tab(REFINEMENT).stacksTo(1).rarity(DARK_PURPLE_RARITY), Upgrade.AUTO_EJECT));
+			() -> new AutoEjectUpgrade(new Item.Properties().tab(REFINEMENT).stacksTo(1).rarity(DARK_PURPLE_RARITY),
+					Upgrade.AUTO_EJECT));
 	public static final RegistryObject<Item> AUTO_IMPORT_UPGRADE = ITEMS.register("auto_import_upgrade",
-			() -> new AutoImportUpgrade(new Item.Properties().tab(REFINEMENT).stacksTo(1).rarity(GOLD_RARITY), Upgrade.AUTO_IMPORT));
+			() -> new AutoImportUpgrade(new Item.Properties().tab(REFINEMENT).stacksTo(1).rarity(GOLD_RARITY),
+					Upgrade.AUTO_IMPORT));
 	public static final RegistryObject<Item> SPEED_UPGRADE = ITEMS.register("speed_upgrade", () -> new UpgradeItem(
-			new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE).stacksTo(8).rarity(DARK_RED_RARITY), Upgrade.SPEED));
-	public static final RegistryObject<Item> ENERGY_ABILITY_UPGRADE = ITEMS.register("energy_ability_upgrade", () -> new UpgradeItem(
-			new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE).stacksTo(1).rarity(ModRarity.GREEN_RARITY), Upgrade.ENERGY_ABILITY));
+			new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE).stacksTo(8).rarity(DARK_RED_RARITY),
+			Upgrade.SPEED));
+	public static final RegistryObject<Item> ENERGY_ABILITY_UPGRADE = ITEMS.register("energy_ability_upgrade",
+			() -> new UpgradeItem(new Item.Properties().tab(RefinementMachineGroup.REFINEMENT_MACHINE).stacksTo(1)
+					.rarity(ModRarity.GREEN_RARITY), Upgrade.ENERGY_ABILITY));
 
-	// Food
-	public static final RegistryObject<Item> MINERS_STEW = ITEMS.register("miners_stew",
-			() -> new ModEffectFood(new Item.Properties()
-					.food(new Food.Builder().nutrition(6).saturationMod(13.3f).alwaysEat().fast().build())
-					.rarity(Rarity.RARE).tab(RefinementFoodGroup.REFINEMENT_FOOD).stacksTo(1))
-							.addEffect(new EffectInstance(Effects.DIG_SPEED, 9600, 0))
-							.addEffect(new EffectInstance(Effects.NIGHT_VISION, 9600, 0))
-							.hurtOnUse(DamageSourcesInit.MINERS_STEW_DAMAGE, 8.0F)
-							.leftoverItem(new ItemStack(Items.BOWL)));
-
-	public static final RegistryObject<Item> GOD_APPLE = ITEMS.register("god_apple",
-			() -> new ModEffectFood(new Item.Properties().stacksTo(1).fireResistant()
-					.food(new Food.Builder().nutrition(5).saturationMod(9.0f).build())
-					.tab(RefinementItemGroup.REFINEMENT_FOOD).stacksTo(1))
-							.addEffect(new EffectInstance(ForgeRegistries.POTIONS
-									.getValue(new ResourceLocation(Refinement.MOD_ID, "ghostly_shape")), 600)));
-
-	public static final RegistryObject<Item> MINERS_CARROT = ITEMS.register("miners_carrot", MinersCarrot::new);
-	public static final RegistryObject<Item> MINERS_APPLE = ITEMS.register("miners_apple", MinersApple::new);
-	public static final RegistryObject<Item> MINERS_JERKY = ITEMS.register("miners_jerky", MinersJerky::new);
-	public static final RegistryObject<Item> MINERS_BREAD = ITEMS.register("miners_bread", MinersBread::new);
-	public static final RegistryObject<Item> CURING_APPLE = ITEMS.register("curing_apple", CuringApple::new);
-	
+	@SuppressWarnings("unused")
 	private static RegistryObject<Item> normalItem(String registryName, ItemGroup tab) {
 		return ITEMS.register(registryName, () -> new Item(new Item.Properties().tab(tab)));
 	}
 	
-	private static Item tieredItem(ItemGroup tab, Rarity rarity) {
-		return new Item(new Item.Properties().tab(tab).rarity(rarity));
+	@HoldsRegistries
+	public static class Ingots {
+		
+		@RegisterItem(registryName = "lumium_ingot")
+		public static final Item LUMIUM_INGOT = normalIngot();
+		@RegisterItem(registryName = "signalum_ingot")
+		public static final Item SIGNALUM_INGOT = normalIngot();
+		@RegisterItem(registryName = "enderium_ingot")
+		public static final Item ENDERIUM_INGOT = normalIngot();
+
+		@RegisterItem(registryName = "tin_ingot")
+		public static final Item TIN_INGOT = normalIngot();
+		@RegisterItem(registryName = "silver_ingot")
+		public static final Item SILVER_INGOT = normalIngot();
+		@RegisterItem(registryName = "lead_ingot")
+		public static final Item LEAD_INGOT = normalIngot();
+		@RegisterItem(registryName = "copper_ingot")
+		public static final Item COPPER_INGOT = normalIngot();
+
+		@RegisterItem(registryName = "tin_dust")
+		public static final Item TIN_DUST = normalIngot();
+		@RegisterItem(registryName = "silver_dust")
+		public static final Item SILVER_DUST = normalIngot();
+		@RegisterItem(registryName = "lead_dust")
+		public static final Item LEAD_DUST = normalIngot();
+		@RegisterItem(registryName = "copper_dust")
+		public static final Item COPPER_DUST = normalIngot();
+		
+		private static Item normalIngot() {
+			return new Item(new Item.Properties().tab(REFINEMENT_MATERIALS));
+		}
+	}
+	
+	@HoldsRegistries
+	public static class Armor {
+
+		@RegisterItem(registryName = "refined_iron_helmet")
+		public static final Item REFINED_IRON_HELMET = refinedIronArmour(HEAD);
+		@RegisterItem(registryName = "refined_iron_chestplate")
+		public static final Item REFINED_IRON_CHESTPLATE = refinedIronArmour(CHEST);
+		@RegisterItem(registryName = "refined_iron_leggings")
+		public static final Item REFINED_IRON_LEGGINGS = refinedIronArmour(LEGS);
+		@RegisterItem(registryName = "refined_iron_boots")
+		public static final Item REFINED_IRON_BOOTS = refinedIronArmour(FEET);
+
+		@RegisterItem(registryName = "refined_gold_helmet")
+		public static final Item REFINED_GOLD_HELMET = refinedGoldArmour(HEAD);
+		@RegisterItem(registryName = "refined_gold_chestplate")
+		public static final Item REFINED_GOLD_CHESTPLATE = refinedGoldArmour(CHEST);
+		@RegisterItem(registryName = "refined_gold_leggings")
+		public static final Item REFINED_GOLD_LEGGINGS = refinedGoldArmour(LEGS);
+		@RegisterItem(registryName = "refined_gold_boots")
+		public static final Item REFINED_GOLD_BOOTS = refinedGoldArmour(FEET);
+
+		@RegisterItem(registryName = "refined_diamond_helmet")
+		public static final ModUpgradableArmor REFINED_DIAMOND_HELMET = refinedDiamondArmour(HEAD);
+		@RegisterItem(registryName = "refined_diamond_chestplate")
+		public static final ModUpgradableArmor REFINED_DIAMOND_CHESTPLATE = refinedDiamondArmour(CHEST);
+		@RegisterItem(registryName = "refined_diamond_leggings")
+		public static final ModUpgradableArmor REFINED_DIAMOND_LEGGINGS = refinedDiamondArmour(LEGS);
+		@RegisterItem(registryName = "refined_diamond_boots")
+		public static final ModUpgradableArmor REFINED_DIAMOND_BOOTS = refinedDiamondArmour(FEET);
+		
+		@RegisterItem(registryName = "refined_netherite_helmet")
+		public static final ModUpgradableArmor REFINED_NETHERITE_HELMET = refinedNetheriteArmour(HEAD);
+		@RegisterItem(registryName = "refined_netherite_chestplate")
+		public static final ModUpgradableArmor REFINED_NETHERITE_CHESTPLATE = refinedNetheriteArmour(CHEST);
+		@RegisterItem(registryName = "refined_netherite_leggings")
+		public static final ModUpgradableArmor REFINED_NETHERITE_LEGGINGS = refinedNetheriteArmour(LEGS);
+		@RegisterItem(registryName = "refined_netherite_boots")
+		public static final ModUpgradableArmor REFINED_NETHERITE_BOOTS = refinedNetheriteArmour(FEET);
+
+		private static Item refinedIronArmour(EquipmentSlotType slot) {
+			return new ArmorItem(ModArmorMaterial.REFINED_IRON_ARMOR, slot,
+					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR));
+		}
+
+		private static Item refinedGoldArmour(EquipmentSlotType slot) {
+			return new ArmorItem(ModArmorMaterial.REFINED_GOLD_ARMOR, slot,
+					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR));
+		}
+		
+		private static ModUpgradableArmor refinedDiamondArmour(EquipmentSlotType slot) {
+			return new ModUpgradableArmor(ModArmorMaterial.REFINED_DIAMOND_ARMOR, slot,
+					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR));
+		}
+		
+		private static ModUpgradableArmor refinedNetheriteArmour(EquipmentSlotType slot) {
+			return new ModUpgradableArmor(ModArmorMaterial.REFINED_NETHERITE_ARMOR, slot,
+					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR));
+		}
+
+	}
+
+	@HoldsRegistries
+	public static class FoodItems {
+
+		@RegisterItem(registryName = "miners_stew")
+		public static final Item MINERS_STEW = new ModEffectFood(new Item.Properties()
+				.food(new Food.Builder().nutrition(6).saturationMod(13.3f).alwaysEat().fast().build())
+				.rarity(Rarity.RARE).tab(RefinementFoodGroup.REFINEMENT_FOOD).stacksTo(1))
+						.addEffect(new EffectInstance(Effects.DIG_SPEED, 9600, 0))
+						.addEffect(new EffectInstance(Effects.NIGHT_VISION, 9600, 0))
+						.hurtOnUse(DamageSourcesInit.MINERS_STEW_DAMAGE, 8.0F).leftoverItem(new ItemStack(Items.BOWL));
+
+		@RegisterItem(registryName = "god_apple")
+		public static final Item GOD_APPLE = new ModEffectFood(new Item.Properties().stacksTo(1).fireResistant()
+				.food(new Food.Builder().nutrition(5).saturationMod(9.0f).build())
+				.tab(RefinementItemGroup.REFINEMENT_FOOD).stacksTo(1))
+						.addEffect(new EffectInstance(ForgeRegistries.POTIONS
+								.getValue(new ResourceLocation(Refinement.MOD_ID, "ghostly_shape")), 600));
+
+		@RegisterItem(registryName = "miners_carrot")
+		public static final Item MINERS_CARROT = new MinersCarrot();
+		@RegisterItem(registryName = "miners_apple")
+		public static final Item MINERS_APPLE = new MinersApple();
+		@RegisterItem(registryName = "miners_jerky")
+		public static final Item MINERS_JERKY = new MinersJerky();
+		@RegisterItem(registryName = "miners_bread")
+		public static final Item MINERS_BREAD = new MinersBread();
+		@RegisterItem(registryName = "curing_apple")
+		public static final Item CURING_APPLE = new CuringApple();
+
+	}
+
+	@HoldsRegistries
+	public static class TierRelated {
+
+		@RegisterItem(registryName = "alpha_circuit")
+		public static final Item ALPHA_CIRCUIT = tieredItem(REFINEMENT_MACHINE, ALPHA_RARITY);
+		@RegisterItem(registryName = "beta_circuit")
+		public static final Item BETA_CIRCUIT = tieredItem(REFINEMENT_MACHINE, BETA_RARITY);
+		@RegisterItem(registryName = "gamma_circuit")
+		public static final Item GAMMA_CIRCUIT = tieredItem(REFINEMENT_MACHINE, GAMMA_RARITY);
+		@RegisterItem(registryName = "epsilon_circuit")
+		public static final Item EPSILON_CIRCUIT = tieredItem(REFINEMENT_MACHINE, EPSILON_RARITY);
+		@RegisterItem(registryName = "omega_circuit")
+		public static final Item OMEGA_CIRCUIT = tieredItem(REFINEMENT_MACHINE, OMEGA_RARITY);
+
+		@RegisterItem(registryName = "alpha_alloy")
+		public static final Item ALPHA_ALLOY = tieredItem(ALPHA_RARITY);
+		@RegisterItem(registryName = "beta_alloy")
+		public static final Item BETA_ALLOY = tieredItem(BETA_RARITY);
+		@RegisterItem(registryName = "gamma_alloy")
+		public static final Item GAMMA_ALLOY = tieredItem(GAMMA_RARITY);
+		@RegisterItem(registryName = "epsilon_alloy")
+		public static final Item EPSILON_ALLOY = tieredItem(EPSILON_RARITY);
+		@RegisterItem(registryName = "omega_alloy")
+		public static final Item OMEGA_ALLOY = tieredItem(OMEGA_RARITY);
+
+		@RegisterItem(registryName = "beta_tier_upgrader")
+		public static final TierUpgraderItem BETA_TIER_UPGRADER = tierUpgrader(Tier.BETA, BETA_RARITY);
+		@RegisterItem(registryName = "gamma_tier_upgrader")
+		public static final TierUpgraderItem GAMMA_TIER_UPGRADER = tierUpgrader(Tier.GAMMA, GAMMA_RARITY);
+		@RegisterItem(registryName = "epsilon_tier_upgrader")
+		public static final TierUpgraderItem EPSILON_TIER_UPGRADER = tierUpgrader(Tier.EPSILON, EPSILON_RARITY);
+		@RegisterItem(registryName = "omega_tier_upgrader")
+		public static final TierUpgraderItem OMEGA_TIER_UPGRADER = tierUpgrader(Tier.OMEGA, OMEGA_RARITY);
+
+		private static TierUpgraderItem tierUpgrader(Tier tier, Rarity rarity) {
+			return new TierUpgraderItem(tier, new Item.Properties().tab(REFINEMENT_MATERIALS).rarity(rarity));
+		}
+
+		private static Item tieredItem(ItemGroup tab, Rarity rarity) {
+			return new Item(new Item.Properties().tab(tab).rarity(rarity));
+		}
+
+		private static Item tieredItem(Rarity rarity) {
+			return new Item(new Item.Properties().tab(REFINEMENT_MACHINE).rarity(rarity));
+		}
+
 	}
 
 }

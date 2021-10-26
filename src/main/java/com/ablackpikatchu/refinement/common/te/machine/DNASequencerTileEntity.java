@@ -62,7 +62,7 @@ public class DNASequencerTileEntity extends SidedInventoryTileEntity implements 
 		if (!this.level.isClientSide()) {
 			handleSpeedUpgrades(speedUpgradeSlot, CommonConfig.DNA_SEQUENCER_DEFAULT_PROCESS_TIME.get(),
 					CommonConfig.DNA_SEQUENCER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get());
-			handleAutoEject(5, 2);
+			handleNewAutoEject(5, 2);
 			handleFuelAutoImport(6, 3);
 			handleAutoImport(RecipeInit.DNA_SEQUENCER_RECIPE, 6, 0, 1);
 			this.successProbability = -1;

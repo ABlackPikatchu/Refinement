@@ -20,4 +20,28 @@ public class Tier {
 		return color;
 	}
 	
+	public Tier nextTier() {
+		if (this == ALPHA)
+			return BETA;
+		if (this == BETA)
+			return GAMMA;
+		if (this == GAMMA)
+			return EPSILON;
+		if (this == EPSILON)
+			return OMEGA;
+		return null;
+	}
+	
+	public Tier previousTier() {
+		if (this == BETA)
+			return ALPHA;
+		if (this == GAMMA)
+			return BETA;
+		if (this == EPSILON)
+			return GAMMA;
+		if (this == OMEGA)
+			return EPSILON;
+		return null;
+	}
+	
 }

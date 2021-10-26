@@ -1,7 +1,6 @@
 package com.ablackpikatchu.refinement;
 
 import java.io.File;
-import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,7 +31,6 @@ import com.ablackpikatchu.refinement.core.init.VillagerInit;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup;
 import com.ablackpikatchu.refinement.core.network.RefinementNetwork;
 import com.ablackpikatchu.refinement.core.util.Conversions;
-import com.ablackpikatchu.refinement.core.util.ReflectionsUtils;
 import com.ablackpikatchu.refinement.core.util.StrippingMap;
 import com.ablackpikatchu.refinement.core.util.lists.TradeLists;
 import com.ablackpikatchu.refinement.data.client.LangProvider;
@@ -95,13 +93,6 @@ public class Refinement {
 
 	public static final String CONFIG_DIR_PATH = "config/" + MOD_ID + "/";
 	public static final File CONFIF_DIR = new File(CONFIG_DIR_PATH);
-	
-	//public static final Reflections REFLECTIONS = new Reflections(
-	//		  new ConfigurationBuilder()
-	//		    .forPackages("com.ablackpikatchu.refinement"));
-	
-	public static final Set<Class<?>> REFINEMENT_CLASSES = ReflectionsUtils.findAllClassesUsingGoogleGuice("com.ablackpikatchu.refinement");
-	
 
 	public Refinement() {
 		// GeckoLib.initialize();

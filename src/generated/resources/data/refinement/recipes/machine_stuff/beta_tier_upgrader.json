@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ACA",
+    "AMA",
+    "ACA"
+  ],
+  "key": {
+    "A": {
+      "item": "refinement:beta_alloy"
+    },
+    "C": {
+      "item": "refinement:beta_circuit"
+    },
+    "M": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "refinement:beta_tier_upgrader"
+  }
+}

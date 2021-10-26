@@ -15,7 +15,7 @@ public class RefinementArmorGroup extends ItemGroup{
 
 	@Override
 	public ItemStack makeIcon() {
-		return new ItemStack(ItemInit.REFINED_IRON_HELMET.get());
+		return new ItemStack(ItemInit.Armor.REFINED_IRON_HELMET);
 	}
 
 }

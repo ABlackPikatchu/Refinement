@@ -7,7 +7,6 @@ import java.util.Map;
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
-import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
 import com.ablackpikatchu.refinement.core.util.InventoryUtils;
 import com.google.common.collect.ImmutableMap;
@@ -102,7 +101,6 @@ public class AlloySmeltingRecipe extends AbstractModRecipe {
 				ingredients.add(Ingredient.EMPTY);
 			}
 		}
-		ingredients.add(Ingredient.of(ItemInit.REFINED_CARBON_INGOT.get()));
 		return ingredients;
 	}
 

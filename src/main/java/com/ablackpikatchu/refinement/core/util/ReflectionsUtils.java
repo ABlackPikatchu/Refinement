@@ -29,12 +29,18 @@ import java.util.stream.Stream;
 
 import com.google.common.reflect.ClassPath;
 
+/**
+ * Most of the stuffs is trash
+ * @author matyrobbrt
+ *
+ */
 @SuppressWarnings("rawtypes")
 public class ReflectionsUtils {
 
 	private ReflectionsUtils() {
 	}
 
+	@Deprecated
 	public static Set<Class<?>> findAllClassesUsingGoogleGuice(String packageName) {
 		try {
 			return ClassPath.from(ClassLoader.getSystemClassLoader()).getAllClasses().stream()
@@ -53,6 +59,7 @@ public class ReflectionsUtils {
 		return Collections.emptySet();
 	}
 
+	@Deprecated
 	public static Set<Class<?>> filterClassesAnnotatedWith(Set<Class<?>> allClasses,
 			Class<? extends Annotation> annotation) {
 		return allClasses.stream().filter(clazz -> clazz.isAnnotationPresent(annotation)).collect(Collectors.toSet());
@@ -67,6 +74,7 @@ public class ReflectionsUtils {
 	 * @throws ClassNotFoundException
 	 * @throws IOException
 	 */
+	@Deprecated
 	public static Class[] getClasses(String packageName) {
 		try {
 			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -98,6 +106,7 @@ public class ReflectionsUtils {
 	 * @return The classes
 	 * @throws ClassNotFoundException
 	 */
+	@Deprecated
 	public static List<Class> findClasses(File directory, String packageName) throws ClassNotFoundException {
 		List<Class> classes = new ArrayList<>();
 		if (!directory.exists()) {
@@ -138,6 +147,7 @@ public class ReflectionsUtils {
 	 * @param classes   if a file isn't loaded but still is in the directory
 	 * @throws ClassNotFoundException
 	 */
+	@Deprecated
 	private static void checkDirectory(File directory, String pckgname, ArrayList<Class<?>> classes)
 			throws ClassNotFoundException {
 		File tmpDirectory;
@@ -172,6 +182,7 @@ public class ReflectionsUtils {
 	 *                                file
 	 * @throws IOException            if it can't correctly read from the jar file.
 	 */
+	@Deprecated
 	private static void checkJarFile(JarURLConnection connection, String pckgname, ArrayList<Class<?>> classes)
 			throws ClassNotFoundException, IOException {
 		final JarFile jarFile = connection.getJarFile();
@@ -199,6 +210,7 @@ public class ReflectionsUtils {
 	 * @return a list of classes that exist within that package
 	 * @throws ClassNotFoundException if something went wrong
 	 */
+	@Deprecated
 	public static ArrayList<Class<?>> getClassesForPackage(String pckgname) throws ClassNotFoundException {
 		final ArrayList<Class<?>> classes = new ArrayList<Class<?>>();
 
@@ -241,6 +253,7 @@ public class ReflectionsUtils {
 		return classes;
 	}
 	
+	@Deprecated
 	public static ArrayList<Class<?>> getClassesForPkg(final String pkgName) throws IOException, URISyntaxException {
 	    final String pkgPath = pkgName.replace('.', '/');
 	    final URI pkg = Objects.requireNonNull(ClassLoader.getSystemClassLoader().getResource(pkgPath)).toURI();
@@ -271,6 +284,7 @@ public class ReflectionsUtils {
 	    return allClasses;
 	}
 	
+	@Deprecated
 	public static class ClassEnumerator {
 		
 		private static final String CLASS_SUFFIX = ".class";

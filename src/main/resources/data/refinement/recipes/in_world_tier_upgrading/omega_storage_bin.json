@@ -1,0 +1,12 @@
+{
+	"type": "refinement:in_world_tier_upgrading",
+	"tier_upgrader": {
+		"item": "refinement:omega_tier_upgrader"
+	},
+	"input": {
+		"item": "refinement:epsilon_storage_bin"
+	},
+	"output": {
+		"item": "refinement:omega_storage_bin"
+	}
+}

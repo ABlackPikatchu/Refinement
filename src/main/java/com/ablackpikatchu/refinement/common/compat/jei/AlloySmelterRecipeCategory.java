@@ -34,7 +34,7 @@ public class AlloySmelterRecipeCategory implements IRecipeCategory<AlloySmelting
 	}
 
 	public AlloySmelterRecipeCategory(IGuiHelper helper) {
-		this.back = helper.createDrawable(AlloySmelterScreen.ALLOY_SMELTER_JEI_SCREEN, 0, 0, 176, 77);
+		this.back = helper.createDrawable(AlloySmelterScreen.ALLOY_SMELTER_JEI_SCREEN, 0, 0, 176, 71);
 		this.icon = helper.createDrawableIngredient(new ItemStack(BlockInit.ALLOY_SMELTER_BLOCK.get().asItem()));
 		this.staticProgressBar = helper.createDrawable(AlloySmelterScreen.ALLOY_SMELTER_JEI_SCREEN, 185, 4, 24, 17);
 		this.progressBar = helper.createAnimatedDrawable(staticProgressBar,
@@ -81,9 +81,7 @@ public class AlloySmelterRecipeCategory implements IRecipeCategory<AlloySmelting
 		itemStackGroup.init(2, true, 58, 24);
 		itemStackGroup.init(3, true, 76, 24);
 		
-		itemStackGroup.init(4, true, 7, 50);
-		
-		itemStackGroup.init(5, false, 131, 24);
+		itemStackGroup.init(4, false, 131, 24);
 
 		itemStackGroup.set(ingredients);
 	}

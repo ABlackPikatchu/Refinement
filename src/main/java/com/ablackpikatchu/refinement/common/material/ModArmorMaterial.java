@@ -14,22 +14,22 @@ import net.minecraft.util.SoundEvents;
 
 public enum ModArmorMaterial implements IArmorMaterial {
 
-	REFINEDIRONARMOR("refined_iron_armor", ARMOUR.getRefinedIronValues().durabilityMultiplier,
+	REFINED_IRON_ARMOR("refined_iron_armor", ARMOUR.getRefinedIronValues().durabilityMultiplier,
 			ARMOUR.getRefinedIronValues().armourValues, ARMOUR.getRefinedIronValues().enchantability,
 			SoundEvents.ARMOR_EQUIP_IRON, ARMOUR.getRefinedIronValues().toughness,
 			ARMOUR.getRefinedIronValues().knockbackResistance, () -> Ingredient.of(ItemInit.REFINED_IRON_INGOT.get())),
 
-	REFINEDGOLDARMOR("refined_gold_armor", ARMOUR.getRefinedGoldValues().durabilityMultiplier,
+	REFINED_GOLD_ARMOR("refined_gold_armor", ARMOUR.getRefinedGoldValues().durabilityMultiplier,
 			ARMOUR.getRefinedGoldValues().armourValues, ARMOUR.getRefinedGoldValues().enchantability,
 			SoundEvents.ARMOR_EQUIP_GOLD, ARMOUR.getRefinedGoldValues().toughness,
 			ARMOUR.getRefinedGoldValues().knockbackResistance, () -> Ingredient.of(ItemInit.REFINED_GOLD_INGOT.get())),
 
-	REFINEDDIAMONDARMOR("refined_diamond_armor", ARMOUR.getRefinedDiamondValues().durabilityMultiplier,
+	REFINED_DIAMOND_ARMOR("refined_diamond_armor", ARMOUR.getRefinedDiamondValues().durabilityMultiplier,
 			ARMOUR.getRefinedDiamondValues().armourValues, ARMOUR.getRefinedDiamondValues().enchantability,
 			SoundEvents.ARMOR_EQUIP_DIAMOND, ARMOUR.getRefinedDiamondValues().toughness,
 			ARMOUR.getRefinedDiamondValues().knockbackResistance, () -> Ingredient.of(ItemInit.REFINED_DIAMOND.get())),
 
-	REFINEDNETHERITEARMOR("refined_netherite_armor", ARMOUR.getRefinedNetheriteValues().durabilityMultiplier,
+	REFINED_NETHERITE_ARMOR("refined_netherite_armor", ARMOUR.getRefinedNetheriteValues().durabilityMultiplier,
 			ARMOUR.getRefinedNetheriteValues().armourValues, ARMOUR.getRefinedNetheriteValues().enchantability,
 			SoundEvents.ARMOR_EQUIP_NETHERITE, ARMOUR.getRefinedNetheriteValues().toughness,
 			ARMOUR.getRefinedNetheriteValues().knockbackResistance,

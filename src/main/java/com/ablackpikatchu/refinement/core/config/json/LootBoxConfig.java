@@ -38,7 +38,7 @@ public class LootBoxConfig extends JsonConfig {
 	protected void reset() {
 		this.FOOD_POOLS = new LinkedList<>();
 
-		this.FOOD_POOLS.add(new WeightBasedItemEntry(ItemInit.MINERS_APPLE.get(), 2, 4, 6));
+		this.FOOD_POOLS.add(new WeightBasedItemEntry(ItemInit.FoodItems.MINERS_APPLE, 2, 4, 6));
 		FOOD_POOLS.add(new WeightBasedItemEntry(Items.GOLDEN_CARROT, 2, 16, 32));
 
 		FOOD_POOLS.add(new WeightBasedItemEntry(Items.CARROT, 4, 20, 45));

@@ -33,14 +33,14 @@ public class RecipeMaps {
 		map.put(BlockInit.REFINED_DIAMOND_BLOCK.get(), ItemInit.REFINED_DIAMOND.get());
 		map.put(BlockInit.REFINED_NETHERITE_BLOCK.get(), ItemInit.REFINED_NETHERITE_INGOT.get());
 
-		map.put(BlockInit.LUMIUM_BLOCK.get(), ItemInit.LUMIUM_INGOT.get());
-		map.put(BlockInit.SIGNALUM_BLOCK.get(), ItemInit.SIGNALUM_INGOT.get());
-		map.put(BlockInit.ENDERIUM_BLOCK.get(), ItemInit.ENDERIUM_INGOT.get());
+		map.put(BlockInit.LUMIUM_BLOCK.get(), ItemInit.Ingots.LUMIUM_INGOT);
+		map.put(BlockInit.SIGNALUM_BLOCK.get(), ItemInit.Ingots.SIGNALUM_INGOT);
+		map.put(BlockInit.ENDERIUM_BLOCK.get(), ItemInit.Ingots.ENDERIUM_INGOT);
 
-		map.put(BlockInit.TIN_BLOCK.get(), ItemInit.TIN_INGOT.get());
-		map.put(BlockInit.SILVER_BLOCK.get(), ItemInit.SILVER_INGOT.get());
-		map.put(BlockInit.COPPER_BLOCK.get(), ItemInit.COPPER_INGOT.get());
-		map.put(BlockInit.LEAD_BLOCK.get(), ItemInit.LEAD_INGOT.get());
+		map.put(BlockInit.TIN_BLOCK.get(), ItemInit.Ingots.TIN_INGOT);
+		map.put(BlockInit.SILVER_BLOCK.get(), ItemInit.Ingots.SILVER_INGOT);
+		map.put(BlockInit.COPPER_BLOCK.get(), ItemInit.Ingots.COPPER_INGOT);
+		map.put(BlockInit.LEAD_BLOCK.get(), ItemInit.Ingots.LEAD_INGOT);
 	}
 
 	public static void addShapelessIngotNuggetEntries(HashMap<Item, Item> map) {
@@ -65,25 +65,25 @@ public class RecipeMaps {
 
 	public static void addArmours(HashMap<Item, Item> helmetMap, HashMap<Item, Item> chestplateMap,
 			HashMap<Item, Item> leggingsMap, HashMap<Item, Item> bootsMap) {
-		helmetMap.put(ItemInit.REFINED_IRON_INGOT.get(), ItemInit.REFINED_IRON_HELMET.get());
-		helmetMap.put(ItemInit.REFINED_GOLD_INGOT.get(), ItemInit.REFINED_GOLD_HELMET.get());
-		helmetMap.put(ItemInit.REFINED_DIAMOND.get(), ItemInit.REFINED_DIAMOND_HELMET.get());
-		helmetMap.put(ItemInit.REFINED_NETHERITE_INGOT.get(), ItemInit.REFINED_NETHERITE_HELMET.get());
+		helmetMap.put(ItemInit.REFINED_IRON_INGOT.get(), ItemInit.Armor.REFINED_IRON_HELMET);
+		helmetMap.put(ItemInit.REFINED_GOLD_INGOT.get(), ItemInit.Armor.REFINED_GOLD_HELMET);
+		helmetMap.put(ItemInit.REFINED_DIAMOND.get(), ItemInit.Armor.REFINED_DIAMOND_HELMET);
+		helmetMap.put(ItemInit.REFINED_NETHERITE_INGOT.get(), ItemInit.Armor.REFINED_NETHERITE_HELMET);
 
-		chestplateMap.put(ItemInit.REFINED_IRON_INGOT.get(), ItemInit.REFINED_IRON_CHESTPLATE.get());
-		chestplateMap.put(ItemInit.REFINED_GOLD_INGOT.get(), ItemInit.REFINED_GOLD_CHESTPLATE.get());
-		chestplateMap.put(ItemInit.REFINED_DIAMOND.get(), ItemInit.REFINED_DIAMOND_CHESTPLATE.get());
-		chestplateMap.put(ItemInit.REFINED_NETHERITE_INGOT.get(), ItemInit.REFINED_NETHERITE_CHESTPLATE.get());
+		chestplateMap.put(ItemInit.REFINED_IRON_INGOT.get(), ItemInit.Armor.REFINED_IRON_CHESTPLATE);
+		chestplateMap.put(ItemInit.REFINED_GOLD_INGOT.get(), ItemInit.Armor.REFINED_GOLD_CHESTPLATE);
+		chestplateMap.put(ItemInit.REFINED_DIAMOND.get(), ItemInit.Armor.REFINED_DIAMOND_CHESTPLATE);
+		chestplateMap.put(ItemInit.REFINED_NETHERITE_INGOT.get(), ItemInit.Armor.REFINED_NETHERITE_CHESTPLATE);
 
-		leggingsMap.put(ItemInit.REFINED_IRON_INGOT.get(), ItemInit.REFINED_IRON_LEGGINGS.get());
-		leggingsMap.put(ItemInit.REFINED_GOLD_INGOT.get(), ItemInit.REFINED_GOLD_LEGGINGS.get());
-		leggingsMap.put(ItemInit.REFINED_DIAMOND.get(), ItemInit.REFINED_DIAMOND_LEGGINGS.get());
-		leggingsMap.put(ItemInit.REFINED_NETHERITE_INGOT.get(), ItemInit.REFINED_NETHERITE_LEGGINGS.get());
+		leggingsMap.put(ItemInit.REFINED_IRON_INGOT.get(), ItemInit.Armor.REFINED_IRON_LEGGINGS);
+		leggingsMap.put(ItemInit.REFINED_GOLD_INGOT.get(), ItemInit.Armor.REFINED_GOLD_LEGGINGS);
+		leggingsMap.put(ItemInit.REFINED_DIAMOND.get(), ItemInit.Armor.REFINED_DIAMOND_LEGGINGS);
+		leggingsMap.put(ItemInit.REFINED_NETHERITE_INGOT.get(), ItemInit.Armor.REFINED_NETHERITE_LEGGINGS);
 
-		bootsMap.put(ItemInit.REFINED_IRON_INGOT.get(), ItemInit.REFINED_IRON_BOOTS.get());
-		bootsMap.put(ItemInit.REFINED_GOLD_INGOT.get(), ItemInit.REFINED_GOLD_BOOTS.get());
-		bootsMap.put(ItemInit.REFINED_DIAMOND.get(), ItemInit.REFINED_DIAMOND_BOOTS.get());
-		bootsMap.put(ItemInit.REFINED_NETHERITE_INGOT.get(), ItemInit.REFINED_NETHERITE_BOOTS.get());
+		bootsMap.put(ItemInit.REFINED_IRON_INGOT.get(), ItemInit.Armor.REFINED_IRON_BOOTS);
+		bootsMap.put(ItemInit.REFINED_GOLD_INGOT.get(), ItemInit.Armor.REFINED_GOLD_BOOTS);
+		bootsMap.put(ItemInit.REFINED_DIAMOND.get(), ItemInit.Armor.REFINED_DIAMOND_BOOTS);
+		bootsMap.put(ItemInit.REFINED_NETHERITE_INGOT.get(), ItemInit.Armor.REFINED_NETHERITE_BOOTS);
 	}
 
 	public static void addTools(HashMap<Item, Item> axeMap, HashMap<Item, Item> pickaxeMap,
@@ -151,15 +151,15 @@ public class RecipeMaps {
 				new Output(ItemInit.REFINED_NETHERITE_DUST.get(), 1));
 
 		tagMap.put(new TagInput(TagInit.Items.COBBLESTONE, 16), new Output(Items.GRAVEL, 16));
-		tagMap.put(new TagInput(TagInit.Items.SILVER_INGOT, 1), new Output(ItemInit.SILVER_DUST, 1));
-		tagMap.put(new TagInput(TagInit.Items.TIN_INGOT, 1), new Output(ItemInit.TIN_DUST, 1));
-		tagMap.put(new TagInput(TagInit.Items.LEAD_INGOT, 1), new Output(ItemInit.LEAD_DUST, 1));
-		tagMap.put(new TagInput(TagInit.Items.COPPER_INGOT, 1), new Output(ItemInit.COPPER_DUST, 1));
+		tagMap.put(new TagInput(TagInit.Items.SILVER_INGOT, 1), new Output(ItemInit.Ingots.SILVER_DUST, 1));
+		tagMap.put(new TagInput(TagInit.Items.TIN_INGOT, 1), new Output(ItemInit.Ingots.TIN_DUST, 1));
+		tagMap.put(new TagInput(TagInit.Items.LEAD_INGOT, 1), new Output(ItemInit.Ingots.LEAD_DUST, 1));
+		tagMap.put(new TagInput(TagInit.Items.COPPER_INGOT, 1), new Output(ItemInit.Ingots.COPPER_DUST, 1));
 		
-		tagMap.put(new TagInput(TagInit.Items.COPPER_ORE, 1), new Output(ItemInit.COPPER_DUST, 2));
-		tagMap.put(new TagInput(TagInit.Items.TIN_ORE, 1), new Output(ItemInit.TIN_DUST, 2));
-		tagMap.put(new TagInput(TagInit.Items.SILVER_ORE, 1), new Output(ItemInit.SILVER_DUST, 2));
-		tagMap.put(new TagInput(TagInit.Items.LEAD_ORE, 1), new Output(ItemInit.LEAD_DUST, 2));
+		tagMap.put(new TagInput(TagInit.Items.COPPER_ORE, 1), new Output(ItemInit.Ingots.COPPER_DUST, 2));
+		tagMap.put(new TagInput(TagInit.Items.TIN_ORE, 1), new Output(ItemInit.Ingots.TIN_DUST, 2));
+		tagMap.put(new TagInput(TagInit.Items.SILVER_ORE, 1), new Output(ItemInit.Ingots.SILVER_DUST, 2));
+		tagMap.put(new TagInput(TagInit.Items.LEAD_ORE, 1), new Output(ItemInit.Ingots.LEAD_DUST, 2));
 	}
 
 	public static void addMixerRecipes(HashMap<MixerInput, Output> map) {
@@ -242,17 +242,17 @@ public class RecipeMaps {
 	}
 
 	public static void addAlloySmelterRecipes(Consumer<IFinishedRecipe> consumer) {
-		AlloySmelterRecipeBuilder.recipeBuilder(ItemInit.LUMIUM_INGOT.get(), 4)
+		AlloySmelterRecipeBuilder.recipeBuilder(ItemInit.Ingots.LUMIUM_INGOT, 4)
 				.addIngredient(new TagInput(TagInit.Items.TIN_INGOTS_DUSTS, 3))
 				.addIngredient(new TagInput(TagInit.Items.SILVER_INGOTS_DUSTS, 1))
 				.addIngredient(new TagInput(TagInit.Items.GLOWSTONE_DUST, 2)).setProcessTime(250).build(consumer);
 
-		AlloySmelterRecipeBuilder.recipeBuilder(ItemInit.SIGNALUM_INGOT.get(), 4)
+		AlloySmelterRecipeBuilder.recipeBuilder(ItemInit.Ingots.SIGNALUM_INGOT, 4)
 				.addIngredient(new TagInput(TagInit.Items.COPPER_INGOTS_DUSTS, 3))
 				.addIngredient(new TagInput(TagInit.Items.SILVER_INGOTS_DUSTS, 1))
 				.addIngredient(new TagInput(TagInit.Items.REDSTONE_DUST, 4)).setProcessTime(250).build(consumer);
 
-		AlloySmelterRecipeBuilder.recipeBuilder(ItemInit.ENDERIUM_INGOT.get(), 2)
+		AlloySmelterRecipeBuilder.recipeBuilder(ItemInit.Ingots.ENDERIUM_INGOT, 2)
 				.addIngredient(new TagInput(TagInit.Items.LEAD_INGOTS_DUSTS, 3))
 				.addIngredient(new TagInput(TagInit.Items.DIAMOND_DUST, 1))
 				.addIngredient(new TagInput(TagInit.Items.ENDER_PEARLS, 2)).setProcessTime(300).build(consumer);

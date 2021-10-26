@@ -2,6 +2,7 @@ package com.ablackpikatchu.refinement.data.common;
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
+import com.ablackpikatchu.refinement.core.init.BlockItemInit;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import static com.ablackpikatchu.refinement.core.init.ItemInit.*;
 import com.ablackpikatchu.refinement.core.init.TagInit;
@@ -9,6 +10,7 @@ import com.ablackpikatchu.refinement.core.util.lists.ItemLists;
 
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
@@ -41,13 +43,13 @@ public class ItemTagsProvider extends net.minecraft.data.ItemTagsProvider {
 		tag(TagInit.Items.REFINED_CARBON_INGOT).add(ItemInit.REFINED_CARBON_INGOT.get());
 		tag(TagInit.Items.INGOTS).add(ItemInit.REFINED_CARBON_INGOT.get());
 		
-		tag(TagInit.Items.LUMIUM_INGOT).add(ItemInit.LUMIUM_INGOT.get());
-		tag(TagInit.Items.SIGNALUM_INGOT).add(ItemInit.SIGNALUM_INGOT.get());
-		tag(TagInit.Items.ENDERIUM_INGOT).add(ItemInit.ENDERIUM_INGOT.get());
-		tag(TagInit.Items.TIN_INGOT).add(ItemInit.TIN_INGOT.get());
-		tag(TagInit.Items.SILVER_INGOT).add(ItemInit.SILVER_INGOT.get());
-		tag(TagInit.Items.LEAD_INGOT).add(ItemInit.LEAD_INGOT.get());
-		tag(TagInit.Items.COPPER_INGOT).add(ItemInit.COPPER_INGOT.get());
+		tag(TagInit.Items.LUMIUM_INGOT).add(ItemInit.Ingots.LUMIUM_INGOT);
+		tag(TagInit.Items.SIGNALUM_INGOT).add(ItemInit.Ingots.SIGNALUM_INGOT);
+		tag(TagInit.Items.ENDERIUM_INGOT).add(ItemInit.Ingots.ENDERIUM_INGOT);
+		tag(TagInit.Items.TIN_INGOT).add(ItemInit.Ingots.TIN_INGOT);
+		tag(TagInit.Items.SILVER_INGOT).add(ItemInit.Ingots.SILVER_INGOT);
+		tag(TagInit.Items.LEAD_INGOT).add(ItemInit.Ingots.LEAD_INGOT);
+		tag(TagInit.Items.COPPER_INGOT).add(ItemInit.Ingots.COPPER_INGOT);
 		
 		//Dust
 		tag(TagInit.Items.DIAMOND_DUST).add(ItemInit.DIAMOND_DUST.get());
@@ -69,10 +71,10 @@ public class ItemTagsProvider extends net.minecraft.data.ItemTagsProvider {
 		tag(TagInit.Items.REFINING_DUST).add(ItemInit.REFINING_DUST.get());
 		tag(TagInit.Items.DUSTS).add(ItemInit.REFINING_DUST.get());
 		
-		tag(TagInit.Items.TIN_DUST).add(ItemInit.TIN_DUST.get());
-		tag(TagInit.Items.SILVER_DUST).add(ItemInit.SILVER_DUST.get());
-		tag(TagInit.Items.LEAD_DUST).add(ItemInit.LEAD_DUST.get());
-		tag(TagInit.Items.COPPER_DUST).add(ItemInit.COPPER_DUST.get());
+		tag(TagInit.Items.TIN_DUST).add(ItemInit.Ingots.TIN_DUST);
+		tag(TagInit.Items.SILVER_DUST).add(ItemInit.Ingots.SILVER_DUST);
+		tag(TagInit.Items.LEAD_DUST).add(ItemInit.Ingots.LEAD_DUST);
+		tag(TagInit.Items.COPPER_DUST).add(ItemInit.Ingots.COPPER_DUST);
 		
 		//Gems
 		tag(Tags.Items.GEMS_DIAMOND).add(net.minecraft.item.Items.DIAMOND);
@@ -150,8 +152,8 @@ public class ItemTagsProvider extends net.minecraft.data.ItemTagsProvider {
     	//Ores
     	tag(TagInit.Items.ORES).add(ItemInit.PURE_CRYSTAL_ORE.get());
     	tag(TagInit.Items.PURE_CRYSTAL_ORE).add(ItemInit.PURE_CRYSTAL_ORE.get());
-    	tag(TagInit.Items.ORES).add(ItemInit.BLANK_ORE_ITEM.get());
-    	tag(TagInit.Items.BLANK_ORE).add(ItemInit.BLANK_ORE_ITEM.get());
+    	tag(TagInit.Items.ORES).add(BlockItemInit.BLANK_ORE_ITEM);
+    	tag(TagInit.Items.BLANK_ORE).add(BlockItemInit.BLANK_ORE_ITEM);
     	
     	tag(TagInit.Items.TIN_ORE).add(BlockInit.TIN_ORE.get().asItem());
     	tag(TagInit.Items.SILVER_ORE).add(BlockInit.SILVER_ORE.get().asItem());

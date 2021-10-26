@@ -23,6 +23,8 @@ import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 
@@ -40,7 +42,7 @@ public class ShapedRecipes {
 				new KeyIngredient('N', ItemInit.REFINED_NETHERITE_INGOT.get()),
 				new KeyIngredient('D', ItemInit.REFINED_DIAMOND.get()),
 				new KeyIngredient('P', ItemInit.MACHINE_PARTS.get()),
-				new KeyIngredient('R', ItemInit.SIGNALUM_INGOT.get()));
+				new KeyIngredient('R', ItemInit.Ingots.SIGNALUM_INGOT));
 
 		newShapedRecipe(new Output(ItemInit.MACHINE_FRAME.get(), 1), new Pattern("CRC", "WFW", "CRC"),
 				machineStuff(itemName(ItemInit.MACHINE_FRAME.get())),
@@ -55,14 +57,14 @@ public class ShapedRecipes {
 				new KeyIngredient('G', ItemInit.REFINED_GOLD_INGOT.get()),
 				new KeyIngredient('D', ItemInit.REFINED_DIAMOND.get()));
 
-		newShapedRecipe(new Output(BlockItemInit.GRINDER_ITEM, 1), new Pattern("RPR", "DFD", "RPR"),
-				machineStuff(itemName(BlockItemInit.GRINDER_ITEM)), new KeyIngredient('P', ItemInit.MACHINE_PARTS),
+		newShapedRecipe(new Output(BlockItemInit.Machines.GRINDER_ITEM, 1), new Pattern("RPR", "DFD", "RPR"),
+				machineStuff(itemName(BlockItemInit.Machines.GRINDER_ITEM)), new KeyIngredient('P', ItemInit.MACHINE_PARTS),
 				new KeyIngredient('R', ItemInit.REFINED_IRON_INGOT.get()),
 				new KeyIngredient('D', ItemInit.REFINED_DIAMOND_COGWHEEL.get()),
 				new KeyIngredient('F', ItemInit.MACHINE_FRAME.get()));
 
-		newShapedRecipe(new Output(BlockItemInit.MIXER_ITEM, 1), new Pattern("RPR", "DFD", "RMR"),
-				machineStuff(itemName(BlockItemInit.MIXER_ITEM)), new KeyIngredient('P', ItemInit.MACHINE_PARTS),
+		newShapedRecipe(new Output(BlockItemInit.Machines.MIXER_ITEM, 1), new Pattern("RPR", "DFD", "RMR"),
+				machineStuff(itemName(BlockItemInit.Machines.MIXER_ITEM)), new KeyIngredient('P', ItemInit.MACHINE_PARTS),
 				new KeyIngredient('R', ItemInit.REFINED_IRON_INGOT.get()),
 				new KeyIngredient('D', ItemInit.REFINED_DIAMOND_COGWHEEL.get()),
 				new KeyIngredient('F', ItemInit.MACHINE_FRAME.get()),
@@ -94,8 +96,8 @@ public class ShapedRecipes {
 				new KeyIngredient('T', TagInit.Items.TIN_STORAGE),
 				new KeyIngredient('C', TagInit.Items.SILVER_STORAGE));
 
-		newShapedRecipe(new Output(BlockItemInit.MOLD_PRESS_ITEM, 1), new Pattern("RPR", "DFD", "R#R"),
-				machineStuff(itemName(BlockItemInit.MOLD_PRESS_ITEM)), new KeyIngredient('P', ItemInit.MACHINE_PARTS),
+		newShapedRecipe(new Output(BlockItemInit.Machines.MOLD_PRESS_ITEM, 1), new Pattern("RPR", "DFD", "R#R"),
+				machineStuff(itemName(BlockItemInit.Machines.MOLD_PRESS_ITEM)), new KeyIngredient('P', ItemInit.MACHINE_PARTS),
 				new KeyIngredient('R', ItemInit.REFINED_IRON_INGOT.get()),
 				new KeyIngredient('D', ItemInit.REFINED_IRON_COGWHEEL.get()),
 				new KeyIngredient('F', ItemInit.MACHINE_FRAME.get()),
@@ -117,29 +119,29 @@ public class ShapedRecipes {
 		
 		newShapedRecipe(new Output(ItemInit.ENERGY_ABILITY_UPGRADE.get(), 1), new Pattern("ECE", "PNP", "ECE"),
 				machineStuff(itemName(ItemInit.ENERGY_ABILITY_UPGRADE.get())),
-				new KeyIngredient('E', ItemInit.ENDERIUM_INGOT.get()),
+				new KeyIngredient('E', ItemInit.Ingots.ENDERIUM_INGOT),
 				new KeyIngredient('C', ItemInit.REFINED_CARBON_INGOT),
 				new KeyIngredient('P', ItemInit.MACHINE_PARTS.get()),
 				new KeyIngredient('N', ItemInit.REFINED_NETHERITE_INGOT));
 		
-		newShapedRecipe(new Output(ItemInit.MINERS_APPLE.get(), 1), new Pattern("CCC", "FBF", "CCC"), 
-				food(itemName(ItemInit.MINERS_APPLE)), 
+		newShapedRecipe(new Output(ItemInit.FoodItems.MINERS_APPLE, 1), new Pattern("CCC", "FBF", "CCC"), 
+				food(itemName(ItemInit.FoodItems.MINERS_APPLE)), 
 				new KeyIngredient('C', Items.APPLE),
-				new KeyIngredient('B', ItemInit.MINERS_BREAD),
+				new KeyIngredient('B', ItemInit.FoodItems.MINERS_BREAD),
 				new KeyIngredient('F', Items.FEATHER));
 		
-		newShapedRecipe(new Output(ItemInit.MINERS_CARROT.get(), 2), new Pattern("CCC", " B ", "CCC"), 
-				food(itemName(ItemInit.MINERS_CARROT)), 
+		newShapedRecipe(new Output(ItemInit.FoodItems.MINERS_CARROT, 2), new Pattern("CCC", " B ", "CCC"), 
+				food(itemName(ItemInit.FoodItems.MINERS_CARROT)), 
 				new KeyIngredient('C', Items.CARROT),
-				new KeyIngredient('B', ItemInit.MINERS_BREAD));
+				new KeyIngredient('B', ItemInit.FoodItems.MINERS_BREAD));
 		
-		newShapedRecipe(new Output(ItemInit.MINERS_JERKY.get(), 2), new Pattern("CCC", " B ", "CCC"), 
-				food(itemName(ItemInit.MINERS_JERKY)), 
+		newShapedRecipe(new Output(ItemInit.FoodItems.MINERS_JERKY, 2), new Pattern("CCC", " B ", "CCC"), 
+				food(itemName(ItemInit.FoodItems.MINERS_JERKY)), 
 				new KeyIngredient('C', Items.RABBIT_FOOT),
-				new KeyIngredient('B', ItemInit.MINERS_BREAD));
+				new KeyIngredient('B', ItemInit.FoodItems.MINERS_BREAD));
 		
-		newShapedRecipe(new Output(ItemInit.MINERS_BREAD.get(), 2), new Pattern("WWW", "W W", "WWW"), 
-				food(itemName(ItemInit.MINERS_BREAD)), 
+		newShapedRecipe(new Output(ItemInit.FoodItems.MINERS_BREAD, 2), new Pattern("WWW", "W W", "WWW"), 
+				food(itemName(ItemInit.FoodItems.MINERS_BREAD)), 
 				new KeyIngredient('W', Items.WHEAT));
 
 		newShapedRecipe(new Output(ItemInit.MIXING_BOWL.get(), 1), new Pattern(" / ", "_ _", " _ "),
@@ -189,14 +191,14 @@ public class ShapedRecipes {
 				new KeyIngredient('C', Items.COCOA_BEANS),
 				new KeyIngredient('D', TagInit.Items.DIAMOND));
 		
-		newShapedRecipe(new Output(ItemInit.CURING_APPLE, 1), new Pattern("E", "G", "M"), 
-				food(itemName(ItemInit.CURING_APPLE)), 
+		newShapedRecipe(new Output(ItemInit.FoodItems.CURING_APPLE, 1), new Pattern("E", "G", "M"), 
+				food(itemName(ItemInit.FoodItems.CURING_APPLE)), 
 				new KeyIngredient('G', Items.GOLDEN_APPLE),
 				new KeyIngredient('E', Items.FERMENTED_SPIDER_EYE),
 				new KeyIngredient('M', Items.MILK_BUCKET));
 		
-		newShapedRecipe(new Output(ItemInit.GOD_APPLE, 1), new Pattern("SSS", "SAS", "SSS"), 
-				food(itemName(ItemInit.GOD_APPLE)), 
+		newShapedRecipe(new Output(ItemInit.FoodItems.GOD_APPLE, 1), new Pattern("SSS", "SAS", "SSS"), 
+				food(itemName(ItemInit.FoodItems.GOD_APPLE)), 
 				new KeyIngredient('A', Items.GOLDEN_APPLE),
 				new KeyIngredient('S', Items.NETHER_STAR));
 
@@ -234,8 +236,8 @@ public class ShapedRecipes {
 				cogwheels(itemName(ItemInit.WOODEN_COGWHEEL)), new KeyIngredient('#', Items.OAK_PLANKS),
 				new KeyIngredient('O', Items.OAK_BUTTON));
 
-		newShapedRecipe(new Output(ItemInit.MINERS_STEW.get(), 1), new Pattern("GDI", "ECR", " B "),
-				food(itemName(ItemInit.MINERS_STEW)), new KeyIngredient('G', TagInit.Items.GOLD_INGOT),
+		newShapedRecipe(new Output(ItemInit.FoodItems.MINERS_STEW, 1), new Pattern("GDI", "ECR", " B "),
+				food(itemName(ItemInit.FoodItems.MINERS_STEW)), new KeyIngredient('G', TagInit.Items.GOLD_INGOT),
 				new KeyIngredient('D', TagInit.Items.DIAMOND), new KeyIngredient('I', TagInit.Items.IRON_INGOT),
 				new KeyIngredient('E', Items.EMERALD), new KeyIngredient('C', TagInit.Items.COBBLESTONE),
 				new KeyIngredient('R', Items.REDSTONE), new KeyIngredient('B', Items.BOWL));
@@ -264,6 +266,15 @@ public class ShapedRecipes {
 				misc(itemName(BlockInit.REFINED_SAPLING.get().asItem())),
 				new KeyIngredient('C', BlockInit.REFINED_CARBON_BLOCK.get().asItem()),
 				new KeyIngredient('S', TagInit.Items.SAPLINGS));
+		
+		addTierUpgraderRecipe(ItemInit.TierRelated.BETA_TIER_UPGRADER, ItemInit.TierRelated.BETA_ALLOY, 
+				ItemInit.TierRelated.BETA_CIRCUIT, Ingredient.of(ItemTags.PLANKS));
+		addTierUpgraderRecipe(ItemInit.TierRelated.GAMMA_TIER_UPGRADER, ItemInit.TierRelated.GAMMA_ALLOY, 
+				ItemInit.TierRelated.GAMMA_CIRCUIT, Ingredient.of(ItemTags.PLANKS));
+		addTierUpgraderRecipe(ItemInit.TierRelated.EPSILON_TIER_UPGRADER, ItemInit.TierRelated.EPSILON_ALLOY, 
+				ItemInit.TierRelated.EPSILON_CIRCUIT, Ingredient.of(ItemTags.PLANKS));
+		addTierUpgraderRecipe(ItemInit.TierRelated.OMEGA_TIER_UPGRADER, ItemInit.TierRelated.OMEGA_ALLOY, 
+				ItemInit.TierRelated.OMEGA_CIRCUIT, Ingredient.of(ItemTags.PLANKS));
 
 		shapedRecipes.forEach((recipe, name) -> {
 			recipe.unlockedBy("has_item", has(Items.AIR));
@@ -290,6 +301,13 @@ public class ShapedRecipes {
 		}
 		shapedRecipes.put(recipe, name);
 
+	}
+	
+	private static void addTierUpgraderRecipe(Item tierUpgrader, Item alloy, Item circuit, Ingredient middleItem) {
+		newShapedRecipe(new Output(tierUpgrader, 1), new Pattern("ACA", "AMA", "ACA"), machineStuff(itemName(tierUpgrader)), 
+				new KeyIngredient('A', Ingredient.of(alloy)),
+				new KeyIngredient('C', Ingredient.of(circuit)),
+				new KeyIngredient('M', middleItem));
 	}
 
 	public static ResourceLocation machineStuff(@Nullable String name) {

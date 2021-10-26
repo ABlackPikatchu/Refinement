@@ -8,6 +8,7 @@ import com.ablackpikatchu.refinement.common.recipe.AlloySmeltingRecipe.AlloySmel
 import com.ablackpikatchu.refinement.common.recipe.AnvilRecipe;
 import com.ablackpikatchu.refinement.common.recipe.DNASequencerRecipe;
 import com.ablackpikatchu.refinement.common.recipe.GrinderRecipe;
+import com.ablackpikatchu.refinement.common.recipe.InWorldTierUpgradingRecipe;
 import com.ablackpikatchu.refinement.common.recipe.MixerRecipe;
 import com.ablackpikatchu.refinement.common.recipe.MoldPressRecipe;
 import com.ablackpikatchu.refinement.common.recipe.ShapedNoMirrorRecipe;
@@ -40,6 +41,8 @@ public class RecipeInit {
 	public static final IRecipeType<AnvilRecipe> ANVIL_RECIPE = new AnvilRecipeType();
 	public static final IRecipeType<ShapedNoMirrorRecipe> SHAPED_NO_MIRROR = new ShapedNoMirrorRecipeType();
 	
+	public static final IRecipeType<InWorldTierUpgradingRecipe> IN_WORLD_TIER_UPGRADING = new InWorldTierUpgradingRecipe.InWorldTierUpgradingRecipeType();
+	
 	// Special
 	public static final IRecipeType<StorageBinUpgradingRecipe> STORAGE_BIN_UPGRADING = new StorageBinUpgradingRecipe.StorageBinUpgradingRecipeType();
 	
@@ -52,6 +55,8 @@ public class RecipeInit {
 		
 		registerRecipe(event, ANVIL_RECIPE, AnvilRecipe.SERIALIZER);
 		registerRecipe(event, SHAPED_NO_MIRROR, ShapedNoMirrorRecipe.SERIALIZER);
+		
+		registerRecipe(event, IN_WORLD_TIER_UPGRADING, InWorldTierUpgradingRecipe.SERIALIZER);
 		
 		registerRecipe(event, STORAGE_BIN_UPGRADING, StorageBinUpgradingRecipe.SERIALIZER);
 		

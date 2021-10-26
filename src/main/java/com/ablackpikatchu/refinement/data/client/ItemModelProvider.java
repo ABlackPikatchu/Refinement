@@ -22,13 +22,13 @@ public class ItemModelProvider extends net.minecraftforge.client.model.generator
 			withExistingParent(blockItem, modLoc("block/" + blockItem));
 		}
 		
-		builder(ItemInit.LUMIUM_INGOT.get(), "ingots/lumium");
-		builder(ItemInit.ENDERIUM_INGOT.get(), "ingots/enderium");
-		builder(ItemInit.SILVER_INGOT.get(), "ingots/silver");
-		builder(ItemInit.SIGNALUM_INGOT.get(), "ingots/signalum");
-		builder(ItemInit.COPPER_INGOT.get(), "ingots/copper");
+		builder(ItemInit.Ingots.LUMIUM_INGOT, "ingots/lumium");
+		builder(ItemInit.Ingots.ENDERIUM_INGOT, "ingots/enderium");
+		builder(ItemInit.Ingots.SILVER_INGOT, "ingots/silver");
+		builder(ItemInit.Ingots.SIGNALUM_INGOT, "ingots/signalum");
+		builder(ItemInit.Ingots.COPPER_INGOT, "ingots/copper");
 		
-		builder(ItemInit.COPPER_DUST.get(), "dusts/copper_dust");
+		builder(ItemInit.Ingots.COPPER_DUST, "dusts/copper_dust");
 		
 		for (String item : ITEMS) {
 			builder(itemGenerated, item);

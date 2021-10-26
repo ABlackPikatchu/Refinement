@@ -78,8 +78,9 @@ public class GrinderTileEntity extends MachineTileEntity implements ITickableTil
 	public void tick() {
 		if (!this.level.isClientSide()) {
 			handleEnergyAbilityUpgrade(6);
-			handleAutoEject(4, 1);
-
+			//handleAutoEject(4, 1);
+			handleNewAutoEject(4, 1);
+			
 			if (!usingEnergy)
 				handleFuelAutoImport(5, 2);
 

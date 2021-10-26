@@ -1,11 +1,14 @@
 package com.ablackpikatchu.refinement.data.client;
 
 import static com.ablackpikatchu.refinement.core.init.BlockInit.*;
+import com.ablackpikatchu.refinement.core.init.ItemInit.*;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.core.annotation.registries.RegisterItem;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.PotionInit;
@@ -21,7 +24,7 @@ import net.minecraftforge.fml.RegistryObject;
 
 public class LangProvider extends LanguageProvider {
 
-	public static List<String> ALL_BLOCKS = new ArrayList<String>();
+	public static List<String> ALL_BLOCKS = new ArrayList<>();
 
 	public LangProvider(DataGenerator gen) {
 		super(gen, Refinement.MOD_ID, "en_us");
@@ -50,26 +53,35 @@ public class LangProvider extends LanguageProvider {
 		add(SMELTER_BLOCK.get(), "Smelter");
 		add(ALLOY_SMELTER_BLOCK.get(), "Alloy Smelter");
 		add(ENERGY_GENERATOR_BLOCK.get(), "Energy Generator");
-		
+
 		add(SIGNALUM_BLOCK.get(), "Signalum Block");
 		add(LUMIUM_BLOCK.get(), "Lumium Block");
 		add(ENDERIUM_BLOCK.get(), "Enderium Block");
-		
+
 		add(COPPER_BLOCK.get(), "Copper Block");
 		add(TIN_BLOCK.get(), "Tin Block");
 		add(SILVER_BLOCK.get(), "Silver Block");
 		add(LEAD_BLOCK.get(), "Lead Block");
-		
+
 		add(ALPHA_STORAGE_BIN_BLOCK.get(), "Alpha Storage Bin");
 		add(BETA_STORAGE_BIN_BLOCK, "Beta Storage Bin");
 		add(GAMMA_STORAGE_BIN_BLOCK, "Gamma Storage Bin");
 		add(EPSILON_STORAGE_BIN_BLOCK, "Epsilon Storage Bin");
 		add(OMEGA_STORAGE_BIN_BLOCK, "Omega Storage Bin");
-		
+
 		add(BlockInit.REFINED_LOG.get(), "Refined Log");
 		add(BlockInit.REFINED_STRIPPED_LOG.get(), "Refined Stripped Log");
 		add(BlockInit.REFINED_LEAVES.get(), "Refined Leaves");
 		add(BlockInit.REFINED_SAPLING.get(), "Refined Sapling");
+
+		// Items
+		add(FoodItems.CURING_APPLE, "Curing Apple");
+		add(FoodItems.GOD_APPLE, "God Apple");
+		add(FoodItems.MINERS_APPLE, "Miner's Apple");
+		add(FoodItems.MINERS_BREAD, "Miner's Bread");
+		add(FoodItems.MINERS_CARROT, "Miner's Carrot");
+		add(FoodItems.MINERS_JERKY, "Miner's Jerky");
+		add(FoodItems.MINERS_STEW, "Miner's Stew");
 
 		// Effects
 		add(PotionInit.NEGATE_FALL.get(), "Negate Fall Damage");
@@ -86,7 +98,7 @@ public class LangProvider extends LanguageProvider {
 		addContainer("energy_generator", "Energy Generator");
 		addContainer("smelter", "Smelter");
 		addContainer("alloy_smelter", "Alloy Smelter");
-		
+
 		// Category
 		addCategory("mixer_recipe", "Mixer");
 		addCategory("mold_press_recipe", "Mold Press");
@@ -94,6 +106,7 @@ public class LangProvider extends LanguageProvider {
 		addCategory("dna_sequencer", "DNA Sequencer");
 		addCategory("anvil", "Anvil");
 		addCategory("alloy_smelting", "Alloy Smelting");
+		addCategory("in_world_tier_upgrading_recipe", "In World Tier Upgrading");
 
 		// Item Group
 		addItemGroup(RefinementItemGroup.REFINEMENT.getName(), "Refinement");
@@ -122,7 +135,7 @@ public class LangProvider extends LanguageProvider {
 
 		// Villager
 		addVillagerName("materials", "Materialist");
-		
+
 		// Component
 		addComponent("loot_box", "Loot Box");
 		addComponent("ownership_error", "You cannot open this machine as you do not own it.");
@@ -132,6 +145,10 @@ public class LangProvider extends LanguageProvider {
 		addComponent("stored_item", "Stored Item: §6%i");
 		addComponent("empty", "§4Empty");
 		addComponent("auto_refill", "Auto Refill");
+
+		addItemsFromClass(ItemInit.Armor.class);
+		addItemsFromClass(ItemInit.TierRelated.class);
+		addItemsFromClass(ItemInit.Ingots.class);
 
 		// Blocks
 		BlockInit.BLOCKS.getEntries().parallelStream().map(RegistryObject<Block>::get).forEach(block -> {
@@ -150,7 +167,22 @@ public class LangProvider extends LanguageProvider {
 			}
 		});
 	}
-	
+
+	private void addItemsFromClass(Class<?> clazz) {
+		for (Field field : clazz.getDeclaredFields()) {
+			field.setAccessible(true);
+			try {
+				if (field.get(field.getDeclaringClass()) instanceof Item
+						&& field.isAnnotationPresent(RegisterItem.class)) {
+					Item item = ((Item) field.get(field.getDeclaringClass()));
+					String name = item.getRegistryName().getPath().replace("_", " ");
+					add(item, TextFormattingUtils.capitalizeWord(name));
+				}
+			} catch (IllegalArgumentException | IllegalAccessException e) {
+			}
+		}
+	}
+
 	private void addTooltip(String key, String value) {
 		this.add("tooltip." + Refinement.MOD_ID + "." + key, value);
 	}
@@ -174,7 +206,7 @@ public class LangProvider extends LanguageProvider {
 	private void addVillagerName(String key, String value) {
 		this.add("entity.minecraft.villager." + Refinement.MOD_ID + "." + key, value);
 	}
-	
+
 	private void addComponent(String key, String value) {
 		this.add("component." + Refinement.MOD_ID + "." + key, value);
 	}

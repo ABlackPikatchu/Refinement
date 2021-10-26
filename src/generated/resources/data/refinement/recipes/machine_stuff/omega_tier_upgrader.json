@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ACA",
+    "AMA",
+    "ACA"
+  ],
+  "key": {
+    "A": {
+      "item": "refinement:omega_alloy"
+    },
+    "C": {
+      "item": "refinement:omega_circuit"
+    },
+    "M": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "refinement:omega_tier_upgrader"
+  }
+}

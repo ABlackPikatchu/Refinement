@@ -73,7 +73,7 @@ public class CarbonGeneratorTileEntity extends SidedInventoryTileEntity implemen
     public void tick() {
         if (!this.level.isClientSide()) {
         	TileEntityHelper.setStateProperty(this, SmelterBlock.LIT, false);
-            handleAutoEject(2, 0);
+            handleNewAutoEject(2, 0);
             handleEnergySpeedUpgrades(1, CommonConfig.CARBON_GENERATOR_DEFAULT_PROCESS_TIME.get(),
                     CommonConfig.CARBON_GENERATOR_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get(), energyStorage,
                     CommonConfig.CARBON_GENERATOR_DEFAULT_ENERGY_USAGE.get(),

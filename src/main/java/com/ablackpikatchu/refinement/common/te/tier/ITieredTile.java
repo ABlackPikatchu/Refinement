@@ -1,6 +1,6 @@
 package com.ablackpikatchu.refinement.common.te.tier;
 
-public interface ITiered {
+public interface ITieredTile {
 	
 	Tier getCurrentTier();
 	

@@ -7,14 +7,14 @@
 	],
 	"key": {
 		"C": {
-			"item": "refinement:omega_circuit"
+			"item": "refinement:epsilon_alloy"
 		},
 		"B": {
-			"item": "refinement:epsilon_storage_bin"
+			"item": "refinement:gamma_storage_bin"
 		}
 	},
 	"result": {
-		"item": "refinement:omega_storage_bin"
+		"item": "refinement:epsilon_storage_bin"
 	},
 	"old_bin_slot": 4
 }

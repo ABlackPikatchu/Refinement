@@ -47,7 +47,7 @@ public class PatchouliProvider extends PatchouliGenProvider {
 	@PatchouliCategoryGen
 	public static PatchouliCategory ARMOUR_CATEGORY = new PatchouliCategory("Armour Info", "armour",
 			"Some info about the Refinement armour as is not your usual armour. Some of it can be upgraded!",
-			ItemInit.REFINED_NETHERITE_CHESTPLATE.get());
+			ItemInit.Armor.REFINED_NETHERITE_CHESTPLATE);
 
 	@PatchouliCategoryGen
 	public static PatchouliCategory UPGRADES_CATEGORY = new PatchouliCategory("Upgrades", "upgrades",

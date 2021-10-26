@@ -15,7 +15,7 @@ public class RefinementFoodGroup extends ItemGroup{
 
 	@Override
 	public ItemStack makeIcon() {
-		return new ItemStack(ItemInit.MINERS_STEW.get());
+		return new ItemStack(ItemInit.FoodItems.MINERS_STEW);
 	}
 
 }

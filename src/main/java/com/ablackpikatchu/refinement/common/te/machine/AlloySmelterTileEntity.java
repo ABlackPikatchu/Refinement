@@ -153,7 +153,7 @@ public class AlloySmelterTileEntity extends MachineTileEntity implements ITickab
 			TileEntityHelper.setStateProperty(this, AlloySmelterBlock.LIT, false);
 
 			handleEnergyAbilityUpgrade(9);
-			handleAutoEject(7, 4);
+			handleNewAutoEject(7, 4);
 			if (!hasValidRecipe())
 				handleAutoImport(RecipeInit.ALLOY_SMELTING_RECIPE, 8, 0, 1, 2, 3);
 			if (!usingEnergy)

@@ -140,7 +140,7 @@ public class BlockInit {
 	
 	public static final RegistryObject<Block> ENERGY_CABLE_BLOCK = BLOCKS.register("energy_cable", EnergyCableBlock::new);
 	
-	public static final RegistryObject<Block> ALPHA_STORAGE_BIN_BLOCK = BLOCKS.register("alpha_storage_bin", () -> new StorageBinBlock(Tier.ALPHA, 4096));
+	public static final RegistryObject<StorageBinBlock> ALPHA_STORAGE_BIN_BLOCK = BLOCKS.register("alpha_storage_bin", () -> new StorageBinBlock(Tier.ALPHA, 4096));
 	
 	@RegisterBlock(registryName = "beta_storage_bin")
 	public static final StorageBinBlock BETA_STORAGE_BIN_BLOCK = new StorageBinBlock(Tier.BETA, 8192);

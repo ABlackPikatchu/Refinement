@@ -4,7 +4,9 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.client.screen.tileentity.AlloySmelterScreen;
 import com.ablackpikatchu.refinement.client.screen.tileentity.GrinderScreen;
+import com.ablackpikatchu.refinement.common.container.AlloySmelterContainer;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
 
@@ -29,6 +31,8 @@ import mezz.jei.api.registration.IRecipeTransferRegistration;
 public class RefinementJEIPlugin implements IModPlugin {
 
 	private static final ResourceLocation PLUGIN_ID = new ResourceLocation(Refinement.MOD_ID, "jei_plugin");
+	
+	public static final ResourceLocation VANILLA_CRAFTING = new ResourceLocation("minecraft", "crafting");
 
 	@Override
 	public ResourceLocation getPluginUid() {
@@ -50,11 +54,13 @@ public class RefinementJEIPlugin implements IModPlugin {
 	@Override
 	public void registerGuiHandlers(IGuiHandlerRegistration registration) {
 		registration.addRecipeClickArea(GrinderScreen.class, 69, 9, 57, 46, GrinderRecipeCategory.ID);
+		registration.addRecipeClickArea(AlloySmelterScreen.class, 98, 25, 23, 15, AlloySmelterRecipeCategory.ID);
 		// TODO JEI recipe click areas for all machines
 	}
 
 	@Override
 	public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
+		registration.addRecipeTransferHandler(AlloySmelterContainer.class, AlloySmelterRecipeCategory.ID, 0, 4, 10, 36);
 		// TODO JEI transfer handlers
 	}
 
@@ -70,8 +76,10 @@ public class RefinementJEIPlugin implements IModPlugin {
 		registration.addRecipes(getRecipes(manager, RecipeInit.ALLOY_SMELTING_RECIPE), AlloySmelterRecipeCategory.ID);
 		registration.addRecipes(getRecipes(manager, RecipeInit.ANVIL_RECIPE), AnvilRecipeCategory.ID);
 		
-		registration.addRecipes(getRecipes(manager, RecipeInit.STORAGE_BIN_UPGRADING), VanillaRecipeCategoryUid.CRAFTING);
-		registration.addRecipes(getRecipes(manager, RecipeInit.SHAPED_NO_MIRROR), VanillaRecipeCategoryUid.CRAFTING);
+		registration.addRecipes(getRecipes(manager, RecipeInit.STORAGE_BIN_UPGRADING), VANILLA_CRAFTING);
+		registration.addRecipes(getRecipes(manager, RecipeInit.SHAPED_NO_MIRROR), VANILLA_CRAFTING);
+		
+		registration.addRecipes(getRecipes(manager, RecipeInit.IN_WORLD_TIER_UPGRADING), InWorldTierUpgradingRecipeCategory.ID);
 	}
 
 	@Override
@@ -85,6 +93,8 @@ public class RefinementJEIPlugin implements IModPlugin {
 		registration.addRecipeCategories(new AlloySmelterRecipeCategory(helper));
 
 		registration.addRecipeCategories(new AnvilRecipeCategory(helper));
+		
+		registration.addRecipeCategories(new InWorldTierUpgradingRecipeCategory(helper));
 	}
 
 	private static Collection<?> getRecipes(RecipeManager manager, IRecipeType<?> type) {

@@ -1,0 +1,12 @@
+{
+	"type": "refinement:in_world_tier_upgrading",
+	"tier_upgrader": {
+		"item": "refinement:beta_tier_upgrader"
+	},
+	"input": {
+		"item": "refinement:alpha_storage_bin"
+	},
+	"output": {
+		"item": "refinement:beta_storage_bin"
+	}
+}

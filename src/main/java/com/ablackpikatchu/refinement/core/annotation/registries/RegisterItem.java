@@ -17,5 +17,10 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface RegisterItem {
+	
+	/**
+	 * The registry name of the item that needs to be registered
+	 * @return
+	 */
 	String registryName();
 }

@@ -389,6 +389,30 @@ public abstract class SidedInventoryTileEntity extends LockableTileEntity
 			}
 		}
 	}
+	
+	public void handleNewAutoEject(int autoEjectupgradeSlot, int... outputSlots) {
+		for (int outputSlot : outputSlots) {
+			Direction direction = Direction
+					.byName(NBTHelper.getString(getItem(autoEjectupgradeSlot), AutoEjectUpgrade.DIRECTION_PROPERTY));
+			if (direction == null)
+				return;
+			
+			if (this.level.getBlockEntity(worldPosition.relative(direction, 1)) != null) {
+				TileEntity targetTile = this.level.getBlockEntity(worldPosition.relative(direction, 1));
+				targetTile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, direction.getOpposite())
+						.map(handler -> {
+							for (int i = 0; i <= handler.getSlots() - 1; i++) {
+								if (!getItem(outputSlot).isEmpty()) {
+									if (handler.insertItem(i, getItem(outputSlot), true) != getItem(outputSlot)) {
+										setItem(outputSlot, handler.insertItem(i, getItem(outputSlot), false));
+									}
+								}
+							}
+							return true;
+						});
+			}
+		}
+	}
 
 	/**
 	 * Handles auto importing

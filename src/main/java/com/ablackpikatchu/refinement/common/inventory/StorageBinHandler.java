@@ -41,11 +41,6 @@ public class StorageBinHandler extends ItemStackHandler {
 		return this.stackLimit >= this.getStoredItemCount() + count;
 	}
 	
-	@Nonnull
-    public StorageBinHandler setStoredItem (@Nonnull ItemStack itemPrototype) {
-        return this;
-    }
-	
 	@Override
 	public boolean isItemValid(int slot, ItemStack stack) {
 		return com.ablackpikatchu.refinement.core.util.helper.ItemStackHelper.areStacksTheSame(stack, getStackInSlot(slot));
@@ -77,6 +72,12 @@ public class StorageBinHandler extends ItemStackHandler {
 	
 	public int getRemainingCapacity() {
 		return getStackLimit(0, null) - getStackInSlot(0).getCount();
+	}
+	
+	public void copyFromOther(StorageBinHandler otherHandler) {
+		setStackInSlot(0, otherHandler.getStackInSlot(0));
+		setStackLimit(otherHandler.getSlotLimit(0));
+		this.lockedSlots = otherHandler.lockedSlots;
 	}
 	
 	@Nonnull

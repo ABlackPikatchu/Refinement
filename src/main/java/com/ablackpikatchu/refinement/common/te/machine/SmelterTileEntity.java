@@ -69,7 +69,7 @@ public class SmelterTileEntity extends SidedInventoryTileEntity {
 	@Override
 	public void serverTick() {
 		TileEntityHelper.setStateProperty(this, SmelterBlock.LIT, false);
-		handleAutoEject(3, 1);
+		handleNewAutoEject(3, 1);
 		handleAutoImport(null, 4, 0);
 		handleEnergySpeedUpgrades(2, CommonConfig.SMELTER_DEFAULT_PROCESS_TIME.get(),
                 CommonConfig.SMELTER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get(), energyStorage,
