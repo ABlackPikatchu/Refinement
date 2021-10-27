@@ -8,7 +8,6 @@ import javax.annotation.Nullable;
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.block.machine.AlloySmelterBlock;
 import com.ablackpikatchu.refinement.common.container.AlloySmelterContainer;
-import com.ablackpikatchu.refinement.common.item.AutoImportUpgrade;
 import com.ablackpikatchu.refinement.common.recipe.AlloySmeltingRecipe;
 import com.ablackpikatchu.refinement.common.te.MachineTileEntity;
 import com.ablackpikatchu.refinement.common.te.upgrade.IUpgradableTile;
@@ -18,21 +17,17 @@ import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
 import com.ablackpikatchu.refinement.core.util.energy.ModEnergyStorage;
-import com.ablackpikatchu.refinement.core.util.helper.InventoryHelper;
-import com.ablackpikatchu.refinement.core.util.helper.NBTHelper;
 import com.ablackpikatchu.refinement.core.util.helper.TileEntityHelper;
 import com.google.common.collect.Lists;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.HopperTileEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
@@ -41,6 +36,8 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.IItemHandler;
 
 public class AlloySmelterTileEntity extends MachineTileEntity implements ITickableTileEntity, IUpgradableTile {
 
@@ -87,49 +84,6 @@ public class AlloySmelterTileEntity extends MachineTileEntity implements ITickab
 	}
 
 	@Override
-	public void handleAutoImport(@Nullable IRecipeType<?> recipeType, int autoImportUpgradeSlot, int... inputSlots) {
-		for (int inputSlot : inputSlots) {
-			Direction direction = Direction
-					.byName(NBTHelper.getString(getItem(autoImportUpgradeSlot), AutoImportUpgrade.DIRECTION_PROPERTY));
-			if (direction == null)
-				return;
-
-			if (HopperTileEntity.getContainerAt(level, worldPosition.relative(direction, 1)) != null) {
-				if (this.getItem(autoImportUpgradeSlot).getItem() == ItemInit.AUTO_IMPORT_UPGRADE.get()) {
-					IInventory autoImportContainer = HopperTileEntity.getContainerAt(level,
-							worldPosition.relative(direction, 1));
-					if (!autoImportContainer.isEmpty()) {
-						for (int i = 0; i <= autoImportContainer.getContainerSize() - 1; i++) {
-							if (recipeType != null) {
-								if (this.getValidInputs(recipeType)
-										.contains(autoImportContainer.getItem(i).getItem())) {
-									InventoryHelper.tryMoveInItem(autoImportContainer, (IInventory) this,
-											autoImportContainer.getItem(i), inputSlot, null);
-									InventoryHelper.tryMoveInItem(autoImportContainer, (IInventory) this,
-											autoImportContainer.getItem(i), inputSlot, null);
-									TileEntityHelper.updateTE(this);
-									TileEntityHelper
-											.updateTE(this.level.getBlockEntity(worldPosition.relative(direction, 1)));
-									break;
-								}
-							} else {
-								InventoryHelper.tryMoveInItem(autoImportContainer, (IInventory) this,
-										autoImportContainer.getItem(i), inputSlot, null);
-								InventoryHelper.tryMoveInItem(autoImportContainer, (IInventory) this,
-										autoImportContainer.getItem(i), inputSlot, null);
-								TileEntityHelper.updateTE(this);
-								TileEntityHelper
-										.updateTE(this.level.getBlockEntity(worldPosition.relative(direction, 1)));
-								break;
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-
-	@Override
 	public ArrayList<Item> getValidInputs(IRecipeType<?> recipeType) {
 		ArrayList<Item> validInputs = new ArrayList<>();
 		getRecipes(RecipeInit.ALLOY_SMELTING_RECIPE).forEach(recipe -> {
@@ -155,8 +109,8 @@ public class AlloySmelterTileEntity extends MachineTileEntity implements ITickab
 			handleEnergyAbilityUpgrade(9);
 			handleNewAutoEject(7, 4);
 			if (!hasValidRecipe())
-				handleAutoImport(RecipeInit.ALLOY_SMELTING_RECIPE, 8, 0, 1, 2, 3);
-			if (!usingEnergy)
+				handleNewAutoImport(RecipeInit.ALLOY_SMELTING_RECIPE, 8, 0, 1, 2, 3);
+			if (!usingEnergy)	
 				handleFuelAutoImport(8, 5);
 
 			if (tickSinceLastStore < 20)
@@ -290,6 +244,8 @@ public class AlloySmelterTileEntity extends MachineTileEntity implements ITickab
 
 	@Override
 	public int[] getSlotsForFace(Direction pSide) {
+		if (pSide == null)
+			return new int[] {0, 1, 2, 3, 5};
 		if (pSide == Direction.UP)
 			return SLOTS_FOR_UP;
 		else if (pSide == Direction.DOWN)
@@ -305,7 +261,7 @@ public class AlloySmelterTileEntity extends MachineTileEntity implements ITickab
 		else {
 			if (hasValidRecipe())
 				return false;
-			if (pDirection == Direction.UP && Lists.newArrayList(0, 1, 2, 3).contains(pIndex))
+			if (pDirection == Direction.UP || pDirection == null && Lists.newArrayList(0, 1, 2, 3).contains(pIndex))
 				return true;
 			else if (pIndex == 5) {
 				if (!usingEnergy)
@@ -349,6 +305,14 @@ public class AlloySmelterTileEntity extends MachineTileEntity implements ITickab
 			break;
 		}
 		return -1;
+	}
+	
+	@Override
+	public void setRemoved() {
+		for (LazyOptional<? extends IItemHandler> handler : handlers) {
+			handler.invalidate();
+		}
+		energy.invalidate();
 	}
 
 }

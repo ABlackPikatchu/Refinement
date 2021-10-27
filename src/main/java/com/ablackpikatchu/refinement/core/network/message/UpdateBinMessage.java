@@ -1,7 +1,5 @@
 package com.ablackpikatchu.refinement.core.network.message;
 
-import java.util.function.Supplier;
-
 import com.ablackpikatchu.refinement.common.te.misc_tes.StorageBinTileEntity;
 
 import net.minecraft.client.Minecraft;
@@ -15,8 +13,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraftforge.fml.network.NetworkEvent.Context;
 
-public class UpdateBinMessage {
+public class UpdateBinMessage implements IRefinementMessage {
 	
 	private BlockPos pos;
     private ItemStack item;
@@ -25,7 +24,7 @@ public class UpdateBinMessage {
 
     private boolean failed;
 
-    public UpdateBinMessage (BlockPos pos, ItemStack item, int count, int stackLimit) {
+    public UpdateBinMessage(BlockPos pos, ItemStack item, int count, int stackLimit) {
         this.pos = pos;
         this.item = item;
         this.count = count;
@@ -33,11 +32,11 @@ public class UpdateBinMessage {
         this.stackLimit = stackLimit;
     }
 
-    private UpdateBinMessage (boolean failed) {
+    private UpdateBinMessage(boolean failed) {
         this.failed = failed;
     }
 
-    public static UpdateBinMessage decode (PacketBuffer buf) {
+    public static UpdateBinMessage decode(PacketBuffer buf) {
         try {
             BlockPos pos = buf.readBlockPos();
             ItemStack item = buf.readItem();
@@ -50,22 +49,17 @@ public class UpdateBinMessage {
         }
     }
 
-    public static void encode (UpdateBinMessage msg, PacketBuffer buf) {
-        buf.writeBlockPos(msg.pos);
-        buf.writeItem(msg.item);
-        buf.writeInt(msg.count);
-        buf.writeInt(msg.stackLimit);
-    }
-
-    public static void handle(UpdateBinMessage msg, Supplier<NetworkEvent.Context> ctx) {
-    	ctx.get().enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> handleClient(msg, ctx.get())));
-    	ctx.get().setPacketHandled(true);
-       
+    @Override
+    public void encode(PacketBuffer buf) {
+        buf.writeBlockPos(pos);
+        buf.writeItem(item);
+        buf.writeInt(count);
+        buf.writeInt(stackLimit);
     }
 
     @SuppressWarnings("resource")
 	@OnlyIn(Dist.CLIENT)
-    private static void handleClient(UpdateBinMessage msg, NetworkEvent.Context ctx) {
+    private void handleClient(UpdateBinMessage msg, NetworkEvent.Context ctx) {
         if (!msg.failed) {
             World world = Minecraft.getInstance().level;
             if (world != null) {
@@ -76,5 +70,11 @@ public class UpdateBinMessage {
             }
         }
     }
+
+	@Override
+	public void handle(Context ctx) {
+		ctx.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> handleClient(this, ctx)));
+    	ctx.setPacketHandled(true);
+	}
 	
 }

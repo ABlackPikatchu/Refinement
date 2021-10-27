@@ -69,7 +69,7 @@ public class EnergyGeneratorTileEntity extends SidedInventoryTileEntity {
     @Override
     public void serverTick() {
     	TileEntityHelper.setStateProperty(this, EnergyGeneratorBlock.LIT, false);
-        handleAutoImport(null, 1, 0);
+        handleNewAutoImport(null, 1, 0);
         energyStorage.energyMade = CommonConfig.ENERGY_GENERATOR_ENERGY_MADE.get();
         this.maxWaitTime = CommonConfig.ENERGY_GENERATOR_FUEL_LASTING.get();
         if (this.getItem(0).getItem() == ItemInit.REFINED_CARBON_INGOT.get() && energyStorage.canMakeEnergy()) {

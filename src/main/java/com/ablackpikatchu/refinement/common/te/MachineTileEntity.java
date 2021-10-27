@@ -22,7 +22,7 @@ public abstract class MachineTileEntity extends SidedInventoryTileEntity {
 	protected boolean usingEnergy;
 	public ModEnergyStorage energyStorage;
 	public boolean hasPower = false;
-	private final LazyOptional<IEnergyStorage> energy = LazyOptional.of(() -> energyStorage);
+	protected final LazyOptional<IEnergyStorage> energy = LazyOptional.of(() -> energyStorage);
 	
 	protected boolean isWorking;
 

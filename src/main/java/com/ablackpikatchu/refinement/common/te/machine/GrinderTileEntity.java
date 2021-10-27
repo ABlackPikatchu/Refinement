@@ -84,7 +84,7 @@ public class GrinderTileEntity extends MachineTileEntity implements ITickableTil
 			if (!usingEnergy)
 				handleFuelAutoImport(5, 2);
 
-			handleAutoImport(RecipeInit.GRINDER_RECIPE, 5, 0);
+			handleNewAutoImport(RecipeInit.GRINDER_RECIPE, 5, 0);
 
 			if (!usingEnergy)
 				handleSpeedUpgrades(3, CommonConfig.GRINDER_DEFAULT_PROCESS_TIME.get(),
@@ -209,6 +209,8 @@ public class GrinderTileEntity extends MachineTileEntity implements ITickableTil
 
 	@Override
 	public int[] getSlotsForFace(Direction side) {
+		if (side == null)
+			return new int[] {0, 1, 2};
 		if (side == Direction.DOWN)
 			return SLOTS_FOR_DOWN;
 		else if (side == Direction.UP)
@@ -219,6 +221,8 @@ public class GrinderTileEntity extends MachineTileEntity implements ITickableTil
 
 	@Override
 	public boolean canPlaceItemThroughFace(int index, ItemStack stack, Direction side) {
+		if (index == 0 && side == null)
+			return true;
 		if (index == 1)
 			return false;
 		else if (side == Direction.DOWN && index == 0)

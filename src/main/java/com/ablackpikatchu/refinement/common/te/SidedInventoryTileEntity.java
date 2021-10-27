@@ -51,8 +51,6 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
 public abstract class SidedInventoryTileEntity extends LockableTileEntity
@@ -62,10 +60,10 @@ public abstract class SidedInventoryTileEntity extends LockableTileEntity
 	public int maxWaitTime;
 	public int usedCarbon;
 	public IInventory iInventory = (IInventory) this;
-	private final LazyOptional<IItemHandlerModifiable> inventory = LazyOptional.of(this::createInventory);
 	protected NonNullList<ItemStack> items;
-	private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.UP,
+	protected final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.UP,
 			Direction.DOWN, Direction.NORTH);
+	public final SidedInvWrapper inventory = new SidedInvWrapper(this, null);
 	@Nullable
 	protected ResourceLocation lootTable;
 	protected long lootTableSeed;
@@ -345,22 +343,15 @@ public abstract class SidedInventoryTileEntity extends LockableTileEntity
 		return world != null ? world.getRecipeManager().getRecipes().stream()
 				.filter(recipe -> recipe.getType() == typeIn).collect(Collectors.toSet()) : Collections.emptySet();
 	}
-
-	public IItemHandlerModifiable getInventory() {
-		return inventory.orElseThrow(() -> new IllegalStateException("Inventory not initialized correctly"));
-	}
-
-	@Nonnull
-	public IItemHandlerModifiable createInventory() {
-		return new ItemStackHandler(getContainerSize());
-	}
-
+	
 	/**
+	 * @deprecated
 	 * Handles auto ejecting
 	 *
 	 * @param autoEjectupgradeSlot auto-eject upgrade slot
 	 * @param outputSlots          output slots (a.k.a slots that can be ejected)
 	 */
+	@Deprecated
 	public void handleAutoEject(int autoEjectupgradeSlot, int... outputSlots) {
 		for (int outputSlot : outputSlots) {
 			Direction direction = Direction
@@ -415,6 +406,7 @@ public abstract class SidedInventoryTileEntity extends LockableTileEntity
 	}
 
 	/**
+	 * @deprecated
 	 * Handles auto importing
 	 *
 	 * @param recipeType            the recipe the machine accepts
@@ -422,6 +414,7 @@ public abstract class SidedInventoryTileEntity extends LockableTileEntity
 	 * @param inputSlots            input slots (a.k.a slots that can be imported
 	 *                              into)
 	 */
+	@Deprecated
 	public void handleAutoImport(@Nullable IRecipeType<?> recipeType, int autoImportUpgradeSlot, int... inputSlots) {
 		for (int inputSlot : inputSlots) {
 			Direction direction = Direction
@@ -459,6 +452,56 @@ public abstract class SidedInventoryTileEntity extends LockableTileEntity
 							}
 						}
 					}
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Handles auto importing
+	 *
+	 * @param recipeType            the recipe the machine accepts
+	 * @param autoImportUpgradeSlot auto-import upgrade slot
+	 * @param inputSlots            input slots (a.k.a slots that can be imported
+	 *                              into)
+	 */
+	public void handleNewAutoImport(@Nullable IRecipeType<?> recipeType, int autoImportUpgradeSlot, int... inputSlots) {
+		for (int inputSlot : inputSlots) {
+			Direction direction = Direction
+					.byName(NBTHelper.getString(getItem(autoImportUpgradeSlot), AutoImportUpgrade.DIRECTION_PROPERTY));
+			if (direction == null)
+				return;
+			
+			if (this.level.getBlockEntity(worldPosition.relative(direction, 1)) != null) {
+				if (this.getItem(autoImportUpgradeSlot).getItem() == ItemInit.AUTO_IMPORT_UPGRADE.get()) {
+					TileEntity targetTile = this.level.getBlockEntity(worldPosition.relative(direction, 1));
+					targetTile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, direction.getOpposite())
+						.map(handler -> {
+						for (int i = 0; i <= handler.getSlots() - 1; i++) {
+							if (recipeType != null) {
+								if (this.getValidInputs(recipeType)
+										.contains(handler.getStackInSlot(i).getItem())) {
+									if (this.inventory.insertItem(inputSlot, handler.getStackInSlot(i), true) != handler.getStackInSlot(i)) {
+										if (!getItem(inputSlot).isEmpty())
+											handler.extractItem(i, handler.getSlotLimit(i) - this.inventory.insertItem(inputSlot, handler.getStackInSlot(i), false).getCount(), false);
+										else 
+											setItem(inputSlot, handler.extractItem(i, this.inventory.getSlotLimit(inputSlot), false));
+									}
+									TileEntityHelper.updateTE(this);
+									TileEntityHelper.updateTE(this.level.getBlockEntity(worldPosition.relative(direction, 1)));
+									break;
+								}
+							} else {
+								if (this.inventory.insertItem(inputSlot, handler.getStackInSlot(i), true) != handler.getStackInSlot(i)) {
+									handler.extractItem(this.inventory.insertItem(inputSlot, handler.getStackInSlot(i), false).getCount(), i, false);
+								}
+								TileEntityHelper.updateTE(this);
+								TileEntityHelper.updateTE(this.level.getBlockEntity(worldPosition.relative(direction, 1)));
+								break;
+							}
+						}
+						return true;
+					});
 				}
 			}
 		}

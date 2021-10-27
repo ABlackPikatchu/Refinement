@@ -64,7 +64,7 @@ public class DNASequencerTileEntity extends SidedInventoryTileEntity implements 
 					CommonConfig.DNA_SEQUENCER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get());
 			handleNewAutoEject(5, 2);
 			handleFuelAutoImport(6, 3);
-			handleAutoImport(RecipeInit.DNA_SEQUENCER_RECIPE, 6, 0, 1);
+			handleNewAutoImport(RecipeInit.DNA_SEQUENCER_RECIPE, 6, 0, 1);
 			this.successProbability = -1;
 			this.isWorking = false;
 			TileEntityHelper.setStateProperty(this, DNASequencerBlock.LIT, false);
@@ -202,6 +202,8 @@ public class DNASequencerTileEntity extends SidedInventoryTileEntity implements 
 
 	@Override
 	public int[] getSlotsForFace(Direction side) {
+		if (side == null)
+			return new int[] {0, 1, 3};
 		if (side == Direction.DOWN)
 			return SLOTS_FOR_DOWN;
 		else if (side == Direction.UP)

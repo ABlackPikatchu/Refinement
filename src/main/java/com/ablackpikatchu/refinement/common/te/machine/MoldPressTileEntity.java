@@ -61,7 +61,7 @@ public class MoldPressTileEntity extends SidedInventoryTileEntity implements ITi
 					CommonConfig.MOLD_PRESS_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get());
 			handleNewAutoEject(5, 1);
 			handleFuelAutoImport(6, 3);
-			handleAutoImport(RecipeInit.MOLD_PRESS_RECIPE, 6, 0);
+			handleNewAutoImport(RecipeInit.MOLD_PRESS_RECIPE, 6, 0);
 			this.level.setBlockAndUpdate(this.getBlockPos(), this.getBlockState().setValue(MoldPressBlock.LIT, false));
 			if (getRecipe() != null && this.getItem(3).getItem() == ItemInit.REFINED_CARBON_INGOT.get()
 					&& this.getItem(3).getCount() >= this.usedCarbon) {
@@ -166,6 +166,8 @@ public class MoldPressTileEntity extends SidedInventoryTileEntity implements ITi
 
 	@Override
 	public int[] getSlotsForFace(Direction side) {
+		if (side == null)
+			return new int[] {0, 3};
 		if (side == Direction.DOWN)
 			return SLOTS_FOR_DOWN;
 		else if (side == Direction.UP)

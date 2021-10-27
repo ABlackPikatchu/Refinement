@@ -1,5 +1,8 @@
 package com.ablackpikatchu.refinement.common.block.machine;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.ablackpikatchu.refinement.common.te.machine.AlloySmelterTileEntity;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
 
@@ -15,6 +18,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootParameters;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer.Builder;
@@ -114,6 +118,17 @@ public class AlloySmelterBlock extends Block {
 			if (stack.hasCustomHoverName())
 				smleter.setCustomName(stack.getDisplayName());
 		}
+	}
+	
+	@Override
+	public List<ItemStack> getDrops(BlockState pState, net.minecraft.loot.LootContext.Builder pBuilder) {
+		List<ItemStack> drops = new ArrayList<>();
+		ItemStack stack = new ItemStack(this.asItem());
+		if (pBuilder.getParameter(LootParameters.BLOCK_ENTITY) instanceof AlloySmelterTileEntity) {
+			drops.addAll(((AlloySmelterTileEntity) pBuilder.getParameter(LootParameters.BLOCK_ENTITY)).getAllItems());
+		}
+		drops.add(stack);
+		return drops;
 	}
 
 	@Override

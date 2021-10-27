@@ -60,7 +60,7 @@ public class MixerTileEntity extends SidedInventoryTileEntity implements ITickab
 					CommonConfig.MIXER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get());
 			handleNewAutoEject(5, 2);
 			handleFuelAutoImport(6, 3);
-			handleAutoImport(RecipeInit.MIXER_RECIPE, 6, 0, 1);
+			handleNewAutoImport(RecipeInit.MIXER_RECIPE, 6, 0, 1);
 			this.level.setBlockAndUpdate(this.getBlockPos(), this.getBlockState().setValue(MixerBlock.LIT, false));
 			if (this.getItem(3).getItem() == ItemInit.REFINED_CARBON_INGOT.get()
 					&& this.getItem(3).getCount() >= this.usedCarbon && getRecipe() != null) {
@@ -167,7 +167,9 @@ public class MixerTileEntity extends SidedInventoryTileEntity implements ITickab
 
 	@Override
 	public int[] getSlotsForFace(Direction side) {
-		if (side == Direction.DOWN)
+		if (side == null)
+			return new int[] {0, 1, 3};
+ 		if (side == Direction.DOWN)
 			return SLOTS_FOR_DOWN;
 		else if (side == Direction.UP)
 			return SLOTS_FOR_UP;
