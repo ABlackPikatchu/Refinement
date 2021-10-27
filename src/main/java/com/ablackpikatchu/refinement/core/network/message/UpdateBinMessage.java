@@ -74,7 +74,6 @@ public class UpdateBinMessage implements IRefinementMessage {
 	@Override
 	public void handle(Context ctx) {
 		ctx.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> handleClient(this, ctx)));
-    	ctx.setPacketHandled(true);
 	}
 	
 }
