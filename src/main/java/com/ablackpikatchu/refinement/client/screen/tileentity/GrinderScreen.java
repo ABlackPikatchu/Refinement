@@ -86,7 +86,7 @@ public class GrinderScreen extends MachineContainerScreen<GrinderContainer> {
 		
 		//secElement.render(matrixStack, this.leftPos + 191, this.topPos + 82, partialTicks);
 		this.minecraft.textureManager.bind(GRINDER_GUI);
-		this.blit(matrixStack, this.leftPos + 68, this.topPos + 9, 2, 207, this.menu.getProgressionScaled(), 47);
+		this.blit(matrixStack, this.leftPos + 60, this.topPos + 9, 2, 207, this.menu.getProgressionScaled(), 47);
 		renderFuelSlot(matrixStack, this.menu.usingEnergy());
 		renderEnergyBar(matrixStack, this.menu.usingEnergy());
 	}

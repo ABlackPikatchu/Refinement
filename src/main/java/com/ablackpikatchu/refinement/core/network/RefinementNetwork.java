@@ -1,10 +1,10 @@
 package com.ablackpikatchu.refinement.core.network;
 
 import com.ablackpikatchu.refinement.Refinement;
-import com.ablackpikatchu.refinement.core.network.message.ConversionMessage;
-import com.ablackpikatchu.refinement.core.network.message.TileSecurityMessage;
-import com.ablackpikatchu.refinement.core.network.message.ToggleBinAutoRefillMessage;
-import com.ablackpikatchu.refinement.core.network.message.UpdateBinMessage;
+import com.ablackpikatchu.refinement.core.network.message.to_client.UpdateBinMessage;
+import com.ablackpikatchu.refinement.core.network.message.to_server.ConversionMessage;
+import com.ablackpikatchu.refinement.core.network.message.to_server.TileSecurityMessage;
+import com.ablackpikatchu.refinement.core.network.message.to_server.ToggleBinAutoRefillMessage;
 
 import net.minecraft.util.ResourceLocation;
 

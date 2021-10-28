@@ -5,7 +5,11 @@ import java.util.stream.Collectors;
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.client.screen.tileentity.AlloySmelterScreen;
+import com.ablackpikatchu.refinement.client.screen.tileentity.DNASequencerScreen;
 import com.ablackpikatchu.refinement.client.screen.tileentity.GrinderScreen;
+import com.ablackpikatchu.refinement.client.screen.tileentity.MixerScreen;
+import com.ablackpikatchu.refinement.client.screen.tileentity.MoldPressScreen;
+import com.ablackpikatchu.refinement.client.screen.tileentity.SmelterScreen;
 import com.ablackpikatchu.refinement.common.container.AlloySmelterContainer;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
@@ -33,6 +37,7 @@ public class RefinementJEIPlugin implements IModPlugin {
 	private static final ResourceLocation PLUGIN_ID = new ResourceLocation(Refinement.MOD_ID, "jei_plugin");
 	
 	public static final ResourceLocation VANILLA_CRAFTING = new ResourceLocation("minecraft", "crafting");
+	public static final ResourceLocation VANILLA_FURNACE = new ResourceLocation("minecraft", "furnace");
 
 	@Override
 	public ResourceLocation getPluginUid() {
@@ -53,9 +58,14 @@ public class RefinementJEIPlugin implements IModPlugin {
 
 	@Override
 	public void registerGuiHandlers(IGuiHandlerRegistration registration) {
-		registration.addRecipeClickArea(GrinderScreen.class, 69, 9, 57, 46, GrinderRecipeCategory.ID);
+		registration.addRecipeClickArea(GrinderScreen.class, 60, 9, 57, 46, GrinderRecipeCategory.ID);
 		registration.addRecipeClickArea(AlloySmelterScreen.class, 98, 25, 23, 15, AlloySmelterRecipeCategory.ID);
-		// TODO JEI recipe click areas for all machines
+		registration.addRecipeClickArea(DNASequencerScreen.class, 62, 26, 71, 21, DNASequencerRecipeCategory.ID);
+		registration.addRecipeClickArea(MixerScreen.class, 89, 25, 17, 18, MixerRecipeCategory.ID);
+		registration.addRecipeClickArea(SmelterScreen.class, 48, 29, 72, 31, VANILLA_FURNACE);
+		
+		registration.addRecipeClickArea(MoldPressScreen.class, 87, 6, 22, 16, MoldPressRecipeCatgory.ID);
+		registration.addRecipeClickArea(MoldPressScreen.class, 50, 29, 40, 17, MoldPressRecipeCatgory.ID);
 	}
 
 	@Override

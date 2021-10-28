@@ -1,5 +1,11 @@
 package com.ablackpikatchu.refinement.common.te.misc_tes;
 
+import static com.ablackpikatchu.refinement.common.te.tier.Tier.ALPHA;
+import static com.ablackpikatchu.refinement.common.te.tier.Tier.BETA;
+import static com.ablackpikatchu.refinement.common.te.tier.Tier.EPSILON;
+import static com.ablackpikatchu.refinement.common.te.tier.Tier.GAMMA;
+import static com.ablackpikatchu.refinement.common.te.tier.Tier.OMEGA;
+
 import java.util.UUID;
 
 import javax.annotation.Nonnull;
@@ -12,8 +18,9 @@ import com.ablackpikatchu.refinement.common.te.tier.ITieredTile;
 import com.ablackpikatchu.refinement.common.te.tier.Tier;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
+import com.ablackpikatchu.refinement.core.network.BaseNetwork;
 import com.ablackpikatchu.refinement.core.network.RefinementNetwork;
-import com.ablackpikatchu.refinement.core.network.message.UpdateBinMessage;
+import com.ablackpikatchu.refinement.core.network.message.to_client.UpdateBinMessage;
 import com.ablackpikatchu.refinement.core.util.helper.PlayerHelper;
 
 import net.minecraft.block.BlockState;
@@ -34,11 +41,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-
-import static com.ablackpikatchu.refinement.common.te.tier.Tier.*;
 
 public class StorageBinTileEntity extends TileEntity implements ITickableTileEntity,
 		IItemHandlerInventory<StorageBinHandler>, IInventory, ISidedInventory, ITieredTile {
@@ -302,11 +306,8 @@ public class StorageBinTileEntity extends TileEntity implements ITickableTileEnt
 			return;
 		if (level.isClientSide())
 			return;
-
-		PacketDistributor.TargetPoint point = new PacketDistributor.TargetPoint(worldPosition.getX(),
-				worldPosition.getY(), worldPosition.getZ(), 500, level.dimension());
-		RefinementNetwork.STORAGE_BIN_CHANNEL.send(PacketDistributor.NEAR.with(() -> point),
-				new UpdateBinMessage(worldPosition, item, count, stackLimit));
+		
+		BaseNetwork.sendToAllTracking(RefinementNetwork.STORAGE_BIN_CHANNEL, new UpdateBinMessage(worldPosition, item, count, stackLimit), this);
 	}
 
 	@Override

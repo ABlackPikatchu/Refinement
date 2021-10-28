@@ -19,7 +19,7 @@ import net.minecraft.util.ResourceLocation;
 public class PatchouliProvider extends PatchouliGenProvider {
 
 	@PatchouliBookGen
-	public static PatchouliBook BOOK = new PatchouliBook("Refinement Guide",
+	public static final PatchouliBook BOOK = new PatchouliBook("Refinement Guide",
 			"$(#800080)Welcome to Refinement $(playername)! $(br2)This book will guide you through the progression of the mod and show you all that you can do!")
 					.setModel(new ResourceLocation(Refinement.MOD_ID, "refinement_guide"))
 					.setTab("refinement_tools_weapons")

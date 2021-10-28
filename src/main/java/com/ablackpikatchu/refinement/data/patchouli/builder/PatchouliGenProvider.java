@@ -37,7 +37,7 @@ public abstract class PatchouliGenProvider implements IDataProvider {
 	public ArrayList<PatchouliEntry> entries = new ArrayList<>();
 	public ArrayList<PatchouliCategory> categories = new ArrayList<>();
 
-	public PatchouliGenProvider(DataGenerator generator, String modid, String language, String bookName) {
+	protected PatchouliGenProvider(DataGenerator generator, String modid, String language, String bookName) {
 		this.generator = generator;
 		this.modid = modid;
 		this.language = language;

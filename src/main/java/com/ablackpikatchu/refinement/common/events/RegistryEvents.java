@@ -1,6 +1,7 @@
 package com.ablackpikatchu.refinement.common.events;
 
 import java.lang.annotation.ElementType;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -10,11 +11,14 @@ import org.objectweb.asm.Type;
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.core.annotation.registries.HoldsRegistries;
+import com.ablackpikatchu.refinement.core.annotation.registries.OnRegistryEvent;
 import com.ablackpikatchu.refinement.core.annotation.registries.RegisterBlock;
+import com.ablackpikatchu.refinement.core.annotation.registries.RegisterBlockItem;
 import com.ablackpikatchu.refinement.core.annotation.registries.RegisterItem;
 import com.ablackpikatchu.refinement.core.util.ReflectionsUtils;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 
@@ -64,6 +68,28 @@ public class RegistryEvents {
 				else
 					throw new RegistryException("The field " + field + " is annotated with @RegisterItem but it is not an item.");
 			} catch (IllegalArgumentException | IllegalAccessException | SecurityException e) {
+			}
+		});
+		
+		ReflectionsUtils.getFieldsAnnotatedWith(REGISTRY_CLASSES, RegisterBlockItem.class).forEach(field -> {
+			try {
+				if (field.isAccessible() && field.get(field.getDeclaringClass()) instanceof BlockItem) {
+					BlockItem blockitem = (BlockItem) field.get(field.getDeclaringClass());
+					event.getRegistry().register(blockitem.setRegistryName(blockitem.getBlock().getRegistryName()));
+				}
+				else
+					throw new RegistryException("The field " + field + " is annotated with @RegisterBlockItem but it is not an block item.");
+			} catch (IllegalArgumentException | IllegalAccessException | SecurityException e) {
+			}
+		});
+		
+		ReflectionsUtils.getMethodsAnnotatedWith(REGISTRY_CLASSES, OnRegistryEvent.class).forEach(method -> {
+			if (method.getAnnotation(OnRegistryEvent.class).eventType() == com.ablackpikatchu.refinement.core.annotation.registries.OnRegistryEvent.RegistryEvent.ITEMS) {
+				try {
+					method.invoke(method.getDeclaringClass(), event);
+				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 	}

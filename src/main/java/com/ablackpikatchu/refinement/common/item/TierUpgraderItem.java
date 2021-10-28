@@ -3,11 +3,10 @@ package com.ablackpikatchu.refinement.common.item;
 import com.ablackpikatchu.refinement.common.te.tier.ITieredTile;
 import com.ablackpikatchu.refinement.common.te.tier.Tier;
 
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.ActionResultType;
 
-public class TierUpgraderItem extends Item {
+public class TierUpgraderItem extends RefinementItem {
 	
 	public final Tier tier;
 

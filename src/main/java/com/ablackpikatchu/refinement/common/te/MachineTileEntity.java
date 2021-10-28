@@ -59,7 +59,7 @@ public abstract class MachineTileEntity extends SidedInventoryTileEntity {
 
 	@Override
 	public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
-		if (cap == CapabilityEnergy.ENERGY && usingEnergy) {
+		if (cap == CapabilityEnergy.ENERGY && usingEnergy && energyStorage != null) {
 			return energy.cast();
 		}
 		return super.getCapability(cap, side);

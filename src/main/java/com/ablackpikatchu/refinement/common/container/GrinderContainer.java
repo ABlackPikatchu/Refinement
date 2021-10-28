@@ -4,11 +4,14 @@ import java.util.Objects;
 
 import com.ablackpikatchu.refinement.common.inventory.slot.FuelSlot;
 import com.ablackpikatchu.refinement.common.inventory.slot.OutputSlot;
+import com.ablackpikatchu.refinement.common.inventory.slot.RecipeIngredientSlot;
 import com.ablackpikatchu.refinement.common.inventory.slot.itemspecific.UpgradeSlot;
+import com.ablackpikatchu.refinement.common.recipe.GrinderRecipe;
 import com.ablackpikatchu.refinement.common.te.machine.GrinderTileEntity;
 import com.ablackpikatchu.refinement.common.te.upgrade.Upgrade;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
+import com.ablackpikatchu.refinement.core.init.RecipeInit;
 import com.ablackpikatchu.refinement.core.util.FunctionalIntReferenceHolder;
 
 import net.minecraft.entity.player.PlayerEntity;
@@ -42,8 +45,8 @@ public class GrinderContainer extends MachineContainer<GrinderTileEntity> {
 		this.canInteractWithCallable = IWorldPosCallable.create(te.getLevel(), te.getBlockPos());
 
 		// Tile Entity
-		this.addSlot(new Slot((IInventory) te, 0, 44, 23)); //Input
-		this.addSlot(new OutputSlot((IInventory) te, 1, 134, 23)); //Output
+		this.addSlot(new RecipeIngredientSlot<GrinderRecipe>(RecipeInit.GRINDER_RECIPE, te.getLevel(), (IInventory) te, 0, 35, 23)); //Input
+		this.addSlot(new OutputSlot((IInventory) te, 1, 125, 23)); //Output
 		this.addSlot(new FuelSlot(te, 2, 8, 44)); //Coal
 		this.addSlot(new UpgradeSlot((IInventory) te, 3, 197, 113, Upgrade.SPEED)); //Speed Upgrade
 		this.addSlot(new UpgradeSlot((IInventory) te, 4, 179, 113, Upgrade.AUTO_EJECT)); // Auto eject upgrade

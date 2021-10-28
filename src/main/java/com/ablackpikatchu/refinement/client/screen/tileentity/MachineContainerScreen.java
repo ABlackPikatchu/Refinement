@@ -3,11 +3,14 @@ package com.ablackpikatchu.refinement.client.screen.tileentity;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.ablackpikatchu.refinement.client.RefinementLang;
+import com.ablackpikatchu.refinement.client.screen.element.EnergyInfoTextBoxElement;
 import com.ablackpikatchu.refinement.client.screen.element.GuiElement;
 import com.ablackpikatchu.refinement.client.screen.element.PowerIndicatorElement;
 import com.ablackpikatchu.refinement.client.screen.element.SussyElement;
 import com.ablackpikatchu.refinement.common.container.MachineContainer;
 import com.ablackpikatchu.refinement.core.config.ClientConfig;
+import com.ablackpikatchu.refinement.core.util.text.NumberFormatting;
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -20,6 +23,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 
 public abstract class MachineContainerScreen<T extends MachineContainer<?>> extends ContainerScreen<T> {
 
@@ -54,6 +58,24 @@ public abstract class MachineContainerScreen<T extends MachineContainer<?>> exte
 				0xA3703A);
 		this.font.draw(matrixStack, this.inventory.getDisplayName(), (float) this.inventoryLabelX,
 				(float) this.inventoryLabelY, 0xA3703A);
+	}
+	
+	protected void renderUsingEnergy(MatrixStack matrixStack, int mouseX, int mouseY, int currentEnergy, int energyUsed, int maxReceive) {
+			isHoveringOverEnergyInfo = true;
+			EnergyInfoTextBoxElement textBoxElement = new EnergyInfoTextBoxElement();
+			int dropDownNumber = 10;
+			int xPos = mouseX - this.leftPos - textBoxElement.getWidth();
+			int yPos = mouseY - this.topPos;
+			textBoxElement.render(matrixStack, xPos, yPos + dropDownNumber, 0.0f);
+			this.font.draw(matrixStack,
+					new StringTextComponent(RefinementLang.ENERGY_STORED.getString().replace("%e", NumberFormatting.toThousandsFormat(currentEnergy, 1))),
+					xPos + 3, yPos + dropDownNumber + 4, 0xffffff);
+			this.font.draw(matrixStack,
+					new StringTextComponent(RefinementLang.ENERGY_USED.getString().replace("%e", "" + energyUsed)),
+					xPos + 3, yPos + dropDownNumber + 4 + 10, 0xffffff);
+			this.font.draw(matrixStack,
+					new StringTextComponent(RefinementLang.ENERGY_MAX_TRANSFER.getString().replace("%e", "" + maxReceive)),
+					xPos + 3, yPos + dropDownNumber + 4 + 20, 0xffffff);
 	}
 
 	@Override

@@ -145,6 +145,11 @@ public class LangProvider extends LanguageProvider {
 		addComponent("stored_item", "Stored Item: §6%i");
 		addComponent("empty", "§4Empty");
 		addComponent("auto_refill", "Auto Refill");
+		addComponent("alt_f4_cheat", "Press §6ALT F4 §rin order to cheat this item.");
+		
+		addComponent("energy.energy_stored", "Energy Stored: \u00A7b%e\u00A7f FE");
+		addComponent("energy.energy_used", "Energy Used: \u00A7b%e\u00A7f FE");
+		addComponent("energy.max_transfer", "Max Transfer: \u00A7b%e\u00A7f FE");
 
 		addItemsFromClass(ItemInit.Armor.class);
 		addItemsFromClass(ItemInit.TierRelated.class);

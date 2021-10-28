@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "APA"
+  ],
+  "key": {
+    "A": {
+      "item": "refinement:omega_alloy"
+    },
+    "P": {
+      "item": "refinement:epsilon_circuit"
+    }
+  },
+  "result": {
+    "item": "refinement:omega_circuit"
+  }
+}

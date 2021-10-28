@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "APA"
+  ],
+  "key": {
+    "A": {
+      "item": "refinement:alpha_alloy"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "refinement:alpha_circuit"
+  }
+}

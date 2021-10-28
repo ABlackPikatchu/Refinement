@@ -1,4 +1,4 @@
-package com.ablackpikatchu.refinement.core.network.message;
+package com.ablackpikatchu.refinement.core.network.message.to_server;
 
 import java.util.function.Supplier;
 

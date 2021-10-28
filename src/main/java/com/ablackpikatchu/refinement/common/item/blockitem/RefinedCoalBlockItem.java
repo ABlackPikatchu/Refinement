@@ -1,4 +1,4 @@
-package com.ablackpikatchu.refinement.common.item;
+package com.ablackpikatchu.refinement.common.item.blockitem;
 
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementMaterialsGroup;

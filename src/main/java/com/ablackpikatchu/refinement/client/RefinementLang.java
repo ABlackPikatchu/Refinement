@@ -14,6 +14,11 @@ public class RefinementLang {
 	}
 
 	public static final ITextComponent COMPATIBLE_MACHINES_COMPONENT = getComponent("compatible_machines");
+	public static final ITextComponent ALT_F4_CHEAT_COMPONENT = getComponent("alt_f4_cheat");
+	
+	public static final ITextComponent ENERGY_STORED = getComponent("energy.energy_stored");
+	public static final ITextComponent ENERGY_USED = getComponent("energy.energy_used");
+	public static final ITextComponent ENERGY_MAX_TRANSFER = getComponent("energy.max_transfer");
 
 	public static ITextComponent getComponent(String key) {
 		return new TranslationTextComponent("component." + Refinement.MOD_ID + "." + key);

@@ -1,6 +1,7 @@
-package com.ablackpikatchu.refinement.core.network.message;
+package com.ablackpikatchu.refinement.core.network.message.to_client;
 
 import com.ablackpikatchu.refinement.common.te.misc_tes.StorageBinTileEntity;
+import com.ablackpikatchu.refinement.core.network.message.IRefinementMessage;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;

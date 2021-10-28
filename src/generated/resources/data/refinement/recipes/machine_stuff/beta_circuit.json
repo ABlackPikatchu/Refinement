@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "APA"
+  ],
+  "key": {
+    "A": {
+      "item": "refinement:beta_alloy"
+    },
+    "P": {
+      "item": "refinement:alpha_circuit"
+    }
+  },
+  "result": {
+    "item": "refinement:beta_circuit"
+  }
+}

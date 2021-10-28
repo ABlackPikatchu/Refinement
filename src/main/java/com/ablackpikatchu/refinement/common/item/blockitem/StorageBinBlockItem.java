@@ -66,5 +66,16 @@ public class StorageBinBlockItem extends BlockItem {
 		**/
 		return super.useOn(pContext);
 	}
+	
+	public static void createTags(ItemStack stack, Block block) {
+		if (block instanceof StorageBinBlock) {
+			System.out.println("creation");
+			StorageBinBlock storageBin = (StorageBinBlock) block;
+			if (!stack.hasTag()) {
+				StorageBinHandler handler = new StorageBinHandler(storageBin.getStackLimit());
+				StorageBinTileEntity.handlerToNbt(handler, stack.getOrCreateTag());
+			}
+		}
+	}
 
 }

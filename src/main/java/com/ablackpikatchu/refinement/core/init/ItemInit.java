@@ -21,14 +21,14 @@ import com.ablackpikatchu.refinement.common.item.GluttonyBracelet;
 import com.ablackpikatchu.refinement.common.item.GritPaper;
 import com.ablackpikatchu.refinement.common.item.Magnet;
 import com.ablackpikatchu.refinement.common.item.MixingBowl;
-import com.ablackpikatchu.refinement.common.item.ModUpgradableArmor;
+import com.ablackpikatchu.refinement.common.item.RefinementUpgradableArmor;
 import com.ablackpikatchu.refinement.common.item.Mold;
 import com.ablackpikatchu.refinement.common.item.RefinedCoal;
-import com.ablackpikatchu.refinement.common.item.RefinedCoalBlockItem;
 import com.ablackpikatchu.refinement.common.item.ResourceStatueItem;
 import com.ablackpikatchu.refinement.common.item.TierUpgraderItem;
 import com.ablackpikatchu.refinement.common.item.UpgradeItem;
 import com.ablackpikatchu.refinement.common.item.blockitem.DNASequencerBlockItem;
+import com.ablackpikatchu.refinement.common.item.blockitem.RefinedCoalBlockItem;
 import com.ablackpikatchu.refinement.common.item.box.CustomLootBox;
 import com.ablackpikatchu.refinement.common.item.box.ModLootBox;
 import com.ablackpikatchu.refinement.common.item.box.RefinementLootBox;
@@ -385,22 +385,22 @@ public class ItemInit {
 		public static final Item REFINED_GOLD_BOOTS = refinedGoldArmour(FEET);
 
 		@RegisterItem(registryName = "refined_diamond_helmet")
-		public static final ModUpgradableArmor REFINED_DIAMOND_HELMET = refinedDiamondArmour(HEAD);
+		public static final RefinementUpgradableArmor REFINED_DIAMOND_HELMET = refinedDiamondArmour(HEAD);
 		@RegisterItem(registryName = "refined_diamond_chestplate")
-		public static final ModUpgradableArmor REFINED_DIAMOND_CHESTPLATE = refinedDiamondArmour(CHEST);
+		public static final RefinementUpgradableArmor REFINED_DIAMOND_CHESTPLATE = refinedDiamondArmour(CHEST);
 		@RegisterItem(registryName = "refined_diamond_leggings")
-		public static final ModUpgradableArmor REFINED_DIAMOND_LEGGINGS = refinedDiamondArmour(LEGS);
+		public static final RefinementUpgradableArmor REFINED_DIAMOND_LEGGINGS = refinedDiamondArmour(LEGS);
 		@RegisterItem(registryName = "refined_diamond_boots")
-		public static final ModUpgradableArmor REFINED_DIAMOND_BOOTS = refinedDiamondArmour(FEET);
+		public static final RefinementUpgradableArmor REFINED_DIAMOND_BOOTS = refinedDiamondArmour(FEET);
 		
 		@RegisterItem(registryName = "refined_netherite_helmet")
-		public static final ModUpgradableArmor REFINED_NETHERITE_HELMET = refinedNetheriteArmour(HEAD);
+		public static final RefinementUpgradableArmor REFINED_NETHERITE_HELMET = refinedNetheriteArmour(HEAD);
 		@RegisterItem(registryName = "refined_netherite_chestplate")
-		public static final ModUpgradableArmor REFINED_NETHERITE_CHESTPLATE = refinedNetheriteArmour(CHEST);
+		public static final RefinementUpgradableArmor REFINED_NETHERITE_CHESTPLATE = refinedNetheriteArmour(CHEST);
 		@RegisterItem(registryName = "refined_netherite_leggings")
-		public static final ModUpgradableArmor REFINED_NETHERITE_LEGGINGS = refinedNetheriteArmour(LEGS);
+		public static final RefinementUpgradableArmor REFINED_NETHERITE_LEGGINGS = refinedNetheriteArmour(LEGS);
 		@RegisterItem(registryName = "refined_netherite_boots")
-		public static final ModUpgradableArmor REFINED_NETHERITE_BOOTS = refinedNetheriteArmour(FEET);
+		public static final RefinementUpgradableArmor REFINED_NETHERITE_BOOTS = refinedNetheriteArmour(FEET);
 
 		private static Item refinedIronArmour(EquipmentSlotType slot) {
 			return new ArmorItem(ModArmorMaterial.REFINED_IRON_ARMOR, slot,
@@ -412,13 +412,13 @@ public class ItemInit {
 					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR));
 		}
 		
-		private static ModUpgradableArmor refinedDiamondArmour(EquipmentSlotType slot) {
-			return new ModUpgradableArmor(ModArmorMaterial.REFINED_DIAMOND_ARMOR, slot,
+		private static RefinementUpgradableArmor refinedDiamondArmour(EquipmentSlotType slot) {
+			return new RefinementUpgradableArmor(ModArmorMaterial.REFINED_DIAMOND_ARMOR, slot,
 					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR));
 		}
 		
-		private static ModUpgradableArmor refinedNetheriteArmour(EquipmentSlotType slot) {
-			return new ModUpgradableArmor(ModArmorMaterial.REFINED_NETHERITE_ARMOR, slot,
+		private static RefinementUpgradableArmor refinedNetheriteArmour(EquipmentSlotType slot) {
+			return new RefinementUpgradableArmor(ModArmorMaterial.REFINED_NETHERITE_ARMOR, slot,
 					new Item.Properties().tab(RefinementArmorGroup.REFINEMENT_ARMOR));
 		}
 

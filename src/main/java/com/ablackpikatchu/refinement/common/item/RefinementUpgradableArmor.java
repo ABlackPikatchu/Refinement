@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class ModUpgradableArmor extends ArmorItem {
+public class RefinementUpgradableArmor extends ArmorItem {
 
 	public static String effectRolled = "EffectRolled";
 	public static String storedEffect = "effect";
@@ -31,7 +31,7 @@ public class ModUpgradableArmor extends ArmorItem {
 
 	public static String inAnvil = "inAnvil";
 
-	public ModUpgradableArmor(IArmorMaterial p_i48534_1_, EquipmentSlotType p_i48534_2_, Properties p_i48534_3_) {
+	public RefinementUpgradableArmor(IArmorMaterial p_i48534_1_, EquipmentSlotType p_i48534_2_, Properties p_i48534_3_) {
 		super(p_i48534_1_, p_i48534_2_, p_i48534_3_);
 	}
 

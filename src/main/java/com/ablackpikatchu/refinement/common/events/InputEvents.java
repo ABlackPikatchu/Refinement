@@ -4,8 +4,8 @@ import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.item.blockitem.StorageBinBlockItem;
 import com.ablackpikatchu.refinement.core.init.KeybindsInit;
 import com.ablackpikatchu.refinement.core.network.RefinementNetwork;
-import com.ablackpikatchu.refinement.core.network.message.ConversionMessage;
-import com.ablackpikatchu.refinement.core.network.message.ToggleBinAutoRefillMessage;
+import com.ablackpikatchu.refinement.core.network.message.to_server.ConversionMessage;
+import com.ablackpikatchu.refinement.core.network.message.to_server.ToggleBinAutoRefillMessage;
 
 import net.minecraft.client.Minecraft;
 

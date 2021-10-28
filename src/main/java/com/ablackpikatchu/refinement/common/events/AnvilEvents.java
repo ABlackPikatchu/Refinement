@@ -3,7 +3,7 @@ package com.ablackpikatchu.refinement.common.events;
 import java.util.Random;
 
 import com.ablackpikatchu.refinement.common.item.ArmorUpgrader;
-import com.ablackpikatchu.refinement.common.item.ModUpgradableArmor;
+import com.ablackpikatchu.refinement.common.item.RefinementUpgradableArmor;
 import com.ablackpikatchu.refinement.common.recipe.AnvilRecipe;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
@@ -41,8 +41,8 @@ public class AnvilEvents {
 
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public static void armourUpgradingFinished(AnvilRepairEvent event) {
-		if (event.getItemResult().getItem() instanceof ModUpgradableArmor) {
-			NBTHelper.setBoolean(event.getItemResult(), ModUpgradableArmor.inAnvil, false);
+		if (event.getItemResult().getItem() instanceof RefinementUpgradableArmor) {
+			NBTHelper.setBoolean(event.getItemResult(), RefinementUpgradableArmor.inAnvil, false);
 		}
 	}
 

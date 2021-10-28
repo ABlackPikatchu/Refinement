@@ -84,7 +84,7 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
  * @author matyrobbrt
  * @author ABlackPikatchu
  */
-@Mod("refinement")
+@Mod(Refinement.MOD_ID)
 @Mod.EventBusSubscriber(modid = Refinement.MOD_ID, bus = Bus.MOD)
 public class Refinement {
 
@@ -158,6 +158,10 @@ public class Refinement {
 		forgeBus.addListener(this::onPlayerLeftClickBlock);
 		forgeBus.addListener(this::onPlayerRightClickBlock);
 		forgeBus.addListener(EventPriority.NORMAL, this::onRegisterCommands);
+	}
+	
+	public static ResourceLocation rl(String value) {
+		return new ResourceLocation(MOD_ID, value);
 	}
 
 	@SubscribeEvent(priority = EventPriority.HIGH)
