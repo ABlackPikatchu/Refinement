@@ -44,59 +44,59 @@ public class BlockInit {
 					() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).strength(5f)
 							.harvestLevel(1).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)
 							.requiresCorrectToolForDrops()));
-	
+
 	public static final RegistryObject<Block> TIN_BLOCK = BLOCKS
 			.register("tin_block",
 					() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).strength(5f)
 							.harvestLevel(1).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)
 							.requiresCorrectToolForDrops()));
-	
+
 	public static final RegistryObject<Block> SILVER_BLOCK = BLOCKS
 			.register("silver_block",
 					() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).strength(5f)
 							.harvestLevel(1).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)
 							.requiresCorrectToolForDrops()));
-	
+
 	public static final RegistryObject<Block> COPPER_BLOCK = BLOCKS
 			.register("copper_block",
 					() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).strength(5f)
 							.harvestLevel(1).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)
 							.requiresCorrectToolForDrops()));
-	
+
 	public static final RegistryObject<Block> REFINED_GOLD_BLOCK = BLOCKS.register("refined_gold_block",
 			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.GOLD).strength(3f).harvestLevel(2)
 					.harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).requiresCorrectToolForDrops()));
-	
+
 	public static final RegistryObject<Block> LUMIUM_BLOCK = BLOCKS.register("lumium_block",
 			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.GOLD).strength(3f).harvestLevel(2)
 					.harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).requiresCorrectToolForDrops()));
-	
+
 	public static final RegistryObject<Block> LEAD_BLOCK = BLOCKS.register("lead_block",
 			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.GOLD).strength(3f).harvestLevel(2)
 					.harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).requiresCorrectToolForDrops()));
-	
+
 	public static final RegistryObject<Block> REFINED_DIAMOND_BLOCK = BLOCKS
 			.register("refined_diamond_block",
 					() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.DIAMOND).strength(5f)
 							.harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)
 							.requiresCorrectToolForDrops()));
-	
+
 	public static final RegistryObject<Block> SIGNALUM_BLOCK = BLOCKS
 			.register("signalum_block",
 					() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.DIAMOND).strength(5f)
 							.harvestLevel(2).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)
 							.requiresCorrectToolForDrops()));
-	
+
 	public static final RegistryObject<Block> REFINED_NETHERITE_BLOCK = BLOCKS.register("refined_netherite_block",
 			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).strength(50f)
 					.harvestLevel(3).harvestTool(ToolType.PICKAXE).sound(SoundType.NETHERITE_BLOCK)
 					.requiresCorrectToolForDrops()));
-	
+
 	public static final RegistryObject<Block> ENDERIUM_BLOCK = BLOCKS.register("enderium_block",
 			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).strength(45f)
 					.harvestLevel(3).harvestTool(ToolType.PICKAXE).sound(SoundType.NETHERITE_BLOCK)
 					.requiresCorrectToolForDrops()));
-	
+
 	public static final RegistryObject<Block> MACHINE_FRAME = BLOCKS.register("machine_frame",
 			() -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.METAL).strength(5f)
 					.harvestLevel(1).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL).noOcclusion()
@@ -132,16 +132,18 @@ public class BlockInit {
 
 	public static final RegistryObject<Block> ENERGY_GENERATOR_BLOCK = BLOCKS.register("energy_generator",
 			() -> new EnergyGeneratorBlock());
-	
-	public static final RegistryObject<Block> SMELTER_BLOCK = BLOCKS.register("smelter",
-			() -> new SmelterBlock());
-	
-	public static final RegistryObject<Block> ALLOY_SMELTER_BLOCK = BLOCKS.register("alloy_smelter", AlloySmelterBlock::new);
-	
-	public static final RegistryObject<Block> ENERGY_CABLE_BLOCK = BLOCKS.register("energy_cable", EnergyCableBlock::new);
-	
-	public static final RegistryObject<StorageBinBlock> ALPHA_STORAGE_BIN_BLOCK = BLOCKS.register("alpha_storage_bin", () -> new StorageBinBlock(Tier.ALPHA, 4096));
-	
+
+	public static final RegistryObject<Block> SMELTER_BLOCK = BLOCKS.register("smelter", () -> new SmelterBlock());
+
+	public static final RegistryObject<Block> ALLOY_SMELTER_BLOCK = BLOCKS.register("alloy_smelter",
+			AlloySmelterBlock::new);
+
+	public static final RegistryObject<Block> ENERGY_CABLE_BLOCK = BLOCKS.register("energy_cable",
+			EnergyCableBlock::new);
+
+	public static final RegistryObject<StorageBinBlock> ALPHA_STORAGE_BIN_BLOCK = BLOCKS.register("alpha_storage_bin",
+			() -> new StorageBinBlock(Tier.ALPHA, 4096));
+
 	@RegisterBlock(registryName = "beta_storage_bin")
 	public static final StorageBinBlock BETA_STORAGE_BIN_BLOCK = new StorageBinBlock(Tier.BETA, 8192);
 	@RegisterBlock(registryName = "gamma_storage_bin")
@@ -150,8 +152,9 @@ public class BlockInit {
 	public static final StorageBinBlock EPSILON_STORAGE_BIN_BLOCK = new StorageBinBlock(Tier.EPSILON, 65536);
 	@RegisterBlock(registryName = "omega_storage_bin")
 	public static final StorageBinBlock OMEGA_STORAGE_BIN_BLOCK = new StorageBinBlock(Tier.OMEGA, 131072);
-	
-	public static final RegistryObject<Block> RESOURCE_STATUE_BLOCK = BLOCKS.register("resource_statue", () -> new ResourceStatueBlock());
+
+	public static final RegistryObject<Block> RESOURCE_STATUE_BLOCK = BLOCKS.register("resource_statue",
+			() -> new ResourceStatueBlock());
 
 	// POIs
 	public static final RegistryObject<Block> MATERIALS_STATION = BLOCKS.register("materials_station",
@@ -173,7 +176,7 @@ public class BlockInit {
 	public static final RegistryObject<Block> REFINED_SAPLING = BLOCKS.register("refined_sapling",
 			() -> new RefinedSaplingBlock(TreeInit.REFINED, AbstractBlock.Properties.of(Material.LEAVES)
 					.sound(SoundType.GRASS).strength(0f).randomTicks().noOcclusion()));
-	
+
 	private static RegistryObject<Block> oreBlock(String registryName) {
 		return BLOCKS.register(registryName, () -> new Block(AbstractBlock.Properties.copy(Blocks.IRON_ORE)));
 	}

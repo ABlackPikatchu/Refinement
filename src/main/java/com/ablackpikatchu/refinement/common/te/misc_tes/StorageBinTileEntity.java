@@ -61,7 +61,7 @@ public class StorageBinTileEntity extends TileEntity implements ITickableTileEnt
 	public StorageBinTileEntity(int stackLimit) {
 		this(TileEntityTypesInit.STORAGE_BIN_TILE_ENTITY_TYPE.get());
 		this.stackLimit = stackLimit;
-		this.itemHandler.setStackLimit(stackLimit);
+		itemHandler.setStackLimit(stackLimit);
 	}
 
 	public StorageBinTileEntity() {
@@ -88,8 +88,9 @@ public class StorageBinTileEntity extends TileEntity implements ITickableTileEnt
 		if (count >= itemHandler.getStoredItemCount() && itemHandler.isLocked(0)) {
 			itemHandler.setStoredItemCount(itemHandler.getStoredItemCount() - stack.getCount() + 1);
 			stack.shrink(1);
-		} else
+		} else {
 			itemHandler.setStoredItemCount(itemHandler.getStoredItemCount() - stack.getCount());
+		}
 
 		if (level != null) {
 			level.updateNeighborsAt(worldPosition, getBlockState().getBlock());
@@ -103,7 +104,7 @@ public class StorageBinTileEntity extends TileEntity implements ITickableTileEnt
 
 	@Override
 	public StorageBinHandler getItemHandler() {
-		return this.itemHandler;
+		return itemHandler;
 	}
 
 	public int getStoredItemStackSize() {
@@ -127,8 +128,9 @@ public class StorageBinTileEntity extends TileEntity implements ITickableTileEnt
 			return 0;
 
 		int countAdded = Math.min(count, stack.getCount());
-		if (itemHandler.getRemainingCapacity() < countAdded)
+		if (itemHandler.getRemainingCapacity() < countAdded) {
 			countAdded = Math.min(countAdded, itemHandler.getRemainingCapacity());
+		}
 
 		itemHandler.setStoredItemCount(itemHandler.getStoredItemCount() + countAdded);
 		stack.shrink(countAdded);
@@ -141,8 +143,9 @@ public class StorageBinTileEntity extends TileEntity implements ITickableTileEnt
 	public int interactPutCurrentItemIntoSlot(int slot, PlayerEntity player) {
 		int count = 0;
 		ItemStack playerStack = player.inventory.getSelected();
-		if (!playerStack.isEmpty())
+		if (!playerStack.isEmpty()) {
 			count = putItemsIntoSlot(slot, playerStack, playerStack.getCount());
+		}
 
 		return count;
 	}
@@ -155,26 +158,29 @@ public class StorageBinTileEntity extends TileEntity implements ITickableTileEnt
 				ItemStack subStack = player.inventory.getItem(i);
 				if (!subStack.isEmpty()) {
 					int subCount = putItemsIntoSlot(slot, subStack, subStack.getCount());
-					if (subCount > 0 && subStack.getCount() == 0)
+					if (subCount > 0 && subStack.getCount() == 0) {
 						player.inventory.setItem(i, ItemStack.EMPTY);
+					}
 
 					count += subCount;
 				}
 			}
 		}
 
-		if (count > 0)
+		if (count > 0) {
 			PlayerHelper.updatePlayerInventory(player);
+		}
 
 		return count;
 	}
 
 	public int interactPutItemsIntoSlot(int slot, PlayerEntity player) {
 		int count;
-		if (level.getGameTime() - lastClickTime < 10 && player.getUUID().equals(lastClickUUID))
+		if (level.getGameTime() - lastClickTime < 10 && player.getUUID().equals(lastClickUUID)) {
 			count = interactPutCurrentInventoryIntoSlot(slot, player);
-		else
+		} else {
 			count = interactPutCurrentItemIntoSlot(slot, player);
+		}
 
 		lastClickTime = level.getGameTime();
 		lastClickUUID = player.getUUID();
@@ -196,10 +202,11 @@ public class StorageBinTileEntity extends TileEntity implements ITickableTileEnt
 
 	@Override
 	public void tick() {
-		if (this.level.isClientSide())
+		if (level.isClientSide()) {
 			clientTick();
-		else
+		} else {
 			serverTick();
+		}
 	}
 
 	public void serverTick() {
@@ -245,8 +252,9 @@ public class StorageBinTileEntity extends TileEntity implements ITickableTileEnt
 	@Override
 	public void handleUpdateTag(BlockState state, CompoundNBT tag) {
 		load(state, tag);
-		if (getLevel() != null && !getLevel().isClientSide())
+		if (getLevel() != null && !getLevel().isClientSide()) {
 			syncClient(itemHandler.getStackInSlot(0), itemHandler.getStoredItemCount(), getStackLimit());
+		}
 	}
 
 	@Override
@@ -286,33 +294,31 @@ public class StorageBinTileEntity extends TileEntity implements ITickableTileEnt
 
 	@Override
 	public void setChanged() {
-		if (level != null && !level.isClientSide() && level.getBlockEntity(worldPosition) != null)
+		if (level != null && !level.isClientSide() && level.getBlockEntity(worldPosition) != null) {
 			syncClient(itemHandler.getStackInSlot(0), itemHandler.getStoredItemCount(), getStackLimit());
+		}
 		super.setChanged();
 	}
 
 	@Nonnull
 	@Override
 	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-		if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+		if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
 			return handler.cast();
-		}
 
 		return super.getCapability(cap, side);
 	}
 
 	protected void syncClient(ItemStack item, int count, int stackLimit) {
-		if (level == null)
+		if ((level == null) || level.isClientSide())
 			return;
-		if (level.isClientSide())
-			return;
-		
+
 		BaseNetwork.sendToAllTracking(RefinementNetwork.STORAGE_BIN_CHANNEL, new UpdateBinMessage(worldPosition, item, count, stackLimit), this);
 	}
 
 	@Override
 	public World getLevel() {
-		return this.level;
+		return level;
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -406,8 +412,8 @@ public class StorageBinTileEntity extends TileEntity implements ITickableTileEnt
 	@Override
 	public void setTier(Tier tier) {
 		Direction facing = getBlockState().getValue(StorageBinBlock.FACING);
-		boolean locked = this.itemHandler.isLocked(0);
-		
+		boolean locked = itemHandler.isLocked(0);
+
 		BlockState newState = getBlockState();
 		int newStackLimit = itemHandler.getSlotLimit(0);
 		if (tier == ALPHA) {
@@ -426,14 +432,14 @@ public class StorageBinTileEntity extends TileEntity implements ITickableTileEnt
 			newState = BlockInit.OMEGA_STORAGE_BIN_BLOCK.defaultBlockState().setValue(StorageBinBlock.FACING, facing).setValue(StorageBinBlock.LOCKED, locked);
 			newStackLimit = BlockInit.OMEGA_STORAGE_BIN_BLOCK.getStackLimit();
 		}
-		
+
 		itemHandler.setStackLimit(newStackLimit);
-		this.stackLimit = newStackLimit;
-		
-		this.level.setBlockAndUpdate(worldPosition, newState);
-		if (this.level.getBlockEntity(worldPosition) instanceof StorageBinTileEntity) {
-			StorageBinTileEntity newTile = (StorageBinTileEntity) this.level.getBlockEntity(worldPosition);
-			newTile.itemHandler.copyFromOther(this.itemHandler);
+		stackLimit = newStackLimit;
+
+		level.setBlockAndUpdate(worldPosition, newState);
+		if (level.getBlockEntity(worldPosition) instanceof StorageBinTileEntity) {
+			StorageBinTileEntity newTile = (StorageBinTileEntity) level.getBlockEntity(worldPosition);
+			newTile.itemHandler.copyFromOther(itemHandler);
 		}
  	}
 

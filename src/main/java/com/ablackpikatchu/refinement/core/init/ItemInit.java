@@ -1,32 +1,18 @@
 package com.ablackpikatchu.refinement.core.init;
 
-import static com.ablackpikatchu.refinement.common.ModRarity.DARK_PURPLE_RARITY;
-import static com.ablackpikatchu.refinement.common.ModRarity.DARK_RED_RARITY;
-import static com.ablackpikatchu.refinement.common.ModRarity.GOLD_RARITY;
 import static com.ablackpikatchu.refinement.common.ModRarity.*;
 import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.REFINEMENT;
 import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.REFINEMENT_MACHINE;
 import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.REFINEMENT_MATERIALS;
 import static com.ablackpikatchu.refinement.core.itemgroup.RefinementItemGroup.REFINEMENT_TOOLS_WEAPONS;
-
-import static net.minecraft.inventory.EquipmentSlotType.*;
+import static net.minecraft.inventory.EquipmentSlotType.CHEST;
+import static net.minecraft.inventory.EquipmentSlotType.FEET;
+import static net.minecraft.inventory.EquipmentSlotType.HEAD;
+import static net.minecraft.inventory.EquipmentSlotType.LEGS;
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.ModRarity;
-import com.ablackpikatchu.refinement.common.item.ArmorUpgrader;
-import com.ablackpikatchu.refinement.common.item.AutoEjectUpgrade;
-import com.ablackpikatchu.refinement.common.item.AutoImportUpgrade;
-import com.ablackpikatchu.refinement.common.item.Cogwheel;
-import com.ablackpikatchu.refinement.common.item.GluttonyBracelet;
-import com.ablackpikatchu.refinement.common.item.GritPaper;
-import com.ablackpikatchu.refinement.common.item.Magnet;
-import com.ablackpikatchu.refinement.common.item.MixingBowl;
-import com.ablackpikatchu.refinement.common.item.RefinementUpgradableArmor;
-import com.ablackpikatchu.refinement.common.item.Mold;
-import com.ablackpikatchu.refinement.common.item.RefinedCoal;
-import com.ablackpikatchu.refinement.common.item.ResourceStatueItem;
-import com.ablackpikatchu.refinement.common.item.TierUpgraderItem;
-import com.ablackpikatchu.refinement.common.item.UpgradeItem;
+import com.ablackpikatchu.refinement.common.item.*;
 import com.ablackpikatchu.refinement.common.item.blockitem.DNASequencerBlockItem;
 import com.ablackpikatchu.refinement.common.item.blockitem.RefinedCoalBlockItem;
 import com.ablackpikatchu.refinement.common.item.box.CustomLootBox;
@@ -53,19 +39,7 @@ import com.ablackpikatchu.refinement.core.itemgroup.RefinementMaterialsGroup;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementToolsWeaponsGroup;
 
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Food;
-import net.minecraft.item.HoeItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.PickaxeItem;
-import net.minecraft.item.Rarity;
-import net.minecraft.item.ShovelItem;
-import net.minecraft.item.SwordItem;
+import net.minecraft.item.*;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.ResourceLocation;

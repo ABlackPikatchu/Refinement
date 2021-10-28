@@ -1,5 +1,6 @@
 package com.ablackpikatchu.refinement.common.block.machine;
 
+import com.ablackpikatchu.refinement.common.block.MachineBlock;
 import com.ablackpikatchu.refinement.common.te.machine.CarbonGeneratorTileEntity;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
 
@@ -15,10 +16,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer.Builder;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
@@ -32,10 +30,7 @@ import net.minecraft.world.World;
 
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class CarbonGeneratorBlock extends Block {
-
-	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-	public static final BooleanProperty LIT = BooleanProperty.create("lit");
+public class CarbonGeneratorBlock extends MachineBlock {
 
 	public CarbonGeneratorBlock() {
 		super(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(10f)

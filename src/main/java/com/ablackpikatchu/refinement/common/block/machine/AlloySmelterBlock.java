@@ -3,6 +3,7 @@ package com.ablackpikatchu.refinement.common.block.machine;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ablackpikatchu.refinement.common.block.MachineBlock;
 import com.ablackpikatchu.refinement.common.te.machine.AlloySmelterTileEntity;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
 
@@ -19,10 +20,7 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootParameters;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer.Builder;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
@@ -36,10 +34,7 @@ import net.minecraft.world.World;
 
 import net.minecraftforge.fml.network.NetworkHooks;
 
-public class AlloySmelterBlock extends Block {
-	
-	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-	public static final BooleanProperty LIT = BooleanProperty.create("lit");
+public class AlloySmelterBlock extends MachineBlock {
 
 	public AlloySmelterBlock() {
 		super(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(10f).sound(SoundType.METAL)
@@ -93,8 +88,8 @@ public class AlloySmelterBlock extends Block {
 	}
 
 	@Override
-	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player,
-			Hand handIn, BlockRayTraceResult hit) {
+	public ActionResultType use(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn,
+			BlockRayTraceResult hit) {
 		if (!worldIn.isClientSide()) {
 			TileEntity te = worldIn.getBlockEntity(pos);
 			if (te instanceof AlloySmelterTileEntity) {
@@ -103,7 +98,7 @@ public class AlloySmelterBlock extends Block {
 		}
 		return ActionResultType.SUCCESS;
 	}
-	
+
 	@Override
 	public int getAnalogOutputSignal(BlockState blockState, World worldIn, BlockPos pos) {
 		return Container.getRedstoneSignalFromBlockEntity(worldIn.getBlockEntity(pos));
@@ -119,7 +114,7 @@ public class AlloySmelterBlock extends Block {
 				smleter.setCustomName(stack.getDisplayName());
 		}
 	}
-	
+
 	@Override
 	public List<ItemStack> getDrops(BlockState pState, net.minecraft.loot.LootContext.Builder pBuilder) {
 		List<ItemStack> drops = new ArrayList<>();
