@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.api.recipe.AbstractRefinementRecipe;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
 import com.ablackpikatchu.refinement.core.util.InventoryUtils;
@@ -27,7 +28,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public class AlloySmeltingRecipe extends AbstractModRecipe {
+public class AlloySmeltingRecipe extends AbstractRefinementRecipe {
 
 	public static final Serializer SERIALIZER = new Serializer();
 	public static final ResourceLocation REGISTRY_NAME = new ResourceLocation(MOD_ID, "alloy_smelting");

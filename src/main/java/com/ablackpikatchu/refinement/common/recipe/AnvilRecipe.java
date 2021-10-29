@@ -2,6 +2,7 @@ package com.ablackpikatchu.refinement.common.recipe;
 
 import static com.ablackpikatchu.refinement.Refinement.MOD_ID;
 
+import com.ablackpikatchu.refinement.api.recipe.AbstractRefinementRecipe;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
 import com.ablackpikatchu.refinement.core.util.helper.JSONHelper;
 import com.ablackpikatchu.refinement.datafixers.util.json.JSONInput;
@@ -20,7 +21,7 @@ import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public class AnvilRecipe extends AbstractModRecipe {
+public class AnvilRecipe extends AbstractRefinementRecipe {
 	
 	public static final Serializer SERIALIZER = new Serializer();
 	public static final ResourceLocation REGISTRY_NAME = new ResourceLocation(MOD_ID, "anvil");

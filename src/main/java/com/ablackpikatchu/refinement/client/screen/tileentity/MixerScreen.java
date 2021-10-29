@@ -1,6 +1,7 @@
 package com.ablackpikatchu.refinement.client.screen.tileentity;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.api.screen.tileentity.MachineContainerScreen;
 import com.ablackpikatchu.refinement.common.container.MixerContainer;
 import com.mojang.blaze3d.matrix.MatrixStack;
 

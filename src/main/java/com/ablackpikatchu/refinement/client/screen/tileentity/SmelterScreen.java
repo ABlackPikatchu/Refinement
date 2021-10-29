@@ -1,6 +1,7 @@
 package com.ablackpikatchu.refinement.client.screen.tileentity;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.api.screen.tileentity.MachineContainerScreen;
 import com.ablackpikatchu.refinement.client.screen.element.EnergyInfoTextBoxElement;
 import com.ablackpikatchu.refinement.common.container.SmelterContainer;
 import com.ablackpikatchu.refinement.core.util.text.NumberFormatting;

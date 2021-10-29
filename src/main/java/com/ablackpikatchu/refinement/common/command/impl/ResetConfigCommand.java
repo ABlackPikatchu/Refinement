@@ -2,9 +2,9 @@ package com.ablackpikatchu.refinement.common.command.impl;
 
 import static net.minecraft.command.Commands.literal;
 
+import com.ablackpikatchu.refinement.api.config.json.JsonConfig;
 import com.ablackpikatchu.refinement.common.command.BaseCommand;
 import com.ablackpikatchu.refinement.core.config.ModJsonConfigs;
-import com.ablackpikatchu.refinement.core.config.json.JsonConfig;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;

@@ -5,10 +5,26 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class NBTHelper {
+	
+	public static BlockPos getBlockPos(ItemStack stack, String key) {
+		CompoundNBT nbt = getTagCompound(stack).getCompound(key);
+		boolean hasData = nbt.getDouble("x") != 0 && nbt.getDouble("y") != 0 && nbt.getDouble("z") != 0;
+		return hasData ? new BlockPos(nbt.getDouble("x"), nbt.getDouble("y"), nbt.getDouble("z")) : null;
+	}
+	
+	public static void setBlockPos(ItemStack stack, String key, BlockPos value) {
+		CompoundNBT nbt = new CompoundNBT();
+		nbt.putDouble("x", value.getX());
+		nbt.putDouble("y", value.getY());
+		nbt.putDouble("z", value.getZ());
+		getTagCompound(stack).put(key, nbt);
+	}
+	
 	public static boolean getBoolean(ItemStack stack, String key) {
 		return stack.hasTag() && getTagCompound(stack).getBoolean(key);
 	}
@@ -64,11 +80,11 @@ public class NBTHelper {
 	public static void setFloat(ItemStack stack, String key, float value) {
 		getTagCompound(stack).putFloat(key, value);
 	}
-	
+
 	public static Item getItem(ItemStack stack, String key) {
 		return ForgeRegistries.ITEMS.getValue(new ResourceLocation(getString(stack, key)));
 	}
-	
+
 	public static void setItem(ItemStack stack, String key, IItemProvider item) {
 		setString(stack, key, item.asItem().getRegistryName().toString());
 	}

@@ -26,7 +26,7 @@ public class CommonConfig {
 	// DNA Sequencer
 	public static ForgeConfigSpec.ConfigValue<Integer> DNA_SEQUENCER_DEFAULT_PROCESS_TIME;
 	public static ForgeConfigSpec.ConfigValue<Integer> DNA_SEQUENCER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE;
-	
+
 	// Carbon Generator
 	public static ForgeConfigSpec.ConfigValue<Integer> CARBON_GENERATOR_DEFAULT_PROCESS_TIME;
 	public static ForgeConfigSpec.ConfigValue<Integer> CARBON_GENERATOR_TIME_DECREASED_BY_EACH_SPEED_UPGRADE;
@@ -74,6 +74,7 @@ public class CommonConfig {
 		addAlloySmelterConfig();
 		addCarbonGeneratorConfig();
 		addEnergyGeneratorConfig();
+		addEnergyTransmitterConfig();
 		addSmelterConfig();
 
 		BUILDER.pop();
@@ -129,7 +130,7 @@ public class CommonConfig {
 		SPEC = BUILDER.build();
 
 	}
-	
+
 	public static ForgeConfigSpec.ConfigValue<Integer> GRINDER_ENERGY_USAGE_PER_SPEED_UPGRADE;
 	public static ForgeConfigSpec.ConfigValue<Integer> GRINDER_DEFAULT_ENERGY_USAGE;
 
@@ -183,12 +184,12 @@ public class CommonConfig {
 				.define("speedUpgradeTimeDecreased", 10);
 		BUILDER.pop();
 	}
-	
+
 	// Alloy Smelter
 	public static ForgeConfigSpec.ConfigValue<Integer> ALLOY_SMELTER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE;
 	public static ForgeConfigSpec.ConfigValue<Integer> ALLOY_SMELTER_ENERGY_USAGE_PER_SPEED_UPGRADE;
 	public static ForgeConfigSpec.ConfigValue<Integer> ALLOY_SMELTER_DEFAULT_ENERGY_USAGE;
-	
+
 	public static void addAlloySmelterConfig() {
 		BUILDER.push("Alloy_Smelter");
 		ALLOY_SMELTER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE = BUILDER.comment(
@@ -230,6 +231,18 @@ public class CommonConfig {
 				.define("fuelLasting", 200);
 		ENERGY_GENERATOR_ENERGY_MADE = BUILDER.comment("The energy made by the Energy Generator (per tick)")
 				.define("energyMade", 50);
+
+		BUILDER.pop();
+	}
+
+	public static ForgeConfigSpec.ConfigValue<Integer> ENERGY_TRANSMITTER_ENERGY_USED_PER_OPERATION;
+
+	public static void addEnergyTransmitterConfig() {
+		BUILDER.push("Energy_Transmitter");
+
+		ENERGY_TRANSMITTER_ENERGY_USED_PER_OPERATION = BUILDER.comment(
+				"The amount of energy the Energy Transmitter uses per transfer operation. This amount is multiplied by the number of Transmitter Cards the transmitter has. (Default value is 40)")
+				.define("energyUsedPerOperation", 40);
 
 		BUILDER.pop();
 	}

@@ -10,6 +10,8 @@ import com.ablackpikatchu.refinement.common.te.machine.MixerTileEntity;
 import com.ablackpikatchu.refinement.common.te.machine.MoldPressTileEntity;
 import com.ablackpikatchu.refinement.common.te.machine.SmelterTileEntity;
 import com.ablackpikatchu.refinement.common.te.misc_tes.EnergyCableTileEntity;
+import com.ablackpikatchu.refinement.common.te.misc_tes.EnergyReceiverTileEntity;
+import com.ablackpikatchu.refinement.common.te.misc_tes.EnergyTransmitterTileEntity;
 import com.ablackpikatchu.refinement.common.te.misc_tes.ResourceStatueTileEntity;
 import com.ablackpikatchu.refinement.common.te.misc_tes.StorageBinTileEntity;
 import com.ablackpikatchu.refinement.common.te.misc_tes.VaccumulatorTileEntity;
@@ -66,6 +68,14 @@ public class TileEntityTypesInit {
 	public static final RegistryObject<TileEntityType<StorageBinTileEntity>> STORAGE_BIN_TILE_ENTITY_TYPE = TILE_ENTITY_TYPE
 			.register("storage_bin",
 					() -> TileEntityType.Builder.of(StorageBinTileEntity::new, BlockLists.STORAGE_BINS).build(null));
+
+	public static final RegistryObject<TileEntityType<EnergyTransmitterTileEntity>> ENERGY_TRANSMITTER_TILE_ENTITY_TYPE = TILE_ENTITY_TYPE
+			.register("energy_transmitter", () -> TileEntityType.Builder
+					.of(EnergyTransmitterTileEntity::new, BlockInit.ENERGY_TRANSMITTER_BLOCK).build(null));
+	
+	public static final RegistryObject<TileEntityType<EnergyReceiverTileEntity>> ENERGY_RECEIVER_TILE_ENTITY_TYPE = TILE_ENTITY_TYPE
+			.register("energy_receiver", () -> TileEntityType.Builder
+					.of(EnergyReceiverTileEntity::new, BlockInit.ENERGY_RECEIVER_BLOCK).build(null));
 
 	public static final RegistryObject<TileEntityType<EnergyCableTileEntity>> ENERGY_CABLE_TILE_ENTITY_TYPE = TILE_ENTITY_TYPE
 			.register("cable", () -> TileEntityType.Builder

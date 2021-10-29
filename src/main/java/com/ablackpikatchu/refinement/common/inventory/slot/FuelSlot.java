@@ -1,6 +1,6 @@
 package com.ablackpikatchu.refinement.common.inventory.slot;
 
-import com.ablackpikatchu.refinement.common.te.MachineTileEntity;
+import com.ablackpikatchu.refinement.api.te.MachineTileEntity;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 
 import net.minecraft.inventory.IInventory;

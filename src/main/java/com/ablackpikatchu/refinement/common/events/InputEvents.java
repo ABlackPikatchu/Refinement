@@ -48,7 +48,7 @@ public class InputEvents {
 
 	private static void onInput(Minecraft mc, int key, int action) {
 		if (KeybindsInit.conversionKey.isDown()) {
-			RefinementNetwork.CONVERSION_CHANNEL.sendToServer(new ConversionMessage(key));
+			RefinementNetwork.CONVERSION_CHANNEL.sendToServer(new ConversionMessage());
 		}
 	}
 

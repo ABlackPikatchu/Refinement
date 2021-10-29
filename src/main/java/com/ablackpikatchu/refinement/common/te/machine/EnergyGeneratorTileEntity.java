@@ -1,9 +1,9 @@
 package com.ablackpikatchu.refinement.common.te.machine;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.api.te.SidedInventoryTileEntity;
 import com.ablackpikatchu.refinement.common.block.machine.EnergyGeneratorBlock;
 import com.ablackpikatchu.refinement.common.container.EnergyGeneratorContainer;
-import com.ablackpikatchu.refinement.common.te.SidedInventoryTileEntity;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
@@ -69,7 +69,7 @@ public class EnergyGeneratorTileEntity extends SidedInventoryTileEntity {
     @Override
     public void serverTick() {
     	TileEntityHelper.setStateProperty(this, EnergyGeneratorBlock.LIT, false);
-        handleNewAutoImport(null, 1, 0);
+        handleAutoImport(null, 1, 0);
         energyStorage.energyMade = CommonConfig.ENERGY_GENERATOR_ENERGY_MADE.get();
         this.maxWaitTime = CommonConfig.ENERGY_GENERATOR_FUEL_LASTING.get();
         if (this.getItem(0).getItem() == ItemInit.REFINED_CARBON_INGOT.get() && energyStorage.canMakeEnergy()) {

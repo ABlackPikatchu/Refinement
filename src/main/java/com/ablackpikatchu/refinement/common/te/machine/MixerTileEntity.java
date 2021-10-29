@@ -5,10 +5,10 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.api.te.SidedInventoryTileEntity;
 import com.ablackpikatchu.refinement.common.block.machine.MixerBlock;
 import com.ablackpikatchu.refinement.common.container.MixerContainer;
 import com.ablackpikatchu.refinement.common.recipe.MixerRecipe;
-import com.ablackpikatchu.refinement.common.te.SidedInventoryTileEntity;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
@@ -58,9 +58,9 @@ public class MixerTileEntity extends SidedInventoryTileEntity implements ITickab
 		if (!this.level.isClientSide()) {
 			handleSpeedUpgrades(4, CommonConfig.MIXER_DEFAULT_PROCESS_TIME.get(),
 					CommonConfig.MIXER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get());
-			handleNewAutoEject(5, 2);
+			handleAutoEject(5, 2);
 			handleFuelAutoImport(6, 3);
-			handleNewAutoImport(RecipeInit.MIXER_RECIPE, 6, 0, 1);
+			handleAutoImport(RecipeInit.MIXER_RECIPE, 6, 0, 1);
 			this.level.setBlockAndUpdate(this.getBlockPos(), this.getBlockState().setValue(MixerBlock.LIT, false));
 			if (this.getItem(3).getItem() == ItemInit.REFINED_CARBON_INGOT.get()
 					&& this.getItem(3).getCount() >= this.usedCarbon && getRecipe() != null) {

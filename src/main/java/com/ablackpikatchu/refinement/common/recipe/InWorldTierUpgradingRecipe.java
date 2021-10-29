@@ -2,6 +2,7 @@ package com.ablackpikatchu.refinement.common.recipe;
 
 import static com.ablackpikatchu.refinement.Refinement.MOD_ID;
 
+import com.ablackpikatchu.refinement.api.recipe.AbstractRefinementRecipe;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -18,7 +19,7 @@ import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public class InWorldTierUpgradingRecipe extends AbstractModRecipe {
+public class InWorldTierUpgradingRecipe extends AbstractRefinementRecipe {
 	
 	public final ResourceLocation id;
 	private final Ingredient tierUpgrader;

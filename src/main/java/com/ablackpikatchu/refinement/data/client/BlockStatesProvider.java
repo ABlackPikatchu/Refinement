@@ -5,7 +5,7 @@ import static com.ablackpikatchu.refinement.Refinement.MOD_ID;
 import java.util.HashMap;
 
 import com.ablackpikatchu.refinement.Refinement;
-import com.ablackpikatchu.refinement.common.block.MachineBlock;
+import com.ablackpikatchu.refinement.api.block.MachineBlock;
 import com.ablackpikatchu.refinement.common.block.StorageBinBlock;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.data.maps.LootTableMaps;

@@ -1,15 +1,15 @@
 package com.ablackpikatchu.refinement.data.patchouli;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.api.datagen.patchouli.PatchouliGenProvider;
+import com.ablackpikatchu.refinement.api.datagen.patchouli.page.CraftingRecipePage;
+import com.ablackpikatchu.refinement.api.datagen.patchouli.page.SpotlightPage;
+import com.ablackpikatchu.refinement.api.datagen.patchouli.page.TextPage;
+import com.ablackpikatchu.refinement.api.datagen.patchouli.type.PatchouliBook;
+import com.ablackpikatchu.refinement.api.datagen.patchouli.type.PatchouliCategory;
+import com.ablackpikatchu.refinement.api.datagen.patchouli.type.PatchouliEntry;
+import com.ablackpikatchu.refinement.api.datagen.patchouli.vars.StringItemStack;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
-import com.ablackpikatchu.refinement.data.patchouli.builder.PatchouliGenProvider;
-import com.ablackpikatchu.refinement.data.patchouli.builder.page.CraftingRecipePage;
-import com.ablackpikatchu.refinement.data.patchouli.builder.page.SpotlightPage;
-import com.ablackpikatchu.refinement.data.patchouli.builder.page.TextPage;
-import com.ablackpikatchu.refinement.data.patchouli.builder.type.PatchouliBook;
-import com.ablackpikatchu.refinement.data.patchouli.builder.type.PatchouliCategory;
-import com.ablackpikatchu.refinement.data.patchouli.builder.type.PatchouliEntry;
-import com.ablackpikatchu.refinement.data.patchouli.builder.vars.StringItemStack;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.ItemStack;

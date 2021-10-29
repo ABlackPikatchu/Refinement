@@ -3,7 +3,7 @@ package com.ablackpikatchu.refinement.common.block.machine;
 import java.util.Random;
 import java.util.stream.Stream;
 
-import com.ablackpikatchu.refinement.common.block.MachineBlock;
+import com.ablackpikatchu.refinement.api.block.MachineBlock;
 import com.ablackpikatchu.refinement.common.te.machine.DNASequencerTileEntity;
 import com.ablackpikatchu.refinement.core.init.ParticleTypesInit;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;

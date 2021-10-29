@@ -1,6 +1,7 @@
 package com.ablackpikatchu.refinement.client.render;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.common.particle.ColouredParticle;
 import com.ablackpikatchu.refinement.common.particle.DNAParticle;
 import com.ablackpikatchu.refinement.core.init.ParticleTypesInit;
 
@@ -19,6 +20,7 @@ public class Particles {
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public static void registerParticles(ParticleFactoryRegisterEvent event) {
 		Minecraft.getInstance().particleEngine.register(ParticleTypesInit.DNA_PARTICLES.get(), DNAParticle.Factory::new);
+		Minecraft.getInstance().particleEngine.register(ParticleTypesInit.COLOURED_PARTICLE.get(), ColouredParticle.Factory::new);
 	}
 	
 }

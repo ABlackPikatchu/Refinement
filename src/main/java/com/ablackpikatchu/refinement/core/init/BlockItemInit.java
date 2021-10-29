@@ -75,27 +75,35 @@ public class BlockItemInit {
 		@RegisterItem(registryName = "mold_press")
 		public static final BlockItem MOLD_PRESS_ITEM = new BlockItem(BlockInit.MOLD_PRESS.get(),
 				new Item.Properties().tab(REFINEMENT_MACHINE));
-		
+
 		@RegisterBlockItem
 		public static final RefinementBlockItem SMELTER_ITEM = machineItem(BlockInit.SMELTER_BLOCK.get());
+		@RegisterBlockItem
+		public static final RefinementBlockItem ENERGY_GENERATOR_ITEM = machineItem(
+				BlockInit.ENERGY_GENERATOR_BLOCK.get());
+		@RegisterBlockItem
+		public static final RefinementBlockItem CARBON_GENERATOR_ITEM = machineItem(
+				BlockInit.CARBON_GENERATOR_BLOCK.get());
 		
 		@RegisterBlockItem
-		public static final RefinementBlockItem ENERGY_GENERATOR_ITEM = machineItem(BlockInit.ENERGY_GENERATOR_BLOCK.get());
-		
+		public static final RefinementBlockItem ENERGY_TRANSMITTER_ITEM = machineItem(
+				BlockInit.ENERGY_TRANSMITTER_BLOCK);
 		@RegisterBlockItem
-		public static final RefinementBlockItem CARBON_GENERATOR_ITEM = machineItem(BlockInit.CARBON_GENERATOR_BLOCK.get());
-		
+		public static final RefinementBlockItem ENERGY_RECEIVER_ITEM = machineItem(
+				BlockInit.ENERGY_RECEIVER_BLOCK);
+
 		private static RefinementBlockItem machineItem(Block machine) {
 			return new RefinementBlockItem(machine, new Item.Properties().tab(REFINEMENT_MACHINE));
 		}
 
 	}
-	
+
 	@OnRegistryEvent(eventType = com.ablackpikatchu.refinement.core.annotation.registries.OnRegistryEvent.RegistryEvent.ITEMS)
 	public static void onRegisterItems(RegistryEvent.Register<Item> event) {
 		event.getRegistry().register(BLANK_ORE_ITEM.setRegistryName(new ResourceLocation(MOD_ID, "blank_ore")));
 	}
-	
-	public static final BlockItem BLANK_ORE_ITEM = new BlockItem(BlockInit.BLANK_ORE.get(), new Item.Properties().tab(RefinementItemGroup.REFINEMENT));
+
+	public static final BlockItem BLANK_ORE_ITEM = new BlockItem(BlockInit.BLANK_ORE.get(),
+			new Item.Properties().tab(RefinementItemGroup.REFINEMENT));
 
 }

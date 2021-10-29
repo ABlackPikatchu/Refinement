@@ -1,42 +1,29 @@
 package com.ablackpikatchu.refinement.core.network.message.to_server;
 
-import java.util.function.Supplier;
-
+import com.ablackpikatchu.refinement.api.network.message.IRefinementMessage;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.util.Conversions;
 
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 
-import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraftforge.fml.network.NetworkEvent.Context;
 
-public class ConversionMessage {
-	public int key;
-
-	public ConversionMessage() {
-
-	}
-
-	public ConversionMessage(int key) {
-		this.key = key;
-	}
-
-	public static void encode(ConversionMessage message, PacketBuffer buffer) {
-		buffer.writeInt(message.key);
-	}
+public class ConversionMessage implements IRefinementMessage {
 
 	public static ConversionMessage decode(PacketBuffer buffer) {
-		return new ConversionMessage(buffer.readInt());
+		return new ConversionMessage();
 	}
 
-	public static void handle(ConversionMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
-		NetworkEvent.Context context = contextSupplier.get();
-		context.enqueueWork(() -> {
-			ServerPlayerEntity player = context.getSender();
-			if (CommonConfig.ENABLE_CONVERSION.get())
-				Conversions.convert(player);
-		});
-		context.setPacketHandled(true);
+	@Override
+	public void handle(Context context) {
+		ServerPlayerEntity player = context.getSender();
+		if (CommonConfig.ENABLE_CONVERSION.get())
+			Conversions.convert(player);
+	}
+
+	@Override
+	public void encode(PacketBuffer buffer) {
 	}
 
 }

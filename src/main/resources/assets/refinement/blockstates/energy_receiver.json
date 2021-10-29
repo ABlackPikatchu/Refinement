@@ -1,0 +1,29 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "refinement:block/energy_transmitter",
+      "x": 270,
+      "y": -90
+    },
+    "facing=up": {
+      "model": "refinement:block/energy_transmitter"
+    },
+    "facing=south": {
+      "model": "refinement:block/energy_transmitter",
+      "x": -90
+    },
+    "facing=west": {
+      "model": "refinement:block/energy_transmitter",
+      "x": 270,
+      "y": 90
+    },
+    "facing=down": {
+      "model": "refinement:block/energy_transmitter",
+      "x": 180
+    },
+    "facing=north": {
+      "model": "refinement:block/energy_transmitter",
+      "x": 90
+    }
+  }
+}

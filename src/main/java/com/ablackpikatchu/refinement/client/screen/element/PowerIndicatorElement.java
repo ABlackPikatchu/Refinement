@@ -1,5 +1,6 @@
 package com.ablackpikatchu.refinement.client.screen.element;
 
+import com.ablackpikatchu.refinement.api.screen.element.GuiElement;
 import com.ablackpikatchu.refinement.core.util.enums.GuiTextures;
 import com.mojang.blaze3d.matrix.MatrixStack;
 

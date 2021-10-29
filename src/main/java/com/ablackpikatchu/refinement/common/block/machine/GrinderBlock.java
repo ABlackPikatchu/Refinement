@@ -41,7 +41,7 @@ public class GrinderBlock extends Block {
 
 	public GrinderBlock() {
 		super(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(10f).sound(SoundType.METAL)
-				.harvestLevel(4));
+				.harvestLevel(4).lightLevel(state -> Boolean.TRUE.equals(state.getValue(LIT)) ? 7 : 0));
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, false));
 	}
 
@@ -60,14 +60,6 @@ public class GrinderBlock extends Block {
 	@Override
 	public BlockState rotate(BlockState state, Rotation rot) {
 		return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
-	}
-
-	@Override
-	public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
-		if (state.getValue(LIT) == true)
-			return 7;
-		else
-			return 0;
 	}
 
 	@Override

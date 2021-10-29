@@ -3,7 +3,7 @@ package com.ablackpikatchu.refinement.common.block.machine;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ablackpikatchu.refinement.common.block.MachineBlock;
+import com.ablackpikatchu.refinement.api.block.MachineBlock;
 import com.ablackpikatchu.refinement.common.te.machine.AlloySmelterTileEntity;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
 
@@ -38,8 +38,8 @@ public class AlloySmelterBlock extends MachineBlock {
 
 	public AlloySmelterBlock() {
 		super(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(10f).sound(SoundType.METAL)
-				.harvestLevel(4));
-		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, false));
+				.harvestLevel(4).lightLevel(MachineBlock::lightLevel));
+		this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, false));
 	}
 
 	@Override
@@ -57,14 +57,6 @@ public class AlloySmelterBlock extends MachineBlock {
 	@Override
 	public BlockState rotate(BlockState state, Rotation rot) {
 		return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
-	}
-
-	@Override
-	public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
-		if (state.getValue(LIT) == true)
-			return 7;
-		else
-			return 0;
 	}
 
 	@Override
@@ -110,8 +102,9 @@ public class AlloySmelterBlock extends MachineBlock {
 		TileEntity tile = worldIn.getBlockEntity(pos);
 		if (tile instanceof AlloySmelterTileEntity) {
 			AlloySmelterTileEntity smleter = (AlloySmelterTileEntity) tile;
-			if (stack.hasCustomHoverName())
+			if (stack.hasCustomHoverName()) {
 				smleter.setCustomName(stack.getDisplayName());
+			}
 		}
 	}
 

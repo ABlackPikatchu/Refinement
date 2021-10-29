@@ -5,10 +5,10 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.api.te.SidedInventoryTileEntity;
 import com.ablackpikatchu.refinement.common.block.machine.MoldPressBlock;
 import com.ablackpikatchu.refinement.common.container.MoldPressContainer;
 import com.ablackpikatchu.refinement.common.recipe.MoldPressRecipe;
-import com.ablackpikatchu.refinement.common.te.SidedInventoryTileEntity;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
@@ -59,9 +59,9 @@ public class MoldPressTileEntity extends SidedInventoryTileEntity implements ITi
 		if (!this.level.isClientSide()) {
 			handleSpeedUpgrades(4, CommonConfig.MOLD_PRESS_DEFAULT_PROCESS_TIME.get(),
 					CommonConfig.MOLD_PRESS_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get());
-			handleNewAutoEject(5, 1);
+			handleAutoEject(5, 1);
 			handleFuelAutoImport(6, 3);
-			handleNewAutoImport(RecipeInit.MOLD_PRESS_RECIPE, 6, 0);
+			handleAutoImport(RecipeInit.MOLD_PRESS_RECIPE, 6, 0);
 			this.level.setBlockAndUpdate(this.getBlockPos(), this.getBlockState().setValue(MoldPressBlock.LIT, false));
 			if (getRecipe() != null && this.getItem(3).getItem() == ItemInit.REFINED_CARBON_INGOT.get()
 					&& this.getItem(3).getCount() >= this.usedCarbon) {

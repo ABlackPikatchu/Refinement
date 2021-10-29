@@ -7,10 +7,10 @@ import java.util.UUID;
 import javax.annotation.Nullable;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.api.te.MachineTileEntity;
 import com.ablackpikatchu.refinement.common.block.machine.GrinderBlock;
 import com.ablackpikatchu.refinement.common.container.GrinderContainer;
 import com.ablackpikatchu.refinement.common.recipe.GrinderRecipe;
-import com.ablackpikatchu.refinement.common.te.MachineTileEntity;
 import com.ablackpikatchu.refinement.common.te.security.ISecurableTile;
 import com.ablackpikatchu.refinement.common.te.security.SecurityType;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
@@ -79,12 +79,12 @@ public class GrinderTileEntity extends MachineTileEntity implements ITickableTil
 		if (!this.level.isClientSide()) {
 			handleEnergyAbilityUpgrade(6);
 			//handleAutoEject(4, 1);
-			handleNewAutoEject(4, 1);
+			handleAutoEject(4, 1);
 			
 			if (!usingEnergy)
 				handleFuelAutoImport(5, 2);
 
-			handleNewAutoImport(RecipeInit.GRINDER_RECIPE, 5, 0);
+			handleAutoImport(RecipeInit.GRINDER_RECIPE, 5, 0);
 
 			if (!usingEnergy)
 				handleSpeedUpgrades(3, CommonConfig.GRINDER_DEFAULT_PROCESS_TIME.get(),

@@ -6,10 +6,10 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.api.te.MachineTileEntity;
 import com.ablackpikatchu.refinement.common.block.machine.AlloySmelterBlock;
 import com.ablackpikatchu.refinement.common.container.AlloySmelterContainer;
 import com.ablackpikatchu.refinement.common.recipe.AlloySmeltingRecipe;
-import com.ablackpikatchu.refinement.common.te.MachineTileEntity;
 import com.ablackpikatchu.refinement.common.te.upgrade.IUpgradableTile;
 import com.ablackpikatchu.refinement.common.te.upgrade.Upgrade;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
@@ -107,9 +107,9 @@ public class AlloySmelterTileEntity extends MachineTileEntity implements ITickab
 			TileEntityHelper.setStateProperty(this, AlloySmelterBlock.LIT, false);
 
 			handleEnergyAbilityUpgrade(9);
-			handleNewAutoEject(7, 4);
+			handleAutoEject(7, 4);
 			if (!hasValidRecipe())
-				handleNewAutoImport(RecipeInit.ALLOY_SMELTING_RECIPE, 8, 0, 1, 2, 3);
+				handleAutoImport(RecipeInit.ALLOY_SMELTING_RECIPE, 8, 0, 1, 2, 3);
 			if (!usingEnergy)	
 				handleFuelAutoImport(8, 5);
 

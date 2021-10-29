@@ -3,6 +3,7 @@ package com.ablackpikatchu.refinement.client.screen.tileentity;
 import java.util.ArrayList;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.api.screen.tileentity.MachineContainerScreen;
 import com.ablackpikatchu.refinement.client.screen.element.EnergyInfoTextBoxElement;
 import com.ablackpikatchu.refinement.client.screen.element.PowerIndicatorElement;
 import com.ablackpikatchu.refinement.client.screen.element.SecurityElement;

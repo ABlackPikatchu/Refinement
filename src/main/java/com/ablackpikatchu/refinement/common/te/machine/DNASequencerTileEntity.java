@@ -5,10 +5,10 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.api.te.SidedInventoryTileEntity;
 import com.ablackpikatchu.refinement.common.block.machine.DNASequencerBlock;
 import com.ablackpikatchu.refinement.common.container.DNASequencerContainer;
 import com.ablackpikatchu.refinement.common.recipe.DNASequencerRecipe;
-import com.ablackpikatchu.refinement.common.te.SidedInventoryTileEntity;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
@@ -62,9 +62,9 @@ public class DNASequencerTileEntity extends SidedInventoryTileEntity implements 
 		if (!this.level.isClientSide()) {
 			handleSpeedUpgrades(speedUpgradeSlot, CommonConfig.DNA_SEQUENCER_DEFAULT_PROCESS_TIME.get(),
 					CommonConfig.DNA_SEQUENCER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get());
-			handleNewAutoEject(5, 2);
+			handleAutoEject(5, 2);
 			handleFuelAutoImport(6, 3);
-			handleNewAutoImport(RecipeInit.DNA_SEQUENCER_RECIPE, 6, 0, 1);
+			handleAutoImport(RecipeInit.DNA_SEQUENCER_RECIPE, 6, 0, 1);
 			this.successProbability = -1;
 			this.isWorking = false;
 			TileEntityHelper.setStateProperty(this, DNASequencerBlock.LIT, false);

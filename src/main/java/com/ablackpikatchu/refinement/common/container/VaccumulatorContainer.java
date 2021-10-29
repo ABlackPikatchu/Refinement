@@ -2,6 +2,7 @@ package com.ablackpikatchu.refinement.common.container;
 
 import java.util.Objects;
 
+import com.ablackpikatchu.refinement.api.container.MachineContainer;
 import com.ablackpikatchu.refinement.common.te.misc_tes.VaccumulatorTileEntity;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;

@@ -1,5 +1,6 @@
 package com.ablackpikatchu.refinement.common.item;
 
+import com.ablackpikatchu.refinement.api.item.RefinementItem;
 import com.ablackpikatchu.refinement.common.te.tier.ITieredTile;
 import com.ablackpikatchu.refinement.common.te.tier.Tier;
 

@@ -1,6 +1,7 @@
 package com.ablackpikatchu.refinement.core.network;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.api.network.BaseNetwork;
 import com.ablackpikatchu.refinement.core.network.message.to_client.UpdateBinMessage;
 import com.ablackpikatchu.refinement.core.network.message.to_server.ConversionMessage;
 import com.ablackpikatchu.refinement.core.network.message.to_server.TileSecurityMessage;
@@ -20,9 +21,9 @@ public class RefinementNetwork extends BaseNetwork {
 	public static final SimpleChannel STORAGE_BIN_CHANNEL = newSimpleChannel("storage_bin_network");
 	
 	public static void init() {
-		CONVERSION_CHANNEL.registerMessage(nextId(), ConversionMessage.class, ConversionMessage::encode, ConversionMessage::decode, ConversionMessage::handle);
+		registerClientToServer(CONVERSION_CHANNEL, ConversionMessage.class, ConversionMessage::decode);
 		
-		TILE_CHANNEL.registerMessage(nextId(), TileSecurityMessage.class, TileSecurityMessage::encode, TileSecurityMessage::decode, TileSecurityMessage::handle);
+		registerClientToServer(TILE_CHANNEL, TileSecurityMessage.class, TileSecurityMessage::decode);
 		
 		registerServerToClient(STORAGE_BIN_CHANNEL, UpdateBinMessage.class, UpdateBinMessage::decode);
 		registerClientToServer(STORAGE_BIN_CHANNEL, ToggleBinAutoRefillMessage.class, ToggleBinAutoRefillMessage::decode);

@@ -1,9 +1,9 @@
 package com.ablackpikatchu.refinement.core.network.message.to_server;
 
+import com.ablackpikatchu.refinement.api.network.message.IRefinementMessage;
 import com.ablackpikatchu.refinement.common.inventory.StorageBinHandler;
 import com.ablackpikatchu.refinement.common.item.blockitem.StorageBinBlockItem;
 import com.ablackpikatchu.refinement.common.te.misc_tes.StorageBinTileEntity;
-import com.ablackpikatchu.refinement.core.network.message.IRefinementMessage;
 import com.ablackpikatchu.refinement.core.util.helper.NBTHelper;
 import com.ablackpikatchu.refinement.core.util.helper.PlayerHelper;
 

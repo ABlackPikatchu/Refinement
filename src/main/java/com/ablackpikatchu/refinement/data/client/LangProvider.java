@@ -96,6 +96,7 @@ public class LangProvider extends LanguageProvider {
 		addContainer("dna_sequencer", "DNA Sequencer");
 		addContainer("carbon_generator", "Carbon Generator");
 		addContainer("energy_generator", "Energy Generator");
+		addContainer("energy_transmitter", "Energy Transmitter");
 		addContainer("smelter", "Smelter");
 		addContainer("alloy_smelter", "Alloy Smelter");
 
@@ -147,13 +148,17 @@ public class LangProvider extends LanguageProvider {
 		addComponent("auto_refill", "Auto Refill");
 		addComponent("alt_f4_cheat", "Press §6ALT F4 §rin order to cheat this item.");
 		
+		addComponent("linked_to", "Linked to: %l");
+		
 		addComponent("energy.energy_stored", "Energy Stored: \u00A7b%e\u00A7f FE");
 		addComponent("energy.energy_used", "Energy Used: \u00A7b%e\u00A7f FE");
 		addComponent("energy.max_transfer", "Max Transfer: \u00A7b%e\u00A7f FE");
+		addComponent("energy.energy_used_per_operation_transmitter", "Energy Used/Operation: \u00A73%e\u00A70 FE");
 
 		addItemsFromClass(ItemInit.Armor.class);
 		addItemsFromClass(ItemInit.TierRelated.class);
 		addItemsFromClass(ItemInit.Ingots.class);
+		addItemsFromClass(ItemInit.class);
 
 		// Blocks
 		BlockInit.BLOCKS.getEntries().parallelStream().map(RegistryObject<Block>::get).forEach(block -> {

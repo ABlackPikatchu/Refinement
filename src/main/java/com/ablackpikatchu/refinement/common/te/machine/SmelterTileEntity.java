@@ -4,9 +4,9 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.api.te.SidedInventoryTileEntity;
 import com.ablackpikatchu.refinement.common.block.machine.SmelterBlock;
 import com.ablackpikatchu.refinement.common.container.SmelterContainer;
-import com.ablackpikatchu.refinement.common.te.SidedInventoryTileEntity;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
 import com.ablackpikatchu.refinement.core.util.energy.ModEnergyStorage;
@@ -69,8 +69,8 @@ public class SmelterTileEntity extends SidedInventoryTileEntity {
 	@Override
 	public void serverTick() {
 		TileEntityHelper.setStateProperty(this, SmelterBlock.LIT, false);
-		handleNewAutoEject(3, 1);
-		handleNewAutoImport(null, 4, 0);
+		handleAutoEject(3, 1);
+		handleAutoImport(null, 4, 0);
 		handleEnergySpeedUpgrades(2, CommonConfig.SMELTER_DEFAULT_PROCESS_TIME.get(),
                 CommonConfig.SMELTER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE.get(), energyStorage,
                 CommonConfig.SMELTER_DEFAULT_ENERGY_USAGE.get(),

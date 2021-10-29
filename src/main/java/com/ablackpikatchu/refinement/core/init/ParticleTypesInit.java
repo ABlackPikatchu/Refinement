@@ -1,6 +1,8 @@
 package com.ablackpikatchu.refinement.core.init;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.common.particle.ColouredParticle.ColouredParticleData;
+import com.ablackpikatchu.refinement.common.particle.ColouredParticle.ColouredParticleType;
 
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleType;
@@ -16,5 +18,8 @@ public class ParticleTypesInit {
 
 	public static final RegistryObject<BasicParticleType> DNA_PARTICLES = PARTICLE_TYPES.register("dna_particles",
 			() -> new BasicParticleType(true));
+
+	public static final RegistryObject<ParticleType<ColouredParticleData>> COLOURED_PARTICLE = PARTICLE_TYPES
+			.register("coloured_particle", ColouredParticleType::new);
 
 }

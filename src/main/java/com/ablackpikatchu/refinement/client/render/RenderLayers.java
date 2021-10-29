@@ -20,6 +20,8 @@ public class RenderLayers {
 		cutout(BlockInit.REFINED_SAPLING.get());
 		
 		cutout(BlockInit.ENERGY_CABLE_BLOCK.get());
+		cutout(BlockInit.ENERGY_TRANSMITTER_BLOCK);
+		cutout(BlockInit.ENERGY_RECEIVER_BLOCK);
 		
 		CropInit.BLOCKS.getEntries().stream().map(RegistryObject::get).forEach(block -> {
 			cutout(block);

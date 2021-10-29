@@ -11,6 +11,7 @@ import java.util.UUID;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.ablackpikatchu.refinement.api.network.BaseNetwork;
 import com.ablackpikatchu.refinement.common.block.StorageBinBlock;
 import com.ablackpikatchu.refinement.common.inventory.IItemHandlerInventory;
 import com.ablackpikatchu.refinement.common.inventory.StorageBinHandler;
@@ -18,7 +19,6 @@ import com.ablackpikatchu.refinement.common.te.tier.ITieredTile;
 import com.ablackpikatchu.refinement.common.te.tier.Tier;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
-import com.ablackpikatchu.refinement.core.network.BaseNetwork;
 import com.ablackpikatchu.refinement.core.network.RefinementNetwork;
 import com.ablackpikatchu.refinement.core.network.message.to_client.UpdateBinMessage;
 import com.ablackpikatchu.refinement.core.util.helper.PlayerHelper;

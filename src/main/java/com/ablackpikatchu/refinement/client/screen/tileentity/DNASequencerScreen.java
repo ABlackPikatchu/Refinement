@@ -1,6 +1,7 @@
 package com.ablackpikatchu.refinement.client.screen.tileentity;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.api.screen.tileentity.MachineContainerScreen;
 import com.ablackpikatchu.refinement.common.container.DNASequencerContainer;
 import com.ablackpikatchu.refinement.datafixers.util.text.Color;
 import com.mojang.blaze3d.matrix.MatrixStack;

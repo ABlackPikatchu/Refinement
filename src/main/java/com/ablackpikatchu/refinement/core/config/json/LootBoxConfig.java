@@ -3,6 +3,7 @@ package com.ablackpikatchu.refinement.core.config.json;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.ablackpikatchu.refinement.api.config.json.JsonConfig;
 import com.ablackpikatchu.refinement.core.config.entry.CustomLootBoxEntry;
 import com.ablackpikatchu.refinement.core.config.entry.ModLootBoxEntry;
 import com.ablackpikatchu.refinement.core.config.entry.WeightBasedItemEntry;

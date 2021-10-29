@@ -1,5 +1,6 @@
 package com.ablackpikatchu.refinement.core.config.json;
 
+import com.ablackpikatchu.refinement.api.config.json.JsonConfig;
 import com.ablackpikatchu.refinement.core.config.entry.ArmourSettingsEntry;
 import com.google.gson.annotations.Expose;
 

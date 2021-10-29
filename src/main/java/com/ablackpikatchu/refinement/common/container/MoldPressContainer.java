@@ -2,6 +2,7 @@ package com.ablackpikatchu.refinement.common.container;
 
 import java.util.Objects;
 
+import com.ablackpikatchu.refinement.api.container.MachineContainer;
 import com.ablackpikatchu.refinement.common.inventory.slot.ItemsReservedSlot;
 import com.ablackpikatchu.refinement.common.inventory.slot.OutputSlot;
 import com.ablackpikatchu.refinement.common.inventory.slot.RecipeIngredientSlot;

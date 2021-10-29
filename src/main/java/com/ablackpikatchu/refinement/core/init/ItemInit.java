@@ -284,6 +284,9 @@ public class ItemInit {
 			() -> new GluttonyBracelet(new Item.Properties().tab(REFINEMENT).defaultDurability(2048)));
 	public static final RegistryObject<Item> ARMOR_UPGRADER = ITEMS.register("armor_upgrader",
 			() -> new ArmorUpgrader(new Item.Properties().tab(REFINEMENT).stacksTo(1)));
+	
+	@RegisterItem(registryName = "transmitter_card")
+	public static final TransmitterCard TRANSMITTER_CARD = new TransmitterCard();
 
 	// Upgrades
 	public static final RegistryObject<Item> AUTO_EJECT_UPGRADE = ITEMS.register("auto_eject_upgrade",

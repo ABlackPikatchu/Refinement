@@ -3,6 +3,8 @@ package com.ablackpikatchu.refinement.core.init;
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.block.BlankOreBlock;
 import com.ablackpikatchu.refinement.common.block.EnergyCableBlock;
+import com.ablackpikatchu.refinement.common.block.EnergyReceiverBlock;
+import com.ablackpikatchu.refinement.common.block.EnergyTransmitterBlock;
 import com.ablackpikatchu.refinement.common.block.RefinedSaplingBlock;
 import com.ablackpikatchu.refinement.common.block.ResourceStatueBlock;
 import com.ablackpikatchu.refinement.common.block.StorageBinBlock;
@@ -111,32 +113,37 @@ public class BlockInit {
 					.harvestTool(ToolType.PICKAXE).harvestLevel(2).requiresCorrectToolForDrops().strength(5.0F, 6.0F)
 					.sound(SoundType.STONE)));
 
-	public static final RegistryObject<Block> BLANK_ORE = BLOCKS.register("blank_ore", () -> new BlankOreBlock());
+	public static final RegistryObject<Block> BLANK_ORE = BLOCKS.register("blank_ore", BlankOreBlock::new);
 	public static final RegistryObject<Block> TIN_ORE = oreBlock("tin_ore");
 	public static final RegistryObject<Block> SILVER_ORE = oreBlock("silver_ore");
 	public static final RegistryObject<Block> COPPER_ORE = oreBlock("copper_ore");
 	public static final RegistryObject<Block> LEAD_ORE = oreBlock("lead_ore");
 
 	// TE Blocks
-	public static final RegistryObject<Block> GRINDER = BLOCKS.register("grinder", () -> new GrinderBlock());
-	public static final RegistryObject<Block> MIXER = BLOCKS.register("mixer", () -> new MixerBlock());
-	public static final RegistryObject<Block> MOLD_PRESS = BLOCKS.register("mold_press", () -> new MoldPressBlock());
+	public static final RegistryObject<Block> GRINDER = BLOCKS.register("grinder", GrinderBlock::new);
+	public static final RegistryObject<Block> MIXER = BLOCKS.register("mixer", MixerBlock::new);
+	public static final RegistryObject<Block> MOLD_PRESS = BLOCKS.register("mold_press", MoldPressBlock::new);
 	public static final RegistryObject<Block> DNA_SEQUENCER = BLOCKS.register("dna_sequencer",
-			() -> new DNASequencerBlock());
+			DNASequencerBlock::new);
 
 	public static final RegistryObject<Block> VACCUMULATOR = BLOCKS.register("vaccumulator",
-			() -> new VaccumulatorBlock());
+			VaccumulatorBlock::new);
 
 	public static final RegistryObject<Block> CARBON_GENERATOR_BLOCK = BLOCKS.register("carbon_generator",
-			() -> new CarbonGeneratorBlock());
+			CarbonGeneratorBlock::new);
 
 	public static final RegistryObject<Block> ENERGY_GENERATOR_BLOCK = BLOCKS.register("energy_generator",
-			() -> new EnergyGeneratorBlock());
+			EnergyGeneratorBlock::new);
 
-	public static final RegistryObject<Block> SMELTER_BLOCK = BLOCKS.register("smelter", () -> new SmelterBlock());
+	public static final RegistryObject<Block> SMELTER_BLOCK = BLOCKS.register("smelter", SmelterBlock::new);
 
 	public static final RegistryObject<Block> ALLOY_SMELTER_BLOCK = BLOCKS.register("alloy_smelter",
 			AlloySmelterBlock::new);
+	
+	@RegisterBlock(registryName = "energy_transmitter")
+	public static final EnergyTransmitterBlock ENERGY_TRANSMITTER_BLOCK = new EnergyTransmitterBlock();
+	@RegisterBlock(registryName = "energy_receiver")
+	public static final EnergyReceiverBlock ENERGY_RECEIVER_BLOCK = new EnergyReceiverBlock();
 
 	public static final RegistryObject<Block> ENERGY_CABLE_BLOCK = BLOCKS.register("energy_cable",
 			EnergyCableBlock::new);
@@ -154,7 +161,7 @@ public class BlockInit {
 	public static final StorageBinBlock OMEGA_STORAGE_BIN_BLOCK = new StorageBinBlock(Tier.OMEGA, 131072);
 
 	public static final RegistryObject<Block> RESOURCE_STATUE_BLOCK = BLOCKS.register("resource_statue",
-			() -> new ResourceStatueBlock());
+			ResourceStatueBlock::new);
 
 	// POIs
 	public static final RegistryObject<Block> MATERIALS_STATION = BLOCKS.register("materials_station",
