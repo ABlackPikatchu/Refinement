@@ -21,8 +21,8 @@ public class VillagerInit {
 		public static final DeferredRegister<PointOfInterestType> POINT_OF_INTEREST_TYPES = DeferredRegister
 				.create(ForgeRegistries.POI_TYPES, Refinement.MOD_ID);
 
-		public static final RegistryObject<PointOfInterestType> MATERIALS_POI = POINT_OF_INTEREST_TYPES
-				.register("materials", () -> new PointOfInterestType("materials",
+		public static final RegistryObject<PointOfInterestType> MATERIALIST_POI = POINT_OF_INTEREST_TYPES
+				.register("materials", () -> new PointOfInterestType("materialist",
 						PointOfInterestType.getBlockStates(BlockInit.MATERIALS_STATION.get()), 1, 1));
 
 	}
@@ -32,9 +32,9 @@ public class VillagerInit {
 		public static final DeferredRegister<VillagerProfession> VILLAGER_PROFESSIONS = DeferredRegister
 				.create(ForgeRegistries.PROFESSIONS, Refinement.MOD_ID);
 
-		public static final RegistryObject<VillagerProfession> MATERIALS_VILLAGER = VILLAGER_PROFESSIONS.register(
+		public static final RegistryObject<VillagerProfession> MATERIALIST_VILLAGER = VILLAGER_PROFESSIONS.register(
 				"materials",
-				() -> new VillagerProfession("materials", VillagerInit.PointOfInterests.MATERIALS_POI.get(),
+				() -> new VillagerProfession("materialist", VillagerInit.PointOfInterests.MATERIALIST_POI.get(),
 						ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_CARTOGRAPHER));
 
 	}
@@ -43,12 +43,8 @@ public class VillagerInit {
 		try {
 			ObfuscationReflectionHelper
 					.findMethod(PointOfInterestType.class, "registerBlockStates", PointOfInterestType.class)
-					.invoke(null, VillagerInit.PointOfInterests.MATERIALS_POI.get());
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
+					.invoke(null, VillagerInit.PointOfInterests.MATERIALIST_POI.get());
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
 	}

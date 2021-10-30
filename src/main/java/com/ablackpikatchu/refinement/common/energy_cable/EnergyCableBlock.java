@@ -1,4 +1,4 @@
-package com.ablackpikatchu.refinement.common.block;
+package com.ablackpikatchu.refinement.common.energy_cable;
 
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
 
@@ -15,6 +15,9 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
 
 public class EnergyCableBlock extends Block {
 
@@ -51,6 +54,7 @@ public class EnergyCableBlock extends Block {
 			}
 		}
 	}
+	*/
 
 	@Override
 	public void onPlace(BlockState state, World world, BlockPos pos, BlockState pOldState, boolean pIsMoving) {
@@ -69,7 +73,6 @@ public class EnergyCableBlock extends Block {
 				setConnection(state, direction, false);
 		}
 	}
-	*/
 
 	@Override
 	protected void createBlockStateDefinition(Builder<Block, BlockState> pBuilder) {

@@ -17,6 +17,7 @@ import com.ablackpikatchu.refinement.common.te.upgrade.IUpgradableTile;
 import com.ablackpikatchu.refinement.core.config.ClientConfig;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.config.ModJsonConfigs;
+import com.ablackpikatchu.refinement.core.config.ServerConfig;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.BlockItemInit;
 import com.ablackpikatchu.refinement.core.init.CommandInit;
@@ -109,6 +110,7 @@ public class Refinement {
 
 		ModLoadingContext.get().registerConfig(Type.COMMON, CommonConfig.SPEC, MOD_ID + "/common.toml");
 		ModLoadingContext.get().registerConfig(Type.CLIENT, ClientConfig.SPEC, MOD_ID + "/client.toml");
+		ModLoadingContext.get().registerConfig(Type.SERVER, ServerConfig.SPEC, MOD_ID + "-server.toml");
 
 		modBus.addGenericListener(IRecipeSerializer.class, RecipeInit::registerRecipes);
 

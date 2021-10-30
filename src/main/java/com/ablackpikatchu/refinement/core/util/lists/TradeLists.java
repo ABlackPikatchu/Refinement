@@ -46,7 +46,7 @@ public class TradeLists {
 			materialistLevel5.add(trade.createTrade());
 		});
 
-		VillagerTrades.TRADES.put(VillagerProfessions.MATERIALS_VILLAGER.get(),
+		VillagerTrades.TRADES.put(VillagerProfessions.MATERIALIST_VILLAGER.get(),
 				toIntMap(ImmutableMap.of(1, materialistLevel1.toArray(materialistTradesArray), 2,
 						materialistLevel2.toArray(materialistTradesArray), 3,
 						materialistLevel3.toArray(materialistTradesArray), 4,

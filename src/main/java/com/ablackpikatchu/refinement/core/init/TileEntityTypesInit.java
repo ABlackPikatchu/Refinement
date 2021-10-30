@@ -1,6 +1,7 @@
 package com.ablackpikatchu.refinement.core.init;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.common.energy_cable.EnergyCableTileEntity;
 import com.ablackpikatchu.refinement.common.te.machine.AlloySmelterTileEntity;
 import com.ablackpikatchu.refinement.common.te.machine.CarbonGeneratorTileEntity;
 import com.ablackpikatchu.refinement.common.te.machine.DNASequencerTileEntity;
@@ -9,7 +10,6 @@ import com.ablackpikatchu.refinement.common.te.machine.GrinderTileEntity;
 import com.ablackpikatchu.refinement.common.te.machine.MixerTileEntity;
 import com.ablackpikatchu.refinement.common.te.machine.MoldPressTileEntity;
 import com.ablackpikatchu.refinement.common.te.machine.SmelterTileEntity;
-import com.ablackpikatchu.refinement.common.te.misc_tes.EnergyCableTileEntity;
 import com.ablackpikatchu.refinement.common.te.misc_tes.EnergyReceiverTileEntity;
 import com.ablackpikatchu.refinement.common.te.misc_tes.EnergyTransmitterTileEntity;
 import com.ablackpikatchu.refinement.common.te.misc_tes.ResourceStatueTileEntity;

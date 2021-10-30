@@ -2,7 +2,6 @@ package com.ablackpikatchu.refinement.core.init;
 
 import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.common.block.BlankOreBlock;
-import com.ablackpikatchu.refinement.common.block.EnergyCableBlock;
 import com.ablackpikatchu.refinement.common.block.EnergyReceiverBlock;
 import com.ablackpikatchu.refinement.common.block.EnergyTransmitterBlock;
 import com.ablackpikatchu.refinement.common.block.RefinedSaplingBlock;
@@ -17,6 +16,7 @@ import com.ablackpikatchu.refinement.common.block.machine.MixerBlock;
 import com.ablackpikatchu.refinement.common.block.machine.MoldPressBlock;
 import com.ablackpikatchu.refinement.common.block.machine.SmelterBlock;
 import com.ablackpikatchu.refinement.common.block.machine.VaccumulatorBlock;
+import com.ablackpikatchu.refinement.common.energy_cable.EnergyCableBlock;
 import com.ablackpikatchu.refinement.common.te.tier.Tier;
 import com.ablackpikatchu.refinement.core.annotation.registries.HoldsRegistries;
 import com.ablackpikatchu.refinement.core.annotation.registries.RegisterBlock;

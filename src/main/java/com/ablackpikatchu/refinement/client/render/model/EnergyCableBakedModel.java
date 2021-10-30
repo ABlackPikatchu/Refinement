@@ -10,7 +10,7 @@ import java.util.Random;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import com.ablackpikatchu.refinement.common.block.EnergyCableBlock;
+import com.ablackpikatchu.refinement.common.energy_cable.EnergyCableBlock;
 import com.google.common.collect.ImmutableList;
 
 import net.minecraft.block.BlockState;

@@ -1,11 +1,10 @@
-package com.ablackpikatchu.refinement.common.te.misc_tes;
+package com.ablackpikatchu.refinement.common.energy_cable;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import com.ablackpikatchu.refinement.common.block.EnergyCableBlock;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
 import com.ablackpikatchu.refinement.core.util.energy.ModEnergyStorage;
 import com.ablackpikatchu.refinement.core.util.helper.TileEntityHelper;
