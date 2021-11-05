@@ -676,6 +676,7 @@ d879d5d1177c3f2c82fb5217dce0737686efc2ba data/refinement/tags/items/grit_papers/
 2e55155fef9a29926284bbcde8f2f7ea66ffc477 data/refinement/tags/items/grits/grit.json
 9c428c9abe63ca5486637a90103f8cbaf42f2bce data/refinement/tags/items/grits/iron.json
 650a98f64b788937c3987de64e3cc4ec1e4ec9d0 data/refinement/tags/items/grits/netherite.json
+a302e57d3cc77ec58c8e937d297921d1eab5aa43 data/refinement/tags/items/magnet_blacklisted.json
 e4d78606947b1a6b27f36d9bad6eab159c4f0d87 data/refinement/tags/items/molds.json
 4a12e368ba592ad6aad3850129606625e0361efd data/refinement/tags/items/molds/cogwheel.json
 3989280e0831cc8c5e27cde376eea3ff7fc360d1 data/refinement/tags/items/molds/gem.json
@@ -694,3 +695,4 @@ b540cb7bccce1ec3fe3628d98fe2a89a201b6542 data/refinement/tags/items/unfired_mold
 99a9ac578079846bfa80e6aefa14fd2fe88a01e0 data/refinement/tags/items/unfired_molds/cogwheel.json
 e413e97487536958db67289713c33aefdc72c002 data/refinement/tags/items/unfired_molds/gem.json
 eb64142c84dd7d53f5ee3651eb549f83c0dcb52d data/refinement/tags/items/unfired_molds/ingot.json
+d7bd9a8d6cf087b226951316fc9d1f7064c63042 data/refinement/tags/items/vacuumulator_blacklisted.json

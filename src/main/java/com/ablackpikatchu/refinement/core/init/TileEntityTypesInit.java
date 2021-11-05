@@ -14,7 +14,7 @@ import com.ablackpikatchu.refinement.common.te.misc_tes.EnergyReceiverTileEntity
 import com.ablackpikatchu.refinement.common.te.misc_tes.EnergyTransmitterTileEntity;
 import com.ablackpikatchu.refinement.common.te.misc_tes.ResourceStatueTileEntity;
 import com.ablackpikatchu.refinement.common.te.misc_tes.StorageBinTileEntity;
-import com.ablackpikatchu.refinement.common.te.misc_tes.VaccumulatorTileEntity;
+import com.ablackpikatchu.refinement.common.te.misc_tes.VacuumulatorTileEntity;
 import com.ablackpikatchu.refinement.core.util.lists.BlockLists;
 
 import net.minecraft.tileentity.TileEntityType;
@@ -41,9 +41,9 @@ public class TileEntityTypesInit {
 			.register("dna_sequencer", () -> TileEntityType.Builder
 					.of(DNASequencerTileEntity::new, BlockInit.DNA_SEQUENCER.get()).build(null));
 
-	public static final RegistryObject<TileEntityType<VaccumulatorTileEntity>> VACCUMULATOR_TILE_ENTITY_TYPE = TILE_ENTITY_TYPE
+	public static final RegistryObject<TileEntityType<VacuumulatorTileEntity>> VACCUMULATOR_TILE_ENTITY_TYPE = TILE_ENTITY_TYPE
 			.register("vaccumulator", () -> TileEntityType.Builder
-					.of(VaccumulatorTileEntity::new, BlockInit.VACCUMULATOR.get()).build(null));
+					.of(VacuumulatorTileEntity::new, BlockInit.VACCUMULATOR.get()).build(null));
 
 	public static final RegistryObject<TileEntityType<CarbonGeneratorTileEntity>> CARBON_GENERATOR_TILE_ENTITY_TYPE = TILE_ENTITY_TYPE
 			.register("carbon_generator", () -> TileEntityType.Builder

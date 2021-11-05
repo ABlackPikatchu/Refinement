@@ -202,6 +202,9 @@ public class ItemTagsProvider extends net.minecraft.data.ItemTagsProvider {
 		tag(TagInit.Items.LUMIUM_STORAGE).add(BlockInit.LUMIUM_BLOCK.get().asItem());
 		tag(TagInit.Items.SIGNALUM_STORAGE).add(BlockInit.SIGNALUM_BLOCK.get().asItem());
 		tag(TagInit.Items.ENDERIUM_STORAGE).add(BlockInit.ENDERIUM_BLOCK.get().asItem());
+		
+		tag(com.ablackpikatchu.refinement.core.init.TagInit.Items.MAGNET_BLACKLISTED).add(Items.DRAGON_EGG);
+		tag(TagInit.Items.VACUUMULATOR_BLACKLISTED).addTag(TagInit.Items.MAGNET_BLACKLISTED);
 	}
 
 }

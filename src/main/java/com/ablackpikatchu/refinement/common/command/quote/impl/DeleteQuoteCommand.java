@@ -1,5 +1,6 @@
 package com.ablackpikatchu.refinement.common.command.quote.impl;
 
+import com.ablackpikatchu.refinement.api.event.QuoteEvent;
 import com.ablackpikatchu.refinement.common.command.quote.Quote;
 import com.ablackpikatchu.refinement.common.command.quote.QuoteCommand;
 import com.ablackpikatchu.refinement.common.command.quote.QuoteManager;
@@ -30,11 +31,14 @@ public class DeleteQuoteCommand extends QuoteCommand {
 		QuoteManager manager = QuoteManager.get(context.getSource().getLevel());
 		if (manager.quoteExists(index)) {
 			Quote quote = manager.getQuote(index);
-			manager.removeQuote(index);
-			context.getSource()
-					.sendSuccess(new StringTextComponent("Succesfully deleted the quote with the index: " + index
-							+ "! In case you want it, this was the quote: \n\u00A75" + quote.quote + "\u00A7f - "
-							+ quote.author.getName().getString()), true);
+			if (!QuoteEvent.onQuoteDeleted(quote)) {
+				manager.removeQuote(index);
+				context.getSource()
+						.sendSuccess(new StringTextComponent("Succesfully deleted the quote with the index: " + index
+								+ "! In case you want it, this was the quote: \n\u00A75" + quote.quote + "\u00A7f - "
+								+ quote.author.getName().getString()), true);
+			} else
+				context.getSource().sendFailure(new StringTextComponent("The deletion of the quote was cancelled!"));
 		} else {
 			context.getSource().sendFailure(new StringTextComponent("Unknown quote with the index " + index
 					+ "! Use the command \u00A76/quote list -1\u00A7f to show the amount of quotes this server has!"));

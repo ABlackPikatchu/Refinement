@@ -1,6 +1,7 @@
 package com.ablackpikatchu.refinement.core.init;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.datafixers.RefinementRL;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -8,6 +9,8 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
+
+import net.minecraftforge.common.Tags.IOptionalNamedTag;
 
 public class TagInit {
 
@@ -61,7 +64,7 @@ public class TagInit {
 		public static final ITag.INamedTag<Item> UNFIRED_GEM_MOLD = mod("unfired_molds/gem");
 		public static final ITag.INamedTag<Item> UNFIRED_INGOT_MOLD = mod("unfired_molds/ingot");
 		public static final ITag.INamedTag<Item> UNFIRED_COGWHEEL_MOLD = mod("unfired_molds/cogwheel");
-		
+
 		/*
 		 * 
 		 * Forge
@@ -84,7 +87,7 @@ public class TagInit {
 		public static final ITag.INamedTag<Item> SILVER_INGOT = forge("ingots/silver");
 		public static final ITag.INamedTag<Item> LEAD_INGOT = forge("ingots/lead");
 		public static final ITag.INamedTag<Item> COPPER_INGOT = forge("ingots/copper");
-		
+
 		// Dusts
 		public static final ITag.INamedTag<Item> DUSTS = forge("dusts");
 		public static final ITag.INamedTag<Item> IRON_DUST = forge("dusts/iron");
@@ -105,7 +108,7 @@ public class TagInit {
 		public static final ITag.INamedTag<Item> SILVER_DUST = forge("dusts/silver");
 		public static final ITag.INamedTag<Item> LEAD_DUST = forge("dusts/lead");
 		public static final ITag.INamedTag<Item> COPPER_DUST = forge("dusts/copper");
-		
+
 		// Ingots And Dusts
 		public static final ITag.INamedTag<Item> TIN_INGOTS_DUSTS = forge("ingots_dusts/tin");
 		public static final ITag.INamedTag<Item> SILVER_INGOTS_DUSTS = forge("ingots_dusts/silver");
@@ -123,12 +126,12 @@ public class TagInit {
 		public static final ITag.INamedTag<Item> ORES = forge("ores");
 		public static final ITag.INamedTag<Item> PURE_CRYSTAL_ORE = forge("ores/pure_crystal");
 		public static final ITag.INamedTag<Item> BLANK_ORE = forge("ores/blank");
-		
+
 		public static final ITag.INamedTag<Item> TIN_ORE = forge("ores/tin");
 		public static final ITag.INamedTag<Item> SILVER_ORE = forge("ores/silver");
 		public static final ITag.INamedTag<Item> COPPER_ORE = forge("ores/copper");
 		public static final ITag.INamedTag<Item> LEAD_ORE = forge("ores/lead");
-		
+
 		public static final ITag.INamedTag<Item> EMERALD_STORAGE = forge("storage_blocks/emerald");
 		public static final ITag.INamedTag<Item> REDSTONE_STORAGE = forge("storage_blocks/redstone");
 		public static final ITag.INamedTag<Item> TIN_STORAGE = forge("storage_blocks/tin");
@@ -136,7 +139,7 @@ public class TagInit {
 		public static final ITag.INamedTag<Item> SILVER_STORAGE = forge("storage_blocks/silver");
 		public static final ITag.INamedTag<Item> IRON_STORAGE = forge("storage_blocks/iron");
 		public static final ITag.INamedTag<Item> LEAD_STORAGE = forge("storage_blocks/lead");
-		
+
 		public static final ITag.INamedTag<Item> LUMIUM_STORAGE = forge("storage_blocks/lumium");
 		public static final ITag.INamedTag<Item> SIGNALUM_STORAGE = forge("storage_blocks/signalum");
 		public static final ITag.INamedTag<Item> ENDERIUM_STORAGE = forge("storage_blocks/enderium");
@@ -147,27 +150,33 @@ public class TagInit {
 		public static final ITag.INamedTag<Item> DIAMOND_STORAGE = forge("storage_blocks/refined_diamond");
 		public static final ITag.INamedTag<Item> NETHERITE_STORAGE = forge("storage_blocks/refined_netherite");
 		public static final ITag.INamedTag<Item> CARBON_STORAGE = forge("storage_blocks/refined_carbon");
-		
-		//Misc 
+
+		// Misc
 		public static final ITag.INamedTag<Item> TERRACOTTAS = forge("terracottas");
 		public static final ITag.INamedTag<Item> CONCRETE_POWDERS = forge("concrete_powders");
 		public static final ITag.INamedTag<Item> MC_GLASS = forge("minecraft_glass");
 		public static final ITag.INamedTag<Item> MC_GLASS_PANE = forge("minecraft_glass_pane");
 		public static final ITag.INamedTag<Item> SAPLINGS = minecraft("saplings");
 		public static final ITag.INamedTag<Item> ENDER_PEARLS = forge("ender_pearls");
-		
+		public static final IOptionalNamedTag<Item> VACUUMULATOR_BLACKLISTED = modOptional("vacuumulator_blacklisted");
+		public static final IOptionalNamedTag<Item> MAGNET_BLACKLISTED = modOptional("magnet_blacklisted");
+
 		public static final ITag.INamedTag<Item> WOOL = minecraft("wool");
 
 		private static ITag.INamedTag<Item> forge(String path) {
 			return ItemTags.bind(new ResourceLocation("forge", path).toString());
 		}
-		
+
 		private static ITag.INamedTag<Item> minecraft(String path) {
 			return ItemTags.bind(new ResourceLocation("minecraft", path).toString());
 		}
 
 		private static ITag.INamedTag<Item> mod(String path) {
 			return ItemTags.bind(new ResourceLocation(Refinement.MOD_ID, path).toString());
+		}
+
+		private static IOptionalNamedTag<Item> modOptional(String name) {
+			return ItemTags.createOptional(new RefinementRL(name));
 		}
 	}
 
@@ -177,7 +186,7 @@ public class TagInit {
 		public static final ITag.INamedTag<Block> ORES = forge("ores");
 		public static final ITag.INamedTag<Block> PURE_CRYSTAL_ORE = forge("ores/pure_crystal");
 		public static final ITag.INamedTag<Block> BLANK_ORE = forge("ores/blank");
-		
+
 		public static final ITag.INamedTag<Block> TIN_ORE = forge("ores/tin");
 		public static final ITag.INamedTag<Block> SILVER_ORE = forge("ores/silver");
 		public static final ITag.INamedTag<Block> COPPER_ORE = forge("ores/copper");
@@ -189,7 +198,7 @@ public class TagInit {
 		public static final ITag.INamedTag<Block> DIAMOND_STORAGE = forge("storage_blocks/refined_diamond");
 		public static final ITag.INamedTag<Block> NETHERITE_STORAGE = forge("storage_blocks/refined_netherite");
 		public static final ITag.INamedTag<Block> CARBON_STORAGE = forge("storage_blocks/refined_carbon");
-		
+
 		public static final ITag.INamedTag<Block> LUMIUM_STORAGE = forge("storage_blocks/lumium");
 		public static final ITag.INamedTag<Block> SIGNALUM_STORAGE = forge("storage_blocks/signalum");
 		public static final ITag.INamedTag<Block> ENDERIUM_STORAGE = forge("storage_blocks/enderium");

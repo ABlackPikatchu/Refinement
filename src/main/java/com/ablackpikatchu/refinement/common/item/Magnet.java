@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.ablackpikatchu.refinement.api.event.ItemMagnetedEvent;
 import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.itemgroup.RefinementToolsWeaponsGroup;
 import com.ablackpikatchu.refinement.core.util.IEnableable;
@@ -57,23 +58,31 @@ public class Magnet extends Item implements IEnableable {
 			ArrayList<ItemEntity> rangeItems = (ArrayList<ItemEntity>) world.getEntitiesOfClass(ItemEntity.class,
 					entity.getBoundingBox().inflate(range));
 			for (ItemEntity item : rangeItems) {
-
-				if (!item.isAlive())
+				if (!item.isAlive()) {
 					continue;
+				}
 
-				if (item.getThrower() != null && item.getThrower().equals(entity.getUUID()) && item.hasPickUpDelay())
+				if (item.getThrower() != null && item.getThrower().equals(entity.getUUID()) && item.hasPickUpDelay()
+						&& !CommonConfig.MAGNET_IGNORES_THROWER.get()) {
 					continue;
+				}
+
+				if (ItemMagnetedEvent.onItemVacuumulated(player, item).isCanceled()) {
+					continue;
+				}
 
 				if (!world.isClientSide()) {
 					item.setNoPickUpDelay();
 					int damage = item.getItem().getCount();
-					Boolean shouldDamage = true;
-					if (item.distanceTo(entity) < 1.5F)
+					boolean shouldDamage = true;
+					if (item.distanceTo(entity) < 1.5F) {
 						shouldDamage = false;
+					}
 					item.setPos(entity.getX(), entity.getY(), entity.getZ());
-					if (shouldDamage)
-						if (!player.isCreative())
+					if (shouldDamage && CommonConfig.MAGNET_TAKES_DAMAGE.get())
+						if (!player.isCreative()) {
 							stack.hurt(damage, new Random(0), (ServerPlayerEntity) player);
+						}
 				}
 			}
 
@@ -96,25 +105,19 @@ public class Magnet extends Item implements IEnableable {
 	@Override
 	public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
 
-		if (enchantment.isAllowedOnBooks()) {
-			return false;
-		}
-
-		if (enchantment.isCompatibleWith(Enchantments.MENDING)) {
-			return false;
-		}
+		if (enchantment.isAllowedOnBooks() || enchantment.isCompatibleWith(Enchantments.MENDING)) {}
 
 		return false;
 	}
 
 	@Override
 	public void fillItemCategory(ItemGroup tab, NonNullList<ItemStack> items) {
-		if (isEnabled()) super.fillItemCategory(tab, items);
+		if (isEnabled()) {
+			super.fillItemCategory(tab, items);
+		}
 	}
 
 	@Override
-	public boolean isEnabled() {
-		return CommonConfig.MAGNET_ENABLED.get();
-	}
+	public boolean isEnabled() { return CommonConfig.MAGNET_ENABLED.get(); }
 
 }

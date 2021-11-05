@@ -46,7 +46,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.item.crafting.RecipeManager;
 import net.minecraft.loot.ItemLootEntry;
 import net.minecraft.loot.LootPool;
 import net.minecraft.tileentity.TileEntity;
@@ -76,6 +78,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
@@ -160,6 +163,7 @@ public class Refinement {
 		forgeBus.addListener(this::onPlayerLeftClickBlock);
 		forgeBus.addListener(this::onPlayerRightClickBlock);
 		forgeBus.addListener(EventPriority.NORMAL, this::onRegisterCommands);
+		//forgeBus.addListener(this::onServerStarting);
 	}
 	
 	public static ResourceLocation rl(String value) {
@@ -259,6 +263,17 @@ public class Refinement {
 	public void constructMod(FMLConstructModEvent event) {
 		ModJsonConfigs.registerBeforeRegistries();
 		RegistryEvents.init();
+	}
+	
+	/**
+	 * Ehhhh
+	 * @param event
+	 */
+	public void onServerStarting(FMLServerStartingEvent event) {
+		RecipeManager manager = event.getServer().getRecipeManager();
+		System.out.println(manager.getRecipes().size());
+		java.util.Optional<? extends IRecipe<?>> recipeOpt = manager.byKey(new ResourceLocation("piston"));
+		recipeOpt.ifPresent(recipe -> manager.getRecipes().remove(recipe));
 	}
 
 	public void onLoadComplete(final FMLLoadCompleteEvent event) {

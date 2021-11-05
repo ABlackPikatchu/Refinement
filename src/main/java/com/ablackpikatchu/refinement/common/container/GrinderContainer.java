@@ -10,6 +10,7 @@ import com.ablackpikatchu.refinement.common.inventory.slot.itemspecific.UpgradeS
 import com.ablackpikatchu.refinement.common.recipe.GrinderRecipe;
 import com.ablackpikatchu.refinement.common.te.machine.GrinderTileEntity;
 import com.ablackpikatchu.refinement.common.te.upgrade.Upgrade;
+import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
 import com.ablackpikatchu.refinement.core.init.RecipeInit;
@@ -17,7 +18,6 @@ import com.ablackpikatchu.refinement.core.util.FunctionalIntReferenceHolder;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
@@ -46,13 +46,13 @@ public class GrinderContainer extends MachineContainer<GrinderTileEntity> {
 		this.canInteractWithCallable = IWorldPosCallable.create(te.getLevel(), te.getBlockPos());
 
 		// Tile Entity
-		this.addSlot(new RecipeIngredientSlot<GrinderRecipe>(RecipeInit.GRINDER_RECIPE, te.getLevel(), (IInventory) te, 0, 35, 23)); //Input
-		this.addSlot(new OutputSlot((IInventory) te, 1, 125, 23)); //Output
+		this.addSlot(new RecipeIngredientSlot<GrinderRecipe>(RecipeInit.GRINDER_RECIPE, te.getLevel(), te, 0, 35, 23)); //Input
+		this.addSlot(new OutputSlot(te, 1, 125, 23)); //Output
 		this.addSlot(new FuelSlot(te, 2, 8, 44)); //Coal
-		this.addSlot(new UpgradeSlot((IInventory) te, 3, 197, 113, Upgrade.SPEED)); //Speed Upgrade
-		this.addSlot(new UpgradeSlot((IInventory) te, 4, 179, 113, Upgrade.AUTO_EJECT)); // Auto eject upgrade
+		this.addSlot(new UpgradeSlot(te, 3, 197, 113, Upgrade.SPEED)); //Speed Upgrade
+		this.addSlot(new UpgradeSlot(te, 4, 179, 113, Upgrade.AUTO_EJECT)); // Auto eject upgrade
 		this.addSlot(new UpgradeSlot(te, 5, 197, 95, Upgrade.AUTO_IMPORT)); // Auto import upgrade
-		this.addSlot(new UpgradeSlot(te, 6, 179, 95, Upgrade.ENERGY_ABILITY)); // Energy Ability upgrade
+		this.addSlot(new UpgradeSlot(te, 6, 179, 95, Upgrade.ENERGY_ABILITY, CommonConfig.GRINDER_ENERGY_ABILITY_COMPATIBLE.get())); // Energy Ability upgrade
 
 		// Main Player Inventory
 		for (int row = 0; row < 3; row++) {

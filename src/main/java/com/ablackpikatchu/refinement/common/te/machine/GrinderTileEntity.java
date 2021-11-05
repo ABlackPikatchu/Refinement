@@ -59,6 +59,7 @@ public class GrinderTileEntity extends MachineTileEntity implements ITickableTil
 	private ModEnergyStorage createEnergy() {
 		return new ModEnergyStorage(100000, (CommonConfig.GRINDER_DEFAULT_ENERGY_USAGE.get()
 				+ CommonConfig.GRINDER_ENERGY_USAGE_PER_SPEED_UPGRADE.get() * 8) / 4 * 5, 0) {
+
 			@Override
 			protected void onEnergyChanged() {
 				boolean newHasPower = hasEnoughPowerToWork();
@@ -77,10 +78,11 @@ public class GrinderTileEntity extends MachineTileEntity implements ITickableTil
 	@Override
 	public void tick() {
 		if (!this.level.isClientSide()) {
-			handleEnergyAbilityUpgrade(6);
-			//handleAutoEject(4, 1);
+			if (CommonConfig.GRINDER_ENERGY_ABILITY_COMPATIBLE.get())
+				handleEnergyAbilityUpgrade(6);
+
 			handleAutoEject(4, 1);
-			
+
 			if (!usingEnergy)
 				handleFuelAutoImport(5, 2);
 
@@ -124,40 +126,28 @@ public class GrinderTileEntity extends MachineTileEntity implements ITickableTil
 
 	@Nullable
 	private GrinderRecipe getRecipe(ItemStack stack) {
-		if (stack.isEmpty()) {
-			return null;
-		}
+		if (stack.isEmpty()) { return null; }
 
 		Set<IRecipe<?>> recipes = findRecipesByType(RecipeInit.GRINDER_RECIPE, this.level);
 		for (IRecipe<?> iRecipe : recipes) {
 			GrinderRecipe recipe = (GrinderRecipe) iRecipe;
-			if (recipe.matches(this, this.level)) {
-				return recipe;
-			}
+			if (recipe.matches(this, this.level)) { return recipe; }
 		}
 
 		return null;
 	}
 
 	@Override
-	public int getContainerSize() {
-		return slots;
-	}
+	public int getContainerSize() { return slots; }
 
 	@Override
-	protected int[] getOutputSlots() {
-		return SLOTS_FOR_DOWN;
-	}
+	protected int[] getOutputSlots() { return SLOTS_FOR_DOWN; }
 
 	@Override
-	public NonNullList<ItemStack> getItems() {
-		return this.items;
-	}
+	public NonNullList<ItemStack> getItems() { return this.items; }
 
 	@Override
-	protected void setItems(NonNullList<ItemStack> items) {
-		this.items = items;
-	}
+	protected void setItems(NonNullList<ItemStack> items) { this.items = items; }
 
 	@Override
 	protected ITextComponent getDefaultName() {
@@ -165,25 +155,17 @@ public class GrinderTileEntity extends MachineTileEntity implements ITickableTil
 	}
 
 	@Override
-	public void setCustomName(ITextComponent name) {
-		this.customName = name;
-	}
+	public void setCustomName(ITextComponent name) { this.customName = name; }
 
 	@Override
-	public ITextComponent getName() {
-		return this.customName != null ? this.customName : this.getDefaultName();
-	}
+	public ITextComponent getName() { return this.customName != null ? this.customName : this.getDefaultName(); }
 
 	@Override
-	public ITextComponent getDisplayName() {
-		return this.getName();
-	}
+	public ITextComponent getDisplayName() { return this.getName(); }
 
 	@Override
 	@Nullable
-	public ITextComponent getCustomName() {
-		return this.customName;
-	}
+	public ITextComponent getCustomName() { return this.customName; }
 
 	@Override
 	protected Container createMenu(final int windowID, final PlayerInventory playerInv) {
@@ -210,7 +192,9 @@ public class GrinderTileEntity extends MachineTileEntity implements ITickableTil
 	@Override
 	public int[] getSlotsForFace(Direction side) {
 		if (side == null)
-			return new int[] {0, 1, 2};
+			return new int[] {
+					0, 1, 2
+			};
 		if (side == Direction.DOWN)
 			return SLOTS_FOR_DOWN;
 		else if (side == Direction.UP)
@@ -247,9 +231,7 @@ public class GrinderTileEntity extends MachineTileEntity implements ITickableTil
 	}
 
 	@Override
-	public SecurityType getSecurity() {
-		return this.security;
-	}
+	public SecurityType getSecurity() { return this.security; }
 
 	@Override
 	public void setSecurity(SecurityType security) {
@@ -258,13 +240,9 @@ public class GrinderTileEntity extends MachineTileEntity implements ITickableTil
 	}
 
 	@Override
-	public UUID getOwnerUUID() {
-		return this.ownerUUID;
-	}
+	public UUID getOwnerUUID() { return this.ownerUUID; }
 
 	@Override
-	public int getFuelSlot() {
-		return 2;
-	}
+	public int getFuelSlot() { return 2; }
 
 }

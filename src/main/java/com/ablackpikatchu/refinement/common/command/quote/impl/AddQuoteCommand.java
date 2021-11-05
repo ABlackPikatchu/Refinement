@@ -1,5 +1,6 @@
 package com.ablackpikatchu.refinement.common.command.quote.impl;
 
+import com.ablackpikatchu.refinement.api.event.QuoteEvent;
 import com.ablackpikatchu.refinement.common.command.quote.Quote;
 import com.ablackpikatchu.refinement.common.command.quote.QuoteCommand;
 import com.ablackpikatchu.refinement.common.command.quote.QuoteManager;
@@ -29,17 +30,20 @@ public class AddQuoteCommand extends QuoteCommand {
 
 	public int addCommand(CommandContext<CommandSource> context, ServerPlayerEntity author, String quote) {
 		if (checkQuotesEnabled(context)) {
-			QuoteManager manager = QuoteManager.get(context.getSource().getLevel());
-			manager.addQuote(new Quote(author, quote));
 			try {
-				author.sendMessage(new StringTextComponent(
-						"You have been quoted by " + context.getSource().getPlayerOrException().getName().getString()
-								+ "! The quote is: \n" + quote),
-						context.getSource().getPlayerOrException().getUUID());
+				if (!QuoteEvent.onQuoteAdded(new Quote(author, quote), context.getSource().getPlayerOrException())) {
+					QuoteManager manager = QuoteManager.get(context.getSource().getLevel());
+					manager.addQuote(new Quote(author, quote));
+					author.sendMessage(
+							new StringTextComponent("You have been quoted by "
+									+ context.getSource().getPlayerOrException().getName().getString()
+									+ "! The quote is: \n" + quote),
+							context.getSource().getPlayerOrException().getUUID());
+					context.getSource().sendSuccess(new StringTextComponent(
+							"Added a new quote with the index of " + (manager.getQuotesNumber() - 1)), true);
+				} else
+					context.getSource().sendFailure(new StringTextComponent("The adding of the quote was cancelled!"));
 			} catch (CommandSyntaxException e) {}
-			context.getSource().sendSuccess(
-					new StringTextComponent("Added a new quote with the index of " + (manager.getQuotesNumber() - 1)),
-					true);
 		}
 		return 0;
 	}

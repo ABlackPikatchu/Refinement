@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.api.block.MachineBlock;
 import com.ablackpikatchu.refinement.api.te.MachineTileEntity;
 import com.ablackpikatchu.refinement.common.block.machine.AlloySmelterBlock;
 import com.ablackpikatchu.refinement.common.container.AlloySmelterContainer;
@@ -72,6 +73,7 @@ public class AlloySmelterTileEntity extends MachineTileEntity implements ITickab
 	private ModEnergyStorage createEnergy() {
 		return new ModEnergyStorage(100000, (CommonConfig.ALLOY_SMELTER_DEFAULT_ENERGY_USAGE.get()
 				+ CommonConfig.ALLOY_SMELTER_ENERGY_USAGE_PER_SPEED_UPGRADE.get() * 8) / 4 * 5) {
+
 			@Override
 			protected void onEnergyChanged() {
 				boolean newHasPower = hasEnoughPowerToWork();
@@ -104,13 +106,14 @@ public class AlloySmelterTileEntity extends MachineTileEntity implements ITickab
 	@Override
 	public void tick() {
 		if (!this.level.isClientSide()) {
-			TileEntityHelper.setStateProperty(this, AlloySmelterBlock.LIT, false);
+			TileEntityHelper.setStateProperty(this, MachineBlock.LIT, false);
 
-			handleEnergyAbilityUpgrade(9);
+			if (CommonConfig.ALLOY_SMELTER_ENERGY_ABILITY_COMPATIBLE.get())
+				handleEnergyAbilityUpgrade(9);
 			handleAutoEject(7, 4);
 			if (!hasValidRecipe())
 				handleAutoImport(RecipeInit.ALLOY_SMELTING_RECIPE, 8, 0, 1, 2, 3);
-			if (!usingEnergy)	
+			if (!usingEnergy)
 				handleFuelAutoImport(8, 5);
 
 			if (tickSinceLastStore < 20)
@@ -145,15 +148,14 @@ public class AlloySmelterTileEntity extends MachineTileEntity implements ITickab
 			if (TileEntityHelper.canPlaceItemInStack(this.getItem(4), getRecipe().getResultItem())) {
 				consumeFuel();
 				getRecipe().consumeIngredients(iInventory);
-				if (getRecipe() != null) 
+				if (getRecipe() != null)
 					storeResultItem(getRecipe().getResultItem());
 				/**
-				int oldCount = 0;
-				if (this.getItem(4) != ItemStack.EMPTY)
-					oldCount = this.getItem(4).getCount();
-				this.setItem(4, new ItemStack(getRecipe().getResultItem().getItem(),
-						getRecipe().getResultItem().getCount() + oldCount));
-				**/
+				 * int oldCount = 0; if (this.getItem(4) != ItemStack.EMPTY) oldCount =
+				 * this.getItem(4).getCount(); this.setItem(4, new
+				 * ItemStack(getRecipe().getResultItem().getItem(),
+				 * getRecipe().getResultItem().getCount() + oldCount));
+				 **/
 				this.currentWaitTime = 0;
 				tickSinceLastStore = 0;
 				TileEntityHelper.updateTE(this);
@@ -173,24 +175,16 @@ public class AlloySmelterTileEntity extends MachineTileEntity implements ITickab
 	}
 
 	@Override
-	public int getContainerSize() {
-		return slots;
-	}
+	public int getContainerSize() { return slots; }
 
 	@Override
-	protected int[] getOutputSlots() {
-		return SLOTS_FOR_DOWN;
-	}
+	protected int[] getOutputSlots() { return SLOTS_FOR_DOWN; }
 
 	@Override
-	public NonNullList<ItemStack> getItems() {
-		return this.items;
-	}
+	public NonNullList<ItemStack> getItems() { return this.items; }
 
 	@Override
-	protected void setItems(NonNullList<ItemStack> items) {
-		this.items = items;
-	}
+	protected void setItems(NonNullList<ItemStack> items) { this.items = items; }
 
 	@Override
 	protected ITextComponent getDefaultName() {
@@ -198,25 +192,17 @@ public class AlloySmelterTileEntity extends MachineTileEntity implements ITickab
 	}
 
 	@Override
-	public void setCustomName(ITextComponent name) {
-		this.customName = name;
-	}
+	public void setCustomName(ITextComponent name) { this.customName = name; }
 
 	@Override
-	public ITextComponent getName() {
-		return this.customName != null ? this.customName : this.getDefaultName();
-	}
+	public ITextComponent getName() { return this.customName != null ? this.customName : this.getDefaultName(); }
 
 	@Override
-	public ITextComponent getDisplayName() {
-		return this.getName();
-	}
+	public ITextComponent getDisplayName() { return this.getName(); }
 
 	@Override
 	@Nullable
-	public ITextComponent getCustomName() {
-		return this.customName;
-	}
+	public ITextComponent getCustomName() { return this.customName; }
 
 	@Override
 	protected Container createMenu(final int windowID, final PlayerInventory playerInv) {
@@ -245,7 +231,9 @@ public class AlloySmelterTileEntity extends MachineTileEntity implements ITickab
 	@Override
 	public int[] getSlotsForFace(Direction pSide) {
 		if (pSide == null)
-			return new int[] {0, 1, 2, 3, 5};
+			return new int[] {
+					0, 1, 2, 3, 5
+			};
 		if (pSide == Direction.UP)
 			return SLOTS_FOR_UP;
 		else if (pSide == Direction.DOWN)
@@ -279,9 +267,7 @@ public class AlloySmelterTileEntity extends MachineTileEntity implements ITickab
 	}
 
 	@Override
-	public int getFuelSlot() {
-		return 5;
-	}
+	public int getFuelSlot() { return 5; }
 
 	@Override
 	public ItemStack executeDispenserBehaviour(IBlockSource dispenser, ItemStack usedStack) {
@@ -289,7 +275,8 @@ public class AlloySmelterTileEntity extends MachineTileEntity implements ITickab
 			if (this.getItem(9).isEmpty()) {
 				this.setItem(9, new ItemStack(ItemInit.ENERGY_ABILITY_UPGRADE.get()));
 				usedStack.shrink(1);
-			} else return usedStack;
+			} else
+				return usedStack;
 		}
 		return usedStack;
 	}
@@ -297,16 +284,20 @@ public class AlloySmelterTileEntity extends MachineTileEntity implements ITickab
 	@Override
 	public int getSlotForUpgrade(Upgrade upgrade) {
 		switch (upgrade) {
-		case SPEED: return 6;
-		case AUTO_EJECT: return 7;
-		case AUTO_IMPORT: return 8;
-		case ENERGY_ABILITY: return 9;
+		case SPEED:
+			return 6;
+		case AUTO_EJECT:
+			return 7;
+		case AUTO_IMPORT:
+			return 8;
+		case ENERGY_ABILITY:
+			return 9;
 		default:
 			break;
 		}
 		return -1;
 	}
-	
+
 	@Override
 	public void setRemoved() {
 		for (LazyOptional<? extends IItemHandler> handler : handlers) {

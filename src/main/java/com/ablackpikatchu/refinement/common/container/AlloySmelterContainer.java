@@ -8,6 +8,7 @@ import com.ablackpikatchu.refinement.common.inventory.slot.OutputSlot;
 import com.ablackpikatchu.refinement.common.inventory.slot.itemspecific.UpgradeSlot;
 import com.ablackpikatchu.refinement.common.te.machine.AlloySmelterTileEntity;
 import com.ablackpikatchu.refinement.common.te.upgrade.Upgrade;
+import com.ablackpikatchu.refinement.core.config.CommonConfig;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
 import com.ablackpikatchu.refinement.core.util.FunctionalIntReferenceHolder;
@@ -52,7 +53,7 @@ public class AlloySmelterContainer extends MachineContainer<AlloySmelterTileEnti
 		this.addSlot(new UpgradeSlot(te, 6, 197, 120, Upgrade.SPEED));
 		this.addSlot(new UpgradeSlot(te, 7, 179, 120, Upgrade.AUTO_EJECT));
 		this.addSlot(new UpgradeSlot(te, 8, 197, 102, Upgrade.AUTO_IMPORT));
-		this.addSlot(new UpgradeSlot(te, 9, 179, 102, Upgrade.ENERGY_ABILITY));
+		this.addSlot(new UpgradeSlot(te, 9, 179, 102, Upgrade.ENERGY_ABILITY, CommonConfig.ALLOY_SMELTER_ENERGY_ABILITY_COMPATIBLE.get()));
 
 		InventoryUtils.createPlayerSlots(playerInv, 8, 84).forEach(this::addSlot);
 

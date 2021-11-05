@@ -4,7 +4,7 @@
 	"compatibilityLevel": "JAVA_8",
 	"refmap": "refinement.refmap.json",
 	"mixins": [
-		
+		"ClientRecipeBookMixin"
 	],
 	"minVersion": "0.8"
 }

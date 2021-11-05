@@ -3,7 +3,7 @@ package com.ablackpikatchu.refinement.common.container;
 import java.util.Objects;
 
 import com.ablackpikatchu.refinement.api.container.MachineContainer;
-import com.ablackpikatchu.refinement.common.te.misc_tes.VaccumulatorTileEntity;
+import com.ablackpikatchu.refinement.common.te.misc_tes.VacuumulatorTileEntity;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ContainerTypesInit;
 
@@ -15,12 +15,12 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IWorldPosCallable;
 
-public class VaccumulatorContainer extends MachineContainer<VaccumulatorTileEntity> {
+public class VaccumulatorContainer extends MachineContainer<VacuumulatorTileEntity> {
 
 	private final IWorldPosCallable canInteractWithCallable;
 
 	public VaccumulatorContainer(final int windowId, final PlayerInventory playerInventory,
-			final VaccumulatorTileEntity te) {
+			final VacuumulatorTileEntity te) {
 		super(ContainerTypesInit.VACCUMULATOR_CONTAINER_TYPE.get(), windowId, te);
 		this.canInteractWithCallable = IWorldPosCallable.create(te.getLevel(), te.getBlockPos());
 
@@ -55,12 +55,12 @@ public class VaccumulatorContainer extends MachineContainer<VaccumulatorTileEnti
 		this(windowId, playerInv, getTileEntity(playerInv, data));
 	}
 
-	private static VaccumulatorTileEntity getTileEntity(final PlayerInventory playerInv, final PacketBuffer data) {
+	private static VacuumulatorTileEntity getTileEntity(final PlayerInventory playerInv, final PacketBuffer data) {
 		Objects.requireNonNull(playerInv, "Player Inventory cannot be null.");
 		Objects.requireNonNull(data, "Packet Buffer cannot be null.");
 		final TileEntity te = playerInv.player.level.getBlockEntity(data.readBlockPos());
-		if (te instanceof VaccumulatorTileEntity) {
-			return (VaccumulatorTileEntity) te;
+		if (te instanceof VacuumulatorTileEntity) {
+			return (VacuumulatorTileEntity) te;
 		}
 		throw new IllegalStateException("Tile Entity Is Not Correct");
 	}
@@ -77,11 +77,11 @@ public class VaccumulatorContainer extends MachineContainer<VaccumulatorTileEnti
 		if (slot != null && slot.hasItem()) {
 			ItemStack stack1 = slot.getItem();
 			stack = stack1.copy();
-			if (index < VaccumulatorTileEntity.slots
-					&& !this.moveItemStackTo(stack1, VaccumulatorTileEntity.slots, this.slots.size(), true)) {
+			if (index < VacuumulatorTileEntity.slots
+					&& !this.moveItemStackTo(stack1, VacuumulatorTileEntity.slots, this.slots.size(), true)) {
 				return ItemStack.EMPTY;
 			}
-			if (!this.moveItemStackTo(stack1, 0, VaccumulatorTileEntity.slots, false)) {
+			if (!this.moveItemStackTo(stack1, 0, VacuumulatorTileEntity.slots, false)) {
 				return ItemStack.EMPTY;
 			}
 

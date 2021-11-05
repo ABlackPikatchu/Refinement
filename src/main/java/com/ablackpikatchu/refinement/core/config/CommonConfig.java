@@ -5,6 +5,7 @@ import java.util.List;
 import com.google.common.collect.Lists;
 
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
 
 public class CommonConfig {
 
@@ -14,6 +15,7 @@ public class CommonConfig {
 	// Grinder
 	public static ForgeConfigSpec.ConfigValue<Integer> GRINDER_DEFAULT_PROCESS_TIME;
 	public static ForgeConfigSpec.ConfigValue<Integer> GRINDER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE;
+	public static ConfigValue<Boolean> GRINDER_ENERGY_ABILITY_COMPATIBLE;
 
 	// Mixer
 	public static ForgeConfigSpec.ConfigValue<Integer> MIXER_DEFAULT_PROCESS_TIME;
@@ -46,8 +48,10 @@ public class CommonConfig {
 	// Magnet
 	public static final ForgeConfigSpec.ConfigValue<Boolean> MAGNET_ENABLED;
 	public static final ForgeConfigSpec.ConfigValue<Double> MAGNET_RANGE;
+	public static final ConfigValue<Boolean> MAGNET_TAKES_DAMAGE;
+	public static final ConfigValue<Boolean> MAGNET_IGNORES_THROWER;
 
-	// Vaccumulator
+	// Vacuumulator
 	public static final ForgeConfigSpec.ConfigValue<Double> VACCUMULATOR_RANGE;
 
 	// Conversions
@@ -63,10 +67,10 @@ public class CommonConfig {
 	// Resource Statues
 	public static final ForgeConfigSpec.ConfigValue<Integer> RESOURCE_STATUES_PRODUCE_TIME;
 
+	//@formatter:off
 	static {
 
-		BUILDER.push("Machine_Config");
-
+		BUILDER.push("MachineConfig");
 		addGrinderConfig();
 		addMixerConfig();
 		addMoldPressConfig();
@@ -76,55 +80,32 @@ public class CommonConfig {
 		addEnergyGeneratorConfig();
 		addEnergyTransmitterConfig();
 		addSmelterConfig();
-
 		BUILDER.pop();
 
 		BUILDER.push("Conversions");
-
-		ENABLE_CONVERSION = BUILDER.comment("If the ore unifying should be enabled (Default value is false)")
-				.define("conversionEnabled", false);
-		INVENTORY_TRIGGER_CONVERSION = BUILDER.comment(
-				"(ONLY IF Conversion Enabled IS TRUE) If the ore unifying should trigger in the player inventory (without pressing the Ore Unify key) (Default value is true)")
-				.define("conversionInventoryTrigger", true);
-
+		ENABLE_CONVERSION = config("If the ore unifying should be enabled.", "conversionEnabled", false);
+		INVENTORY_TRIGGER_CONVERSION = config("(ONLY IF `conversionEnabled` IS TRUE) If the ore unifying should trigger in the player inventory (without pressing the Ore Unify key)", "conversionInventoryTrigger", true);
 		BUILDER.pop();
 
 		BUILDER.push("Magnets");
-
-		MAGNET_ENABLED = BUILDER.comment("If the magnet and the vacuumulator should be enabled (Default value is true)")
-				.define("magnetEnabled", true);
-
-		MAGNET_RANGE = BUILDER.comment("The range of the Magnet (in blocks) (Default value is 7.0)")
-				.define("magnetRange", 7.0);
-
-		VACCUMULATOR_RANGE = BUILDER.comment("The range of the Vacuumulator (in blocks) (Default value is 7.0)")
-				.define("vacuumulatorRange", 7.0);
-
+		MAGNET_ENABLED = config("If the magnet and the vacuumulator should be enabled.", "magnetEnabled", true);
+		MAGNET_RANGE = config("The range of the Magnet (in blocks)", "magnetRange", 7.0);
+		MAGNET_TAKES_DAMAGE = config("If the magnet should be damaged when it attracts an item.", "magnetTakesDamage", true);
+		MAGNET_IGNORES_THROWER = config("If true, the magnet will still attract an item even though the player holding the magnet, recently threw said item. (the player has pickup cooldown on the item)","magnetIgnoresThrower", false);
+		VACCUMULATOR_RANGE = config("The range of the Vacuumulator (in blocks)", "vacuumulatorRange", 7.0);
 		BUILDER.pop();
 
-		BUILDER.push("Ore_Crops");
-
-		CROPS_ENABLED = BUILDER.comment(
-				"If the ore crops should be enabled (if false, their recipe will not exist, and they will not show up in the creative tabs, nor in JEI) (Default value is false)")
-				.define("cropsEnabled", false);
-
+		BUILDER.push("OreCrops");
+		CROPS_ENABLED = config("If the ore crops should be enabled (if false, their recipe will not exist, and they will not show up in the creative tabs, nor in JEI)", "cropsEnabled", false);
 		BUILDER.pop();
 
-		BUILDER.push("Armour_Upgrading");
-
-		ARMOUR_UPGRADING_EFFECTS = BUILDER
-				.comment("The possible effects that an armour piece can recipe when upgraded.")
-				.define("upgradingEffects", Lists.newArrayList("minecraft:night_vision", "minecraft:haste",
-						"minecraft:water_breathing", "refinement:negate_fall"));
-
+		BUILDER.push("ArmourUpgrading");
+		ARMOUR_UPGRADING_EFFECTS = config("The possible effects that an armour piece can recipe when upgraded.", "upgradingEffects", Lists.newArrayList("minecraft:night_vision", "minecraft:haste", 
+				"minecraft:water_breathing", "refinement:negate_fall"));
 		BUILDER.pop();
 
-		BUILDER.push("Resource_Statues");
-
-		RESOURCE_STATUES_PRODUCE_TIME = BUILDER.comment(
-				"The time a Resource Statue needs in order to produce one item, in tick. (Default value is 350)")
-				.define("producingTime", 350);
-
+		BUILDER.push("ResourceStatues");
+		RESOURCE_STATUES_PRODUCE_TIME = config("The time a Resource Statue needs in order to produce one item, in ticks.", "producingTime", 350);
 		BUILDER.pop();
 
 		SPEC = BUILDER.build();
@@ -136,52 +117,32 @@ public class CommonConfig {
 
 	public static void addGrinderConfig() {
 		BUILDER.push("Grinder");
-		GRINDER_DEFAULT_PROCESS_TIME = BUILDER
-				.comment(
-						"The default process of the Grinder, in ticks. (with no speed upgrades) (Default value is 200)")
-				.define("defaultProcessTime", 200);
-		GRINDER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE = BUILDER.comment(
-				"The ticks amount each speed upgrades decreases from the process time of the Grinder. (Default value is 15)")
-				.define("speedUpgradeTimeDecreased", 15);
-		GRINDER_ENERGY_USAGE_PER_SPEED_UPGRADE = BUILDER.comment(
-				"(Only for Grinders that have the Energy Ability Upgrade) The default energy usage (FE/tick) of the Grinder, per tick. (with no speed upgrades) (Default value is 7)")
-				.define("defaultEnergyUsage", 7);
-		GRINDER_DEFAULT_ENERGY_USAGE = BUILDER.comment(
-				"(Only for Grinders that have the Energy Ability Upgrade) The amount of FE/tick the Grinder furthermore consumes for each speed upgrade. (Default value is 55)")
-				.define("speedUpgradeEnergyUsage", 55);
+		GRINDER_DEFAULT_PROCESS_TIME = config("The default process of the Grinder, in ticks. (with no speed upgrades)", "defaultProcessTime", 200);
+		GRINDER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE = config("The ticks amount each speed upgrades decreases from the process time of the Grinder.", "speedUpgradeTimeDecreased", 15);
+		GRINDER_ENERGY_ABILITY_COMPATIBLE = config("If the Grinder is compatible with the Energy Ability Upgrade", "energyAbilityCompatible", true);
+		GRINDER_ENERGY_USAGE_PER_SPEED_UPGRADE = config("(Only for Grinders that have the Energy Ability Upgrade) The default energy usage (FE/tick) of the Grinder, per tick. (with no speed upgrades)", "defaultEnergyUsage", 7);
+		GRINDER_DEFAULT_ENERGY_USAGE = config("(Only for Grinders that have the Energy Ability Upgrade) The amount of FE/tick the Grinder furthermore consumes for each speed upgrade.", "speedUpgradeEnergyUsage", 55);
 		BUILDER.pop();
 	}
 
 	public static void addMixerConfig() {
 		BUILDER.push("Mixer");
-		MIXER_DEFAULT_PROCESS_TIME = BUILDER
-				.comment("The default process of the Mixer, in ticks. (with no speed upgrades) (Default value is 300)")
-				.define("defaultProcessTime", 300);
-		MIXER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE = BUILDER.comment(
-				"The ticks amount each speed upgrades decreases from the process time of the Mixer. (Default value is 10)")
-				.define("speedUpgradeTimeDecreased", 10);
+		MIXER_DEFAULT_PROCESS_TIME = config("The default process of the Mixer, in ticks. (with no speed upgrades)", "defaultProcessTime", 300);
+		MIXER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE = config("The ticks amount each speed upgrades decreases from the process time of the Mixer.", "speedUpgradeTimeDecreased", 10);
 		BUILDER.pop();
 	}
 
 	public static void addMoldPressConfig() {
-		BUILDER.push("Mold_Press");
-		MOLD_PRESS_DEFAULT_PROCESS_TIME = BUILDER.comment(
-				"The default process of the Mold Press, in ticks. (with no speed upgrades) (Default value is 200)")
-				.define("defaultProcessTime", 200);
-		MOLD_PRESS_TIME_DECREASED_BY_EACH_SPEED_UPGRADE = BUILDER.comment(
-				"The ticks amount each speed upgrades decreases from the process time of the Mold Press. (Default value is 15)")
-				.define("speedUpgradeTimeDecreased", 15);
+		BUILDER.push("MoldPress");
+		MOLD_PRESS_DEFAULT_PROCESS_TIME = config("The default process of the Mold Press, in ticks. (with no speed upgrades)", "defaultProcessTime", 200);
+		MOLD_PRESS_TIME_DECREASED_BY_EACH_SPEED_UPGRADE = config("The ticks amount each speed upgrades decreases from the process time of the Mold Press.", "speedUpgradeTimeDecreased", 15);
 		BUILDER.pop();
 	}
 
 	public static void addDNASequencerConfig() {
 		BUILDER.push("DNA_Sequencer");
-		DNA_SEQUENCER_DEFAULT_PROCESS_TIME = BUILDER.comment(
-				"The default process of the DNA Sequencer, in ticks. (with no speed upgrades) (Default value is 400)")
-				.define("defaultProcessTime", 400);
-		DNA_SEQUENCER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE = BUILDER.comment(
-				"The ticks amount each speed upgrades decreases from the process time of the DNA Sequencer. (Default value is 10)")
-				.define("speedUpgradeTimeDecreased", 10);
+		DNA_SEQUENCER_DEFAULT_PROCESS_TIME = config("The default process of the DNA Sequencer, in ticks. (with no speed upgrades)", "defaultProcessTime", 400);
+		DNA_SEQUENCER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE = config("The ticks amount each speed upgrades decreases from the process time of the DNA Sequencer.", "speedUpgradeTimeDecreased", 10);
 		BUILDER.pop();
 	}
 
@@ -189,82 +150,63 @@ public class CommonConfig {
 	public static ForgeConfigSpec.ConfigValue<Integer> ALLOY_SMELTER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE;
 	public static ForgeConfigSpec.ConfigValue<Integer> ALLOY_SMELTER_ENERGY_USAGE_PER_SPEED_UPGRADE;
 	public static ForgeConfigSpec.ConfigValue<Integer> ALLOY_SMELTER_DEFAULT_ENERGY_USAGE;
+	public static ForgeConfigSpec.ConfigValue<Boolean> ALLOY_SMELTER_ENERGY_ABILITY_COMPATIBLE;
 
 	public static void addAlloySmelterConfig() {
-		BUILDER.push("Alloy_Smelter");
-		ALLOY_SMELTER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE = BUILDER.comment(
-				"The ticks amount each speed upgrades decreases from the process time of the Alloy Smelter. (Default value is 20)")
-				.define("speedUpgradeTimeDecreased", 20);
-		ALLOY_SMELTER_DEFAULT_ENERGY_USAGE = BUILDER.comment(
-				"(Only for Alloy Smelters that have the Energy Ability Upgrade) The default energy usage (FE/tick) of the Alloy Smelter, per tick. (with no speed upgrades) (Default value is 60)")
-				.define("defaultEnergyUsage", 60);
-		ALLOY_SMELTER_ENERGY_USAGE_PER_SPEED_UPGRADE = BUILDER.comment(
-				"(Only for Alloy Smelters that have the Energy Ability Upgrade) The amount of FE/tick the Alloy Smelter furthermore consumes for each speed upgrade. (Default value is 10)")
-				.define("speedUpgradeEnergyUsage", 10);
+		BUILDER.push("AlloySmelter");
+		ALLOY_SMELTER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE = config("The ticks amount each speed upgrades decreases from the process time of the Alloy Smelter.", "speedUpgradeTimeDecreased", 20);
+		ALLOY_SMELTER_ENERGY_ABILITY_COMPATIBLE = config("If the Alloy Smelter is compatible with the Energy Ability Upgrade", "energyAbilityCompatible", true);
+		ALLOY_SMELTER_DEFAULT_ENERGY_USAGE = config("(Only for Alloy Smelters that have the Energy Ability Upgrade) The default energy usage (FE/tick) of the Alloy Smelter, per tick. (with no speed upgrades)", "defaultEnergyUsage", 60);
+		ALLOY_SMELTER_ENERGY_USAGE_PER_SPEED_UPGRADE = config("(Only for Alloy Smelters that have the Energy Ability Upgrade) The amount of FE/tick the Alloy Smelter furthermore consumes for each speed upgrade.", "speedUpgradeEnergyUsage", 10);
 		BUILDER.pop();
 	}
 
 	public static void addCarbonGeneratorConfig() {
-		BUILDER.push("Carbon_Generator");
-
-		CARBON_GENERATOR_DEFAULT_PROCESS_TIME = BUILDER.comment(
-				"The default process of the Carbon Generator, in ticks. (with no speed upgrades) (Default value is 250)")
-				.define("defaultProcess ime", 250);
-		CARBON_GENERATOR_TIME_DECREASED_BY_EACH_SPEED_UPGRADE = BUILDER.comment(
-				"The ticks amount each speed upgrades decreases from the process time of the Carbon Generator. (Default value is 12)")
-				.define("speedUpgradeTimeDecreased", 12);
-		CARBON_GENERATOR_DEFAULT_ENERGY_USAGE = BUILDER.comment(
-				"The default energy usage (FE/tick) of the Carbon Generator, per tick. (with no speed upgrades) (Default value is 50)")
-				.define("defaultEnergyUsage", 50);
-		CARBON_GENERATOR_ENERGY_USAGE_PER_SPEED_UPGRADE = BUILDER.comment(
-				"The amount of FE/tick the Carbon Generator furthermore consumes for each speed upgrade. (Default value is 10)")
-				.define("speedUpgradeEnergyUsage", 10);
-
+		BUILDER.push("CarbonGenerator");
+		CARBON_GENERATOR_DEFAULT_PROCESS_TIME = config("The default process of the Carbon Generator, in ticks. (with no speed upgrades)", "defaultProcess ime", 250);
+		CARBON_GENERATOR_TIME_DECREASED_BY_EACH_SPEED_UPGRADE = config("The ticks amount each speed upgrades decreases from the process time of the Carbon Generator.", "speedUpgradeTimeDecreased", 12);
+		CARBON_GENERATOR_DEFAULT_ENERGY_USAGE = config("The default energy usage (FE/tick) of the Carbon Generator, per tick. (with no speed upgrades)", "defaultEnergyUsage", 50);
+		CARBON_GENERATOR_ENERGY_USAGE_PER_SPEED_UPGRADE = config("The amount of FE/tick the Carbon Generator furthermore consumes for each speed upgrade.", "speedUpgradeEnergyUsage", 10);
 		BUILDER.pop();
 	}
 
 	public static void addEnergyGeneratorConfig() {
-		BUILDER.push("Energy_Generator");
-
-		ENERGY_GENERATOR_FUEL_LASTING = BUILDER
-				.comment("The lasting of fuel in the Energy Generator, in ticks. (Default value is 200)")
-				.define("fuelLasting", 200);
-		ENERGY_GENERATOR_ENERGY_MADE = BUILDER.comment("The energy made by the Energy Generator (per tick)")
-				.define("energyMade", 50);
-
+		BUILDER.push("EnergyGenerator");
+		ENERGY_GENERATOR_FUEL_LASTING = config("The lasting of fuel in the Energy Generator, in ticks.", "fuelLasting", 200);
+		ENERGY_GENERATOR_ENERGY_MADE = config("The energy made by the Energy Generator (per tick)", "energyMade", 50);
 		BUILDER.pop();
 	}
 
 	public static ForgeConfigSpec.ConfigValue<Integer> ENERGY_TRANSMITTER_ENERGY_USED_PER_OPERATION;
 
 	public static void addEnergyTransmitterConfig() {
-		BUILDER.push("Energy_Transmitter");
-
-		ENERGY_TRANSMITTER_ENERGY_USED_PER_OPERATION = BUILDER.comment(
-				"The amount of energy the Energy Transmitter uses per transfer operation. This amount is multiplied by the number of Transmitter Cards the transmitter has. (Default value is 40)")
-				.define("energyUsedPerOperation", 40);
-
+		BUILDER.push("EnergyTransmitter");
+		ENERGY_TRANSMITTER_ENERGY_USED_PER_OPERATION = config("The amount of energy the Energy Transmitter uses per transfer operation. This amount is multiplied by the number of Transmitter Cards the transmitter has (cardsInInv * energyUsedPerOperation).", "energyUsedPerOperation", 40);
 		BUILDER.pop();
 	}
 
 	public static void addSmelterConfig() {
 		BUILDER.push("Smelter");
-
-		SMELTER_DEFAULT_PROCESS_TIME = BUILDER
-				.comment(
-						"The default process of the Smelter, in ticks. (with no speed upgrades) (Default value is 150)")
-				.define("defaultProcessTime", 150);
-		SMELTER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE = BUILDER.comment(
-				"The ticks amount each speed upgrades decreases from the process time of the Smelter. (Default value is 10)")
-				.define("speedUpgradeTimeDecreased", 10);
-		SMELTER_DEFAULT_ENERGY_USAGE = BUILDER.comment(
-				"The default energy usage (FE/tick) of the Smelter, per tick. (with no speed upgrades) (Default value is 40)")
-				.define("defaultEnergyUsage", 40);
-		SMELTER_ENERGY_USAGE_PER_SPEED_UPGRADE = BUILDER.comment(
-				"The amount of FE/tick the Smelter furthermore consumes for each speed upgrade. (Default value is 10)")
-				.define("speedUpgradeEnergyUsage", 10);
-
+		SMELTER_DEFAULT_PROCESS_TIME = config("The default process of the Smelter, in ticks. (with no speed upgrades)", "defaultProcessTime", 150);
+		SMELTER_TIME_DECREASED_BY_EACH_SPEED_UPGRADE = config("The ticks amount each speed upgrades decreases from the process time of the Smelter.", "speedUpgradeTimeDecreased", 10);
+		SMELTER_DEFAULT_ENERGY_USAGE = config("The default energy usage (FE/tick) of the Smelter, per tick. (with no speed upgrades)", "defaultEnergyUsage", 40);
+		SMELTER_ENERGY_USAGE_PER_SPEED_UPGRADE = config("The amount of FE/tick the Smelter furthermore consumes for each speed upgrade.", "speedUpgradeEnergyUsage", 10);
 		BUILDER.pop();
+	}
+	
+	//@formatter:on
+	private static <T> ConfigValue<T> config(String comment, String path, T defaultValue,
+			boolean addDefaultValueComment) {
+//		return addDefaultValueComment
+//				? BUILDER.comment(comment + " [Default: " + defaultValue.toString() + "]").define(path, defaultValue)
+//				: BUILDER.comment(comment).define(path, defaultValue);
+		return addDefaultValueComment
+				? BUILDER.comment(comment, "default: " + defaultValue.toString()).define(path, defaultValue)
+				: BUILDER.comment(comment).define(path, defaultValue);
+	}
+
+	private static <T> ConfigValue<T> config(String comment, String path, T defaultValue) {
+		return config(comment, path, defaultValue, true);
 	}
 
 }

@@ -2,10 +2,10 @@ package com.ablackpikatchu.refinement.client.screen.tileentity;
 
 import java.util.ArrayList;
 
-import com.ablackpikatchu.refinement.Refinement;
 import com.ablackpikatchu.refinement.api.screen.tileentity.MachineContainerScreen;
 import com.ablackpikatchu.refinement.client.screen.element.PowerIndicatorElement;
 import com.ablackpikatchu.refinement.common.container.AlloySmelterContainer;
+import com.ablackpikatchu.refinement.datafixers.RefinementRL;
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
@@ -15,11 +15,9 @@ import net.minecraft.util.text.ITextComponent;
 
 public class AlloySmelterScreen extends MachineContainerScreen<AlloySmelterContainer> {
 
-	public static final ResourceLocation ALLOY_SMELTER_GUI = new ResourceLocation(Refinement.MOD_ID,
-			"textures/gui/alloy_smelter.png");
+	public static final ResourceLocation ALLOY_SMELTER_GUI = new RefinementRL("textures/gui/alloy_smelter.png");
 
-	public static final ResourceLocation ALLOY_SMELTER_JEI_SCREEN = new ResourceLocation(Refinement.MOD_ID,
-			"textures/gui/jei/alloy_smelter.png");
+	public static final ResourceLocation ALLOY_SMELTER_JEI_SCREEN = new RefinementRL("textures/gui/jei/alloy_smelter.png");
 
 	public AlloySmelterScreen(AlloySmelterContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
 		super(screenContainer, inv, titleIn, ALLOY_SMELTER_GUI);

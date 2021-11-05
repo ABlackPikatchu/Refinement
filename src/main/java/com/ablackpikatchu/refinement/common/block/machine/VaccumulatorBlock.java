@@ -1,6 +1,6 @@
 package com.ablackpikatchu.refinement.common.block.machine;
 
-import com.ablackpikatchu.refinement.common.te.misc_tes.VaccumulatorTileEntity;
+import com.ablackpikatchu.refinement.common.te.misc_tes.VacuumulatorTileEntity;
 import com.ablackpikatchu.refinement.core.init.TileEntityTypesInit;
 
 import net.minecraft.block.AbstractBlock;
@@ -56,8 +56,8 @@ public class VaccumulatorBlock extends Block {
 			Hand handIn, BlockRayTraceResult hit) {
 		if (!worldIn.isClientSide()) {
 			TileEntity te = worldIn.getBlockEntity(pos);
-			if (te instanceof VaccumulatorTileEntity) {
-				NetworkHooks.openGui((ServerPlayerEntity) player, (VaccumulatorTileEntity) te, pos);
+			if (te instanceof VacuumulatorTileEntity) {
+				NetworkHooks.openGui((ServerPlayerEntity) player, (VacuumulatorTileEntity) te, pos);
 			}
 		}
 		return ActionResultType.SUCCESS;
@@ -73,8 +73,8 @@ public class VaccumulatorBlock extends Block {
 		super.setPlacedBy(worldIn, pos, state, placer, stack);
 		if (stack.hasCustomHoverName()) {
 			TileEntity tile = worldIn.getBlockEntity(pos);
-			if (tile instanceof VaccumulatorTileEntity) {
-				((VaccumulatorTileEntity) tile).setCustomName(stack.getDisplayName());
+			if (tile instanceof VacuumulatorTileEntity) {
+				((VacuumulatorTileEntity) tile).setCustomName(stack.getDisplayName());
 			}
 		}
 	}
