@@ -1,8 +1,10 @@
 package com.ablackpikatchu.refinement.data.client;
 
 import com.ablackpikatchu.refinement.Refinement;
+import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.core.init.ItemInit;
 
+import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.util.IItemProvider;
 
@@ -20,6 +22,10 @@ public class ItemModelProvider extends net.minecraftforge.client.model.generator
 	protected void registerModels() {
 		for (String blockItem : BLOCK_ITEMS) {
 			withExistingParent(blockItem, modLoc("block/" + blockItem));
+		}
+		
+		for (Block block : BLOCK_ITEMS_2) {
+			withExistingParent(block.asItem().getRegistryName().getPath(), modLoc("block/" + block.getRegistryName().getPath()));
 		}
 		
 		builder(ItemInit.Ingots.LUMIUM_INGOT, "ingots/lumium");
@@ -45,12 +51,16 @@ public class ItemModelProvider extends net.minecraftforge.client.model.generator
         return getBuilder(name).parent(itemGenerated).texture("layer0", "items/" + name);
     }
     
-    public static String[] BLOCK_ITEMS = {
+    public static final String[] BLOCK_ITEMS = {
     		"refined_log", "refined_stripped_log", "refined_leaves", "refined_sapling",
-    		"copper_block"
+    		"copper_block", "enderium_block"
     };
     
-    public static String[] ITEMS = {
+    public static final Block[] BLOCK_ITEMS_2 = {
+    		BlockInit.SIGNALUM_BLOCK.get()
+    };
+     
+    public static final String[] ITEMS = {
     		
     };
 

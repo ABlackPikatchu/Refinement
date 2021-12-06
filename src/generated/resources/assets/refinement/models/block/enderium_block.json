@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "refinement:blocks/storage_blocks/copper_block"
+    "all": "refinement:blocks/storage_blocks/enderium_block"
   }
 }

@@ -1,6 +1,10 @@
 package com.ablackpikatchu.refinement.data.client;
 
 import static com.ablackpikatchu.refinement.Refinement.MOD_ID;
+import static net.minecraft.util.Direction.EAST;
+import static net.minecraft.util.Direction.NORTH;
+import static net.minecraft.util.Direction.SOUTH;
+import static net.minecraft.util.Direction.WEST;
 
 import java.util.HashMap;
 
@@ -9,13 +13,13 @@ import com.ablackpikatchu.refinement.api.block.MachineBlock;
 import com.ablackpikatchu.refinement.common.block.StorageBinBlock;
 import com.ablackpikatchu.refinement.core.init.BlockInit;
 import com.ablackpikatchu.refinement.data.maps.LootTableMaps;
-import com.ablackpikatchu.refinement.resourcecrops.common.ModCrop;
+import com.ablackpikatchu.refinement.datafixers.RefinementRL;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.CropsBlock;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.util.Direction;
-import static net.minecraft.util.Direction.*;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 
@@ -43,16 +47,16 @@ public class BlockStatesProvider extends BlockStateProvider {
 
 		HashMap<Block, IItemProvider> cropBlocks = new HashMap<>();
 		LootTableMaps.addCropLoot(cropBlocks);
-		cropBlocks.forEach((block, resource) -> {
-			cropBlock(block);
-		});
+		cropBlocks.forEach((block, resource) -> cropBlock(block));
 
 		simpleBlock(BlockInit.REFINED_LEAVES.get());
 		logBlock(BlockInit.REFINED_LOG.get());
 		logBlock(BlockInit.REFINED_STRIPPED_LOG.get());
 		cross(BlockInit.REFINED_SAPLING.get());
 
-		cubeAll(BlockInit.COPPER_BLOCK.get());
+		cubeAll(BlockInit.COPPER_BLOCK.get(), "storage_blocks/copper_block");
+		cubeAll(BlockInit.ENDERIUM_BLOCK.get(), "storage_blocks/enderium_block");
+		cubeAll(BlockInit.SIGNALUM_BLOCK.get(), "storage_blocks/signalum_block");
 
 		machineBlock(BlockInit.SMELTER_BLOCK.get(), "machines/smelter", "machines/smelter_lit");
 		machineBlock(BlockInit.GRINDER.get(), "machines/grinder", "machines/grinder_lit");
@@ -71,21 +75,21 @@ public class BlockStatesProvider extends BlockStateProvider {
 	}
 
 	public void cropBlock(Block block) {
-		getVariantBuilder(block).partialState().with(ModCrop.AGE, 0).modelForState()
+		getVariantBuilder(block).partialState().with(CropsBlock.AGE, 0).modelForState()
 				.modelFile(models().cross("block/crop/" + name(block) + "_0", cropModel(block, 0))).addModel()
-				.partialState().with(ModCrop.AGE, 1).modelForState()
+				.partialState().with(CropsBlock.AGE, 1).modelForState()
 				.modelFile(models().cross("block/crop/" + name(block) + "_1", cropModel(block, 1))).addModel()
-				.partialState().with(ModCrop.AGE, 2).modelForState()
+				.partialState().with(CropsBlock.AGE, 2).modelForState()
 				.modelFile(models().cross("block/crop/" + name(block) + "_2", cropModel(block, 2))).addModel()
-				.partialState().with(ModCrop.AGE, 3).modelForState()
+				.partialState().with(CropsBlock.AGE, 3).modelForState()
 				.modelFile(models().cross("block/crop/" + name(block) + "_3", cropModel(block, 3))).addModel()
-				.partialState().with(ModCrop.AGE, 4).modelForState()
+				.partialState().with(CropsBlock.AGE, 4).modelForState()
 				.modelFile(models().cross("block/crop/" + name(block) + "_4", cropModel(block, 4))).addModel()
-				.partialState().with(ModCrop.AGE, 5).modelForState()
+				.partialState().with(CropsBlock.AGE, 5).modelForState()
 				.modelFile(models().cross("block/crop/" + name(block) + "_5", cropModel(block, 5))).addModel()
-				.partialState().with(ModCrop.AGE, 6).modelForState()
+				.partialState().with(CropsBlock.AGE, 6).modelForState()
 				.modelFile(models().cross("block/crop/" + name(block) + "_6", cropModel(block, 6))).addModel()
-				.partialState().with(ModCrop.AGE, 7).modelForState()
+				.partialState().with(CropsBlock.AGE, 7).modelForState()
 				.modelFile(models().cross("block/crop/" + name(block) + "_7", cropModel(block, 7))).addModel();
 	}
 
@@ -178,5 +182,9 @@ public class BlockStatesProvider extends BlockStateProvider {
 	private ResourceLocation extend(ResourceLocation rl, String suffix) {
 		return new ResourceLocation(rl.getNamespace(), rl.getPath() + suffix);
 	}
+	
+	public ModelFile cubeAll(Block block, String texturePath) {
+        return models().cubeAll(name(block), new RefinementRL("blocks/" + texturePath));
+    }
 
 }

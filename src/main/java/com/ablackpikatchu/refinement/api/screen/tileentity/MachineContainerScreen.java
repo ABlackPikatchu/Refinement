@@ -44,7 +44,7 @@ public abstract class MachineContainerScreen<T extends MachineContainer<?>> exte
 
 	protected PowerIndicatorElement powerIndicatorElement = new PowerIndicatorElement();
 
-	public MachineContainerScreen(T screenContainer, PlayerInventory inv, ITextComponent titleIn,
+	protected MachineContainerScreen(T screenContainer, PlayerInventory inv, ITextComponent titleIn,
 			ResourceLocation guiTexture) {
 		super(screenContainer, inv, titleIn);
 		this.guiTexture = guiTexture;
